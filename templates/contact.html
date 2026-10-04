@@ -1,0 +1,856 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Contact Us | AL NAJAM Travel & Tours</title>
+
+<!-- Bootstrap Icons -->
+
+<link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+<!-- Main CSS -->
+
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+<style>
+
+    /* ================= CONTACT PAGE ================= */
+
+    .contact-page {
+        min-height: 100vh;
+        padding: 140px 6% 80px;
+        background: #f7f9fc;
+    }
+
+    /* ================= HEADER ================= */
+
+    .contact-header {
+        text-align: center;
+        max-width: 750px;
+        margin: 0 auto 55px;
+    }
+
+    .contact-header span {
+        display: inline-block;
+        color: #F59E0B;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 3px;
+        margin-bottom: 10px;
+    }
+
+    .contact-header h1 {
+        margin: 10px 0 15px;
+        font-size: 48px;
+        color: #172033;
+        font-weight: 800;
+    }
+
+    .contact-header p {
+        color: #687386;
+        font-size: 17px;
+        line-height: 1.7;
+    }
+
+    /* ================= CONTAINER ================= */
+
+    .contact-container {
+        max-width: 1150px;
+        margin: auto;
+
+        display: grid;
+        grid-template-columns: 0.9fr 1.1fr;
+
+        gap: 30px;
+    }
+
+    /* ================= BOXES ================= */
+
+    .contact-info,
+    .contact-form {
+        background: #ffffff;
+        border-radius: 18px;
+        padding: 35px;
+
+        border: 1px solid #e9edf3;
+
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+    }
+
+    .contact-info h2,
+    .contact-form h2 {
+        color: #172033;
+        margin: 0 0 12px;
+        font-size: 26px;
+    }
+
+    .contact-info > p,
+    .contact-form > p {
+        color: #687386;
+        line-height: 1.7;
+        margin-bottom: 30px;
+    }
+
+    /* ================= CONTACT ITEMS ================= */
+
+    .contact-item {
+        display: flex;
+        align-items: flex-start;
+
+        gap: 15px;
+        margin-bottom: 25px;
+    }
+
+    .contact-icon {
+        min-width: 48px;
+        height: 48px;
+
+        border-radius: 12px;
+
+        background: #fff6d6;
+        color: #F59E0B;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        font-size: 21px;
+    }
+
+    /* ================= ACTUAL ICON COLORS ================= */
+
+    .phone-icon {
+        background: #eaf3ff;
+        color: #1675D1;
+    }
+
+    .email-icon {
+        background: #fff0f0;
+        color: #EA4335;
+    }
+
+    .whatsapp-icon {
+        background: #e9fdf0;
+        color: #25D366;
+    }
+
+    .office-icon {
+        background: #fff4e8;
+        color: #F58220;
+    }
+
+    .hours-icon {
+        background: #f3efff;
+        color: #7251B5;
+    }
+
+    .contact-item h3 {
+        margin: 0 0 5px;
+
+        font-size: 16px;
+        color: #172033;
+    }
+
+    .contact-item p {
+        margin: 0;
+
+        color: #687386;
+
+        line-height: 1.5;
+    }
+
+    /* ================= PHONE / EMAIL LINKS ================= */
+
+    .contact-item a {
+        color: #687386;
+        text-decoration: none;
+
+        transition: 0.3s ease;
+    }
+
+    .contact-item a:hover {
+        color: #F59E0B;
+    }
+
+    /* ================= WHATSAPP ================= */
+
+    .whatsapp-link {
+        color: #687386;
+        text-decoration: none;
+
+        transition: 0.3s ease;
+    }
+
+    .whatsapp-link:hover {
+        color: #25D366;
+    }
+
+    /* ================= FORM ================= */
+
+    .form-group {
+        margin-bottom: 18px;
+    }
+
+    .form-group label {
+        display: block;
+
+        margin-bottom: 7px;
+
+        color: #172033;
+
+        font-weight: 600;
+        font-size: 14px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        width: 100%;
+
+        padding: 13px 15px;
+
+        border: 1px solid #dfe4ec;
+
+        border-radius: 8px;
+
+        outline: none;
+
+        font-family: inherit;
+        font-size: 14px;
+
+        transition: 0.3s ease;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+        border-color: #F59E0B;
+
+        box-shadow:
+            0 0 0 3px
+            rgba(245, 158, 11, 0.12);
+    }
+
+    .form-group textarea {
+        min-height: 130px;
+
+        resize: vertical;
+    }
+
+    /* ================= SEND BUTTON ================= */
+
+    .send-btn {
+        border: none;
+
+        padding: 14px 25px;
+
+        border-radius: 8px;
+
+        background: #F59E0B;
+        color: #ffffff;
+
+        font-size: 14px;
+        font-weight: 700;
+
+        cursor: pointer;
+
+        transition: all 0.3s ease;
+    }
+
+    .send-btn i {
+        margin-left: 7px;
+    }
+
+    .send-btn:hover {
+        transform: translateY(-2px);
+
+        box-shadow:
+            0 8px 20px
+            rgba(245, 158, 11, 0.25);
+    }
+
+    /* ================= FLOATING WHATSAPP ================= */
+
+    .floating-whatsapp {
+        position: fixed;
+
+        right: 25px;
+        bottom: 25px;
+
+        width: 58px;
+        height: 58px;
+
+        border-radius: 50%;
+
+        background: #25D366;
+        color: #ffffff;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        text-decoration: none;
+
+        font-size: 30px;
+
+        box-shadow:
+            0 8px 22px rgba(37, 211, 102, 0.30);
+
+        z-index: 9999;
+
+        transition: all 0.3s ease;
+    }
+
+    .floating-whatsapp:hover {
+        background: #20bd5a;
+        color: #ffffff;
+
+        transform: translateY(-4px) scale(1.05);
+
+        box-shadow:
+            0 12px 28px rgba(37, 211, 102, 0.40);
+    }
+
+    /* ================= MOBILE ================= */
+
+    @media (max-width: 800px) {
+
+        .contact-page {
+            padding: 120px 20px 60px;
+        }
+
+        .contact-header h1 {
+            font-size: 38px;
+        }
+
+        .contact-container {
+            grid-template-columns: 1fr;
+        }
+
+    }
+
+    @media (max-width: 500px) {
+
+        .contact-header h1 {
+            font-size: 32px;
+        }
+
+        .contact-header p {
+            font-size: 15px;
+        }
+
+        .contact-info,
+        .contact-form {
+            padding: 25px 20px;
+        }
+
+        .floating-whatsapp {
+            width: 52px;
+            height: 52px;
+
+            right: 18px;
+            bottom: 18px;
+
+            font-size: 27px;
+        }
+
+    }
+
+    .contact-messages {
+        max-width: 1150px;
+        margin: 0 auto 25px;
+    }
+
+    .success-message {
+        background: #ecfdf5;
+        color: #047857;
+        border: 1px solid #a7f3d0;
+        border-radius: 10px;
+        padding: 15px 20px;
+
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        font-weight: 600;
+    }
+
+    .success-message i {
+        font-size: 20px;
+    }
+
+    .brand-logo {
+    width: 72px;
+    height: 72px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+    overflow: hidden;
+}
+
+.brand-logo img {
+    width: 72px;
+    height: 72px;
+    object-fit: contain;
+    display: block;
+}
+</style>
+
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<header class="main-header">
+
+
+<nav class="navbar">
+
+    <!-- LOGO -->
+
+    <a href="/" class="brand">
+
+        <div class="brand-logo">
+            <img
+                src="{% static 'images/logo.png' %}"
+                alt="AL NAJAM Travel & Tours"
+            >
+        </div>
+
+        <div class="brand-text">
+
+            <strong>AL NAJAM</strong>
+
+            <small>
+                TRAVEL & TOURS
+            </small>
+
+        </div>
+
+    </a>
+
+    <!-- NAVIGATION -->
+
+    <div class="nav-links">
+
+        <a href="{% url 'home' %}">Home</a>
+
+        <a href="{% url 'flights' %}">Flights</a>
+
+        <a href="{% url 'hotels' %}">Hotels</a>
+
+        <a href="{% url 'visa' %}">Visa</a>
+
+        <a href="{% url 'umrah' %}">Umrah</a>
+
+        <a href="{% url 'tours' %}">Tours</a>
+
+        <a href="{% url 'about' %}">About</a>
+
+        <a href="{% url 'contact' %}" class="active">Contact</a>
+
+    </div>
+
+    <!-- RIGHT SIDE -->
+
+    <div class="nav-actions">
+
+        <a href="#" class="login-btn">
+
+            <i class="bi bi-person"></i>
+
+            Agent Login
+
+        </a>
+
+        <a href="#" class="agent-btn">
+
+            Become an Agent
+
+        </a>
+
+    </div>
+
+    <!-- MOBILE MENU -->
+
+    <button class="mobile-menu">
+
+        <i class="bi bi-list"></i>
+
+    </button>
+
+</nav>
+
+
+</header>
+
+<!-- ================= CONTACT PAGE ================= -->
+
+<main class="contact-page">
+
+
+{% if messages %}
+
+    <div class="contact-messages">
+
+        {% for message in messages %}
+
+            <div class="success-message">
+
+                <i class="bi bi-check-circle-fill"></i>
+
+                {{ message }}
+
+            </div>
+
+        {% endfor %}
+
+    </div>
+
+{% endif %}
+
+<!-- HEADER -->
+
+<div class="contact-header">
+
+    <span>
+        GET IN TOUCH
+    </span>
+
+    <h1>
+        Contact AL NAJAM
+    </h1>
+
+    <p>
+        Have a question about flights, hotels, visas,
+        Umrah packages or tours?
+        Our team is here to help you.
+    </p>
+
+</div>
+
+<!-- CONTACT CONTAINER -->
+
+<div class="contact-container">
+
+    <!-- CONTACT INFORMATION -->
+
+    <div class="contact-info">
+
+        <h2>
+            Let's Talk
+        </h2>
+
+        <p>
+            Contact AL NAJAM Travel & Tours for
+            professional travel assistance and
+            personalized solutions.
+        </p>
+
+        <!-- PHONE -->
+
+        <div class="contact-item">
+
+            <div class="contact-icon phone-icon">
+
+                <i class="bi bi-telephone"></i>
+
+            </div>
+
+            <div>
+
+                <h3>
+                    Phone
+                </h3>
+
+                <p>
+
+                    <a href="tel:03338781727">
+                        03338781727
+                    </a>
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- EMAIL -->
+
+        <div class="contact-item">
+
+            <div class="contact-icon email-icon">
+
+                <i class="bi bi-envelope"></i>
+
+            </div>
+
+            <div>
+
+                <h3>
+                    Email
+                </h3>
+
+                <p>
+
+                    <a href="mailto:alnajamtravelsmb786@gmail.com">
+                        alnajamtravelsmb786@gmail.com
+                    </a>
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- WHATSAPP -->
+
+        <div class="contact-item">
+
+            <div class="contact-icon whatsapp-icon">
+
+                <i class="bi bi-whatsapp"></i>
+
+            </div>
+
+            <div>
+
+                <h3>
+                    WhatsApp
+                </h3>
+
+                <p>
+
+                    <a
+                        href="https://wa.me/64223813614"
+                        target="_blank"
+                        rel="noopener"
+                        class="whatsapp-link"
+                    >
+                        +64223813614
+                    </a>
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- OFFICE -->
+
+        <div class="contact-item">
+
+            <div class="contact-icon office-icon">
+
+                <i class="bi bi-geo-alt"></i>
+
+            </div>
+
+            <div>
+
+                <h3>
+                    Office
+                </h3>
+
+                <p>
+                    Sambrial, Pakistan
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- WORKING HOURS -->
+
+        <div class="contact-item">
+
+            <div class="contact-icon hours-icon">
+
+                <i class="bi bi-clock"></i>
+
+            </div>
+
+            <div>
+
+                <h3>
+                    Working Hours
+                </h3>
+
+                <p>
+                    Monday – Saturday
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- CONTACT FORM -->
+
+    <div class="contact-form">
+
+        <h2>
+            Send Us a Message
+        </h2>
+
+        <p>
+            Fill out the form below and our team
+            will get back to you.
+        </p>
+
+        <form
+            method="POST"
+            action="{% url 'contact' %}"
+        >
+
+            {% csrf_token %}
+
+            <!-- NAME -->
+
+            <div class="form-group">
+
+                <label for="name">
+                    Your Name
+                </label>
+
+                <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    placeholder="Enter your name"
+                    required
+                >
+
+            </div>
+
+            <!-- EMAIL -->
+
+            <div class="form-group">
+
+                <label for="email">
+                    Email Address
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="Enter your email"
+                    required
+                >
+
+            </div>
+
+            <!-- PHONE -->
+
+            <div class="form-group">
+
+                <label for="phone">
+                    Phone Number
+                </label>
+
+                <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    placeholder="Enter your phone number"
+                >
+
+            </div>
+
+            <!-- MESSAGE -->
+
+            <div class="form-group">
+
+                <label for="message">
+                    Message
+                </label>
+
+                <textarea
+                    id="message"
+                    name="message"
+                    placeholder="How can we help you?"
+                    required
+                ></textarea>
+
+            </div>
+
+            <!-- BUTTON -->
+
+            <button
+                type="submit"
+                class="send-btn"
+            >
+
+                Send Message
+
+                <i class="bi bi-arrow-right"></i>
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="footer">
+
+
+<div class="footer-content">
+
+    <h3>
+        AL NAJAM
+    </h3>
+
+    <p>
+        Travel & Tours
+    </p>
+
+    <span>
+        © 2026 AL NAJAM Travel & Tours.
+        All rights reserved.
+    </span>
+
+</div>
+
+
+</footer>
+
+<!-- ================= FLOATING WHATSAPP ================= -->
+
+<a
+href="https://wa.me/64223813614"
+class="floating-whatsapp"
+target="_blank"
+rel="noopener"
+aria-label="Chat with AL NAJAM on WhatsApp"
+title="Chat with AL NAJAM on WhatsApp"
+
+>
+
+
+<i class="bi bi-whatsapp"></i>
+
+
+</a>
+
+</body>
+
+</html>

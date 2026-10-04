@@ -1,0 +1,491 @@
+
+<!DOCTYPE html>
+
+<html>
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>
+        Agent Wallet Statement
+    </title>
+
+    <style>
+
+        @page {
+            size: A4;
+            margin: 30px;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            color: #222222;
+            font-size: 10px;
+        }
+
+        .header {
+            border-bottom: 2px solid #f58220;
+            padding-bottom: 12px;
+            margin-bottom: 20px;
+        }
+
+        .company {
+            font-size: 22px;
+            font-weight: bold;
+            color: #f58220;
+        }
+
+        .title {
+            font-size: 17px;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+
+        .subtitle {
+            color: #777777;
+            margin-top: 4px;
+        }
+
+        .agent-box {
+            border: 1px solid #dddddd;
+            padding: 12px;
+            margin-bottom: 15px;
+        }
+
+        .agent-name {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .agency-name {
+            color: #666666;
+            margin-top: 3px;
+        }
+
+        .summary-table {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .summary-table td {
+            border: 1px solid #dddddd;
+            padding: 10px;
+            width: 25%;
+            vertical-align: top;
+        }
+
+        .summary-label {
+            font-size: 8px;
+            color: #777777;
+            text-transform: uppercase;
+        }
+
+        .summary-value {
+            font-size: 13px;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+
+        .filter-info {
+            background: #f7f7f7;
+            border: 1px solid #dddddd;
+            padding: 9px;
+            margin-bottom: 15px;
+        }
+
+        .transactions {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .transactions th {
+            background: #172033;
+            color: white;
+            padding: 8px;
+            border: 1px solid #172033;
+            font-size: 8px;
+            text-align: left;
+        }
+
+        .transactions td {
+            padding: 8px;
+            border: 1px solid #dddddd;
+            font-size: 8px;
+        }
+
+        .credit {
+            color: #198754;
+            font-weight: bold;
+        }
+
+        .debit {
+            color: #dc3545;
+            font-weight: bold;
+        }
+
+        .closing-box {
+            margin-top: 20px;
+            background: #172033;
+            color: white;
+            padding: 12px;
+        }
+
+        .closing-table {
+            width: 100%;
+        }
+
+        .closing-table td {
+            width: 33.33%;
+            padding: 5px;
+        }
+
+        .closing-label {
+            font-size: 8px;
+            color: #cccccc;
+        }
+
+        .closing-value {
+            font-size: 15px;
+            font-weight: bold;
+            margin-top: 4px;
+        }
+
+        .empty {
+            text-align: center;
+            padding: 25px;
+            color: #777777;
+        }
+
+        .footer {
+            margin-top: 25px;
+            text-align: center;
+            color: #888888;
+            font-size: 8px;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- COMPANY HEADER -->
+
+<div class="header">
+
+    <div class="company">
+        AL NAJAM TRAVEL & TOURS
+    </div>
+
+    <div class="title">
+        Agent Wallet Statement
+    </div>
+
+    <div class="subtitle">
+        Complete wallet transaction history
+    </div>
+
+</div>
+
+
+<!-- AGENT -->
+
+<div class="agent-box">
+
+    <div class="agent-name">
+        {{ agent.name }}
+    </div>
+
+    <div class="agency-name">
+        {{ agent.agency }}
+    </div>
+
+    <div class="agency-name">
+        {{ agent.email }}
+    </div>
+
+</div>
+
+
+<!-- SUMMARY -->
+
+<table class="summary-table">
+
+    <tr>
+
+        <td>
+
+            <div class="summary-label">
+                Current Wallet Balance
+            </div>
+
+            <div class="summary-value">
+                PKR {{ wallet.balance|floatformat:0 }}
+            </div>
+
+        </td>
+
+
+        <td>
+
+            <div class="summary-label">
+                Total Deposited
+            </div>
+
+            <div class="summary-value">
+                PKR {{ wallet.total_deposited|floatformat:0 }}
+            </div>
+
+        </td>
+
+
+        <td>
+
+            <div class="summary-label">
+                Total Credits
+            </div>
+
+            <div class="summary-value">
+                PKR {{ total_credit|floatformat:0 }}
+            </div>
+
+        </td>
+
+
+        <td>
+
+            <div class="summary-label">
+                Total Debits
+            </div>
+
+            <div class="summary-value">
+                PKR {{ total_debit|floatformat:0 }}
+            </div>
+
+        </td>
+
+    </tr>
+
+</table>
+
+
+<!-- DATE RANGE -->
+
+{% if date_from or date_to %}
+
+    <div class="filter-info">
+
+        <strong>
+            Statement Period:
+        </strong>
+
+        {% if date_from %}
+            {{ date_from }}
+        {% else %}
+            Beginning
+        {% endif %}
+
+        -
+
+        {% if date_to %}
+            {{ date_to }}
+        {% else %}
+            Current
+        {% endif %}
+
+    </div>
+
+{% endif %}
+
+
+<!-- TRANSACTIONS -->
+
+<table class="transactions">
+
+    <thead>
+
+        <tr>
+
+            <th>
+                DATE
+            </th>
+
+            <th>
+                REFERENCE
+            </th>
+
+            <th>
+                DESCRIPTION
+            </th>
+
+            <th>
+                TYPE
+            </th>
+
+            <th>
+                DEBIT
+            </th>
+
+            <th>
+                CREDIT
+            </th>
+
+            <th>
+                BALANCE AFTER
+            </th>
+
+        </tr>
+
+    </thead>
+
+
+    <tbody>
+
+    {% if transactions %}
+
+        {% for transaction in transactions %}
+
+            <tr>
+
+                <td>
+                    {{ transaction.created_at|date:"d M Y, h:i A" }}
+                </td>
+
+                <td>
+                    {{ transaction.reference }}
+                </td>
+
+                <td>
+                    {{ transaction.description }}
+                </td>
+
+                <td>
+                    {{ transaction.transaction_type }}
+                </td>
+
+                <td>
+
+                    {% if transaction.debit > 0 %}
+
+                        <span class="debit">
+                            - PKR {{ transaction.debit|floatformat:0 }}
+                        </span>
+
+                    {% else %}
+
+                        —
+
+                    {% endif %}
+
+                </td>
+
+                <td>
+
+                    {% if transaction.credit > 0 %}
+
+                        <span class="credit">
+                            + PKR {{ transaction.credit|floatformat:0 }}
+                        </span>
+
+                    {% else %}
+
+                        —
+
+                    {% endif %}
+
+                </td>
+
+                <td>
+                    PKR {{ transaction.balance_after|floatformat:0 }}
+                </td>
+
+            </tr>
+
+        {% endfor %}
+
+    {% else %}
+
+        <tr>
+
+            <td colspan="7" class="empty">
+
+                No wallet transactions found.
+
+            </td>
+
+        </tr>
+
+    {% endif %}
+
+    </tbody>
+
+</table>
+
+
+<!-- OPENING / CLOSING -->
+
+<div class="closing-box">
+
+    <table class="closing-table">
+
+        <tr>
+
+            <td>
+
+                <div class="closing-label">
+                    OPENING BALANCE
+                </div>
+
+                <div class="closing-value">
+                    PKR {{ opening_balance|floatformat:0 }}
+                </div>
+
+            </td>
+
+
+            <td>
+
+                <div class="closing-label">
+                    CLOSING BALANCE
+                </div>
+
+                <div class="closing-value">
+                    PKR {{ closing_balance|floatformat:0 }}
+                </div>
+
+            </td>
+
+
+            <td>
+
+                <div class="closing-label">
+                    TRANSACTIONS
+                </div>
+
+                <div class="closing-value">
+                    {{ transaction_count }}
+                </div>
+
+            </td>
+
+        </tr>
+
+    </table>
+
+</div>
+
+
+<div class="footer">
+
+    AL NAJAM Travel & Tours —
+    Agent Wallet Financial Statement
+
+</div>
+
+
+</body>
+
+</html>
+

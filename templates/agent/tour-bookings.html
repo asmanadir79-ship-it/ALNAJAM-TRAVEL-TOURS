@@ -1,0 +1,1824 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Tour Bookings | AL NAJAM Travel & Tours</title>
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f7fb;
+            color: #172033;
+        }
+
+        /* =========================================
+           LAYOUT
+        ========================================= */
+
+        .dashboard {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* =========================================
+           SIDEBAR
+        ========================================= */
+
+        .sidebar {
+            width: 255px;
+            min-height: 100vh;
+            background: #ffffff;
+            border-right: 1px solid #e5eaf1;
+            padding: 25px 15px;
+
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+
+            overflow-y: auto;
+        }
+
+        .sidebar-logo {
+            text-align: center;
+            padding: 8px 0 28px;
+            border-bottom: 1px solid #edf0f5;
+            margin-bottom: 25px;
+        }
+        .sidebar-logo-image {
+    width: 88px;
+    height: 88px;
+    margin: auto;
+    display: block;
+    object-fit: contain;
+}
+
+        .sidebar-logo h2 {
+            margin-top: 12px;
+            font-size: 17px;
+            color: #172033;
+        }
+
+        .sidebar-logo span {
+            display: block;
+            margin-top: 4px;
+
+            font-size: 10px;
+            color: #8a95a7;
+            letter-spacing: 1.2px;
+        }
+
+        .sidebar-section {
+            margin-bottom: 25px;
+        }
+
+        .sidebar-title {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            color: #8792a5;
+
+            padding: 0 12px;
+            margin-bottom: 9px;
+        }
+
+        .sidebar-link {
+            display: flex;
+            align-items: center;
+
+            gap: 13px;
+
+            width: 100%;
+
+            padding: 12px 13px;
+            margin-bottom: 4px;
+
+            border-radius: 12px;
+
+            color: #5e6b80;
+            text-decoration: none;
+
+            font-size: 13px;
+
+            transition: 0.25s;
+        }
+
+        .sidebar-link i {
+            width: 30px;
+            height: 30px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 9px;
+            background: #f4f7fb;
+
+            font-size: 15px;
+        }
+
+        .sidebar-link:hover {
+            background: #fff8eb;
+            color: #d48700;
+        }
+
+        .sidebar-link:hover i {
+            background: #fff0d0;
+        }
+
+        .sidebar-link.active {
+            background: #fff1d6;
+            color: #d88900;
+            font-weight: 600;
+        }
+
+        .sidebar-link.active i {
+            background: #f59e0b;
+            color: white;
+        }
+
+        /* =========================================
+           BOOKINGS DROPDOWN
+        ========================================= */
+
+        .bookings-menu {
+            width: 100%;
+        }
+
+        .bookings-toggle {
+            border: none;
+            background: transparent;
+            font-family: inherit;
+            cursor: pointer;
+            text-align: left;
+            position: relative;
+        }
+
+        .bookings-toggle > span {
+            flex: 1;
+        }
+
+        .bookings-arrow {
+            width: auto !important;
+            height: auto !important;
+            background: transparent !important;
+
+            font-size: 11px !important;
+
+            margin-left: auto;
+
+            transition: transform 0.25s ease;
+        }
+
+        .bookings-toggle.open .bookings-arrow {
+            transform: rotate(180deg);
+        }
+
+        .bookings-submenu {
+            display: block;
+
+            margin: 2px 0 7px 43px;
+            padding-left: 10px;
+
+            border-left: 1px solid #e6ebf2;
+        }
+
+        .booking-sub-link {
+            display: block;
+
+            padding: 9px 10px;
+            margin-bottom: 2px;
+
+            color: #7b8798;
+
+            text-decoration: none;
+
+            font-size: 12px;
+
+            border-radius: 8px;
+
+            transition: 0.2s ease;
+        }
+
+        .booking-sub-link:hover {
+            background: #fff8eb;
+            color: #d88900;
+        }
+
+        .booking-sub-link.active {
+            background: #fff1d6;
+            color: #d88900;
+            font-weight: 600;
+        }
+
+        /* =========================================
+           MAIN CONTENT
+        ========================================= */
+
+        .main-content {
+            margin-left: 255px;
+
+            width: calc(100% - 255px);
+
+            padding: 25px 30px 45px;
+        }
+
+        /* =========================================
+           TOP HEADER
+        ========================================= */
+
+        .top-header {
+            background: white;
+
+            border: 1px solid #e7ebf1;
+            border-radius: 20px;
+
+            padding: 20px 24px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            margin-bottom: 18px;
+
+            box-shadow: 0 5px 20px rgba(20, 35, 60, 0.03);
+        }
+
+        .header-label {
+            display: inline-block;
+
+            background: #f5f7fa;
+            color: #778398;
+
+            padding: 4px 8px;
+
+            border-radius: 6px;
+
+            font-size: 9px;
+            font-weight: 700;
+
+            letter-spacing: 0.8px;
+
+            margin-bottom: 5px;
+        }
+
+        .top-header h1 {
+            font-size: 22px;
+            margin-bottom: 5px;
+        }
+
+        .top-header p {
+            color: #8a95a7;
+            font-size: 12px;
+        }
+
+        /* =========================================
+           PROFILE
+        ========================================= */
+
+        .agent-profile {
+            display: flex;
+            align-items: center;
+
+            gap: 11px;
+
+            padding: 8px 13px;
+
+            border: 1px solid #e3e8ef;
+            border-radius: 13px;
+
+            background: #fff;
+        }
+
+        .agent-avatar {
+            width: 38px;
+            height: 38px;
+
+            border-radius: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #f59e0b;
+            color: white;
+
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .agent-details strong {
+            display: block;
+
+            font-size: 12px;
+            color: #172033;
+        }
+
+        .agent-details span {
+            font-size: 10px;
+            color: #8994a7;
+        }
+
+        /* =========================================
+           PAGE HEADER
+        ========================================= */
+
+        .page-heading {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            margin-bottom: 18px;
+        }
+
+        .page-heading-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .page-icon {
+            width: 44px;
+            height: 44px;
+
+            border-radius: 13px;
+
+            background: #eef6ff;
+            color: #1675d1;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 20px;
+        }
+
+        .page-heading h2 {
+            font-size: 18px;
+            margin-bottom: 4px;
+        }
+
+        .page-heading p {
+            font-size: 10px;
+            color: #98a2b3;
+        }
+
+        .new-booking-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            padding: 11px 17px;
+
+            background: #1675d1;
+            color: white;
+
+            border-radius: 10px;
+
+            text-decoration: none;
+
+            font-size: 11px;
+            font-weight: 700;
+
+            transition: 0.25s;
+        }
+
+        .new-booking-btn:hover {
+            background: #0e63b7;
+            transform: translateY(-1px);
+        }
+
+        /* =========================================
+           STAT CARDS
+        ========================================= */
+
+        .stats-grid {
+            display: grid;
+
+            grid-template-columns: repeat(4, 1fr);
+
+            gap: 15px;
+
+            margin-bottom: 18px;
+        }
+
+        .stat-card {
+            background: white;
+
+            border: 1px solid #e7ebf1;
+
+            border-radius: 17px;
+
+            padding: 18px;
+
+            box-shadow: 0 6px 22px rgba(20, 35, 60, 0.03);
+        }
+
+        .stat-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            margin-bottom: 12px;
+        }
+
+        .stat-icon {
+            width: 34px;
+            height: 34px;
+
+            border-radius: 10px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #eef6ff;
+            color: #1675d1;
+        }
+
+        .stat-label {
+            font-size: 9px;
+            font-weight: 700;
+
+            color: #8792a5;
+
+            letter-spacing: 0.4px;
+        }
+
+        .stat-number {
+            font-size: 23px;
+            font-weight: 700;
+
+            color: #172033;
+
+            margin-bottom: 4px;
+        }
+
+        .stat-note {
+            font-size: 9px;
+            color: #9aa4b5;
+        }
+
+        .stat-confirmed .stat-icon {
+            background: #e8faf3;
+            color: #08a76b;
+        }
+
+        .stat-pending .stat-icon {
+            background: #fff7df;
+            color: #d88900;
+        }
+
+        .stat-cancelled .stat-icon {
+            background: #fff1f2;
+            color: #dc2626;
+        }
+
+        /* =========================================
+           FILTER PANEL
+        ========================================= */
+
+        .filter-panel {
+            background: white;
+
+            border: 1px solid #e7ebf1;
+
+            border-radius: 18px;
+
+            padding: 18px;
+
+            margin-bottom: 18px;
+
+            box-shadow: 0 6px 22px rgba(20, 35, 60, 0.03);
+        }
+
+        .filter-title {
+            display: flex;
+            align-items: center;
+
+            gap: 8px;
+
+            font-size: 12px;
+            font-weight: 700;
+
+            margin-bottom: 14px;
+        }
+
+        .filter-title i {
+            color: #1675d1;
+        }
+
+        .filter-grid {
+            display: grid;
+
+            grid-template-columns: 1.5fr 1fr 1fr 1fr auto;
+
+            gap: 10px;
+        }
+
+        .filter-group {
+            position: relative;
+        }
+
+        .filter-group i {
+            position: absolute;
+
+            left: 12px;
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            color: #9aa4b5;
+
+            font-size: 13px;
+        }
+
+        .filter-input,
+        .filter-select {
+            width: 100%;
+
+            height: 40px;
+
+            border: 1px solid #e1e6ed;
+
+            border-radius: 9px;
+
+            background: #fafbfc;
+
+            padding: 0 12px;
+
+            font-size: 10px;
+
+            color: #5e6b80;
+
+            outline: none;
+        }
+
+        .filter-input {
+            padding-left: 35px;
+        }
+
+        .filter-select:focus,
+        .filter-input:focus {
+            border-color: #b9d7f5;
+            background: white;
+        }
+
+        .filter-btn {
+            height: 40px;
+
+            padding: 0 16px;
+
+            border: none;
+
+            border-radius: 9px;
+
+            background: #172033;
+            color: white;
+
+            font-size: 10px;
+            font-weight: 700;
+
+            cursor: pointer;
+        }
+
+        .filter-btn:hover {
+            background: #263653;
+        }
+
+        /* =========================================
+           BOOKINGS PANEL
+        ========================================= */
+
+        .bookings-panel {
+            background: white;
+
+            border: 1px solid #e7ebf1;
+
+            border-radius: 20px;
+
+            overflow: hidden;
+
+            box-shadow: 0 6px 22px rgba(20, 35, 60, 0.03);
+        }
+
+        .bookings-panel-header {
+            padding: 20px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            border-bottom: 1px solid #edf0f4;
+        }
+
+        .bookings-panel-title {
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .bookings-panel-subtitle {
+            font-size: 10px;
+            color: #98a2b3;
+
+            margin-top: 4px;
+        }
+
+        .booking-count {
+            padding: 6px 10px;
+
+            background: #eef6ff;
+
+            color: #1675d1;
+
+            border-radius: 20px;
+
+            font-size: 9px;
+            font-weight: 700;
+        }
+
+        /* =========================================
+           TABLE
+        ========================================= */
+
+        .table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        .booking-table {
+            width: 100%;
+            border-collapse: collapse;
+
+            min-width: 900px;
+        }
+
+        .booking-table th {
+            background: #fafbfc;
+
+            padding: 13px 18px;
+
+            text-align: left;
+
+            font-size: 9px;
+
+            color: #8792a5;
+
+            font-weight: 700;
+
+            letter-spacing: 0.4px;
+
+            border-bottom: 1px solid #edf0f4;
+        }
+
+        .booking-table td {
+            padding: 15px 18px;
+
+            border-bottom: 1px solid #f0f2f6;
+
+            font-size: 10px;
+
+            color: #5e6b80;
+        }
+
+        .booking-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .booking-table tbody tr:hover {
+            background: #fcfdff;
+        }
+
+        .tour-name {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .tour-icon {
+            width: 34px;
+            height: 34px;
+
+            border-radius: 9px;
+
+            background: #f4f7fb;
+            color: #1675d1;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .tour-info strong {
+            display: block;
+
+            color: #172033;
+
+            font-size: 10px;
+
+            margin-bottom: 3px;
+        }
+
+        .tour-info span {
+            font-size: 8px;
+
+            color: #98a2b3;
+        }
+
+        .booking-id {
+            font-weight: 700;
+            color: #172033;
+        }
+
+        .customer-name {
+            color: #172033;
+            font-weight: 600;
+        }
+
+        .route-text {
+            color: #69778d;
+        }
+
+        .status {
+            display: inline-block;
+
+            padding: 5px 9px;
+
+            border-radius: 20px;
+
+            font-size: 8px;
+
+            font-weight: 700;
+        }
+
+        .status-confirmed {
+            background: #e8faf3;
+            color: #00a56b;
+        }
+
+        .status-pending {
+            background: #fff5d9;
+            color: #c17a00;
+        }
+
+        .status-cancelled {
+            background: #fff1f2;
+            color: #dc2626;
+        }
+
+        .action-btn {
+            width: 30px;
+            height: 30px;
+
+            border: 1px solid #e4e9ef;
+
+            border-radius: 8px;
+
+            background: white;
+
+            color: #758197;
+
+            display: inline-flex;
+
+            align-items: center;
+            justify-content: center;
+
+            text-decoration: none;
+
+            transition: 0.2s;
+        }
+
+        .action-btn:hover {
+            background: #eef6ff;
+            color: #1675d1;
+            border-color: #cfe3fb;
+        }
+
+        /* =========================================
+           EMPTY STATE
+        ========================================= */
+
+        .empty-state {
+            text-align: center;
+
+            padding: 55px 20px;
+        }
+
+        .empty-icon {
+            width: 65px;
+            height: 65px;
+
+            margin: 0 auto 15px;
+
+            border-radius: 18px;
+
+            background: #f4f7fb;
+
+            color: #a5b0c0;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 28px;
+        }
+
+        .empty-state h3 {
+            font-size: 14px;
+
+            color: #69778d;
+
+            margin-bottom: 6px;
+        }
+
+        .empty-state p {
+            font-size: 10px;
+
+            color: #a1acbb;
+
+            max-width: 350px;
+
+            margin: 0 auto 17px;
+
+            line-height: 1.6;
+        }
+
+        .empty-action {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            padding: 9px 14px;
+
+            border-radius: 8px;
+
+            background: #eef6ff;
+
+            color: #1675d1;
+
+            text-decoration: none;
+
+            font-size: 9px;
+
+            font-weight: 700;
+        }
+
+        .empty-action:hover {
+            background: #dcecff;
+        }
+
+        /* =========================================
+           FOOTER
+        ========================================= */
+
+        .dashboard-footer {
+            text-align: center;
+
+            padding: 22px;
+
+            color: #9aa4b5;
+
+            font-size: 9px;
+        }
+
+        /* =========================================
+           RESPONSIVE
+        ========================================= */
+
+        @media (max-width: 1100px) {
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .filter-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+        }
+
+        @media (max-width: 850px) {
+
+            .sidebar {
+                width: 75px;
+                padding: 15px 8px;
+            }
+
+            .sidebar-logo h2,
+            .sidebar-logo span,
+            .sidebar-title,
+            .sidebar-link span {
+                display: none;
+            }
+
+            .sidebar-logo {
+                border: none;
+            }
+
+            .sidebar-link {
+                justify-content: center;
+                padding: 10px;
+            }
+
+            .sidebar-link i {
+                width: 40px;
+                height: 40px;
+            }
+
+            .bookings-submenu {
+                display: none;
+            }
+
+            .main-content {
+                margin-left: 75px;
+
+                width: calc(100% - 75px);
+
+                padding: 18px;
+            }
+
+            .top-header {
+                padding: 17px;
+            }
+
+            .page-heading {
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            .top-header {
+                flex-direction: column;
+
+                align-items: flex-start;
+
+                gap: 15px;
+            }
+
+            .agent-details {
+                display: none;
+            }
+
+            .page-heading {
+                flex-direction: column;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .filter-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .new-booking-btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+        }
+
+        /* =========================================
+           LOGOUT
+        ========================================= */
+
+        .logout-form {
+            margin: 0;
+            padding: 0;
+        }
+
+        .logout-link {
+            border: none;
+            background: transparent;
+            font-family: inherit;
+            cursor: pointer;
+            text-align: left;
+        }
+
+        .logout-link:hover {
+            background: #fff1f2;
+            color: #dc2626;
+        }
+
+        .logout-link:hover i {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="dashboard">
+
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
+
+<aside class="sidebar">
+
+
+    <!-- =================================================
+         LOGO
+    ================================================= -->
+
+    <div class="sidebar-logo">
+
+        <img src="{% static 'images/logo.png' %}" 
+             alt="AL NAJAM Travel & Tours"
+             class="sidebar-logo-image">
+    
+        <h2>
+            AL NAJAM
+        </h2>
+    
+        <span>
+            TRAVEL & TOURS
+        </span>
+    
+    </div>
+
+
+    <!-- =================================================
+         CORE
+    ================================================= -->
+
+    <div class="sidebar-section">
+
+        <div class="sidebar-title">
+            CORE
+        </div>
+
+
+        <!-- OVERVIEW -->
+
+        <a
+            href="{% url 'agent_dashboard' %}"
+            class="sidebar-link"
+        >
+
+            <i class="bi bi-grid-1x2"></i>
+
+            <span>
+                Overview
+            </span>
+
+        </a>
+
+
+        <!-- GROUP TICKETS -->
+
+        <a
+            href="{% url 'agent_group_tickets' %}"
+            class="sidebar-link"
+        >
+
+            <i class="bi bi-people"></i>
+
+            <span>
+                Group Tickets
+            </span>
+
+        </a>
+
+
+        <!-- UMRAH -->
+
+        <a
+            href="{% url 'agent_umrah_bookings' %}"
+            class="sidebar-link"
+        >
+
+            <i class="bi bi-moon-stars"></i>
+
+            <span>
+                Umrah
+            </span>
+
+        </a>
+
+    </div>
+
+
+    <!-- =================================================
+         BOOKINGS
+    ================================================= -->
+
+    <div class="sidebar-section">
+
+        <div class="sidebar-title">
+            BOOKINGS
+        </div>
+
+
+        <div class="bookings-menu">
+
+
+            <!-- BOOKINGS TOGGLE -->
+
+            <button
+                type="button"
+                class="sidebar-link bookings-toggle open"
+                onclick="toggleBookings()"
+            >
+
+                <i class="bi bi-ticket-perforated"></i>
+
+                <span>
+                    Bookings
+                </span>
+
+                <i class="bi bi-chevron-down bookings-arrow"></i>
+
+            </button>
+
+
+            <!-- BOOKINGS SUBMENU -->
+
+            <div
+                class="bookings-submenu"
+                id="bookingsSubmenu"
+            >
+
+
+                <!-- ALL BOOKINGS -->
+
+                <a
+                    href="{% url 'agent_all_bookings' %}"
+                    class="booking-sub-link"
+                >
+                    All Bookings
+                </a>
+
+
+                <!-- PENDING -->
+
+                <a
+                    href="{% url 'agent_pending_bookings' %}"
+                    class="booking-sub-link"
+                >
+                    Pending Approval
+                </a>
+
+
+                <!-- CONFIRMED -->
+
+                <a
+                    href="{% url 'agent_confirmed_bookings' %}"
+                    class="booking-sub-link"
+                >
+                    Confirmed Bookings
+                </a>
+
+
+                <!-- REJECTED -->
+
+                <a
+                    href="{% url 'agent_rejected_bookings' %}"
+                    class="booking-sub-link"
+                >
+                    Rejected Bookings
+                </a>
+
+
+                <!-- GROUP BOOKINGS -->
+
+                <a
+                    href="{% url 'agent_group_bookings' %}"
+                    class="booking-sub-link"
+                >
+                    Group Bookings
+                </a>
+
+
+                <!-- UMRAH BOOKINGS -->
+
+                <a
+                    href="{% url 'agent_umrah_bookings' %}"
+                    class="booking-sub-link"
+                >
+                    Umrah Bookings
+                </a>
+
+
+                <!-- TOUR BOOKINGS - ACTIVE -->
+
+                <a
+                    href="{% url 'agent_tour_bookings' %}"
+                    class="booking-sub-link active"
+                >
+                    Tour Bookings
+                </a>
+
+
+                <!-- VISA BOOKINGS -->
+
+                <a
+                    href="{% url 'agent_visa_bookings' %}"
+                    class="booking-sub-link"
+                >
+                    Visa Bookings
+                </a>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         SERVICES
+    ================================================= -->
+
+    <div class="sidebar-section">
+
+        <div class="sidebar-title">
+            SERVICES
+        </div>
+
+
+        <!-- WALLET -->
+
+        <a
+            href="{% url 'agent_wallet' %}"
+            class="sidebar-link"
+        >
+
+            <i class="bi bi-wallet2"></i>
+
+            <span>
+                Wallet
+            </span>
+
+        </a>
+
+
+        <!-- BANKING -->
+
+        <a
+            href="{% url 'agent_banking' %}"
+            class="sidebar-link"
+        >
+
+            <i class="bi bi-bank"></i>
+
+            <span>
+                Banking
+            </span>
+
+        </a>
+
+
+        <!-- VISA -->
+
+        <a
+            href="#"
+            class="sidebar-link"
+        >
+
+            <i class="bi bi-passport"></i>
+
+            <span>
+                Visa
+            </span>
+
+        </a>
+
+
+        <!-- TOURS -->
+
+        <a
+            href="#"
+            class="sidebar-link"
+        >
+
+            <i class="bi bi-globe2"></i>
+
+            <span>
+                Tours
+            </span>
+
+        </a>
+
+    </div>
+
+
+    <!-- =================================================
+         ORGANIZATION
+    ================================================= -->
+
+    <div class="sidebar-section">
+
+        <div class="sidebar-title">
+            ORGANIZATION
+        </div>
+
+
+        <!-- PROFILE -->
+
+        <a
+            href="{% url 'agency_profile' %}"
+            class="sidebar-link"
+        >
+
+            <i class="bi bi-person-badge"></i>
+
+            <span>
+                Profile
+            </span>
+
+        </a>
+
+
+        <!-- SETTINGS -->
+
+        <a href="{% url 'agent_settings' %}"
+        class="sidebar-link">
+     
+         <i class="bi bi-gear"></i>
+     
+         <span>
+             Settings
+         </span>
+     
+     </a>
+
+        <!-- LOGOUT -->
+
+        <form
+            method="POST"
+            action="{% url 'logout' %}"
+            class="logout-form"
+        >
+
+            {% csrf_token %}
+
+            <button
+                type="submit"
+                class="sidebar-link logout-link"
+            >
+
+                <i class="bi bi-box-arrow-right"></i>
+
+                <span>
+                    Logout
+                </span>
+
+            </button>
+
+        </form>
+
+
+    </div>
+
+
+</aside>
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+
+    <main class="main-content">
+
+
+        <!-- TOP HEADER -->
+
+        <header class="top-header">
+
+            <div>
+
+                <span class="header-label">
+                    AGENT PORTAL
+                </span>
+
+                <h1>
+                    Tour Bookings
+                </h1>
+
+                <p>
+                    Manage your agency's tour bookings and customer travel packages.
+                </p>
+
+            </div>
+            <!-- AGENT PROFILE -->
+            
+            <div class="agent-profile">
+            
+                <div class="agent-avatar">
+            
+                    {% if agent.name %}
+                        {{ agent.name|first|upper }}
+                    {% else %}
+                        A
+                    {% endif %}
+            
+                </div>
+            
+            
+                <div class="agent-details">
+            
+                    <strong>
+                        {{ agent.name }}
+                    </strong>
+            
+                    <span>
+                        {{ agent.agency }}
+                    </span>
+            
+                </div>
+            
+            </div>
+        
+            
+        </header>
+
+
+        <!-- PAGE HEADING -->
+
+        <div class="page-heading">
+
+            <div class="page-heading-left">
+
+                <div class="page-icon">
+                    <i class="bi bi-globe2"></i>
+                </div>
+
+                <div>
+
+                    <h2>
+                        Tour Bookings
+                    </h2>
+
+                    <p>
+                        View, search and manage all your tour reservations.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <a href="#"
+               class="new-booking-btn">
+
+                <i class="bi bi-plus-lg"></i>
+
+                New Tour Booking
+
+            </a>
+
+        </div>
+
+
+        <!-- =====================================================
+             STATISTICS
+        ====================================================== -->
+
+        <section class="stats-grid">
+
+
+            <!-- TOTAL -->
+
+            <div class="stat-card">
+
+                <div class="stat-top">
+
+                    <span class="stat-label">
+                        TOTAL BOOKINGS
+                    </span>
+
+                    <div class="stat-icon">
+                        <i class="bi bi-journal-text"></i>
+                    </div>
+
+                </div>
+
+                <div class="stat-number">
+                    0
+                </div>
+
+                <div class="stat-note">
+                    All tour reservations
+                </div>
+
+            </div>
+
+
+            <!-- CONFIRMED -->
+
+            <div class="stat-card stat-confirmed">
+
+                <div class="stat-top">
+
+                    <span class="stat-label">
+                        CONFIRMED
+                    </span>
+
+                    <div class="stat-icon">
+                        <i class="bi bi-check-circle"></i>
+                    </div>
+
+                </div>
+
+                <div class="stat-number">
+                    0
+                </div>
+
+                <div class="stat-note">
+                    Confirmed tours
+                </div>
+
+            </div>
+
+
+            <!-- PENDING -->
+
+            <div class="stat-card stat-pending">
+
+                <div class="stat-top">
+
+                    <span class="stat-label">
+                        PENDING
+                    </span>
+
+                    <div class="stat-icon">
+                        <i class="bi bi-clock-history"></i>
+                    </div>
+
+                </div>
+
+                <div class="stat-number">
+                    0
+                </div>
+
+                <div class="stat-note">
+                    Awaiting approval
+                </div>
+
+            </div>
+
+
+            <!-- CANCELLED -->
+
+            <div class="stat-card stat-cancelled">
+
+                <div class="stat-top">
+
+                    <span class="stat-label">
+                        CANCELLED
+                    </span>
+
+                    <div class="stat-icon">
+                        <i class="bi bi-x-circle"></i>
+                    </div>
+
+                </div>
+
+                <div class="stat-number">
+                    0
+                </div>
+
+                <div class="stat-note">
+                    Cancelled bookings
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             FILTERS
+        ====================================================== -->
+
+        <section class="filter-panel">
+
+            <div class="filter-title">
+
+                <i class="bi bi-funnel"></i>
+
+                Search & Filter Tours
+
+            </div>
+
+
+            <div class="filter-grid">
+
+
+                <!-- SEARCH -->
+
+                <div class="filter-group">
+
+                    <i class="bi bi-search"></i>
+
+                    <input type="text"
+                           class="filter-input"
+                           placeholder="Search booking ID, customer or tour...">
+
+                </div>
+
+
+                <!-- TOUR TYPE -->
+
+                <div class="filter-group">
+
+                    <select class="filter-select">
+
+                        <option>All Tour Types</option>
+
+                        <option>Domestic Tour</option>
+
+                        <option>International Tour</option>
+
+                        <option>Family Tour</option>
+
+                        <option>Honeymoon Tour</option>
+
+                        <option>Adventure Tour</option>
+
+                        <option>Group Tour</option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- STATUS -->
+
+                <div class="filter-group">
+
+                    <select class="filter-select">
+
+                        <option>All Status</option>
+
+                        <option>Confirmed</option>
+
+                        <option>Pending</option>
+
+                        <option>Cancelled</option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- DATE -->
+
+                <div class="filter-group">
+
+                    <input type="date"
+                           class="filter-input"
+                           style="padding-left:12px;">
+
+                </div>
+
+
+                <!-- FILTER -->
+
+                <button type="button"
+                        class="filter-btn">
+
+                    Apply
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             BOOKINGS TABLE
+        ====================================================== -->
+
+        <section class="bookings-panel">
+
+
+            <div class="bookings-panel-header">
+
+                <div>
+
+                    <div class="bookings-panel-title">
+                        Tour Booking Records
+                    </div>
+
+                    <div class="bookings-panel-subtitle">
+                        Your latest tour booking activity.
+                    </div>
+
+                </div>
+
+
+                <span class="booking-count">
+                    0 Bookings
+                </span>
+
+            </div>
+
+
+            <!-- EMPTY STATE FOR NOW -->
+
+            <div class="empty-state">
+
+                <div class="empty-icon">
+
+                    <i class="bi bi-globe2"></i>
+
+                </div>
+
+
+                <h3>
+                    No tour bookings yet
+                </h3>
+
+
+                <p>
+                    Your tour reservations will appear here once you create or receive your first tour booking.
+                </p>
+
+
+                <a href="#"
+                   class="empty-action">
+
+                    <i class="bi bi-plus-lg"></i>
+
+                    Create Tour Booking
+
+                </a>
+
+            </div>
+
+
+        </section>
+
+
+        <!-- FOOTER -->
+
+        <footer class="dashboard-footer">
+
+            © 2026 AL NAJAM Travel & Tours.
+            Agent Portal.
+
+        </footer>
+
+
+    </main>
+
+</div>
+
+
+<!-- =====================================================
+     JAVASCRIPT
+====================================================== -->
+
+<script>
+
+    function toggleBookings() {
+
+        const submenu =
+            document.getElementById("bookingsSubmenu");
+
+        const button =
+            document.querySelector(".bookings-toggle");
+
+        submenu.classList.toggle("show");
+
+        button.classList.toggle("open");
+
+    }
+
+</script>
+
+
+</body>
+
+</html>
+

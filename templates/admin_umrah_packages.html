@@ -1,0 +1,1938 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Umrah Packages | AL NAJAM Admin
+    </title>
+
+    <!-- Bootstrap -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <!-- Bootstrap Icons -->
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    >
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+
+            margin: 0;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f7f9fc,
+                    #f1f5f9
+                );
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            color: #172033;
+
+        }
+
+        /* =========================================
+           MAIN
+        ========================================= */
+
+        .main {
+
+            margin-left: 255px;
+
+            min-height: 100vh;
+
+            padding:
+                28px 30px 45px;
+
+        }
+
+        /* =========================================
+           HEADER
+        ========================================= */
+
+        .header-card {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #172033,
+                    #263e61
+                );
+
+            color: white;
+
+            border-radius: 20px;
+
+            padding:
+                25px 27px;
+
+            margin-bottom: 20px;
+
+            box-shadow:
+                0 12px 30px rgba(20,35,60,.10);
+
+            position: relative;
+
+            overflow: hidden;
+
+        }
+
+        .header-card::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 220px;
+
+            height: 220px;
+
+            border-radius: 50%;
+
+            right: -85px;
+
+            top: -120px;
+
+            border:
+                1px solid rgba(255,255,255,.08);
+
+            box-shadow:
+                0 0 0 30px rgba(255,255,255,.025),
+                0 0 0 60px rgba(255,255,255,.02);
+
+        }
+
+        .header-content {
+
+            position: relative;
+
+            z-index: 2;
+
+        }
+
+        .header-label {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 6px;
+
+            background:
+                rgba(255,255,255,.09);
+
+            border:
+                1px solid rgba(255,255,255,.10);
+
+            padding:
+                5px 9px;
+
+            border-radius: 7px;
+
+            font-size: 8px;
+
+            font-weight: 800;
+
+            letter-spacing: .8px;
+
+            margin-bottom: 8px;
+
+        }
+
+        .header-card h1 {
+
+            margin: 0 0 5px;
+
+            font-size: 23px;
+
+            font-weight: 800;
+
+        }
+
+        .header-card p {
+
+            margin: 0;
+
+            color: #cbd5e1;
+
+            font-size: 10px;
+
+        }
+
+        .create-btn {
+
+            position: relative;
+
+            z-index: 2;
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f59e0b,
+                    #df8508
+                );
+
+            color: white;
+
+            border: none;
+
+            border-radius: 10px;
+
+            padding:
+                11px 15px;
+
+            font-size: 10px;
+
+            font-weight: 800;
+
+            text-decoration: none;
+
+            box-shadow:
+                0 8px 18px rgba(245,158,11,.22);
+
+            transition:
+                .2s ease;
+
+            white-space: nowrap;
+
+        }
+
+        .create-btn:hover {
+
+            color: white;
+
+            transform:
+                translateY(-2px);
+
+            box-shadow:
+                0 11px 22px rgba(245,158,11,.28);
+
+        }
+
+        /* =========================================
+           STATISTICS
+        ========================================= */
+
+        .stats-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 14px;
+
+            margin-bottom: 20px;
+
+        }
+
+        .stat-card {
+
+            background: white;
+
+            border:
+                1px solid #e5e9ef;
+
+            border-radius: 16px;
+
+            padding: 17px;
+
+            box-shadow:
+                0 7px 22px rgba(20,35,60,.035);
+
+            transition: .2s ease;
+
+        }
+
+        .stat-card:hover {
+
+            transform:
+                translateY(-3px);
+
+            box-shadow:
+                0 12px 25px rgba(20,35,60,.07);
+
+        }
+
+        .stat-top {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            margin-bottom: 11px;
+
+        }
+
+        .stat-icon {
+
+            width: 38px;
+
+            height: 38px;
+
+            border-radius: 11px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 17px;
+
+        }
+
+        .icon-blue {
+
+            background: #eef6ff;
+
+            color: #1675d1;
+
+        }
+
+        .icon-green {
+
+            background: #e8faf3;
+
+            color: #08a76b;
+
+        }
+
+        .icon-grey {
+
+            background: #f1f3f5;
+
+            color: #6b7280;
+
+        }
+
+        .icon-red {
+
+            background: #fff0f1;
+
+            color: #dc2626;
+
+        }
+
+        .stat-label {
+
+            font-size: 9px;
+
+            color: #8792a5;
+
+            font-weight: 800;
+
+            letter-spacing: .5px;
+
+        }
+
+        .stat-number {
+
+            font-size: 25px;
+
+            font-weight: 800;
+
+            color: #172033;
+
+        }
+
+        .stat-description {
+
+            margin-top: 3px;
+
+            font-size: 8px;
+
+            color: #a0a8b4;
+
+        }
+
+        /* =========================================
+           TABLE CARD
+        ========================================= */
+
+        .table-card {
+
+            background: white;
+
+            border:
+                1px solid #e5e9ef;
+
+            border-radius: 18px;
+
+            padding: 20px;
+
+            box-shadow:
+                0 7px 24px rgba(20,35,60,.035);
+
+        }
+
+        .table-header {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 15px;
+
+            margin-bottom: 17px;
+
+        }
+
+        .table-title {
+
+            font-size: 15px;
+
+            font-weight: 800;
+
+            margin: 0 0 4px;
+
+        }
+
+        .table-subtitle {
+
+            color: #8b95a5;
+
+            font-size: 9px;
+
+            margin: 0;
+
+        }
+
+        .package-count {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 5px;
+
+            background: #fff8eb;
+
+            color: #c57a00;
+
+            border:
+                1px solid #f4dfb7;
+
+            padding:
+                7px 10px;
+
+            border-radius: 20px;
+
+            font-size: 9px;
+
+            font-weight: 800;
+
+        }
+
+        /* =========================================
+           TABLE
+        ========================================= */
+
+        .table-wrapper {
+
+            width: 100%;
+
+            overflow-x: auto;
+
+            border:
+                1px solid #edf0f4;
+
+            border-radius: 14px;
+
+        }
+
+        .table {
+
+            margin-bottom: 0;
+
+            min-width: 1500px;
+
+        }
+
+        .table thead {
+
+            background: #f8fafc;
+
+        }
+
+        .table th {
+
+            font-size: 8px;
+
+            color: #7d899d;
+
+            font-weight: 800;
+
+            letter-spacing: .5px;
+
+            padding:
+                13px 11px;
+
+            border-bottom:
+                1px solid #e5e9ef;
+
+            white-space: nowrap;
+
+        }
+
+        .table td {
+
+            font-size: 10px;
+
+            color: #5e6b80;
+
+            vertical-align: middle;
+
+            padding:
+                13px 11px;
+
+            border-bottom:
+                1px solid #f0f2f6;
+
+        }
+
+        .table tbody tr {
+
+            transition: .18s ease;
+
+        }
+
+        .table tbody tr:hover {
+
+            background:
+                #fffaf5;
+
+        }
+
+        .table tbody tr:last-child td {
+
+            border-bottom: none;
+
+        }
+
+        /* =========================================
+           PACKAGE
+        ========================================= */
+
+        .package-name {
+
+            display: block;
+
+            color: #172033;
+
+            font-weight: 800;
+
+            font-size: 10px;
+
+        }
+
+        .package-type {
+
+            display: block;
+
+            margin-top: 3px;
+
+            color: #98a2b3;
+
+            font-size: 8px;
+
+        }
+
+        /* =========================================
+           AIRLINE
+        ========================================= */
+
+        .airline-box {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+        }
+
+        .airline-logo {
+
+            width: 35px;
+
+            height: 35px;
+
+            border-radius: 9px;
+
+            object-fit: contain;
+
+            background: #f7f9fc;
+
+            border:
+                1px solid #edf0f4;
+
+            padding: 5px;
+
+        }
+
+        .airline-placeholder {
+
+            width: 35px;
+
+            height: 35px;
+
+            border-radius: 9px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background: #eef6ff;
+
+            color: #1675d1;
+
+            font-size: 15px;
+
+        }
+
+        .airline-name {
+
+            display: block;
+
+            font-weight: 800;
+
+            color: #172033;
+
+            font-size: 9px;
+
+        }
+
+        .airline-code {
+
+            display: block;
+
+            margin-top: 2px;
+
+            color: #98a2b3;
+
+            font-size: 8px;
+
+        }
+
+        /* =========================================
+           ROUTE
+        ========================================= */
+
+        .route {
+
+            font-weight: 800;
+
+            color: #263238;
+
+            white-space: nowrap;
+
+        }
+
+        .route-arrow {
+
+            color: #f59e0b;
+
+            margin:
+                0 4px;
+
+        }
+
+        .route-city {
+
+            display: block;
+
+            margin-top: 3px;
+
+            color: #98a2b3;
+
+            font-size: 8px;
+
+        }
+
+        /* =========================================
+           FLIGHT DETAILS
+        ========================================= */
+
+        .flight-number {
+
+            font-weight: 800;
+
+            color: #172033;
+
+            display: block;
+
+        }
+
+        .flight-date {
+
+            color: #8b95a5;
+
+            font-size: 8px;
+
+            margin-top: 3px;
+
+        }
+
+        .flight-meta {
+
+            display: block;
+
+            color: #98a2b3;
+
+            font-size: 8px;
+
+            margin-top: 3px;
+
+        }
+
+        /* =========================================
+           HOTEL
+        ========================================= */
+
+        .hotel-name {
+
+            color: #263238;
+
+            font-weight: 800;
+
+            display: block;
+
+            font-size: 9px;
+
+        }
+
+        .hotel-distance {
+
+            display: block;
+
+            margin-top: 3px;
+
+            color: #98a2b3;
+
+            font-size: 8px;
+
+        }
+
+        /* =========================================
+           NIGHTS
+        ========================================= */
+
+        .nights-box {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 5px;
+
+        }
+
+        .night-item {
+
+            text-align: center;
+
+            background: #f8fafc;
+
+            border:
+                1px solid #edf0f4;
+
+            border-radius: 8px;
+
+            padding:
+                6px 8px;
+
+            min-width: 55px;
+
+        }
+
+        .night-number {
+
+            font-weight: 800;
+
+            color: #172033;
+
+            display: block;
+
+        }
+
+        .night-label {
+
+            font-size: 7px;
+
+            color: #98a2b3;
+
+            display: block;
+
+            margin-top: 2px;
+
+        }
+
+        /* =========================================
+           PRICE
+        ========================================= */
+
+        .price {
+
+            color: #172033;
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+            white-space: nowrap;
+
+        }
+
+        /* =========================================
+           SEATS
+        ========================================= */
+
+        .seat-value {
+
+            font-weight: 800;
+
+            color: #172033;
+
+        }
+
+        .seat-total {
+
+            color: #98a2b3;
+
+        }
+
+        .seat-label {
+
+            display: block;
+
+            font-size: 7px;
+
+            color: #98a2b3;
+
+            margin-top: 3px;
+
+        }
+
+        /* =========================================
+           STATUS
+        ========================================= */
+
+        .status {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 5px;
+
+            padding:
+                6px 9px;
+
+            border-radius: 20px;
+
+            font-size: 8px;
+
+            font-weight: 800;
+
+            white-space: nowrap;
+
+        }
+
+        .status-active {
+
+            background: #e8faf3;
+
+            color: #08a76b;
+
+        }
+
+        .status-inactive {
+
+            background: #f1f3f5;
+
+            color: #6b7280;
+
+        }
+
+        .status-soldout {
+
+            background: #fff0f1;
+
+            color: #dc2626;
+
+        }
+
+        /* =========================================
+           ACTION BUTTONS
+        ========================================= */
+
+        .action-group {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 6px;
+
+        }
+
+        .action-btn {
+
+            width: 34px;
+
+            height: 34px;
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border:
+                1px solid #e1e6ed;
+
+            border-radius: 9px;
+
+            background: white;
+
+            color: #6d7a8f;
+
+            text-decoration: none;
+
+            transition: .2s ease;
+
+        }
+
+        .action-btn i {
+
+            font-size: 14px;
+
+        }
+
+        .view-btn:hover {
+
+            background: #eef6ff;
+
+            color: #1675d1;
+
+            border-color: #cfe3fa;
+
+        }
+
+        .edit-btn:hover {
+
+            background: #fff8eb;
+
+            color: #d88900;
+
+            border-color: #f2d49f;
+
+        }
+
+        /* =========================================
+           EMPTY STATE
+        ========================================= */
+
+        .empty {
+
+            text-align: center;
+
+            padding:
+                70px 20px;
+
+        }
+
+        .empty-icon {
+
+            width: 65px;
+
+            height: 65px;
+
+            margin:
+                0 auto 15px;
+
+            border-radius: 17px;
+
+            background: #fff8eb;
+
+            color: #d88900;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 26px;
+
+        }
+
+        .empty h4 {
+
+            font-size: 15px;
+
+            font-weight: 800;
+
+            color: #263238;
+
+            margin:
+                0 0 6px;
+
+        }
+
+        .empty p {
+
+            color: #98a2b3;
+
+            font-size: 9px;
+
+            margin:
+                0 0 17px;
+
+        }
+
+        .empty-create {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 6px;
+
+            padding:
+                9px 13px;
+
+            border-radius: 8px;
+
+            background: #1675d1;
+
+            color: white;
+
+            text-decoration: none;
+
+            font-size: 9px;
+
+            font-weight: 800;
+
+        }
+
+        .empty-create:hover {
+
+            color: white;
+
+            background: #0e63b7;
+
+        }
+
+        /* =========================================
+           FOOTER
+        ========================================= */
+
+        .footer {
+
+            text-align: center;
+
+            padding:
+                20px 10px 5px;
+
+            color: #98a2b0;
+
+            font-size: 8px;
+
+        }
+
+        /* =========================================
+           RESPONSIVE
+        ========================================= */
+
+        @media (max-width: 1100px) {
+
+            .stats-grid {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+
+            }
+
+        }
+
+        @media (max-width: 900px) {
+
+            .main {
+
+                margin-left: 0;
+
+                padding: 18px;
+
+            }
+
+            .header-card {
+
+                padding: 20px;
+
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            .stats-grid {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+            .header-card .d-flex {
+
+                align-items: flex-start !important;
+
+                flex-direction: column;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="main">
+
+
+    <!-- =========================================
+         HEADER
+    ========================================= -->
+
+    <div class="header-card">
+
+        <div class="d-flex
+                    justify-content-between
+                    align-items-center
+                    position-relative">
+
+            <div class="header-content">
+
+                <span class="header-label">
+
+                    <i class="bi bi-moon-stars-fill"></i>
+
+                    UMRAH INVENTORY
+
+                </span>
+
+                <h1>
+                    Umrah Packages
+                </h1>
+
+                <p>
+                    Create, manage and control Umrah packages available to your travel agents.
+                </p>
+
+            </div>
+
+
+            <a
+                href="{% url 'admin_create_umrah_package' %}"
+                class="create-btn"
+            >
+
+                <i class="bi bi-plus-lg"></i>
+
+                Create Umrah Package
+
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================
+         STATISTICS
+    ========================================= -->
+
+    <div class="stats-grid">
+
+
+        <!-- TOTAL -->
+
+        <div class="stat-card">
+
+            <div class="stat-top">
+
+                <div class="stat-label">
+                    TOTAL PACKAGES
+                </div>
+
+                <div class="stat-icon icon-blue">
+
+                    <i class="bi bi-box-seam"></i>
+
+                </div>
+
+            </div>
+
+            <div class="stat-number">
+                {{ total_count }}
+            </div>
+
+            <div class="stat-description">
+                All packages in Umrah inventory
+            </div>
+
+        </div>
+
+
+        <!-- ACTIVE -->
+
+        <div class="stat-card">
+
+            <div class="stat-top">
+
+                <div class="stat-label">
+                    ACTIVE
+                </div>
+
+                <div class="stat-icon icon-green">
+
+                    <i class="bi bi-check-circle-fill"></i>
+
+                </div>
+
+            </div>
+
+            <div class="stat-number">
+                {{ active_count }}
+            </div>
+
+            <div class="stat-description">
+                Packages visible to agents
+            </div>
+
+        </div>
+
+
+        <!-- INACTIVE -->
+
+        <div class="stat-card">
+
+            <div class="stat-top">
+
+                <div class="stat-label">
+                    INACTIVE
+                </div>
+
+                <div class="stat-icon icon-grey">
+
+                    <i class="bi bi-pause-circle-fill"></i>
+
+                </div>
+
+            </div>
+
+            <div class="stat-number">
+                {{ inactive_count }}
+            </div>
+
+            <div class="stat-description">
+                Packages temporarily hidden
+            </div>
+
+        </div>
+
+
+        <!-- SOLD OUT -->
+
+        <div class="stat-card">
+
+            <div class="stat-top">
+
+                <div class="stat-label">
+                    SOLD OUT
+                </div>
+
+                <div class="stat-icon icon-red">
+
+                    <i class="bi bi-x-circle-fill"></i>
+
+                </div>
+
+            </div>
+
+            <div class="stat-number">
+                {{ sold_out_count }}
+            </div>
+
+            <div class="stat-description">
+                Packages with no available seats
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================
+         PACKAGE TABLE
+    ========================================= -->
+
+    <div class="table-card">
+
+
+        <div class="table-header">
+
+            <div>
+
+                <h2 class="table-title">
+                    Umrah Package Inventory
+                </h2>
+
+                <p class="table-subtitle">
+                    Complete package information entered by the AL NAJAM administrator.
+                </p>
+
+            </div>
+
+
+            <span class="package-count">
+
+                <i class="bi bi-collection"></i>
+
+                {{ total_count }} Package{{ total_count|pluralize }}
+
+            </span>
+
+        </div>
+
+
+        <div class="table-wrapper">
+
+
+            <table class="table align-middle">
+
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            PACKAGE
+                        </th>
+
+                        <th>
+                            SECTOR
+                        </th>
+
+                        <th>
+                            AIRLINE
+                        </th>
+
+                        <th>
+                            OUTBOUND
+                        </th>
+
+                        <th>
+                            RETURN
+                        </th>
+
+                        <th>
+                            MAKKAH HOTEL
+                        </th>
+
+                        <th>
+                            MADINAH HOTEL
+                        </th>
+
+                        <th>
+                            NIGHTS
+                        </th>
+
+                        <th>
+                            PRICE
+                        </th>
+
+                        <th>
+                            SEATS
+                        </th>
+
+                        <th>
+                            STATUS
+                        </th>
+
+                        <th>
+                            ACTION
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+
+                {% for package in packages %}
+
+
+                    <tr>
+
+
+                        <!-- PACKAGE -->
+
+                        <td>
+
+                            <span class="package-name">
+
+                                {{ package.name }}
+
+                            </span>
+
+                            <span class="package-type">
+
+                                {{ package.room_type|title }}
+
+                            </span>
+
+                        </td>
+
+
+                        <!-- SECTOR -->
+
+                        <td>
+
+                            <span class="route">
+
+                                {{ package.sector }}
+
+                            </span>
+
+                        </td>
+
+
+                        <!-- AIRLINE -->
+
+                        <td>
+
+                            <div class="airline-box">
+
+
+                                {% if package.airline.logo %}
+
+                                    <img
+                                        src="{{ package.airline.logo.url }}"
+                                        alt="{{ package.airline.name }}"
+                                        class="airline-logo"
+                                    >
+
+                                {% else %}
+
+                                    <div class="airline-placeholder">
+
+                                        <i class="bi bi-airplane-fill"></i>
+
+                                    </div>
+
+                                {% endif %}
+
+
+                                <div>
+
+                                    <span class="airline-name">
+
+                                        {{ package.airline.name }}
+
+                                    </span>
+
+                                    <span class="airline-code">
+
+                                        {{ package.airline.code }}
+
+                                    </span>
+
+                                </div>
+
+
+                            </div>
+
+                        </td>
+
+
+                        <!-- OUTBOUND -->
+
+                        <td>
+
+
+                            <span class="flight-number">
+
+                                {{ package.outbound_flight_number }}
+
+                            </span>
+
+
+                            <span class="route">
+
+                                {{ package.outbound_departure_airport.code }}
+
+                                <span class="route-arrow">
+                                    →
+                                </span>
+
+                                {{ package.outbound_arrival_airport.code }}
+
+                            </span>
+
+
+                            <span class="route-city">
+
+                                {{ package.outbound_departure_airport.city }}
+
+                                →
+
+                                {{ package.outbound_arrival_airport.city }}
+
+                            </span>
+
+
+                            <span class="flight-date">
+
+                                {{ package.outbound_departure_date|date:"d M Y" }}
+
+                            </span>
+
+
+                            <span class="flight-meta">
+
+                                {{ package.outbound_departure_time|time:"H:i" }}
+
+                                →
+
+                                {{ package.outbound_arrival_time|time:"H:i" }}
+
+                            </span>
+
+
+                            <span class="flight-meta">
+
+                                {{ package.outbound_baggage }}
+
+                                ·
+
+                                {% if package.outbound_meal == "No" %}
+                                    No Meal
+                                {% else %}
+                                    Meal Included
+                                {% endif %}
+
+                            </span>
+
+
+                        </td>
+
+
+                        <!-- RETURN -->
+
+                        <td>
+
+
+                            <span class="flight-number">
+
+                                {{ package.return_flight_number }}
+
+                            </span>
+
+
+                            <span class="route">
+
+                                {{ package.return_departure_airport.code }}
+
+                                <span class="route-arrow">
+                                    →
+                                </span>
+
+                                {{ package.return_arrival_airport.code }}
+
+                            </span>
+
+
+                            <span class="route-city">
+
+                                {{ package.return_departure_airport.city }}
+
+                                →
+
+                                {{ package.return_arrival_airport.city }}
+
+                            </span>
+
+
+                            <span class="flight-date">
+
+                                {{ package.return_departure_date|date:"d M Y" }}
+
+                            </span>
+
+
+                            <span class="flight-meta">
+
+                                {{ package.return_departure_time|time:"H:i" }}
+
+                                →
+
+                                {{ package.return_arrival_time|time:"H:i" }}
+
+                            </span>
+
+
+                            <span class="flight-meta">
+
+                                {{ package.return_baggage }}
+
+                                ·
+
+                                {% if package.return_meal == "No" %}
+                                    No Meal
+                                {% else %}
+                                    Meal Included
+                                {% endif %}
+
+                            </span>
+
+
+                        </td>
+
+
+                        <!-- MAKKAH HOTEL -->
+
+                        <td>
+
+                            <span class="hotel-name">
+
+                                {{ package.makkah_hotel.name }}
+
+                            </span>
+
+
+                            {% if package.makkah_hotel.distance_from_reference %}
+
+                                <span class="hotel-distance">
+
+                                    {{ package.makkah_hotel.distance_from_reference }}
+
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+
+                        <!-- MADINAH HOTEL -->
+
+                        <td>
+
+                            <span class="hotel-name">
+
+                                {{ package.madinah_hotel.name }}
+
+                            </span>
+
+
+                            {% if package.madinah_hotel.distance_from_reference %}
+
+                                <span class="hotel-distance">
+
+                                    {{ package.madinah_hotel.distance_from_reference }}
+
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+
+                        <!-- NIGHTS -->
+
+                        <td>
+
+                            <div class="nights-box">
+
+
+                                <div class="night-item">
+
+                                    <span class="night-number">
+
+                                        {{ package.nights_in_makkah }}
+
+                                    </span>
+
+                                    <span class="night-label">
+
+                                        MAKKAH
+
+                                    </span>
+
+                                </div>
+
+
+                                <div class="night-item">
+
+                                    <span class="night-number">
+
+                                        {{ package.nights_in_madinah }}
+
+                                    </span>
+
+                                    <span class="night-label">
+
+                                        MADINAH
+
+                                    </span>
+
+                                </div>
+
+
+                            </div>
+
+                        </td>
+
+
+                        <!-- PRICE -->
+
+                        <td>
+
+                            <span class="price">
+
+                                PKR
+                                {{ package.price|floatformat:0 }}
+
+                            </span>
+
+                        </td>
+
+
+                        <!-- SEATS -->
+
+                        <td>
+
+                            <span class="seat-value">
+
+                                {{ package.available_seats }}
+
+                                <span class="seat-total">
+
+                                    / {{ package.total_seats }}
+
+                                </span>
+
+                            </span>
+
+
+                            <span class="seat-label">
+
+                                AVAILABLE
+
+                            </span>
+
+                        </td>
+
+
+                        <!-- STATUS -->
+
+                        <td>
+
+
+                            {% if package.status == "ACTIVE" %}
+
+                                <span class="status status-active">
+
+                                    <i class="bi bi-check-circle-fill"></i>
+
+                                    Active
+
+                                </span>
+
+
+                            {% elif package.status == "SOLD_OUT" %}
+
+                                <span class="status status-soldout">
+
+                                    <i class="bi bi-x-circle-fill"></i>
+
+                                    Sold Out
+
+                                </span>
+
+
+                            {% else %}
+
+                                <span class="status status-inactive">
+
+                                    <i class="bi bi-pause-circle-fill"></i>
+
+                                    Inactive
+
+                                </span>
+
+                            {% endif %}
+
+
+                        </td>
+
+
+                        <!-- ACTION -->
+
+                        <td>
+
+                            <div class="action-group">
+
+
+                                <!-- VIEW -->
+
+                                <a
+                                    href="{% url 'admin_umrah_package_detail' package.id %}"
+                                    class="action-btn view-btn"
+                                    title="View Package"
+                                >
+
+                                    <i class="bi bi-eye"></i>
+
+                                </a>
+
+
+                                <!-- EDIT -->
+
+                                <a
+                                    href="{% url 'admin_edit_umrah_package' package.id %}"
+                                    class="action-btn edit-btn"
+                                    title="Edit Package"
+                                >
+
+                                    <i class="bi bi-pencil-square"></i>
+
+                                </a>
+
+
+                            </div>
+
+                        </td>
+
+
+                    </tr>
+
+
+                {% empty %}
+
+
+                    <tr>
+
+                        <td colspan="12">
+
+
+                            <div class="empty">
+
+
+                                <div class="empty-icon">
+
+                                    <i class="bi bi-moon-stars-fill"></i>
+
+                                </div>
+
+
+                                <h4>
+                                    No Umrah Packages Yet
+                                </h4>
+
+
+                                <p>
+                                    Create your first Umrah package to make it available in the agent portal.
+                                </p>
+
+
+                                <a
+                                    href="{% url 'admin_create_umrah_package' %}"
+                                    class="empty-create"
+                                >
+
+                                    <i class="bi bi-plus-lg"></i>
+
+                                    Create Umrah Package
+
+                                </a>
+
+
+                            </div>
+
+
+                        </td>
+
+                    </tr>
+
+
+                {% endfor %}
+
+
+                </tbody>
+
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================
+         FOOTER
+    ========================================= -->
+
+    <div class="footer">
+
+        © 2026 AL NAJAM Travel & Tours — Admin Portal
+
+    </div>
+
+
+</div>
+
+
+</body>
+
+</html>

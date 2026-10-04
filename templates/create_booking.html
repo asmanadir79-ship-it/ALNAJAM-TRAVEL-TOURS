@@ -1,0 +1,1106 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Create Booking | AL NAJAM</title>
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    >
+
+    <style>
+
+        body {
+
+            background: #f8f9fa;
+
+            font-family: Arial, sans-serif;
+
+            color: #263238;
+        }
+
+        .navbar {
+
+            background: white;
+
+            box-shadow:
+                0 2px 12px rgba(0,0,0,0.06);
+        }
+
+        .navbar-brand {
+
+            color: #f28c28 !important;
+
+            font-weight: 700;
+
+            font-size: 21px;
+        }
+
+        .navbar .nav-link {
+
+            color: #263238 !important;
+
+            font-weight: 500;
+        }
+
+        .navbar .nav-link:hover {
+
+            color: #f28c28 !important;
+        }
+
+        .page-header {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #fff7ef,
+                    #ffffff
+                );
+
+            padding: 45px 0;
+
+            border-bottom: 1px solid #eee;
+        }
+
+        .page-header h1 {
+
+            color: #263238;
+
+            font-weight: 700;
+        }
+
+        .orange {
+
+            color: #f28c28;
+        }
+
+        .booking-card {
+
+            background: white;
+
+            border-radius: 16px;
+
+            padding: 28px;
+
+            box-shadow:
+                0 6px 25px rgba(0,0,0,0.06);
+
+            margin-bottom: 25px;
+        }
+
+        .card-title {
+
+            font-weight: 700;
+
+            color: #263238;
+
+            margin-bottom: 22px;
+        }
+
+        .form-label {
+
+            font-weight: 600;
+
+            color: #37474f;
+        }
+
+        .form-control,
+        .form-select {
+
+            min-height: 46px;
+
+            border-radius: 9px;
+
+            border: 1px solid #dfe3e8;
+        }
+
+        .form-control:focus,
+        .form-select:focus {
+
+            border-color: #f28c28;
+
+            box-shadow:
+                0 0 0 0.2rem rgba(242,140,40,0.12);
+        }
+
+        .flight-summary {
+
+            background: #fff7ef;
+
+            border: 1px solid #ffe0c2;
+
+            border-radius: 14px;
+
+            padding: 22px;
+        }
+
+        .airline {
+
+            color: #f28c28;
+
+            font-weight: 700;
+
+            font-size: 18px;
+        }
+
+        .flight-number {
+
+            color: #78909c;
+
+            font-size: 13px;
+        }
+
+        .airport-code {
+
+            font-size: 27px;
+
+            font-weight: 700;
+
+            color: #263238;
+        }
+
+        .airport-city {
+
+            color: #78909c;
+
+            font-size: 14px;
+        }
+
+        .flight-time {
+
+            font-size: 19px;
+
+            font-weight: 700;
+        }
+
+        .flight-line {
+
+            color: #f28c28;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 8px;
+        }
+
+        .price {
+
+            font-size: 25px;
+
+            font-weight: 700;
+
+            color: #f28c28;
+        }
+
+        .seat-box {
+
+            background: #f8f9fa;
+
+            border-radius: 10px;
+
+            padding: 15px;
+        }
+
+        .total-box {
+
+            background: #263238;
+
+            color: white;
+
+            border-radius: 14px;
+
+            padding: 22px;
+        }
+
+        .total-price {
+
+            color: #f28c28;
+
+            font-size: 28px;
+
+            font-weight: 700;
+        }
+
+        .confirm-btn {
+
+            background: #f28c28;
+
+            border: none;
+
+            color: white;
+
+            padding: 13px 28px;
+
+            border-radius: 9px;
+
+            font-weight: 700;
+
+            font-size: 16px;
+        }
+
+        .confirm-btn:hover {
+
+            background: #dc7717;
+
+            color: white;
+        }
+
+        .back-btn {
+
+            border-radius: 9px;
+
+            padding: 12px 22px;
+        }
+
+        .required {
+
+            color: #dc3545;
+        }
+
+        .alert {
+
+            border-radius: 10px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+
+<!-- NAVBAR -->
+
+<nav class="navbar navbar-expand-lg">
+
+    <div class="container">
+
+        <a
+            class="navbar-brand"
+            href="{% url 'agent_dashboard' %}"
+        >
+
+            <i class="bi bi-airplane-fill me-2"></i>
+
+            AL NAJAM
+
+        </a>
+
+        <div class="ms-auto">
+
+            <a
+                href="{% url 'book_flight' %}"
+                class="btn btn-outline-secondary btn-sm"
+            >
+
+                <i class="bi bi-arrow-left me-1"></i>
+
+                Back to Flights
+
+            </a>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+<!-- HEADER -->
+
+<section class="page-header">
+
+    <div class="container">
+
+        <h1>
+
+            <i class="bi bi-ticket-perforated orange me-2"></i>
+
+            Create Booking
+
+        </h1>
+
+        <p class="text-muted mb-0">
+
+            Enter passenger information and confirm the flight booking.
+
+        </p>
+
+    </div>
+
+</section>
+
+
+<div class="container py-4">
+
+
+    <!-- DJANGO MESSAGES -->
+
+    {% if messages %}
+
+        {% for message in messages %}
+
+            <div class="alert alert-{{ message.tags }}">
+
+                {{ message }}
+
+            </div>
+
+        {% endfor %}
+
+    {% endif %}
+
+
+    <div class="row g-4">
+
+
+        <!-- LEFT SIDE -->
+
+        <div class="col-lg-8">
+
+
+            <!-- FLIGHT SUMMARY -->
+
+            <div class="booking-card">
+
+                <h4 class="card-title">
+
+                    <i class="bi bi-airplane orange me-2"></i>
+
+                    Flight Details
+
+                </h4>
+
+
+                <div class="flight-summary">
+
+                    <div class="row align-items-center">
+
+
+                        <div class="col-md-3">
+
+                            <div class="airline">
+
+                                {{ flight.airline.name }}
+
+                            </div>
+
+                            <div class="flight-number">
+
+                                Flight {{ flight.flight_number }}
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-6 mt-3 mt-md-0">
+
+                            <div class="row align-items-center text-center">
+
+                                <div class="col-4">
+
+                                    <div class="flight-time">
+
+                                        {{ flight.departure_time|time:"H:i" }}
+
+                                    </div>
+
+                                    <div class="airport-code">
+
+                                        {{ flight.departure_airport.code }}
+
+                                    </div>
+
+                                    <div class="airport-city">
+
+                                        {{ flight.departure_airport.city }}
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="col-4">
+
+                                    <div class="flight-line">
+
+                                        <i class="bi bi-airplane-fill"></i>
+
+                                    </div>
+
+                                    <small class="text-muted">
+
+                                        {{ flight.departure_date|date:"d M Y" }}
+
+                                    </small>
+
+                                </div>
+
+
+                                <div class="col-4">
+
+                                    <div class="flight-time">
+
+                                        {{ flight.arrival_time|time:"H:i" }}
+
+                                    </div>
+
+                                    <div class="airport-code">
+
+                                        {{ flight.arrival_airport.code }}
+
+                                    </div>
+
+                                    <div class="airport-city">
+
+                                        {{ flight.arrival_airport.city }}
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-3 text-md-end mt-3 mt-md-0">
+
+                            <div class="text-muted small">
+
+                                PRICE / SEAT
+
+                            </div>
+
+                            <div class="price">
+
+                                PKR {{ flight.price|floatformat:0 }}
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <hr>
+
+
+                    <div class="row">
+
+                        <div class="col-md-4">
+
+                            <small class="text-muted">
+
+                                Baggage
+
+                            </small>
+
+                            <div class="fw-semibold">
+
+                                {{ flight.baggage }}
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-4">
+
+                            <small class="text-muted">
+
+                                Meal
+
+                            </small>
+
+                            <div class="fw-semibold">
+
+                                {{ flight.meal }}
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-4">
+
+                            <small class="text-muted">
+
+                                Available Seats
+
+                            </small>
+
+                            <div class="fw-semibold">
+
+                                {{ flight.available_seats }}
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PASSENGER FORM -->
+
+            <div class="booking-card">
+
+                <h4 class="card-title">
+
+                    <i class="bi bi-person orange me-2"></i>
+
+                    Passenger Information
+
+                </h4>
+
+
+                <form
+                    method="POST"
+                    id="bookingForm"
+                >
+
+                    {% csrf_token %}
+
+
+                    {% if passenger_form.non_field_errors %}
+
+                        <div class="alert alert-danger">
+
+                            {{ passenger_form.non_field_errors }}
+
+                        </div>
+
+                    {% endif %}
+
+
+                    <div class="row g-3">
+
+
+                        <div class="col-md-6">
+
+                            <label class="form-label">
+
+                                First Name
+
+                                <span class="required">*</span>
+
+                            </label>
+
+                            {{ passenger_form.first_name }}
+
+                            {% for error in passenger_form.first_name.errors %}
+
+                                <div class="text-danger small">
+
+                                    {{ error }}
+
+                                </div>
+
+                            {% endfor %}
+
+                        </div>
+
+
+                        <div class="col-md-6">
+
+                            <label class="form-label">
+
+                                Last Name
+
+                                <span class="required">*</span>
+
+                            </label>
+
+                            {{ passenger_form.last_name }}
+
+                            {% for error in passenger_form.last_name.errors %}
+
+                                <div class="text-danger small">
+
+                                    {{ error }}
+
+                                </div>
+
+                            {% endfor %}
+
+                        </div>
+
+
+                        <div class="col-md-6">
+
+                            <label class="form-label">
+
+                                Passport Number
+
+                                <span class="required">*</span>
+
+                            </label>
+
+                            {{ passenger_form.passport_number }}
+
+                            {% for error in passenger_form.passport_number.errors %}
+
+                                <div class="text-danger small">
+
+                                    {{ error }}
+
+                                </div>
+
+                            {% endfor %}
+
+                        </div>
+
+
+                        <div class="col-md-6">
+
+                            <label class="form-label">
+
+                                Date of Birth
+
+                            </label>
+
+                            {{ passenger_form.date_of_birth }}
+
+                        </div>
+
+
+                        <div class="col-md-6">
+
+                            <label class="form-label">
+
+                                Gender
+
+                            </label>
+
+                            {{ passenger_form.gender }}
+
+                        </div>
+
+
+                        <div class="col-md-6">
+
+                            <label class="form-label">
+
+                                Nationality
+
+                            </label>
+
+                            {{ passenger_form.nationality }}
+
+                        </div>
+
+
+                        <div class="col-md-6">
+
+                            <label class="form-label">
+
+                                Phone
+
+                            </label>
+
+                            {{ passenger_form.phone }}
+
+                        </div>
+
+
+                        <div class="col-md-6">
+
+                            <label class="form-label">
+
+                                Email
+
+                            </label>
+
+                            {{ passenger_form.email }}
+
+                        </div>
+
+
+                        <!-- SEATS -->
+
+                        <div class="col-12">
+
+                            <div class="seat-box mt-2">
+
+                                <label class="form-label">
+
+                                    Number of Seats
+
+                                </label>
+
+                                <input
+                                    type="number"
+                                    name="seats_booked"
+                                    id="seats_booked"
+                                    class="form-control"
+                                    min="1"
+                                    max="{{ flight.available_seats }}"
+                                    value="1"
+                                    required
+                                >
+
+                                <div class="form-text">
+
+                                    Maximum available:
+
+                                    {{ flight.available_seats }}
+
+                                    seat{{ flight.available_seats|pluralize }}
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <!-- TOTAL -->
+
+                    <div class="total-box mt-4">
+
+                        <div class="d-flex justify-content-between align-items-center">
+
+                            <div>
+
+                                <div class="small">
+
+                                    TOTAL BOOKING PRICE
+
+                                </div>
+
+                                <div class="text-white-50">
+
+                                    <span id="seatCount">
+
+                                        1
+
+                                    </span>
+
+                                    seat
+
+                                </div>
+
+                            </div>
+
+                            <div>
+
+                                PKR
+
+                                <span
+                                    class="total-price"
+                                    id="totalPrice"
+                                >
+                                    {{ flight.price|floatformat:0 }}
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- BUTTONS -->
+
+                    <div class="d-flex justify-content-between align-items-center mt-4">
+
+                        <a
+                            href="{% url 'book_flight' %}"
+                            class="btn btn-outline-secondary back-btn"
+                        >
+
+                            <i class="bi bi-arrow-left me-1"></i>
+
+                            Back
+
+                        </a>
+
+
+                        <button
+                            type="submit"
+                            class="btn confirm-btn"
+                        >
+
+                            <i class="bi bi-check-circle me-1"></i>
+
+                            Confirm Booking
+
+                        </button>
+
+                    </div>
+
+
+                </form>
+
+            </div>
+
+        </div>
+
+
+        <!-- RIGHT SIDE -->
+
+        <div class="col-lg-4">
+
+
+            <div class="booking-card">
+
+                <h5 class="card-title">
+
+                    Booking Summary
+
+                </h5>
+
+
+                <div class="d-flex justify-content-between mb-3">
+
+                    <span class="text-muted">
+
+                        Flight
+
+                    </span>
+
+                    <strong>
+
+                        {{ flight.flight_number }}
+
+                    </strong>
+
+                </div>
+
+
+                <div class="d-flex justify-content-between mb-3">
+
+                    <span class="text-muted">
+
+                        Route
+
+                    </span>
+
+                    <strong>
+
+                        {{ flight.departure_airport.code }}
+
+                        →
+
+                        {{ flight.arrival_airport.code }}
+
+                    </strong>
+
+                </div>
+
+
+                <div class="d-flex justify-content-between mb-3">
+
+                    <span class="text-muted">
+
+                        Travel Date
+
+                    </span>
+
+                    <strong>
+
+                        {{ flight.departure_date|date:"d M Y" }}
+
+                    </strong>
+
+                </div>
+
+
+                <div class="d-flex justify-content-between mb-3">
+
+                    <span class="text-muted">
+
+                        Seats
+
+                    </span>
+
+                    <strong id="summarySeats">
+
+                        1
+
+                    </strong>
+
+                </div>
+
+
+                <hr>
+
+
+                <div class="d-flex justify-content-between">
+
+                    <strong>
+
+                        Total
+
+                    </strong>
+
+                    <strong class="orange">
+
+                        PKR
+
+                        <span id="summaryPrice">
+
+                            {{ flight.price|floatformat:0 }}
+
+                        </span>
+
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="booking-card">
+
+                <h5 class="fw-bold">
+
+                    <i class="bi bi-info-circle orange me-2"></i>
+
+                    Important Information
+
+                </h5>
+
+                <ul class="text-muted small">
+
+                    <li class="mb-2">
+
+                        Please enter passenger information exactly as shown on the passport.
+
+                    </li>
+
+                    <li class="mb-2">
+
+                        The booking will initially have <strong>Pending</strong> status.
+
+                    </li>
+
+                    <li class="mb-2">
+
+                        Available seats will automatically be reduced after booking.
+
+                    </li>
+
+                    <li>
+
+                        Please verify all information before confirming the booking.
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+<script>
+
+    const seatInput =
+        document.getElementById("seats_booked");
+
+    const seatCount =
+        document.getElementById("seatCount");
+
+    const totalPrice =
+        document.getElementById("totalPrice");
+
+    const summarySeats =
+        document.getElementById("summarySeats");
+
+    const summaryPrice =
+        document.getElementById("summaryPrice");
+
+
+    const pricePerSeat =
+        parseFloat("{{ flight.price }}");
+
+
+    seatInput.addEventListener(
+        "input",
+        function () {
+
+            let seats =
+                parseInt(this.value) || 1;
+
+            if (seats < 1) {
+
+                seats = 1;
+
+            }
+
+            const maximum =
+                parseInt(this.max);
+
+            if (seats > maximum) {
+
+                seats = maximum;
+
+                this.value = maximum;
+
+            }
+
+            const total =
+                pricePerSeat * seats;
+
+
+            seatCount.textContent =
+                seats;
+
+            summarySeats.textContent =
+                seats;
+
+            totalPrice.textContent =
+                total.toLocaleString(
+                    "en-PK",
+                    {
+                        maximumFractionDigits: 0
+                    }
+                );
+
+            summaryPrice.textContent =
+                total.toLocaleString(
+                    "en-PK",
+                    {
+                        maximumFractionDigits: 0
+                    }
+                );
+
+        }
+
+    );
+
+</script>
+
+
+</body>
+
+</html>

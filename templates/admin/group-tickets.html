@@ -1,0 +1,2263 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Group Tickets | AL NAJAM Admin
+    </title>
+
+
+    <!-- =====================================================
+         BOOTSTRAP
+    ====================================================== -->
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+
+    <!-- =====================================================
+         BOOTSTRAP ICONS
+    ====================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    >
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        /* =====================================================
+           GLOBAL
+        ===================================================== */
+
+        body {
+            margin: 0;
+            background: #f4f7fb;
+            color: #172033;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+
+        /* =====================================================
+           SIDEBAR
+        ===================================================== */
+
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 250px;
+            height: 100vh;
+
+            background: #ffffff;
+
+            border-right: 1px solid #e7ebf1;
+
+            z-index: 1000;
+
+            overflow-y: auto;
+        }
+
+        .brand {
+    height: 90px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 18px;
+
+    border-bottom: 1px solid #e7ebf1;
+}
+
+
+        .brand-logo {
+    width: 82px;
+    height: 82px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+    overflow: hidden;
+
+    margin-right: 8px;
+}
+
+.brand-logo img {
+    width: 82px;
+    height: 82px;
+
+    object-fit: contain;
+    display: block;
+}
+
+
+        .brand-text {
+            font-size: 19px;
+            font-weight: 700;
+
+            color: #172033;
+        }
+
+
+        .brand-text span {
+            color: #f59e0b;
+        }
+
+
+        .sidebar-title {
+            font-size: 11px;
+            font-weight: 700;
+
+            color: #8792a5;
+
+            padding: 25px 25px 10px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
+        }
+
+
+        .sidebar a {
+            display: flex;
+            align-items: center;
+
+            gap: 13px;
+
+            margin: 4px 12px;
+
+            padding: 12px 14px;
+
+            border-radius: 9px;
+
+            text-decoration: none;
+
+            color: #5e6b80;
+
+            font-size: 14px;
+
+            font-weight: 500;
+
+            transition: .2s;
+        }
+
+
+        .sidebar a i {
+            font-size: 17px;
+        }
+
+
+        .sidebar a:hover {
+            background: #fff8eb;
+            color: #d88900;
+        }
+
+
+        .sidebar a.active {
+            background: #fff1d6;
+            color: #d88900;
+
+            font-weight: 600;
+        }
+
+
+        .sidebar a.active i {
+            color: #d88900;
+        }
+
+
+        .sidebar-bottom {
+            position: absolute;
+
+            bottom: 20px;
+
+            width: 100%;
+        }
+
+
+        .logout-link {
+            color: #dc2626 !important;
+        }
+
+
+        .logout-link:hover {
+            background: #fff1f2 !important;
+            color: #dc2626 !important;
+        }
+
+
+        /* =====================================================
+           MAIN CONTENT
+        ===================================================== */
+
+        .main-content {
+            margin-left: 250px;
+
+            min-height: 100vh;
+        }
+
+
+        /* =====================================================
+           TOPBAR
+        ===================================================== */
+
+        .topbar {
+            min-height: 75px;
+
+            background: #ffffff;
+
+            border-bottom: 1px solid #e7ebf1;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 15px 30px;
+        }
+
+
+        .page-title {
+            font-size: 21px;
+
+            font-weight: 700;
+
+            margin: 0;
+
+            color: #172033;
+        }
+
+
+        .page-subtitle {
+            font-size: 13px;
+
+            color: #758197;
+
+            margin: 4px 0 0;
+        }
+
+
+        .admin-profile {
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+        }
+
+
+        .admin-avatar {
+            width: 40px;
+            height: 40px;
+
+            border-radius: 50%;
+
+            background: #fff1d6;
+
+            color: #d88900;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+        }
+
+
+        .admin-name {
+            font-size: 14px;
+
+            font-weight: 600;
+
+            color: #172033;
+        }
+
+
+        .admin-role {
+            font-size: 11px;
+
+            color: #758197;
+        }
+
+
+        /* =====================================================
+           CONTENT
+        ===================================================== */
+
+        .content {
+            padding: 30px;
+        }
+
+
+        /* =====================================================
+           PAGE HEADER
+        ===================================================== */
+
+        .page-header-card {
+            background: #ffffff;
+
+            border: 1px solid #e7ebf1;
+
+            border-radius: 16px;
+
+            padding: 22px 24px;
+
+            margin-bottom: 22px;
+
+            box-shadow:
+                0 5px 20px rgba(20, 35, 60, .03);
+        }
+
+
+        .page-header-left h2 {
+            font-size: 19px;
+
+            font-weight: 700;
+
+            margin: 0 0 5px;
+
+            color: #172033;
+        }
+
+
+        .page-header-left p {
+            margin: 0;
+
+            color: #758197;
+
+            font-size: 12px;
+        }
+
+
+        /* =====================================================
+           ADD BUTTON
+        ===================================================== */
+
+        .btn-orange {
+            background: #f59e0b;
+
+            border: none;
+
+            color: #ffffff;
+
+            border-radius: 8px;
+
+            padding: 10px 16px;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            text-decoration: none;
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 7px;
+
+            transition: .2s;
+        }
+
+
+        .btn-orange:hover {
+            background: #d88900;
+
+            color: #ffffff;
+
+            transform: translateY(-1px);
+        }
+
+
+        /* =====================================================
+           STAT CARDS
+        ===================================================== */
+
+        .mini-stat {
+            background: #ffffff;
+
+            border: 1px solid #e7ebf1;
+
+            border-radius: 14px;
+
+            padding: 18px;
+
+            height: 100%;
+
+            transition: .2s;
+        }
+
+
+        .mini-stat:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 8px 22px rgba(20, 35, 60, .05);
+        }
+
+
+        .mini-stat-icon {
+            width: 42px;
+            height: 42px;
+
+            border-radius: 10px;
+
+            background: #fff1d6;
+
+            color: #d88900;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            margin-bottom: 12px;
+
+            font-size: 18px;
+        }
+
+
+        .mini-stat-label {
+            font-size: 10px;
+
+            color: #758197;
+
+            margin-bottom: 5px;
+
+            font-weight: 700;
+
+            letter-spacing: .4px;
+        }
+
+
+        .mini-stat-number {
+            font-size: 24px;
+
+            font-weight: 700;
+
+            color: #172033;
+        }
+
+
+        .blue-stat .mini-stat-icon {
+            background: #eaf3ff;
+
+            color: #1675d1;
+        }
+
+
+        .green-stat .mini-stat-icon {
+            background: #e8faf3;
+
+            color: #08a76b;
+        }
+
+
+        .red-stat .mini-stat-icon {
+            background: #fff1f2;
+
+            color: #dc2626;
+        }
+
+
+        /* =====================================================
+           SECTION CARD
+        ===================================================== */
+
+        .section-card {
+            background: #ffffff;
+
+            border: 1px solid #e7ebf1;
+
+            border-radius: 16px;
+
+            padding: 24px;
+
+            margin-top: 22px;
+
+            box-shadow:
+                0 5px 20px rgba(20, 35, 60, .03);
+        }
+
+
+        .section-title {
+            font-size: 17px;
+
+            font-weight: 700;
+
+            color: #172033;
+
+            margin-bottom: 4px;
+        }
+
+
+        .section-subtitle {
+            font-size: 12px;
+
+            color: #758197;
+
+            margin-bottom: 20px;
+
+            line-height: 1.6;
+        }
+
+
+        /* =====================================================
+           FILTER
+        ===================================================== */
+
+        .filter-box {
+            background: #f8fafc;
+
+            border: 1px solid #edf1f5;
+
+            border-radius: 13px;
+
+            padding: 14px;
+
+            margin-bottom: 20px;
+        }
+
+
+        .filter-grid {
+            display: grid;
+
+            grid-template-columns:
+                minmax(220px, 1.7fr)
+                minmax(150px, 1fr)
+                minmax(150px, 1fr)
+                auto;
+
+            gap: 10px;
+
+            align-items: center;
+        }
+
+
+        .filter-input,
+        .filter-select {
+            width: 100%;
+
+            min-height: 39px;
+
+            border: 1px solid #dfe5ec;
+
+            border-radius: 9px;
+
+            background: #ffffff;
+
+            color: #172033;
+
+            padding: 0 11px;
+
+            font-size: 10px;
+
+            outline: none;
+        }
+
+
+        .filter-input::placeholder {
+            color: #a0a9b8;
+        }
+
+
+        .filter-input:focus,
+        .filter-select:focus {
+            border-color: #f59e0b;
+
+            box-shadow:
+                0 0 0 3px rgba(245, 158, 11, .08);
+        }
+
+
+        .filter-btn {
+            min-height: 39px;
+
+            padding: 0 16px;
+
+            border: none;
+
+            border-radius: 9px;
+
+            background: #1675d1;
+
+            color: #ffffff;
+
+            font-size: 10px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: .2s;
+        }
+
+
+        .filter-btn:hover {
+            background: #0e63b7;
+        }
+
+
+        .clear-filter {
+            min-height: 39px;
+
+            padding: 0 13px;
+
+            border: 1px solid #dfe5ec;
+
+            border-radius: 9px;
+
+            background: #ffffff;
+
+            color: #758197;
+
+            text-decoration: none;
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 10px;
+
+            font-weight: 700;
+        }
+
+
+        .clear-filter:hover {
+            background: #f4f7fb;
+
+            color: #172033;
+        }
+
+
+        /* =====================================================
+           TABLE
+        ===================================================== */
+
+        .table {
+            margin-bottom: 0;
+        }
+
+
+        .table th {
+            font-size: 9px;
+
+            color: #758197;
+
+            font-weight: 700;
+
+            border-bottom: 1px solid #e7ebf1;
+
+            padding: 13px 10px;
+
+            white-space: nowrap;
+        }
+
+
+        .table td {
+            font-size: 11px;
+
+            vertical-align: middle;
+
+            padding: 15px 10px;
+
+            border-bottom: 1px solid #f0f2f6;
+
+            color: #172033;
+        }
+
+
+        .table tbody tr {
+            transition: .15s;
+        }
+
+
+        .table tbody tr:hover {
+            background: #fffdf9;
+        }
+
+
+        /* =====================================================
+           AIRLINE
+        ===================================================== */
+
+        .airline-name {
+            font-size: 11px;
+
+            font-weight: 700;
+
+            color: #172033;
+        }
+
+
+        .airline-code {
+            display: inline-block;
+
+            margin-top: 4px;
+
+            background: #eaf3ff;
+
+            color: #1675d1;
+
+            padding: 4px 7px;
+
+            border-radius: 12px;
+
+            font-size: 8px;
+
+            font-weight: 700;
+        }
+
+
+        /* =====================================================
+           ROUTE
+        ===================================================== */
+
+        .route-code {
+            font-weight: 700;
+
+            color: #172033;
+        }
+
+
+        .route-arrow {
+            color: #f59e0b;
+
+            margin: 0 5px;
+
+            font-weight: 700;
+        }
+
+
+        .table-muted {
+            display: block;
+
+            margin-top: 3px;
+
+            color: #9aa4b5;
+
+            font-size: 8px;
+        }
+
+
+        /* =====================================================
+           PRICE
+        ===================================================== */
+
+        .price {
+            font-weight: 700;
+
+            color: #172033;
+
+            white-space: nowrap;
+        }
+
+
+        /* =====================================================
+           BADGES
+        ===================================================== */
+
+        .info-badge {
+            display: inline-block;
+
+            padding: 5px 9px;
+
+            border-radius: 20px;
+
+            font-size: 8px;
+
+            font-weight: 700;
+
+            white-space: nowrap;
+        }
+
+
+        .badge-orange {
+            background: #fff1d6;
+
+            color: #d88900;
+        }
+
+
+        .badge-blue {
+            background: #eaf3ff;
+
+            color: #1675d1;
+        }
+
+
+        .badge-green {
+            background: #e8faf3;
+
+            color: #08a76b;
+        }
+
+
+        .badge-red {
+            background: #fff1f2;
+
+            color: #dc2626;
+        }
+
+
+        /* =====================================================
+           SEATS
+        ===================================================== */
+
+        .seat-number {
+            font-weight: 700;
+
+            color: #172033;
+        }
+
+
+        .seat-progress {
+            width: 78px;
+
+            height: 5px;
+
+            background: #edf1f5;
+
+            border-radius: 20px;
+
+            overflow: hidden;
+
+            margin-top: 6px;
+        }
+
+
+        .seat-progress-fill {
+            height: 100%;
+
+            border-radius: 20px;
+
+            background: #08a76b;
+
+            width: 0%;
+        }
+
+
+        /* =====================================================
+           STATUS
+        ===================================================== */
+
+        .status-badge {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 5px;
+
+            padding: 5px 9px;
+
+            border-radius: 20px;
+
+            font-size: 8px;
+
+            font-weight: 700;
+        }
+
+
+        .status-active {
+            background: #e8faf3;
+
+            color: #08a76b;
+        }
+
+
+        .status-inactive {
+            background: #fff1f2;
+
+            color: #dc2626;
+        }
+
+
+        /* =====================================================
+           ACTION BUTTONS
+        ===================================================== */
+
+        .action-btn {
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 5px;
+
+            padding: 7px 9px;
+
+            border-radius: 7px;
+
+            font-size: 9px;
+
+            font-weight: 700;
+
+            text-decoration: none;
+
+            border: none;
+
+            transition: .2s;
+
+            margin-right: 4px;
+        }
+
+
+        .edit-btn {
+            background: #eaf3ff;
+
+            color: #1675d1;
+        }
+
+
+        .edit-btn:hover {
+            background: #dcecff;
+
+            color: #1675d1;
+        }
+
+
+        .delete-btn {
+            background: #fff1f2;
+
+            color: #dc2626;
+
+            cursor: pointer;
+        }
+
+
+        .delete-btn:hover {
+            background: #fee2e2;
+
+            color: #dc2626;
+        }
+
+
+        /* =====================================================
+           EMPTY STATE
+        ===================================================== */
+
+        .empty-state {
+            text-align: center;
+
+            padding: 65px 20px;
+        }
+
+
+        .empty-icon {
+            width: 60px;
+
+            height: 60px;
+
+            border-radius: 15px;
+
+            background: #fff1d6;
+
+            color: #f59e0b;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            margin: 0 auto 15px;
+
+            font-size: 26px;
+        }
+
+
+        .empty-state h5 {
+            font-size: 15px;
+
+            font-weight: 700;
+
+            color: #172033;
+
+            margin-bottom: 6px;
+        }
+
+
+        .empty-state p {
+            color: #758197;
+
+            font-size: 11px;
+
+            margin-bottom: 18px;
+        }
+
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        .page-footer {
+            text-align: center;
+
+            padding: 20px 10px 0;
+
+            color: #9aa4b5;
+
+            font-size: 9px;
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media (max-width: 1200px) {
+
+            .filter-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+        }
+
+
+        @media (max-width: 991px) {
+
+            .sidebar {
+                width: 210px;
+            }
+
+
+            .main-content {
+                margin-left: 210px;
+            }
+
+
+            .topbar {
+                padding: 15px 20px;
+            }
+
+
+            .content {
+                padding: 20px;
+            }
+
+        }
+
+
+        @media (max-width: 767px) {
+
+            .sidebar {
+                position: relative;
+
+                width: 100%;
+
+                height: auto;
+            }
+
+
+            .sidebar-bottom {
+                position: relative;
+
+                bottom: auto;
+            }
+
+
+            .main-content {
+                margin-left: 0;
+            }
+
+
+            .topbar {
+                padding: 15px;
+            }
+
+
+            .content {
+                padding: 15px;
+            }
+
+
+            .admin-profile {
+                display: none;
+            }
+
+
+            .page-header-card {
+                gap: 15px;
+
+                align-items: flex-start !important;
+
+                flex-direction: column;
+            }
+
+
+            .btn-orange {
+                width: 100%;
+            }
+
+
+            .filter-grid {
+                grid-template-columns: 1fr;
+            }
+
+
+            .filter-btn,
+            .clear-filter {
+                width: 100%;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
+
+<div class="sidebar">
+
+
+    <!-- BRAND -->
+
+    <div class="brand">
+
+        <div class="brand-logo">
+
+            <img
+                src="{% static 'images/logo.png' %}"
+                alt="AL NAJAM Travel & Tours"
+            >
+        
+        </div>
+
+
+        <div class="brand-text">
+
+            AL <span>NAJAM</span>
+
+        </div>
+
+    </div>
+
+
+    <!-- MAIN MENU -->
+
+    <div class="sidebar-title">
+
+        Main Menu
+
+    </div>
+
+
+    <!-- DASHBOARD -->
+
+    <a href="{% url 'admin_dashboard' %}">
+
+        <i class="bi bi-grid-1x2-fill"></i>
+
+        Dashboard
+
+    </a>
+
+
+    <!-- AGENT REQUESTS -->
+
+    <a href="{% url 'pending_agents' %}">
+
+        <i class="bi bi-person-check-fill"></i>
+
+        Agent Requests
+
+    </a>
+
+
+    <!-- OPERATIONS -->
+
+    <div class="sidebar-title">
+
+        Operations
+
+    </div>
+
+
+    <!-- GROUP TICKETS -->
+
+    <a
+        href="{% url 'admin_group_tickets' %}"
+        class="active"
+    >
+
+        <i class="bi bi-people-fill"></i>
+
+        Group Tickets
+
+    </a>
+
+
+    <!-- BOOKING MANAGEMENT -->
+
+    <a
+        href="{% url 'admin_dashboard' %}#recent-group-bookings"
+    >
+
+        <i class="bi bi-ticket-perforated-fill"></i>
+
+        Booking Management
+
+    </a>
+
+
+    <!-- WALLET REQUESTS -->
+
+    <a href="{% url 'admin_wallet_requests' %}">
+
+        <i class="bi bi-wallet2"></i>
+
+        Wallet Requests
+
+    </a>
+
+
+    <!-- SYSTEM -->
+
+    <div class="sidebar-title">
+
+        System
+
+    </div>
+
+
+    <!-- REPORTS -->
+
+    <a href="#">
+
+        <i class="bi bi-bar-chart-fill"></i>
+
+        Reports
+
+    </a>
+
+
+    <!-- SETTINGS -->
+
+    <a href="#">
+
+        <i class="bi bi-gear-fill"></i>
+
+        Settings
+
+    </a>
+
+
+    <!-- LOGOUT -->
+
+    <div
+        style="
+            margin-top: 20px;
+        "
+    >
+
+        <a
+            href="{% url 'logout' %}"
+            class="logout-link"
+        >
+
+            <i class="bi bi-box-arrow-right"></i>
+
+            Logout
+
+        </a>
+
+    </div>
+
+
+</div>
+<!-- =====================================================
+     MAIN CONTENT
+===================================================== -->
+
+<div class="main-content">
+
+
+    <!-- =================================================
+         TOPBAR
+    ================================================= -->
+
+    <div class="topbar">
+
+
+        <div>
+
+            <h1 class="page-title">
+
+                Group Tickets
+
+            </h1>
+
+
+            <p class="page-subtitle">
+
+                Manage group ticket inventory available to AL NAJAM agents.
+
+            </p>
+
+        </div>
+
+
+        <div class="admin-profile">
+
+
+            <div class="admin-avatar">
+
+                <i class="bi bi-person-fill"></i>
+
+            </div>
+
+
+            <div>
+
+                <div class="admin-name">
+
+                    {{ request.user.get_full_name|default:request.user.username }}
+
+                </div>
+
+
+                <div class="admin-role">
+
+                    System Administrator
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =================================================
+         PAGE CONTENT
+    ================================================= -->
+
+    <div class="content">
+
+
+        <!-- =================================================
+             HEADER CARD
+        ================================================= -->
+
+        <div class="page-header-card
+                    d-flex
+                    justify-content-between
+                    align-items-center">
+
+
+            <div class="page-header-left">
+
+                <h2>
+
+                    Group Ticket Inventory
+
+                </h2>
+
+
+                <p>
+
+                    Add, edit and manage group ticket information stored in the system.
+
+                </p>
+
+            </div>
+
+
+            <a href="{% url 'admin_add_group_ticket' %}"
+               class="btn-orange">
+
+                <i class="bi bi-plus-lg"></i>
+
+                Add Group Ticket
+
+            </a>
+
+        </div>
+
+
+
+        <!-- =================================================
+             STATISTICS
+        ================================================= -->
+
+        <div class="row g-4">
+
+
+            <!-- TOTAL -->
+
+            <div class="col-xl-3 col-md-6">
+
+                <div class="mini-stat">
+
+                    <div class="mini-stat-icon">
+
+                        <i class="bi bi-ticket-perforated-fill"></i>
+
+                    </div>
+
+
+                    <div class="mini-stat-label">
+
+                        TOTAL GROUP TICKETS
+
+                    </div>
+
+
+                    <div class="mini-stat-number">
+
+                        {{ total_group_tickets }}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ACTIVE -->
+
+            <div class="col-xl-3 col-md-6">
+
+                <div class="mini-stat green-stat">
+
+                    <div class="mini-stat-icon">
+
+                        <i class="bi bi-check-circle-fill"></i>
+
+                    </div>
+
+
+                    <div class="mini-stat-label">
+
+                        ACTIVE TICKETS
+
+                    </div>
+
+
+                    <div class="mini-stat-number">
+
+                        {{ active_count }}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- AVAILABLE -->
+
+            <div class="col-xl-3 col-md-6">
+
+                <div class="mini-stat blue-stat">
+
+                    <div class="mini-stat-icon">
+
+                        <i class="bi bi-person-check-fill"></i>
+
+                    </div>
+
+
+                    <div class="mini-stat-label">
+
+                        AVAILABLE SEATS
+
+                    </div>
+
+
+                    <div class="mini-stat-number">
+
+                        {{ total_available }}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- SOLD -->
+
+            <div class="col-xl-3 col-md-6">
+
+                <div class="mini-stat red-stat">
+
+                    <div class="mini-stat-icon">
+
+                        <i class="bi bi-people-fill"></i>
+
+                    </div>
+
+
+                    <div class="mini-stat-label">
+
+                        SOLD / USED SEATS
+
+                    </div>
+
+
+                    <div class="mini-stat-number">
+
+                        {{ total_sold }}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             GROUP TICKET TABLE
+        ================================================= -->
+
+        <div class="section-card">
+
+
+            <div class="section-title">
+
+                Group Ticket Records
+
+            </div>
+
+
+            <div class="section-subtitle">
+
+                These records are stored in the database and managed by the administrator.
+
+            </div>
+
+
+
+            <!-- =================================================
+                 FILTERS
+            ================================================= -->
+
+            <div class="filter-box">
+
+
+                <form method="GET">
+
+
+                    <div class="filter-grid">
+
+
+                        <!-- SEARCH -->
+
+                        <input
+                            type="text"
+                            name="search"
+                            class="filter-input"
+                            placeholder="Search airline, flight number or airport..."
+                            value="{{ request.GET.search|default:'' }}"
+                        >
+
+
+                        <!-- STATUS -->
+
+                        <select
+                            name="status"
+                            class="filter-select"
+                        >
+
+                            <option value="">
+
+                                All Status
+
+                            </option>
+
+
+                            <option
+                                value="active"
+                                {% if request.GET.status == "active" %}
+                                    selected
+                                {% endif %}
+                            >
+
+                                Active
+
+                            </option>
+
+
+                            <option
+                                value="inactive"
+                                {% if request.GET.status == "inactive" %}
+                                    selected
+                                {% endif %}
+                            >
+
+                                Inactive
+
+                            </option>
+
+                        </select>
+
+
+
+                        <!-- AVAILABILITY -->
+
+                        <select
+                            name="availability"
+                            class="filter-select"
+                        >
+
+                            <option value="">
+
+                                All Availability
+
+                            </option>
+
+
+                            <option
+                                value="available"
+                                {% if request.GET.availability == "available" %}
+                                    selected
+                                {% endif %}
+                            >
+
+                                Available
+
+                            </option>
+
+
+                            <option
+                                value="soldout"
+                                {% if request.GET.availability == "soldout" %}
+                                    selected
+                                {% endif %}
+                            >
+
+                                Sold Out
+
+                            </option>
+
+                        </select>
+
+
+
+                        <!-- SEARCH BUTTON -->
+
+                        <button
+                            type="submit"
+                            class="filter-btn"
+                        >
+
+                            <i class="bi bi-search me-1"></i>
+
+                            Search
+
+                        </button>
+
+                    </div>
+
+
+
+                    {% if request.GET.search or request.GET.status or request.GET.availability %}
+
+                        <div class="mt-2">
+
+                            <a
+                                href="{% url 'admin_group_tickets' %}"
+                                class="clear-filter"
+                            >
+
+                                <i class="bi bi-x-circle me-1"></i>
+
+                                Clear Filters
+
+                            </a>
+
+                        </div>
+
+                    {% endif %}
+
+
+                </form>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 TABLE
+            ================================================= -->
+
+            {% if group_tickets %}
+
+
+                <div class="table-responsive">
+
+
+                    <table class="table">
+
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    AIRLINE
+                                </th>
+
+                                <th>
+                                    FLIGHT
+                                </th>
+
+                                <th>
+                                    ROUTE
+                                </th>
+
+                                <th>
+                                    DATE
+                                </th>
+
+                                <th>
+                                    TIME
+                                </th>
+
+                                <th>
+                                    BAGGAGE
+                                </th>
+
+                                <th>
+                                    MEAL
+                                </th>
+
+                                <th>
+                                    PRICE
+                                </th>
+
+                                <th>
+                                    SEATS
+                                </th>
+
+                                <th>
+                                    STATUS
+                                </th>
+
+                                <th>
+                                    ACTION
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody>
+
+
+                        {% for ticket in group_tickets %}
+
+
+                            <tr>
+
+
+                                <!-- AIRLINE -->
+
+                                <td>
+
+                                    <div class="airline-name">
+
+                                        {{ ticket.airline.name }}
+
+                                    </div>
+
+
+                                    <span class="airline-code">
+
+                                        {{ ticket.airline.code }}
+
+                                    </span>
+
+                                </td>
+
+
+
+                                <!-- FLIGHT -->
+
+                                <td>
+
+                                    <strong>
+
+                                        {{ ticket.flight_number }}
+
+                                    </strong>
+
+                                </td>
+
+
+
+                                <!-- ROUTE -->
+
+                                <td>
+
+                                    <span class="route-code">
+
+                                        {{ ticket.departure_airport.code }}
+
+                                    </span>
+
+
+                                    <span class="route-arrow">
+
+                                        →
+
+                                    </span>
+
+
+                                    <span class="route-code">
+
+                                        {{ ticket.arrival_airport.code }}
+
+                                    </span>
+
+
+                                    <span class="table-muted">
+
+                                        {{ ticket.departure_airport.city }}
+
+                                        →
+
+                                        {{ ticket.arrival_airport.city }}
+
+                                    </span>
+
+                                </td>
+
+
+
+                                <!-- DATE -->
+
+                                <td>
+
+                                    <strong>
+
+                                        {{ ticket.departure_date|date:"d M Y" }}
+
+                                    </strong>
+
+                                </td>
+
+
+
+                                <!-- TIME -->
+
+                                <td>
+
+                                    <strong>
+
+                                        {{ ticket.departure_time|time:"H:i" }}
+
+                                    </strong>
+
+
+                                    <span class="table-muted">
+
+                                        Arrival:
+
+                                        {{ ticket.arrival_time|time:"H:i" }}
+
+                                    </span>
+
+                                </td>
+
+
+
+                                <!-- BAGGAGE -->
+
+                                <td>
+
+                                    {{ ticket.baggage }}
+
+                                </td>
+
+
+
+                                <!-- MEAL -->
+
+                                <td>
+
+                                    {{ ticket.meal }}
+
+                                </td>
+
+
+
+                                <!-- PRICE -->
+
+                                <td>
+
+                                    <span class="price">
+
+                                        PKR {{ ticket.price|floatformat:0 }}
+
+                                    </span>
+
+
+                                    <span class="table-muted">
+
+                                        Per seat
+
+                                    </span>
+
+                                </td>
+
+
+
+                                <!-- SEATS -->
+
+                                <td>
+
+
+                                    <span class="seat-number">
+
+                                        {{ ticket.available_seats }}
+
+                                        /
+
+                                        {{ ticket.total_seats }}
+
+                                    </span>
+
+
+
+                                    {% if ticket.total_seats > 0 %}
+
+                                        <div class="seat-progress">
+
+                                            <div
+                                                class="seat-progress-fill"
+                                                data-available="{{ ticket.available_seats }}"
+                                                data-total="{{ ticket.total_seats }}"
+                                            >
+                                            </div>
+
+                                        </div>
+
+                                    {% endif %}
+
+
+
+                                    {% if ticket.available_seats == 0 %}
+
+                                        <span class="info-badge badge-red mt-1">
+
+                                            Sold Out
+
+                                        </span>
+
+                                    {% else %}
+
+                                        <span class="table-muted">
+
+                                            Available
+
+                                        </span>
+
+                                    {% endif %}
+
+                                </td>
+
+
+
+                                <!-- STATUS -->
+
+                                <td>
+
+
+                                    {% if ticket.is_active %}
+
+                                        <span class="status-badge status-active">
+
+                                            <i class="bi bi-check-circle-fill"></i>
+
+                                            Active
+
+                                        </span>
+
+                                    {% else %}
+
+                                        <span class="status-badge status-inactive">
+
+                                            <i class="bi bi-x-circle-fill"></i>
+
+                                            Inactive
+
+                                        </span>
+
+                                    {% endif %}
+
+                                </td>
+
+
+
+                                <!-- ACTION -->
+
+                                <td>
+
+
+                                    <div class="d-flex align-items-center">
+
+
+                                        <!-- EDIT -->
+
+                                        <a
+                                            href="{% url 'admin_edit_group_ticket' ticket.id %}"
+                                            class="action-btn edit-btn"
+                                        >
+
+                                            <i class="bi bi-pencil"></i>
+
+                                            Edit
+
+                                        </a>
+
+
+
+                                        <!-- DELETE -->
+
+                                        <form
+                                            method="POST"
+                                            action="{% url 'admin_delete_group_ticket' ticket.id %}"
+                                            style="display:inline;"
+                                        >
+
+                                            {% csrf_token %}
+
+
+                                            <button
+                                                type="submit"
+                                                class="action-btn delete-btn"
+                                                onclick="return confirm('Are you sure you want to delete this group ticket?');"
+                                            >
+
+                                                <i class="bi bi-trash"></i>
+
+                                                Delete
+
+                                            </button>
+
+                                        </form>
+
+                                    </div>
+
+                                </td>
+
+
+                            </tr>
+
+
+                        {% endfor %}
+
+
+                        </tbody>
+
+
+                    </table>
+
+                </div>
+
+
+            {% else %}
+
+
+                <!-- =================================================
+                     EMPTY STATE
+                ================================================= -->
+
+                <div class="empty-state">
+
+
+                    <div class="empty-icon">
+
+                        <i class="bi bi-ticket-perforated"></i>
+
+                    </div>
+
+
+
+                    {% if request.GET.search or request.GET.status or request.GET.availability %}
+
+
+                        <h5>
+
+                            No Matching Group Tickets
+
+                        </h5>
+
+
+                        <p>
+
+                            No group ticket records match your current filters.
+
+                        </p>
+
+
+                        <a
+                            href="{% url 'admin_group_tickets' %}"
+                            class="btn-orange"
+                        >
+
+                            <i class="bi bi-arrow-counterclockwise"></i>
+
+                            Clear Filters
+
+                        </a>
+
+
+                    {% else %}
+
+
+                        <h5>
+
+                            No Group Tickets Yet
+
+                        </h5>
+
+
+                        <p>
+
+                            No group ticket records have been added to the system yet.
+
+                        </p>
+
+
+                        <a
+                            href="{% url 'admin_add_group_ticket' %}"
+                            class="btn-orange"
+                        >
+
+                            <i class="bi bi-plus-lg"></i>
+
+                            Add First Group Ticket
+
+                        </a>
+
+
+                    {% endif %}
+
+
+                </div>
+
+            {% endif %}
+
+        </div>
+
+
+
+        <!-- =================================================
+             FOOTER
+        ================================================= -->
+
+        <div class="page-footer">
+
+            © 2026 AL NAJAM Travel & Tours — Admin Portal
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     BOOTSTRAP JS
+===================================================== -->
+
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js">
+</script>
+
+
+
+<!-- =====================================================
+     SEAT PROGRESS JAVASCRIPT
+===================================================== -->
+
+<script>
+
+    document
+        .querySelectorAll(".seat-progress-fill")
+        .forEach(function (bar) {
+
+            const available =
+                Number(bar.dataset.available);
+
+            const total =
+                Number(bar.dataset.total);
+
+
+            if (total > 0) {
+
+                let percentage =
+                    (available / total) * 100;
+
+
+                if (percentage < 0) {
+                    percentage = 0;
+                }
+
+
+                if (percentage > 100) {
+                    percentage = 100;
+                }
+
+
+                bar.style.width =
+                    percentage + "%";
+
+            } else {
+
+                bar.style.width = "0%";
+
+            }
+
+        });
+
+</script>
+
+
+</body>
+
+</html>

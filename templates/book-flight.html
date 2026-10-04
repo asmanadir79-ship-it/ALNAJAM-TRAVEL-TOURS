@@ -1,0 +1,1323 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Book Flight | AL NAJAM</title>
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    >
+
+    <style>
+
+        /* =====================================================
+           GLOBAL
+        ===================================================== */
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: #f5f8fc;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #263445;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+
+        /* =====================================================
+           SIDEBAR
+        ===================================================== */
+
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 245px;
+            height: 100vh;
+            background: #ffffff;
+            border-right: 1px solid #e7edf4;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar-brand {
+            height: 75px;
+            display: flex;
+            align-items: center;
+            padding: 0 24px;
+            border-bottom: 1px solid #edf1f5;
+        }
+
+        .brand-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: #f28c28;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 11px;
+            font-size: 19px;
+        }
+
+        .brand-text {
+            font-size: 19px;
+            font-weight: 800;
+            color: #243447;
+            letter-spacing: .3px;
+        }
+
+        .brand-subtitle {
+            display: block;
+            font-size: 10px;
+            color: #9aa6b2;
+            font-weight: 500;
+            margin-top: 1px;
+        }
+
+        .sidebar-menu {
+            padding: 22px 14px;
+            flex: 1;
+        }
+
+        .menu-title {
+            font-size: 10px;
+            color: #a0aab5;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 0 12px;
+            margin-bottom: 10px;
+        }
+
+        .sidebar-link {
+            display: flex;
+            align-items: center;
+            padding: 12px 13px;
+            margin-bottom: 4px;
+            border-radius: 9px;
+            color: #667382;
+            font-size: 14px;
+            font-weight: 600;
+            transition: .2s ease;
+        }
+
+        .sidebar-link i {
+            width: 24px;
+            font-size: 17px;
+            margin-right: 10px;
+        }
+
+        .sidebar-link:hover {
+            background: #fff4e8;
+            color: #f28c28;
+        }
+
+        .sidebar-link.active {
+            background: #fff0df;
+            color: #ed7d12;
+        }
+
+        .sidebar-bottom {
+            padding: 14px;
+            border-top: 1px solid #edf1f5;
+        }
+
+        .logout-link {
+            color: #dc3545;
+        }
+
+        .logout-link:hover {
+            background: #fff0f1;
+            color: #dc3545;
+        }
+
+
+        /* =====================================================
+           MAIN AREA
+        ===================================================== */
+
+        .main-wrapper {
+            margin-left: 245px;
+            min-height: 100vh;
+        }
+
+
+        /* =====================================================
+           TOP HEADER
+        ===================================================== */
+
+        .top-header {
+            height: 75px;
+            background: #ffffff;
+            border-bottom: 1px solid #e8edf3;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 32px;
+        }
+
+        .header-left h5 {
+            margin: 0;
+            font-size: 19px;
+            font-weight: 700;
+            color: #243447;
+        }
+
+        .header-left p {
+            margin: 3px 0 0;
+            color: #929eaa;
+            font-size: 12px;
+        }
+
+        .agent-profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .agent-avatar {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: #fff0df;
+            color: #ed7d12;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 17px;
+        }
+
+        .agent-info strong {
+            display: block;
+            font-size: 13px;
+            color: #263445;
+        }
+
+        .agent-info span {
+            display: block;
+            font-size: 11px;
+            color: #9aa6b2;
+        }
+
+
+        /* =====================================================
+           PAGE CONTENT
+        ===================================================== */
+
+        .page-content {
+            padding: 30px 32px 45px;
+        }
+
+        .page-title {
+            margin-bottom: 24px;
+        }
+
+        .page-title h1 {
+            font-size: 25px;
+            font-weight: 750;
+            margin-bottom: 5px;
+            color: #243447;
+        }
+
+        .page-title p {
+            margin: 0;
+            font-size: 13px;
+            color: #8995a3;
+        }
+
+
+        /* =====================================================
+           SEARCH CARD
+        ===================================================== */
+
+        .search-card {
+            background: #ffffff;
+            border: 1px solid #e7edf4;
+            border-radius: 13px;
+            padding: 23px;
+            margin-bottom: 30px;
+            box-shadow: 0 3px 15px rgba(35, 52, 71, .04);
+        }
+
+        .search-heading {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .search-heading-icon {
+            width: 34px;
+            height: 34px;
+            border-radius: 8px;
+            background: #fff0df;
+            color: #f28c28;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .search-heading h5 {
+            margin: 0;
+            font-size: 16px;
+            font-weight: 700;
+            color: #263445;
+        }
+
+        .form-label {
+            font-size: 12px;
+            font-weight: 700;
+            color: #566474;
+            margin-bottom: 7px;
+        }
+
+        .form-control,
+        .form-select {
+            height: 44px;
+            border: 1px solid #dfe6ee;
+            border-radius: 8px;
+            font-size: 13px;
+            color: #465566;
+            background-color: #fff;
+        }
+
+        .form-control:focus,
+        .form-select:focus {
+            border-color: #f28c28;
+            box-shadow: 0 0 0 3px rgba(242, 140, 40, .10);
+        }
+
+        .search-btn {
+            height: 44px;
+            background: #f28c28;
+            border: none;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .search-btn:hover {
+            background: #df7918;
+        }
+
+
+        /* =====================================================
+           RESULTS HEADER
+        ===================================================== */
+
+        .results-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 17px;
+        }
+
+        .results-header h4 {
+            margin: 0;
+            font-size: 18px;
+            font-weight: 700;
+            color: #263445;
+        }
+
+        .results-header p {
+            margin: 4px 0 0;
+            font-size: 12px;
+            color: #929eaa;
+        }
+
+        .flight-count {
+            background: #fff0df;
+            color: #ed7d12;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 7px 13px;
+            border-radius: 20px;
+        }
+
+
+        /* =====================================================
+           FLIGHT CARD
+        ===================================================== */
+
+        .flight-card {
+            background: #ffffff;
+            border: 1px solid #e7edf4;
+            border-radius: 13px;
+            padding: 23px;
+            margin-bottom: 16px;
+            box-shadow: 0 3px 14px rgba(35, 52, 71, .035);
+            transition: .2s ease;
+        }
+
+        .flight-card:hover {
+            border-color: #f4cda7;
+            box-shadow: 0 7px 22px rgba(35, 52, 71, .07);
+        }
+
+        .airline-name {
+            font-size: 15px;
+            font-weight: 750;
+            color: #263445;
+        }
+
+        .flight-number {
+            color: #929eaa;
+            font-size: 11px;
+            margin-top: 3px;
+        }
+
+        .category-badge {
+            display: inline-block;
+            background: #f1f6fb;
+            color: #627386;
+            padding: 5px 9px;
+            border-radius: 5px;
+            font-size: 10px;
+            font-weight: 700;
+            margin-top: 8px;
+        }
+
+        .flight-time {
+            font-size: 17px;
+            font-weight: 750;
+            color: #263445;
+        }
+
+        .airport-code {
+            font-size: 23px;
+            font-weight: 800;
+            color: #243447;
+            margin-top: 2px;
+        }
+
+        .airport-city {
+            color: #929eaa;
+            font-size: 11px;
+        }
+
+        .flight-line {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #f28c28;
+            font-size: 16px;
+        }
+
+        .flight-line::before,
+        .flight-line::after {
+            content: "";
+            height: 1px;
+            background: #dfe5ec;
+            flex: 1;
+            margin: 0 7px;
+        }
+
+        .price-label {
+            color: #a0aab5;
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: .6px;
+        }
+
+        .price {
+            font-size: 20px;
+            font-weight: 800;
+            color: #243447;
+            margin-top: 2px;
+        }
+
+        .price-passenger {
+            color: #a0aab5;
+            font-size: 10px;
+        }
+
+        .book-btn {
+            background: #f28c28;
+            border: none;
+            color: #ffffff;
+            padding: 9px 18px;
+            border-radius: 7px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-top: 7px;
+        }
+
+        .book-btn:hover {
+            background: #df7918;
+            color: #ffffff;
+        }
+
+        .flight-info {
+            border-top: 1px solid #edf1f5;
+            margin-top: 19px;
+            padding-top: 15px;
+        }
+
+        .info-item {
+            color: #697786;
+            font-size: 11px;
+        }
+
+        .info-item i {
+            color: #f28c28;
+            margin-right: 4px;
+        }
+
+
+        /* =====================================================
+           EMPTY STATE
+        ===================================================== */
+
+        .empty-state {
+            background: #ffffff;
+            border: 1px solid #e7edf4;
+            border-radius: 13px;
+            padding: 65px 20px;
+            text-align: center;
+        }
+
+        .empty-state i {
+            font-size: 48px;
+            color: #c3ccd5;
+        }
+
+        .empty-state h3 {
+            color: #465566;
+            font-size: 20px;
+        }
+
+        .empty-state p {
+            color: #929eaa;
+            font-size: 13px;
+        }
+
+
+        /* =====================================================
+           MOBILE SIDEBAR
+        ===================================================== */
+
+        @media (max-width: 991px) {
+
+            .sidebar {
+                width: 210px;
+            }
+
+            .main-wrapper {
+                margin-left: 210px;
+            }
+
+            .top-header {
+                padding: 0 20px;
+            }
+
+            .page-content {
+                padding: 25px 20px;
+            }
+        }
+
+
+        @media (max-width: 767px) {
+
+            .sidebar {
+                position: relative;
+                width: 100%;
+                height: auto;
+            }
+
+            .sidebar-menu {
+                display: none;
+            }
+
+            .sidebar-bottom {
+                display: none;
+            }
+
+            .main-wrapper {
+                margin-left: 0;
+            }
+
+            .top-header {
+                height: auto;
+                padding: 15px;
+            }
+
+            .agent-info {
+                display: none;
+            }
+
+            .page-content {
+                padding: 20px 15px;
+            }
+
+            .flight-card {
+                padding: 17px;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     SIDEBAR
+========================================================= -->
+
+<aside class="sidebar">
+
+    <div class="sidebar-brand">
+
+        <div class="brand-icon">
+            <i class="bi bi-airplane-fill"></i>
+        </div>
+
+        <div>
+            <div class="brand-text">
+                AL NAJAM
+            </div>
+
+            <span class="brand-subtitle">
+                TRAVEL & TOURS
+            </span>
+        </div>
+
+    </div>
+
+
+    <div class="sidebar-menu">
+
+        <div class="menu-title">
+            Main Menu
+        </div>
+
+
+        <a href="{% url 'agent_dashboard' %}"
+           class="sidebar-link">
+
+            <i class="bi bi-grid-1x2-fill"></i>
+            Dashboard
+
+        </a>
+
+
+        <a href="{% url 'book_flight' %}"
+           class="sidebar-link active">
+
+            <i class="bi bi-airplane-fill"></i>
+            Book Flight
+
+        </a>
+
+
+        <a href="#"
+           class="sidebar-link">
+
+            <i class="bi bi-ticket-perforated-fill"></i>
+            Bookings
+
+        </a>
+
+
+        <a href="#"
+           class="sidebar-link">
+
+            <i class="bi bi-people-fill"></i>
+            Customers
+
+        </a>
+
+
+        <a href="#"
+           class="sidebar-link">
+
+            <i class="bi bi-receipt"></i>
+            Payments
+
+        </a>
+
+
+        <div class="menu-title mt-4">
+            Management
+        </div>
+
+
+        <a href="#"
+           class="sidebar-link">
+
+            <i class="bi bi-file-earmark-text-fill"></i>
+            Reports
+
+        </a>
+
+
+        <a href="#"
+           class="sidebar-link">
+
+            <i class="bi bi-gear-fill"></i>
+            Settings
+
+        </a>
+
+    </div>
+
+
+    <div class="sidebar-bottom">
+
+        <a href="{% url 'logout' %}"
+           class="sidebar-link logout-link">
+
+            <i class="bi bi-box-arrow-right"></i>
+            Logout
+
+        </a>
+
+    </div>
+
+</aside>
+
+
+
+<!-- =========================================================
+     MAIN WRAPPER
+========================================================= -->
+
+<div class="main-wrapper">
+
+
+    <!-- =====================================================
+         TOP HEADER
+    ===================================================== -->
+
+    <header class="top-header">
+
+        <div class="header-left">
+
+            <h5>
+                Book Flight
+            </h5>
+
+            <p>
+                Search available flights and make a booking
+            </p>
+
+        </div>
+
+
+        <div class="agent-profile">
+
+            <div class="agent-avatar">
+                <i class="bi bi-person-fill"></i>
+            </div>
+
+            <div class="agent-info">
+
+                <strong>
+                    {{ agent.name }}
+                </strong>
+
+                <span>
+                    Travel Agent
+                </span>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         PAGE CONTENT
+    ===================================================== -->
+
+    <main class="page-content">
+
+
+        <!-- PAGE TITLE -->
+
+        <div class="page-title">
+
+            <h1>
+                Book Flight
+            </h1>
+
+            <p>
+                Search available flights and select a flight for your passenger.
+            </p>
+
+        </div>
+
+
+
+        <!-- =================================================
+             SEARCH CARD
+        ================================================= -->
+
+        <div class="search-card">
+
+            <div class="search-heading">
+
+                <div class="search-heading-icon">
+                    <i class="bi bi-search"></i>
+                </div>
+
+                <h5>
+                    Search Flights
+                </h5>
+
+            </div>
+
+
+            <form method="GET">
+
+                <div class="row g-3 align-items-end">
+
+
+                    <!-- FROM -->
+
+                    <div class="col-lg-2 col-md-6">
+
+                        <label class="form-label">
+                            From
+                        </label>
+
+                        <select
+                            name="from"
+                            class="form-select"
+                        >
+
+                            <option value="">
+                                All Airports
+                            </option>
+
+                            {% for airport in airports %}
+
+                                <option
+                                    value="{{ airport.code }}"
+                                    {% if search_from == airport.code %}selected{% endif %}
+                                >
+                                    {{ airport.city }} ({{ airport.code }})
+                                </option>
+
+                            {% endfor %}
+
+                        </select>
+
+                    </div>
+
+
+
+                    <!-- TO -->
+
+                    <div class="col-lg-2 col-md-6">
+
+                        <label class="form-label">
+                            To
+                        </label>
+
+                        <select
+                            name="to"
+                            class="form-select"
+                        >
+
+                            <option value="">
+                                All Airports
+                            </option>
+
+                            {% for airport in airports %}
+
+                                <option
+                                    value="{{ airport.code }}"
+                                    {% if search_to == airport.code %}selected{% endif %}
+                                >
+                                    {{ airport.city }} ({{ airport.code }})
+                                </option>
+
+                            {% endfor %}
+
+                        </select>
+
+                    </div>
+
+
+
+                    <!-- DATE -->
+
+                    <div class="col-lg-2 col-md-6">
+
+                        <label class="form-label">
+                            Travel Date
+                        </label>
+
+                        <input
+                            type="date"
+                            name="date"
+                            class="form-control"
+                            value="{{ search_date }}"
+                        >
+
+                    </div>
+
+
+
+                    <!-- AIRLINE -->
+
+                    <div class="col-lg-2 col-md-6">
+
+                        <label class="form-label">
+                            Airline
+                        </label>
+
+                        <select
+                            name="airline"
+                            class="form-select"
+                        >
+
+                            <option value="">
+                                All Airlines
+                            </option>
+
+                            {% for airline in airlines %}
+
+                                <option
+                                    value="{{ airline.code }}"
+                                    {% if search_airline == airline.code %}selected{% endif %}
+                                >
+                                    {{ airline.name }}
+                                </option>
+
+                            {% endfor %}
+
+                        </select>
+
+                    </div>
+
+
+
+                    <!-- CATEGORY -->
+
+                    <div class="col-lg-2 col-md-6">
+
+                        <label class="form-label">
+                            Category
+                        </label>
+
+                        <select
+                            name="category"
+                            class="form-select"
+                        >
+
+                            <option value="">
+                                All Categories
+                            </option>
+
+                            <option value="BAHRAIN"
+                                {% if search_category == "BAHRAIN" %}selected{% endif %}>
+                                Bahrain Oneway
+                            </option>
+
+                            <option value="KSA"
+                                {% if search_category == "KSA" %}selected{% endif %}>
+                                KSA One Way
+                            </option>
+
+                            <option value="OMAN"
+                                {% if search_category == "OMAN" %}selected{% endif %}>
+                                Oman One Way
+                            </option>
+
+                            <option value="UAE"
+                                {% if search_category == "UAE" %}selected{% endif %}>
+                                UAE Oneway
+                            </option>
+
+                            <option value="UMRAH"
+                                {% if search_category == "UMRAH" %}selected{% endif %}>
+                                Umrah
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <!-- SEARCH BUTTON -->
+
+                    <div class="col-lg-2 col-md-6">
+
+                        <button
+                            type="submit"
+                            class="btn btn-primary w-100 search-btn"
+                        >
+
+                            <i class="bi bi-search me-1"></i>
+                            Search
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </form>
+
+        </div>
+
+
+
+        <!-- =================================================
+             RESULTS HEADER
+        ================================================= -->
+
+        <div class="results-header">
+
+            <div>
+
+                <h4>
+                    Available Flights
+                </h4>
+
+                <p>
+                    Select a flight to continue with booking.
+                </p>
+
+            </div>
+
+
+            <span class="flight-count">
+
+                {{ flights|length }}
+                Flight{{ flights|length|pluralize }}
+
+            </span>
+
+        </div>
+
+
+
+        <!-- =================================================
+             FLIGHTS
+        ================================================= -->
+
+        {% if flights %}
+
+
+            {% for flight in flights %}
+
+
+                <div class="flight-card">
+
+                    <div class="row align-items-center">
+
+
+                        <!-- AIRLINE -->
+
+                        <div class="col-lg-2 col-md-3 mb-3 mb-lg-0">
+
+                            <div class="airline-name">
+                                {{ flight.airline.name }}
+                            </div>
+
+                            <div class="flight-number">
+                                Flight {{ flight.flight_number }}
+                            </div>
+
+                            <span class="category-badge">
+                                {{ flight.get_category_display }}
+                            </span>
+
+                        </div>
+
+
+
+                        <!-- ROUTE -->
+
+                        <div class="col-lg-5 col-md-5 mb-3 mb-lg-0">
+
+                            <div class="row align-items-center text-center">
+
+
+                                <!-- DEPARTURE -->
+
+                                <div class="col-4">
+
+                                    <div class="flight-time">
+                                        {{ flight.departure_time|time:"H:i" }}
+                                    </div>
+
+                                    <div class="airport-code">
+                                        {{ flight.departure_airport.code }}
+                                    </div>
+
+                                    <div class="airport-city">
+                                        {{ flight.departure_airport.city }}
+                                    </div>
+
+                                </div>
+
+
+
+                                <!-- FLIGHT LINE -->
+
+                                <div class="col-4">
+
+                                    <div class="flight-line">
+
+                                        <i class="bi bi-airplane-fill"></i>
+
+                                    </div>
+
+                                    <small class="text-muted">
+
+                                        {{ flight.departure_date|date:"d M Y" }}
+
+                                    </small>
+
+                                </div>
+
+
+
+                                <!-- ARRIVAL -->
+
+                                <div class="col-4">
+
+                                    <div class="flight-time">
+                                        {{ flight.arrival_time|time:"H:i" }}
+                                    </div>
+
+                                    <div class="airport-code">
+                                        {{ flight.arrival_airport.code }}
+                                    </div>
+
+                                    <div class="airport-city">
+                                        {{ flight.arrival_airport.city }}
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- PRICE -->
+
+                        <div class="col-lg-2 col-md-2 text-md-center mb-3 mb-lg-0">
+
+                            <div class="price-label">
+                                PRICE
+                            </div>
+
+                            <div class="price">
+                                PKR {{ flight.price|floatformat:0 }}
+                            </div>
+
+                            <div class="price-passenger">
+                                per passenger
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- BOOK -->
+
+                        <div class="col-lg-3 col-md-2 text-md-end">
+
+
+                            <div>
+
+                                {% if flight.available_seats <= 5 %}
+
+                                    <span class="badge bg-danger">
+
+                                        Only {{ flight.available_seats }}
+                                        seat{{ flight.available_seats|pluralize }}
+                                        left
+
+                                    </span>
+
+                                {% else %}
+
+                                    <span class="badge bg-success">
+
+                                        {{ flight.available_seats }}
+                                        seats available
+
+                                    </span>
+
+                                {% endif %}
+
+                            </div>
+
+
+
+                            <a
+                                href="{% url 'create_booking' flight.id %}"
+                                class="btn book-btn"
+                            >
+
+                                <i class="bi bi-ticket-perforated me-1"></i>
+
+                                Book Now
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- FLIGHT DETAILS -->
+
+                    <div class="flight-info">
+
+                        <div class="row g-3">
+
+
+                            <div class="col-md-3">
+
+                                <div class="info-item">
+
+                                    <i class="bi bi-calendar3"></i>
+
+                                    <strong>Date:</strong>
+
+                                    {{ flight.departure_date|date:"d M Y" }}
+
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="col-md-3">
+
+                                <div class="info-item">
+
+                                    <i class="bi bi-luggage"></i>
+
+                                    <strong>Baggage:</strong>
+
+                                    {{ flight.baggage }}
+
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="col-md-3">
+
+                                <div class="info-item">
+
+                                    <i class="bi bi-cup-hot"></i>
+
+                                    <strong>Meal:</strong>
+
+                                    {{ flight.meal }}
+
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="col-md-3">
+
+                                <div class="info-item">
+
+                                    <i class="bi bi-people"></i>
+
+                                    <strong>Seats:</strong>
+
+                                    {{ flight.available_seats }}
+                                    /
+                                    {{ flight.total_seats }}
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            {% endfor %}
+
+
+
+        {% else %}
+
+
+            <!-- NO FLIGHTS -->
+
+            <div class="empty-state">
+
+                <i class="bi bi-airplane"></i>
+
+                <h3 class="mt-3">
+                    No Flights Found
+                </h3>
+
+                <p>
+                    No available flights match your search criteria.
+                </p>
+
+                <a
+                    href="{% url 'book_flight' %}"
+                    class="btn search-btn text-white px-4"
+                >
+
+                    <i class="bi bi-arrow-clockwise me-1"></i>
+
+                    Show All Flights
+
+                </a>
+
+            </div>
+
+
+        {% endif %}
+
+
+    </main>
+
+</div>
+
+
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js">
+</script>
+
+</body>
+</html>

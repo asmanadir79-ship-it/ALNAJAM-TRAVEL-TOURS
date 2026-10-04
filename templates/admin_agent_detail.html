@@ -1,0 +1,1920 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>
+    Review Agent | AL NAJAM
+</title>
+
+
+<link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+>
+
+
+<link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+>
+
+
+<style>
+
+    * {
+        box-sizing: border-box;
+    }
+
+
+    body {
+
+        margin: 0;
+
+        background:
+            linear-gradient(
+                135deg,
+                #f7f9fc,
+                #f2f5f9
+            );
+
+        font-family:
+            Arial,
+            Helvetica,
+            sans-serif;
+
+        color: #263238;
+
+    }
+
+
+    /* =========================================
+       SCROLLBAR
+    ========================================= */
+
+    ::-webkit-scrollbar {
+
+        width: 7px;
+
+    }
+
+
+    ::-webkit-scrollbar-track {
+
+        background: #f4f6f8;
+
+    }
+
+
+    ::-webkit-scrollbar-thumb {
+
+        background: #d7dce3;
+
+        border-radius: 20px;
+
+    }
+
+
+    ::-webkit-scrollbar-thumb:hover {
+
+        background: #bcc4ce;
+
+    }
+
+
+    /* =========================================
+       SIDEBAR
+    ========================================= */
+
+    .sidebar {
+
+        position: fixed;
+
+        left: 0;
+
+        top: 0;
+
+        width: 255px;
+
+        height: 100vh;
+
+        background: #ffffff;
+
+        border-right: 1px solid #e5e9ef;
+
+        z-index: 1000;
+
+        overflow-y: auto;
+
+        box-shadow:
+            8px 0 30px rgba(20,35,60,.035);
+
+    }
+
+
+    /* BRAND */
+
+    /* BRAND */
+
+.brand {
+    height: 90px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 4px 10px;
+
+    border-bottom: 1px solid #e7ebf1;
+}
+
+
+.brand-logo {
+    width: 82px;
+    height: 82px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+}
+
+
+.brand-logo img {
+    width: 82px;
+    height: 82px;
+
+    object-fit: contain;
+    display: block;
+}
+    .brand-text {
+
+        font-size: 18px;
+
+        font-weight: 800;
+
+        letter-spacing: -.2px;
+
+        color: #202733;
+
+    }
+
+
+    .brand-text span {
+
+        color: #f59e0b;
+
+    }
+
+
+    .brand-subtitle {
+
+        display: block;
+
+        margin-top: 2px;
+
+        color: #8b95a5;
+
+        font-size: 8px;
+
+        letter-spacing: 1.3px;
+
+        font-weight: 700;
+
+    }
+
+
+    /* SIDEBAR SECTION TITLE */
+
+    .sidebar-title {
+
+        font-size: 10px;
+
+        font-weight: 800;
+
+        color: #9aa3b0;
+
+        padding:
+            24px 22px 9px;
+
+        text-transform: uppercase;
+
+        letter-spacing: 1.4px;
+
+    }
+
+
+    /* SIDEBAR LINKS */
+
+    .sidebar a {
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 12px;
+
+        margin:
+            3px 11px;
+
+        padding:
+            11px 13px;
+
+        border-radius: 11px;
+
+        text-decoration: none;
+
+        color: #5d6879;
+
+        font-size: 13px;
+
+        font-weight: 600;
+
+        border: 1px solid transparent;
+
+        transition:
+            .22s ease;
+
+    }
+
+
+    .sidebar a i {
+
+        width: 31px;
+
+        height: 31px;
+
+        border-radius: 9px;
+
+        background: #f5f7fa;
+
+        display: inline-flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        font-size: 15px;
+
+        transition:
+            .22s ease;
+
+        flex-shrink: 0;
+
+    }
+
+
+    .sidebar a:hover {
+
+        background: #fff9ef;
+
+        color: #d88900;
+
+        border-color: #f3dfbb;
+
+        transform:
+            translateX(2px);
+
+    }
+
+
+    .sidebar a:hover i {
+
+        background: #fff0d4;
+
+        color: #d88900;
+
+    }
+
+
+    .sidebar a.active {
+
+        background:
+            linear-gradient(
+                135deg,
+                #f59e0b,
+                #df8508
+            );
+
+        color: #ffffff;
+
+        border-color: transparent;
+
+        box-shadow:
+            0 8px 20px rgba(245,158,11,.18);
+
+    }
+
+
+    .sidebar a.active i {
+
+        background:
+            rgba(255,255,255,.18);
+
+        color: #ffffff;
+
+    }
+
+
+    .sidebar-bottom {
+
+        position: relative;
+
+        width: 100%;
+
+        padding: 0;
+
+        margin-top: 6px;
+
+    }
+
+
+    .logout-link {
+
+        color: #dc3545 !important;
+
+    }
+
+
+    .logout-link i {
+
+        background: #fff0f1 !important;
+
+        color: #dc3545 !important;
+
+    }
+
+
+    .logout-link:hover {
+
+        background: #fff0f1 !important;
+
+        color: #dc3545 !important;
+
+        border-color: #f5c6cb !important;
+
+    }
+
+
+    /* =========================================
+       MAIN CONTENT
+    ========================================= */
+
+    .main-content {
+
+        margin-left: 255px;
+
+        min-height: 100vh;
+
+    }
+
+
+    /* =========================================
+       TOPBAR
+    ========================================= */
+
+    .topbar {
+
+        min-height: 78px;
+
+        background:
+            rgba(255,255,255,.96);
+
+        backdrop-filter:
+            blur(10px);
+
+        border-bottom:
+            1px solid #e7ebf1;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: space-between;
+
+        padding:
+            0 30px;
+
+        position: sticky;
+
+        top: 0;
+
+        z-index: 100;
+
+    }
+
+
+    .topbar-left {
+
+        min-width: 0;
+
+    }
+
+
+    .page-label {
+
+        display: inline-flex;
+
+        align-items: center;
+
+        gap: 6px;
+
+        background: #eef6ff;
+
+        color: #1675d1;
+
+        padding:
+            5px 9px;
+
+        border-radius: 7px;
+
+        font-size: 8px;
+
+        font-weight: 800;
+
+        letter-spacing: .8px;
+
+        text-transform: uppercase;
+
+        margin-bottom: 6px;
+
+    }
+
+
+    .page-title {
+
+        font-size: 22px;
+
+        font-weight: 800;
+
+        margin: 0;
+
+        color: #202733;
+
+        letter-spacing: -.3px;
+
+    }
+
+
+    .page-subtitle {
+
+        font-size: 11px;
+
+        color: #8a95a7;
+
+        margin:
+            4px 0 0;
+
+    }
+
+
+    /* =========================================
+       ADMIN PROFILE
+    ========================================= */
+
+    .admin-profile {
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 10px;
+
+        padding:
+            7px 11px;
+
+        border:
+            1px solid #e5e9ef;
+
+        border-radius: 13px;
+
+        background: #ffffff;
+
+        box-shadow:
+            0 5px 15px rgba(20,35,60,.025);
+
+    }
+
+
+    .admin-avatar {
+
+        width: 40px;
+
+        height: 40px;
+
+        border-radius: 50%;
+
+        background: #fff1d6;
+
+        color: #d88900;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        font-size: 16px;
+
+        flex-shrink: 0;
+
+    }
+
+
+    .admin-name {
+
+        font-size: 12px;
+
+        font-weight: 800;
+
+        color: #202733;
+
+    }
+
+
+    .admin-role {
+
+        margin-top: 3px;
+
+        font-size: 9px;
+
+        color: #8a95a7;
+
+    }
+
+
+    /* =========================================
+       CONTENT
+    ========================================= */
+
+    .content {
+
+        padding:
+            28px 30px 45px;
+
+    }
+
+
+    /* =========================================
+       BACK BUTTON
+    ========================================= */
+
+    .back-btn {
+
+        display: inline-flex;
+
+        align-items: center;
+
+        gap: 6px;
+
+        color: #d88900;
+
+        text-decoration: none;
+
+        font-size: 11px;
+
+        font-weight: 700;
+
+        margin-bottom: 18px;
+
+    }
+
+
+    .back-btn:hover {
+
+        color: #b96f00;
+
+    }
+
+
+    /* =========================================
+       MAIN CARD
+    ========================================= */
+
+    .detail-card {
+
+        background:
+            rgba(255,255,255,.98);
+
+        border:
+            1px solid #e5e9ef;
+
+        border-radius: 17px;
+
+        padding: 28px;
+
+        margin-top: 2px;
+
+        box-shadow:
+            0 7px 24px rgba(20,35,60,.025);
+
+    }
+
+
+    /* =========================================
+       PROFILE HEADER
+    ========================================= */
+
+    .profile-header {
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 18px;
+
+        padding-bottom: 25px;
+
+        border-bottom:
+            1px solid #edf0f4;
+
+    }
+
+
+    .large-avatar {
+
+        width: 75px;
+
+        height: 75px;
+
+        border-radius: 50%;
+
+        background: #fff1e5;
+
+        color: #f58220;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        font-size: 34px;
+
+        flex-shrink: 0;
+
+    }
+
+
+    .profile-name {
+
+        font-size: 24px;
+
+        font-weight: 800;
+
+        color: #202733;
+
+        margin-bottom: 4px;
+
+    }
+
+
+    .profile-agency {
+
+        color: #8a95a7;
+
+        font-size: 13px;
+
+    }
+
+
+    /* =========================================
+       STATUS
+    ========================================= */
+
+    .status-badge {
+
+        display: inline-flex;
+
+        align-items: center;
+
+        gap: 5px;
+
+        padding:
+            7px 12px;
+
+        border-radius: 20px;
+
+        font-size: 10px;
+
+        font-weight: 800;
+
+        background: #fff3cd;
+
+        color: #856404;
+
+        white-space: nowrap;
+
+    }
+
+
+    /* =========================================
+       SECTION
+    ========================================= */
+
+    .info-section {
+
+        margin-top: 28px;
+
+    }
+
+
+    .section-title {
+
+        font-size: 15px;
+
+        font-weight: 800;
+
+        color: #202733;
+
+        margin-bottom: 18px;
+
+    }
+
+
+    /* =========================================
+       INFO BOX
+    ========================================= */
+
+    .info-box {
+
+        background: #fafbfc;
+
+        border:
+            1px solid #e7ebf1;
+
+        border-radius: 11px;
+
+        padding: 15px;
+
+        height: 100%;
+
+    }
+
+
+    .info-label {
+
+        color: #8a95a7;
+
+        font-size: 9px;
+
+        margin-bottom: 5px;
+
+        text-transform: uppercase;
+
+        font-weight: 800;
+
+        letter-spacing: .4px;
+
+    }
+
+
+    .info-value {
+
+        color: #202733;
+
+        font-size: 13px;
+
+        font-weight: 700;
+
+        word-break: break-word;
+
+    }
+
+
+    .info-value i {
+
+        color: #d88900;
+
+        margin-right: 6px;
+
+    }
+
+
+    /* =========================================
+       ACTION CARD
+    ========================================= */
+
+    .action-card {
+
+        background:
+            linear-gradient(
+                135deg,
+                #fffaf5,
+                #ffffff
+            );
+
+        border:
+            1px solid #f3dfbb;
+
+        border-radius: 13px;
+
+        padding: 22px;
+
+        margin-top: 28px;
+
+    }
+
+
+    .action-title {
+
+        font-size: 15px;
+
+        font-weight: 800;
+
+        margin-bottom: 5px;
+
+    }
+
+
+    .action-subtitle {
+
+        color: #8a95a7;
+
+        font-size: 11px;
+
+        margin-bottom: 20px;
+
+    }
+
+
+    /* =========================================
+       BUTTONS
+    ========================================= */
+
+    .btn-approve {
+
+        background: #198754;
+
+        color: white;
+
+        border: none;
+
+        border-radius: 8px;
+
+        padding:
+            10px 20px;
+
+        font-size: 11px;
+
+        font-weight: 700;
+
+    }
+
+
+    .btn-approve:hover {
+
+        background: #157347;
+
+        color: white;
+
+        transform: translateY(-1px);
+
+    }
+
+
+    .btn-reject {
+
+        background: #dc3545;
+
+        color: white;
+
+        border: none;
+
+        border-radius: 8px;
+
+        padding:
+            10px 20px;
+
+        font-size: 11px;
+
+        font-weight: 700;
+
+    }
+
+
+    .btn-reject:hover {
+
+        background: #bb2d3b;
+
+        color: white;
+
+        transform: translateY(-1px);
+
+    }
+
+
+    .btn-suspend {
+
+        background: #6c757d;
+
+        color: white;
+
+        border: none;
+
+        border-radius: 8px;
+
+        padding:
+            10px 20px;
+
+        font-size: 11px;
+
+        font-weight: 700;
+
+    }
+
+
+    .btn-suspend:hover {
+
+        background: #565e64;
+
+        color: white;
+
+        transform: translateY(-1px);
+
+    }
+
+
+    /* =========================================
+       MODAL
+    ========================================= */
+
+    .modal-header {
+
+        border-bottom:
+            1px solid #eeeeee;
+
+    }
+
+
+    .modal-title {
+
+        font-weight: 700;
+
+    }
+
+
+    .modal-body label {
+
+        font-size: 13px;
+
+        font-weight: 600;
+
+        margin-bottom: 8px;
+
+    }
+
+
+    .modal-body textarea {
+
+        min-height: 120px;
+
+        resize: vertical;
+
+    }
+
+
+    /* =========================================
+       MOBILE
+    ========================================= */
+
+    @media (max-width: 991px) {
+
+        .sidebar {
+
+            width: 215px;
+
+        }
+
+
+        .main-content {
+
+            margin-left: 215px;
+
+        }
+
+
+        .content {
+
+            padding:
+                22px;
+
+        }
+
+    }
+
+
+    @media (max-width: 767px) {
+
+        .sidebar {
+
+            position: relative;
+
+            width: 100%;
+
+            height: auto;
+
+            box-shadow: none;
+
+        }
+
+
+        .sidebar-bottom {
+
+            position: relative;
+
+            bottom: auto;
+
+        }
+
+
+        .main-content {
+
+            margin-left: 0;
+
+        }
+
+
+        .topbar {
+
+            padding:
+                15px;
+
+            min-height: auto;
+
+        }
+
+
+        .content {
+
+            padding:
+                15px;
+
+        }
+
+
+        .admin-profile {
+
+            display: none;
+
+        }
+
+
+        .profile-header {
+
+            align-items: flex-start;
+
+            flex-wrap: wrap;
+
+        }
+
+    }
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
+
+<div class="sidebar">
+
+
+    <!-- BRAND -->
+
+    <div class="brand">
+
+        <div class="brand-logo">
+
+            <img
+                src="{% static 'images/logo.png' %}"
+                alt="AL NAJAM Travel & Tours"
+            >
+    
+        </div>
+
+        <div>
+
+            <div class="brand-text">
+
+                AL <span>NAJAM</span>
+
+            </div>
+
+
+            <span class="brand-subtitle">
+
+                TRAVEL & TOURS
+
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- MAIN MENU -->
+
+    <div class="sidebar-title">
+
+        Main Menu
+
+    </div>
+
+
+    <a
+        href="{% url 'admin_dashboard' %}"
+    >
+
+        <i class="bi bi-grid-1x2-fill"></i>
+
+        <span>
+            Dashboard
+        </span>
+
+    </a>
+
+
+    <a
+        href="{% url 'admin_dashboard' %}#pending-agent-requests"
+        class="active"
+    >
+
+        <i class="bi bi-person-check-fill"></i>
+
+        <span>
+            Agent Requests
+        </span>
+
+    </a>
+
+
+    <!-- OPERATIONS -->
+
+    <div class="sidebar-title">
+
+        Operations
+
+    </div>
+
+
+    <a
+        href="{% url 'admin_group_tickets' %}"
+    >
+
+        <i class="bi bi-people-fill"></i>
+
+        <span>
+            Group Tickets
+        </span>
+
+    </a>
+
+
+    <a
+        href="{% url 'admin_dashboard' %}#recent-group-bookings"
+    >
+
+        <i class="bi bi-ticket-perforated-fill"></i>
+
+        <span>
+            Booking Management
+        </span>
+
+    </a>
+
+
+    <a
+        href="{% url 'admin_wallet_requests' %}"
+    >
+
+        <i class="bi bi-wallet2"></i>
+
+        <span>
+            Wallet Requests
+        </span>
+
+    </a>
+
+
+    <!-- SYSTEM -->
+
+    <div class="sidebar-title">
+
+        System
+
+    </div>
+
+
+    <a href="#">
+
+        <i class="bi bi-bar-chart-fill"></i>
+
+        <span>
+            Reports
+        </span>
+
+    </a>
+
+
+    <a href="#">
+
+        <i class="bi bi-gear-fill"></i>
+
+        <span>
+            Settings
+        </span>
+
+    </a>
+
+
+    <!-- LOGOUT -->
+
+    <div class="sidebar-bottom">
+
+        <a
+            href="{% url 'logout' %}"
+            class="logout-link"
+        >
+
+            <i class="bi bi-box-arrow-right"></i>
+
+            <span>
+                Logout
+            </span>
+
+        </a>
+
+    </div>
+
+
+</div>
+
+
+<!-- =====================================================
+     MAIN CONTENT
+===================================================== -->
+
+<div class="main-content">
+
+
+    <!-- =================================================
+         TOPBAR
+    ================================================= -->
+
+    <div class="topbar">
+
+
+        <div class="topbar-left">
+
+
+            <span class="page-label">
+
+                <i class="bi bi-person-check-fill"></i>
+
+                AGENT REVIEW
+
+            </span>
+
+
+            <h1 class="page-title">
+
+                Review Agent
+
+            </h1>
+
+
+            <p class="page-subtitle">
+
+                Review agent registration before granting portal access.
+
+            </p>
+
+
+        </div>
+
+
+        <div class="admin-profile">
+
+
+            <div class="admin-avatar">
+
+                <i class="bi bi-person-fill"></i>
+
+            </div>
+
+
+            <div>
+
+                <div class="admin-name">
+
+                    {{ request.user.get_full_name|default:request.user.username }}
+
+                </div>
+
+
+                <div class="admin-role">
+
+                    System Administrator
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+    <!-- =================================================
+         CONTENT
+    ================================================= -->
+
+    <div class="content">
+
+
+        <a
+            href="{% url 'admin_dashboard' %}"
+            class="back-btn"
+        >
+
+            <i class="bi bi-arrow-left"></i>
+
+            Back to Dashboard
+
+        </a>
+
+
+        <!-- =================================================
+             AGENT DETAIL CARD
+        ================================================= -->
+
+        <div class="detail-card">
+
+
+            <!-- PROFILE HEADER -->
+
+            <div class="profile-header">
+
+
+                <div class="large-avatar">
+
+                    <i class="bi bi-person-fill"></i>
+
+                </div>
+
+
+                <div class="flex-grow-1">
+
+
+                    <div class="profile-name">
+
+                        {{ agent.name }}
+
+                    </div>
+
+
+                    <div class="profile-agency">
+
+                        {{ agent.agency }}
+
+                    </div>
+
+                </div>
+
+
+                <div>
+
+
+                    {% if agent.status == "PENDING" %}
+
+                        <span class="status-badge">
+
+                            <i class="bi bi-clock"></i>
+
+                            Pending Approval
+
+                        </span>
+
+
+                    {% elif agent.status == "APPROVED" %}
+
+                        <span class="badge bg-success">
+
+                            Approved
+
+                        </span>
+
+
+                    {% elif agent.status == "REJECTED" %}
+
+                        <span class="badge bg-danger">
+
+                            Rejected
+
+                        </span>
+
+
+                    {% elif agent.status == "SUSPENDED" %}
+
+                        <span class="badge bg-secondary">
+
+                            Suspended
+
+                        </span>
+
+                    {% endif %}
+
+
+                </div>
+
+
+            </div>
+
+
+            <!-- =================================================
+                 AGENT INFORMATION
+            ================================================= -->
+
+            <div class="info-section">
+
+
+                <div class="section-title">
+
+                    <i
+                        class="bi bi-person-lines-fill me-2"
+                        style="color:#f59e0b;"
+                    ></i>
+
+                    Agent Information
+
+                </div>
+
+
+                <div class="row g-3">
+
+
+                    <!-- FULL NAME -->
+
+                    <div class="col-md-6">
+
+                        <div class="info-box">
+
+                            <div class="info-label">
+
+                                Full Name
+
+                            </div>
+
+
+                            <div class="info-value">
+
+                                <i class="bi bi-person"></i>
+
+                                {{ agent.name }}
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- AGENCY -->
+
+                    <div class="col-md-6">
+
+                        <div class="info-box">
+
+                            <div class="info-label">
+
+                                Agency
+
+                            </div>
+
+
+                            <div class="info-value">
+
+                                <i class="bi bi-building"></i>
+
+                                {{ agent.agency }}
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- EMAIL -->
+
+                    <div class="col-md-6">
+
+                        <div class="info-box">
+
+                            <div class="info-label">
+
+                                Email Address
+
+                            </div>
+
+
+                            <div class="info-value">
+
+                                <i class="bi bi-envelope"></i>
+
+                                {{ agent.email }}
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- PHONE -->
+
+                    <div class="col-md-6">
+
+                        <div class="info-box">
+
+                            <div class="info-label">
+
+                                Phone Number
+
+                            </div>
+
+
+                            <div class="info-value">
+
+                                <i class="bi bi-telephone"></i>
+
+                                {{ agent.phone }}
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- REGISTRATION DATE -->
+
+                    <div class="col-md-6">
+
+                        <div class="info-box">
+
+                            <div class="info-label">
+
+                                Registration Date
+
+                            </div>
+
+
+                            <div class="info-value">
+
+                                <i class="bi bi-calendar3"></i>
+
+                                {{ agent.created_at|date:"d M Y, h:i A" }}
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- STATUS -->
+
+                    <div class="col-md-6">
+
+                        <div class="info-box">
+
+                            <div class="info-label">
+
+                                Current Status
+
+                            </div>
+
+
+                            <div class="info-value">
+
+                                <i class="bi bi-shield-check"></i>
+
+                                {{ agent.get_status_display }}
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+            <!-- =================================================
+                 ADMIN DECISION
+            ================================================= -->
+
+            {% if agent.status == "PENDING" %}
+
+
+                <div class="action-card">
+
+
+                    <div class="action-title">
+
+                        <i
+                            class="bi bi-shield-check me-2"
+                            style="color:#f59e0b;"
+                        ></i>
+
+                        Admin Decision
+
+                    </div>
+
+
+                    <div class="action-subtitle">
+
+                        Review the agent information carefully before granting
+                        access to the AL NAJAM agent dashboard.
+
+                    </div>
+
+
+                    <div class="d-flex flex-wrap gap-2">
+
+
+                        <!-- APPROVE -->
+
+                        <form
+                            method="POST"
+                            action="{% url 'approve_agent' agent.id %}"
+                            style="display:inline;"
+                        >
+
+                            {% csrf_token %}
+
+
+                            <button
+                                type="submit"
+                                class="btn btn-approve"
+                                onclick="return confirm('Are you sure you want to approve this agent?');"
+                            >
+
+                                <i class="bi bi-check-circle me-1"></i>
+
+                                Approve Agent
+
+                            </button>
+
+                        </form>
+
+
+                        <!-- REJECT -->
+
+                        <button
+                            type="button"
+                            class="btn btn-reject"
+                            data-bs-toggle="modal"
+                            data-bs-target="#rejectModal"
+                        >
+
+                            <i class="bi bi-x-circle me-1"></i>
+
+                            Reject Agent
+
+                        </button>
+
+
+                        <!-- SUSPEND -->
+
+                        <form
+                            method="POST"
+                            action="{% url 'suspend_agent' agent.id %}"
+                            style="display:inline;"
+                        >
+
+                            {% csrf_token %}
+
+
+                            <button
+                                type="submit"
+                                class="btn btn-suspend"
+                                onclick="return confirm('Are you sure you want to suspend this agent?');"
+                            >
+
+                                <i class="bi bi-lock me-1"></i>
+
+                                Suspend Agent
+
+                            </button>
+
+                        </form>
+
+
+                    </div>
+
+
+                </div>
+
+
+            {% endif %}
+
+
+            <!-- REJECTION REASON -->
+
+            {% if agent.status == "REJECTED" and agent.rejection_reason %}
+
+                <div class="alert alert-danger mt-4">
+
+                    <strong>
+
+                        Rejection Reason:
+
+                    </strong>
+
+
+                    <div class="mt-1">
+
+                        {{ agent.rejection_reason }}
+
+                    </div>
+
+                </div>
+
+            {% endif %}
+
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+<!-- =====================================================
+     REJECT AGENT MODAL
+===================================================== -->
+
+<div
+    class="modal fade"
+    id="rejectModal"
+    tabindex="-1"
+    aria-labelledby="rejectModalLabel"
+    aria-hidden="true"
+>
+
+
+    <div class="modal-dialog modal-dialog-centered">
+
+
+        <div class="modal-content">
+
+
+            <div class="modal-header">
+
+
+                <h5
+                    class="modal-title"
+                    id="rejectModalLabel"
+                >
+
+                    <i
+                        class="bi bi-x-circle text-danger me-2"
+                    ></i>
+
+                    Reject Agent Application
+
+                </h5>
+
+
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                ></button>
+
+
+            </div>
+
+
+            <form
+                method="POST"
+                action="{% url 'reject_agent' agent.id %}"
+            >
+
+
+                {% csrf_token %}
+
+
+                <div class="modal-body">
+
+
+                    <p class="text-muted small">
+
+                        You are about to reject the registration
+                        application of
+                        <strong>{{ agent.name }}</strong>.
+
+                    </p>
+
+
+                    <label for="rejection_reason">
+
+                        Rejection Reason
+
+                    </label>
+
+
+                    <textarea
+                        name="rejection_reason"
+                        id="rejection_reason"
+                        class="form-control"
+                        placeholder="Enter the reason for rejecting this agent..."
+                        required
+                    ></textarea>
+
+
+                </div>
+
+
+                <div class="modal-footer">
+
+
+                    <button
+                        type="button"
+                        class="btn btn-light"
+                        data-bs-dismiss="modal"
+                    >
+
+                        Cancel
+
+                    </button>
+
+
+                    <button
+                        type="submit"
+                        class="btn btn-danger"
+                    >
+
+                        <i class="bi bi-x-circle me-1"></i>
+
+                        Reject Agent
+
+                    </button>
+
+
+                </div>
+
+
+            </form>
+
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+<!-- =====================================================
+     BOOTSTRAP JS
+===================================================== -->
+
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js">
+</script>
+
+
+</body>
+
+</html>
+

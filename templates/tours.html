@@ -1,0 +1,302 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Tours & Holidays | AL NAJAM Travel & Tours</title>
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        .brand-logo {
+    width: 72px;
+    height: 72px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+    overflow: hidden;
+}
+
+.brand-logo img {
+    width: 72px;
+    height: 72px;
+    object-fit: contain;
+    display: block;
+}
+    </style>
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header class="main-header">
+
+        <nav class="navbar">
+
+            <!-- BRAND -->
+            <a href="/" class="brand">
+
+                <div class="brand-logo">
+                    <img
+                        src="{% static 'images/logo.png' %}"
+                        alt="AL NAJAM Travel & Tours"
+                    >
+                </div>
+
+                <div class="brand-text">
+                    <strong>AL NAJAM</strong>
+                    <small>TRAVEL & TOURS</small>
+                </div>
+
+            </a>
+
+
+            <!-- NAVIGATION -->
+
+            <div class="nav-links">
+
+                <a href="{% url 'home' %}">Home</a>
+            
+                <a href="{% url 'flights' %}">Flights</a>
+            
+                <a href="{% url 'hotels' %}">Hotels</a>
+            
+                <a href="{% url 'visa' %}">Visa</a>
+            
+                <a href="{% url 'umrah' %}">Umrah</a>
+            
+                <a href="{% url 'tours' %}" class="active">Tours</a>
+            
+                <a href="{% url 'about' %}">About</a>
+            
+                <a href="{% url 'contact' %}">Contact</a>
+            
+            </div>
+
+
+            <!-- RIGHT SIDE -->
+
+            <div class="nav-actions">
+
+                <a href="#" class="login-btn">
+                    <i class="bi bi-person"></i>
+                    Agent Login
+                </a>
+
+                <a href="#" class="agent-btn">
+                    Become an Agent
+                </a>
+
+            </div>
+
+
+            <!-- MOBILE MENU -->
+
+            <button class="mobile-menu">
+                <i class="bi bi-list"></i>
+            </button>
+
+        </nav>
+
+    </header>
+
+
+    <!-- ================= TOURS PAGE ================= -->
+
+    <main>
+
+        <section class="contact-page">
+
+            <div class="contact-header">
+
+                <span>EXPLORE THE WORLD</span>
+
+                <h1>Tours & Holidays</h1>
+
+                <p>
+                    Discover beautiful destinations and unforgettable
+                    experiences with AL NAJAM Travel & Tours.
+                </p>
+
+            </div>
+
+
+            <div class="services-container">
+
+                <!-- INTERNATIONAL TOURS -->
+
+                <div class="service-card">
+
+                    <div class="service-icon">
+                        <i class="bi bi-globe-americas"></i>
+                    </div>
+
+                    <h3>International Tours</h3>
+
+                    <p>
+                        Explore amazing international destinations with
+                        carefully planned travel packages.
+                    </p>
+
+                    <a href="/contact/">
+                        Inquire Now
+                        <i class="bi bi-arrow-right"></i>
+                    </a>
+
+                </div>
+
+
+                <!-- FAMILY HOLIDAYS -->
+
+                <div class="service-card">
+
+                    <div class="service-icon">
+                        <i class="bi bi-people"></i>
+                    </div>
+
+                    <h3>Family Holidays</h3>
+
+                    <p>
+                        Enjoy comfortable and memorable holidays
+                        with your family.
+                    </p>
+
+                    <a href="/contact/">
+                        Inquire Now
+                        <i class="bi bi-arrow-right"></i>
+                    </a>
+
+                </div>
+
+
+                <!-- HONEYMOON -->
+
+                <div class="service-card">
+
+                    <div class="service-icon">
+                        <i class="bi bi-heart"></i>
+                    </div>
+
+                    <h3>Honeymoon Packages</h3>
+
+                    <p>
+                        Romantic destinations and specially arranged
+                        honeymoon travel packages.
+                    </p>
+
+                    <a href="/contact/">
+                        Inquire Now
+                        <i class="bi bi-arrow-right"></i>
+                    </a>
+
+                </div>
+
+
+                <!-- GROUP TOURS -->
+
+                <div class="service-card">
+
+                    <div class="service-icon">
+                        <i class="bi bi-person-lines-fill"></i>
+                    </div>
+
+                    <h3>Group Tours</h3>
+
+                    <p>
+                        Convenient group travel arrangements for
+                        friends, families and organizations.
+                    </p>
+
+                    <a href="/contact/">
+                        Inquire Now
+                        <i class="bi bi-arrow-right"></i>
+                    </a>
+
+                </div>
+
+
+                <!-- CUSTOM TOURS -->
+
+                <div class="service-card">
+
+                    <div class="service-icon">
+                        <i class="bi bi-map"></i>
+                    </div>
+
+                    <h3>Custom Tours</h3>
+
+                    <p>
+                        Create a personalized travel experience
+                        according to your needs and budget.
+                    </p>
+
+                    <a href="/contact/">
+                        Plan Your Trip
+                        <i class="bi bi-arrow-right"></i>
+                    </a>
+
+                </div>
+
+
+                <!-- TRAVEL CONSULTANCY -->
+
+                <div class="service-card">
+
+                    <div class="service-icon">
+                        <i class="bi bi-headset"></i>
+                    </div>
+
+                    <h3>Travel Consultancy</h3>
+
+                    <p>
+                        Get professional guidance to plan your
+                        perfect holiday.
+                    </p>
+
+                    <a href="/contact/">
+                        Contact Us
+                        <i class="bi bi-arrow-right"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="footer">
+
+        <div class="footer-content">
+
+            <h3>AL NAJAM</h3>
+
+            <p>Travel & Tours</p>
+
+            <span>
+                © 2026 AL NAJAM Travel & Tours.
+                All rights reserved.
+            </span>
+
+        </div>
+
+    </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,596 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AL NAJAM Travel & Tours | B2B Travel Solutions</title>
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Our CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+
+        /* =====================================================
+           FLOATING WHATSAPP BUTTON
+        ===================================================== */
+    
+        .whatsapp-float {
+            position: fixed;
+            right: 25px;
+            bottom: 25px;
+    
+            width: 58px;
+            height: 58px;
+    
+            border-radius: 50%;
+    
+            background: #25D366;
+            color: #ffffff;
+    
+            display: flex;
+            align-items: center;
+            justify-content: center;
+    
+            text-decoration: none;
+    
+            font-size: 29px;
+    
+            box-shadow:
+                0 8px 22px rgba(37, 211, 102, 0.30);
+    
+            z-index: 9999;
+    
+            transition: all 0.3s ease;
+        }
+    
+        .whatsapp-float:hover {
+            background: #20bd5a;
+            color: #ffffff;
+    
+            transform:
+                translateY(-4px)
+                scale(1.04);
+    
+            box-shadow:
+                0 12px 28px rgba(37, 211, 102, 0.40);
+        }
+    
+        .whatsapp-tooltip {
+            position: absolute;
+    
+            right: 70px;
+            bottom: 50%;
+    
+            transform: translateY(50%);
+    
+            background: #172033;
+            color: #ffffff;
+    
+            padding: 9px 13px;
+    
+            border-radius: 8px;
+    
+            font-size: 11px;
+            font-weight: 600;
+    
+            white-space: nowrap;
+    
+            opacity: 0;
+            visibility: hidden;
+    
+            transition: 0.25s ease;
+    
+            pointer-events: none;
+        }
+    
+        .whatsapp-float:hover .whatsapp-tooltip {
+            opacity: 1;
+            visibility: visible;
+        }
+    
+        @media (max-width: 600px) {
+    
+            .whatsapp-float {
+                width: 53px;
+                height: 53px;
+    
+                right: 18px;
+                bottom: 18px;
+    
+                font-size: 26px;
+            }
+    
+            .whatsapp-tooltip {
+                display: none;
+            }
+    
+        }
+    
+    </style>
+
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header class="main-header">
+
+        <nav class="navbar">
+
+            <!-- LOGO -->
+
+               <!-- LOGO -->
+
+<a href="{% url 'home' %}" class="brand">
+
+    <img src="{% static 'images/logo.png' %}"
+         alt="AL NAJAM Travel & Tours"
+         class="brand-logo">
+
+    <div class="brand-text">
+        <strong>AL NAJAM</strong>
+        <small>TRAVEL & TOURS</small>
+    </div>
+
+</a>
+            <!-- NAVIGATION -->
+
+            <div class="nav-links">
+
+                <a href="{% url 'home' %}" class="active">
+                    Home
+                </a>
+
+                <a href="{% url 'flights' %}">
+                    Flights
+                </a>
+
+                <a href="{% url 'hotels' %}">
+                    Hotels
+                </a>
+
+                <a href="{% url 'visa' %}">
+                    Visa
+                </a>
+
+                <a href="{% url 'umrah' %}">
+                    Umrah
+                </a>
+
+                <a href="{% url 'tours' %}">
+                    Tours
+                </a>
+
+                <a href="{% url 'about' %}">About</a>
+
+                <a href="{% url 'contact' %}">
+                    Contact
+                </a>
+
+            </div>
+
+
+            <!-- RIGHT SIDE -->
+
+            <div class="nav-actions">
+
+                <a href="{% url 'login' %}" class="login-btn">
+                    <i class="bi bi-person"></i>
+                    Agent Login
+                </a>
+
+
+                <a href="{% url 'become_agent' %}" class="agent-btn">
+                    Become an Agent
+                </a>
+
+            </div>
+
+
+            <!-- MOBILE MENU -->
+
+            <button class="mobile-menu">
+
+                <i class="bi bi-list"></i>
+
+            </button>
+
+        </nav>
+
+    </header>
+
+
+    <!-- ================= MAIN CONTENT ================= -->
+
+    <main>
+
+
+        <!-- ================= HERO ================= -->
+
+        <section class="hero">
+
+            <!-- Background Video -->
+
+            <video class="hero-video"
+                   autoplay
+                   muted
+                   loop
+                   playsinline>
+
+                <source src="{% static 'videos/travel.mp4' %}"
+                        type="video/mp4">
+
+                Your browser does not support the video tag.
+
+            </video>
+
+
+            <!-- Overlay -->
+
+            <div class="hero-overlay"></div>
+
+
+            <!-- Hero Content -->
+
+            <div class="hero-content">
+
+                <span class="hero-small-title">
+                    YOUR TRUSTED TRAVEL PARTNER
+                </span>
+
+
+                <h1>
+
+                    Explore The World
+
+                    <br>
+
+                    With <span>AL NAJAM</span>
+
+                </h1>
+
+
+                <p>
+
+                    Discover flights, hotels, visas, Umrah packages
+                    and unforgettable tours with AL NAJAM TRAVEL & TOURS.
+
+                </p>
+
+
+                <div class="hero-buttons">
+
+                    <a href="{% url 'tours' %}"
+                       class="primary-btn">
+
+                        Explore Our Services
+
+                        <i class="bi bi-arrow-right"></i>
+
+                    </a>
+
+
+                    <a href="{% url 'contact' %}"
+                       class="secondary-btn">
+
+                        Contact Us
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= SERVICES ================= -->
+
+        <section class="services-section">
+
+
+            <!-- SECTION HEADING -->
+
+            <div class="section-heading">
+
+                <span>
+                    WHAT WE OFFER
+                </span>
+
+
+                <h2>
+                    Complete Travel Solutions
+                </h2>
+
+
+                <p>
+
+                    Everything you need for a comfortable,
+                    convenient and memorable journey.
+
+                </p>
+
+            </div>
+
+
+            <!-- SERVICES -->
+
+            <div class="services-container">
+
+
+                <!-- FLIGHTS -->
+
+                <div class="service-card">
+
+                    <div class="service-icon">
+
+                        <i class="bi bi-airplane"></i>
+
+                    </div>
+
+
+                    <h3>
+                        Flights
+                    </h3>
+
+
+                    <p>
+
+                        Find convenient flight options
+                        for domestic and international travel.
+
+                    </p>
+
+
+                    <a href="{% url 'flights' %}">
+
+                        Explore Flights
+
+                        <i class="bi bi-arrow-right"></i>
+
+                    </a>
+
+                </div>
+
+
+                <!-- HOTELS -->
+
+                <div class="service-card">
+
+                    <div class="service-icon">
+
+                        <i class="bi bi-building"></i>
+
+                    </div>
+
+
+                    <h3>
+                        Hotels
+                    </h3>
+
+
+                    <p>
+
+                        Comfortable hotel accommodations
+                        at destinations around the world.
+
+                    </p>
+
+
+                    <a href="{% url 'hotels' %}">
+
+                        Find Hotels
+
+                        <i class="bi bi-arrow-right"></i>
+
+                    </a>
+
+                </div>
+
+
+                <!-- VISA -->
+
+                <div class="service-card">
+
+                    <div class="service-icon">
+
+                        <i class="bi bi-passport"></i>
+
+                    </div>
+
+
+                    <h3>
+                        Visa Assistance
+                    </h3>
+
+
+                    <p>
+
+                        Professional assistance for your
+                        visa application and travel documentation.
+
+                    </p>
+
+
+                    <a href="{% url 'visa' %}">
+
+                        Learn More
+
+                        <i class="bi bi-arrow-right"></i>
+
+                    </a>
+
+                </div>
+
+
+                <!-- UMRAH -->
+
+                <div class="service-card">
+
+                    <div class="service-icon">
+
+                        <i class="bi bi-moon-stars"></i>
+
+                    </div>
+
+
+                    <h3>
+                        Umrah Packages
+                    </h3>
+
+
+                    <p>
+
+                        Special Umrah packages designed
+                        for a peaceful and comfortable journey.
+
+                    </p>
+
+
+                    <a href="{% url 'umrah' %}">
+
+                        View Packages
+
+                        <i class="bi bi-arrow-right"></i>
+
+                    </a>
+
+                </div>
+
+
+                <!-- TOURS -->
+
+                <div class="service-card">
+
+                    <div class="service-icon">
+
+                        <i class="bi bi-globe-americas"></i>
+
+                    </div>
+
+
+                    <h3>
+                        Tours & Holidays
+                    </h3>
+
+
+                    <p>
+
+                        Explore beautiful destinations with
+                        carefully planned tour packages.
+
+                    </p>
+
+
+                    <a href="{% url 'tours' %}">
+
+                        Explore Tours
+
+                        <i class="bi bi-arrow-right"></i>
+
+                    </a>
+
+                </div>
+
+
+                <!-- CONSULTANCY -->
+
+                <div class="service-card">
+
+                    <div class="service-icon">
+
+                        <i class="bi bi-headset"></i>
+
+                    </div>
+
+
+                    <h3>
+                        Travel Consultancy
+                    </h3>
+
+
+                    <p>
+
+                        Get expert travel guidance and
+                        personalized assistance for your trip.
+
+                    </p>
+
+
+                    <a href="{% url 'contact' %}">
+
+                        Contact Us
+
+                        <i class="bi bi-arrow-right"></i>
+
+                    </a>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="footer">
+
+        <div class="footer-content">
+
+            <h3>
+                AL NAJAM
+            </h3>
+
+
+            <p>
+                Travel & Tours
+            </p>
+
+
+            <span>
+
+                © 2026 AL NAJAM Travel & Tours.
+                All rights reserved.
+
+            </span>
+
+        </div>
+
+    </footer>
+
+<!-- =====================================================
+     FLOATING WHATSAPP BUTTON
+===================================================== -->
+
+<a
+    href="https://wa.me/64223813614?text=Hello%20AL%20NAJAM%20Travel%20%26%20Tours%2C%20I%20would%20like%20to%20know%20more%20about%20your%20travel%20services."
+    class="whatsapp-float"
+    target="_blank"
+    rel="noopener"
+    aria-label="Chat with AL NAJAM Travel & Tours on WhatsApp"
+>
+
+    <i class="bi bi-whatsapp"></i>
+
+    <span class="whatsapp-tooltip">
+        Chat with us on WhatsApp
+    </span>
+
+</a>
+</body>
+
+</html>

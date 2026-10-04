@@ -1,0 +1,1735 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Wallet Request Detail | AL NAJAM Admin
+    </title>
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    >
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            margin: 0;
+
+            background: #f7f8fa;
+
+            font-family: Arial, sans-serif;
+
+            color: #263238;
+
+        }
+
+
+        /* =========================================
+           SIDEBAR
+        ========================================= */
+
+        .sidebar {
+
+            position: fixed;
+
+            left: 0;
+
+            top: 0;
+
+            width: 250px;
+
+            height: 100vh;
+
+            background: #ffffff;
+
+            border-right: 1px solid #eeeeee;
+
+            z-index: 1000;
+
+            overflow-y: auto;
+
+        }
+
+/* BRAND */
+
+.brand {
+    height: 90px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 4px 10px;
+
+    border-bottom: 1px solid #e7ebf1;
+}
+
+
+.brand-logo {
+    width: 82px;
+    height: 82px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+}
+
+
+.brand-logo img {
+    width: 82px;
+    height: 82px;
+
+    object-fit: contain;
+    display: block;
+}
+        .brand-text {
+
+            font-size: 19px;
+
+            font-weight: 700;
+
+            color: #222222;
+
+        }
+
+
+        .brand-text span {
+
+            color: #f58220;
+
+        }
+
+
+        .sidebar-title {
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            color: #9aa0a6;
+
+            padding: 25px 25px 10px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
+
+        }
+
+
+        .sidebar a {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 13px;
+
+            margin: 4px 12px;
+
+            padding: 12px 14px;
+
+            border-radius: 9px;
+
+            text-decoration: none;
+
+            color: #5f6368;
+
+            font-size: 14px;
+
+            font-weight: 500;
+
+            transition: .2s ease;
+
+        }
+
+
+        .sidebar a i {
+
+            font-size: 17px;
+
+        }
+
+
+        .sidebar a:hover {
+
+            background: #fff3e8;
+
+            color: #f58220;
+
+            transform: translateX(1px);
+
+        }
+
+
+        .sidebar a.active {
+
+            background: #f58220;
+
+            color: white;
+
+            box-shadow: 0 7px 18px rgba(245,130,32,.16);
+
+        }
+
+
+        .logout-link {
+
+            color: #dc3545 !important;
+
+        }
+
+
+        .logout-link:hover {
+
+            background: #fff0f1 !important;
+
+            color: #dc3545 !important;
+
+        }
+
+
+        /* =========================================
+           MAIN
+        ========================================= */
+
+        .main-content {
+
+            margin-left: 250px;
+
+            min-height: 100vh;
+
+        }
+
+
+        /* =========================================
+           TOPBAR
+        ========================================= */
+
+        .topbar {
+
+            height: 75px;
+
+            background: rgba(255,255,255,.97);
+
+            border-bottom: 1px solid #eeeeee;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 0 30px;
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 100;
+
+        }
+
+
+        .page-title {
+
+            font-size: 21px;
+
+            font-weight: 700;
+
+            margin: 0;
+
+            color: #222222;
+
+        }
+
+
+        .page-subtitle {
+
+            font-size: 13px;
+
+            color: #888888;
+
+            margin-top: 3px;
+
+        }
+
+
+        .admin-profile {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+        }
+
+
+        .admin-avatar {
+
+            width: 40px;
+
+            height: 40px;
+
+            border-radius: 50%;
+
+            background: #fff3e8;
+
+            color: #f58220;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+        }
+
+
+        .admin-name {
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+        }
+
+
+        .admin-role {
+
+            font-size: 11px;
+
+            color: #888888;
+
+        }
+
+
+        /* =========================================
+           CONTENT
+        ========================================= */
+
+        .content {
+
+            padding: 30px;
+
+        }
+
+
+        .page-grid {
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 22px;
+
+        }
+
+
+        .card-box {
+
+            background: white;
+
+            border: 1px solid #eeeeee;
+
+            border-radius: 16px;
+
+            padding: 24px;
+
+            box-shadow: 0 8px 25px rgba(20,35,60,.035);
+
+        }
+
+
+        .card-title {
+
+            font-size: 16px;
+
+            font-weight: 700;
+
+            color: #222222;
+
+            margin-bottom: 5px;
+
+        }
+
+
+        .card-subtitle {
+
+            font-size: 12px;
+
+            color: #888888;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        /* =========================================
+           HEADER CARD
+        ========================================= */
+
+        .request-top {
+
+            background: linear-gradient(
+                135deg,
+                #fff8f0,
+                #ffffff
+            );
+
+            border: 1px solid #f5e3d1;
+
+            border-radius: 16px;
+
+            padding: 22px;
+
+            margin-bottom: 22px;
+
+        }
+
+
+        .request-icon {
+
+            width: 52px;
+
+            height: 52px;
+
+            border-radius: 14px;
+
+            background: #fff1e5;
+
+            color: #f58220;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 24px;
+
+            margin-bottom: 14px;
+
+        }
+
+
+        .request-heading {
+
+            font-size: 24px;
+
+            font-weight: 700;
+
+            color: #222222;
+
+            margin-bottom: 5px;
+
+        }
+
+
+        .request-description {
+
+            color: #888888;
+
+            font-size: 12px;
+
+            margin-bottom: 0;
+
+        }
+
+
+        /* =========================================
+           INFORMATION
+        ========================================= */
+
+        .info-box {
+
+            background: #fafbfc;
+
+            border: 1px solid #eeeeee;
+
+            border-radius: 13px;
+
+            padding: 15px 18px;
+
+        }
+
+
+        .info-row {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 20px;
+
+            padding: 12px 0;
+
+            border-bottom: 1px solid #eeeeee;
+
+        }
+
+
+        .info-row:last-child {
+
+            border-bottom: none;
+
+        }
+
+
+        .info-label {
+
+            color: #888888;
+
+            font-size: 12px;
+
+            font-weight: 600;
+
+        }
+
+
+        .info-value {
+
+            color: #222222;
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            text-align: right;
+
+        }
+
+
+        .amount {
+
+            color: #f58220;
+
+            font-size: 20px;
+
+            font-weight: 700;
+
+        }
+
+
+        /* =========================================
+           STATUS
+        ========================================= */
+
+        .status-badge {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 6px;
+
+            padding: 7px 11px;
+
+            border-radius: 20px;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+        }
+
+
+        .status-pending {
+
+            background: #fff3cd;
+
+            color: #856404;
+
+        }
+
+
+        .status-approved {
+
+            background: #d1e7dd;
+
+            color: #0f5132;
+
+        }
+
+
+        .status-rejected {
+
+            background: #f8d7da;
+
+            color: #842029;
+
+        }
+
+
+        /* =========================================
+           RECEIPT
+        ========================================= */
+
+        .receipt-box {
+
+            background: #fafbfc;
+
+            border: 1px solid #eeeeee;
+
+            border-radius: 14px;
+
+            padding: 16px;
+
+        }
+
+
+        .receipt-preview {
+
+            width: 100%;
+
+            min-height: 300px;
+
+            max-height: 600px;
+
+            object-fit: contain;
+
+            border-radius: 10px;
+
+            background: #ffffff;
+
+            border: 1px solid #eeeeee;
+
+        }
+
+
+        .receipt-placeholder {
+
+            min-height: 300px;
+
+            border: 1px dashed #d9dee5;
+
+            border-radius: 12px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            justify-content: center;
+
+            text-align: center;
+
+            background: #ffffff;
+
+            color: #8a94a6;
+
+            padding: 25px;
+
+        }
+
+
+        .receipt-placeholder i {
+
+            font-size: 45px;
+
+            margin-bottom: 12px;
+
+            color: #b7c0cc;
+
+        }
+
+
+        .receipt-name {
+
+            margin-top: 12px;
+
+            font-size: 11px;
+
+            color: #777777;
+
+            word-break: break-word;
+
+        }
+
+
+        .open-receipt {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            margin-top: 13px;
+
+            padding: 9px 13px;
+
+            border-radius: 8px;
+
+            text-decoration: none;
+
+            background: #eef6ff;
+
+            border: 1px solid #cfe3fb;
+
+            color: #286090;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+        }
+
+
+        .open-receipt:hover {
+
+            background: #e2efff;
+
+            color: #1d507a;
+
+        }
+
+
+        /* =========================================
+           ACTIONS
+        ========================================= */
+
+        .action-box {
+
+            margin-top: 22px;
+
+            padding: 18px;
+
+            border-radius: 13px;
+
+            background: #fafbfc;
+
+            border: 1px solid #eeeeee;
+
+        }
+
+
+        .action-title {
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            color: #222222;
+
+            margin-bottom: 5px;
+
+        }
+
+
+        .action-description {
+
+            font-size: 11px;
+
+            color: #888888;
+
+            margin-bottom: 15px;
+
+        }
+
+
+        .action-row {
+
+            display: flex;
+
+            gap: 10px;
+
+            flex-wrap: wrap;
+
+        }
+
+
+        .btn-approve {
+
+            border: none;
+
+            background: #198754;
+
+            color: white;
+
+            border-radius: 9px;
+
+            padding: 11px 18px;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: .2s ease;
+
+        }
+
+
+        .btn-approve:hover {
+
+            background: #157347;
+
+            transform: translateY(-1px);
+
+        }
+
+
+        .btn-reject {
+
+            border: none;
+
+            background: #dc3545;
+
+            color: white;
+
+            border-radius: 9px;
+
+            padding: 11px 18px;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: .2s ease;
+
+        }
+
+
+        .btn-reject:hover {
+
+            background: #bb2d3b;
+
+            transform: translateY(-1px);
+
+        }
+
+
+        .btn-back {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 7px;
+
+            padding: 11px 18px;
+
+            border-radius: 9px;
+
+            background: #f1f3f5;
+
+            color: #5f6368;
+
+            text-decoration: none;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+        }
+
+
+        .btn-back:hover {
+
+            background: #e2e6ea;
+
+            color: #333333;
+
+        }
+
+
+        .processed-message {
+
+            padding: 13px 15px;
+
+            border-radius: 10px;
+
+            background: #f1f3f5;
+
+            color: #666666;
+
+            font-size: 11px;
+
+            font-weight: 600;
+
+        }
+
+
+        /* =========================================
+           MOBILE
+        ========================================= */
+
+        @media (max-width: 900px) {
+
+            .page-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+        }
+
+
+        @media (max-width: 767px) {
+
+            .sidebar {
+
+                position: relative;
+
+                width: 100%;
+
+                height: auto;
+
+            }
+
+
+            .main-content {
+
+                margin-left: 0;
+
+            }
+
+
+            .topbar {
+
+                padding: 15px;
+
+                height: auto;
+
+            }
+
+
+            .content {
+
+                padding: 15px;
+
+            }
+
+
+            .admin-profile {
+
+                display: none;
+
+            }
+
+
+            .info-row {
+
+                align-items: flex-start;
+
+                flex-direction: column;
+
+                gap: 5px;
+
+            }
+
+
+            .info-value {
+
+                text-align: left;
+
+            }
+
+
+            .action-row {
+
+                flex-direction: column;
+
+            }
+
+
+            .action-row form,
+
+            .action-row a {
+
+                width: 100%;
+
+            }
+
+
+            .action-row button,
+
+            .action-row .btn-back {
+
+                width: 100%;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <!-- =========================================
+         SIDEBAR
+    ========================================= -->
+    
+    <div class="sidebar">
+    
+    
+        <!-- BRAND -->
+    
+        <div class="brand">
+    
+            <div class="brand-logo">
+
+                <img
+                    src="{% static 'images/logo.png' %}"
+                    alt="AL NAJAM Travel & Tours"
+                >
+        
+            </div>
+    
+            <div class="brand-text">
+    
+                AL <span>NAJAM</span>
+    
+            </div>
+    
+        </div>
+    
+    
+        <!-- MAIN MENU -->
+    
+        <div class="sidebar-title">
+    
+            Main Menu
+    
+        </div>
+    
+    
+        <!-- DASHBOARD -->
+    
+        <a href="{% url 'admin_dashboard' %}">
+    
+            <i class="bi bi-grid-1x2-fill"></i>
+    
+            Dashboard
+    
+        </a>
+    
+    
+        <!-- AGENT REQUESTS -->
+    
+        <a href="{% url 'pending_agents' %}">
+    
+            <i class="bi bi-person-check-fill"></i>
+    
+            Agent Requests
+    
+        </a>
+    
+    
+        <!-- OPERATIONS -->
+    
+        <div class="sidebar-title">
+    
+            Operations
+    
+        </div>
+    
+    
+        <!-- GROUP TICKETS -->
+    
+        <a href="{% url 'admin_group_tickets' %}">
+    
+            <i class="bi bi-people-fill"></i>
+    
+            Group Tickets
+    
+        </a>
+    
+    
+        <!-- BOOKING MANAGEMENT -->
+    
+        <a href="{% url 'admin_dashboard' %}#recent-group-bookings">
+    
+            <i class="bi bi-ticket-perforated-fill"></i>
+    
+            Booking Management
+    
+        </a>
+    
+    
+        <!-- WALLET REQUESTS -->
+    
+        <a
+            href="{% url 'admin_wallet_requests' %}"
+            class="active"
+        >
+    
+            <i class="bi bi-wallet2"></i>
+    
+            Wallet Requests
+    
+        </a>
+    
+    
+        <!-- SYSTEM -->
+    
+        <div class="sidebar-title">
+    
+            System
+    
+        </div>
+    
+    
+        <!-- REPORTS -->
+    
+        <a href="#">
+    
+            <i class="bi bi-bar-chart-fill"></i>
+    
+            Reports
+    
+        </a>
+    
+    
+        <!-- SETTINGS -->
+    
+        <a href="#">
+    
+            <i class="bi bi-gear-fill"></i>
+    
+            Settings
+    
+        </a>
+    
+    
+        <!-- LOGOUT -->
+    
+        <div style="margin-top:20px;">
+    
+            <a
+                href="{% url 'logout' %}"
+                class="logout-link"
+            >
+    
+                <i class="bi bi-box-arrow-right"></i>
+    
+                Logout
+    
+            </a>
+    
+        </div>
+    
+    
+    </div>
+
+
+<!-- =========================================
+     MAIN
+========================================= -->
+
+<div class="main-content">
+
+
+    <!-- TOPBAR -->
+
+    <div class="topbar">
+
+
+        <div>
+
+            <h1 class="page-title">
+
+                Wallet Request Detail
+
+            </h1>
+
+
+            <p class="page-subtitle">
+
+                Review the agent's deposit receipt and wallet top-up request.
+
+            </p>
+
+        </div>
+
+
+        <div class="admin-profile">
+
+
+            <div class="admin-avatar">
+
+                <i class="bi bi-person-fill"></i>
+
+            </div>
+
+
+            <div>
+
+                <div class="admin-name">
+
+                    {{ request.user.get_full_name|default:request.user.username }}
+
+                </div>
+
+
+                <div class="admin-role">
+
+                    System Administrator
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- CONTENT -->
+
+    <div class="content">
+
+
+        <!-- REQUEST HEADER -->
+
+        <div class="request-top">
+
+
+            <div class="request-icon">
+
+                <i class="bi bi-wallet2"></i>
+
+            </div>
+
+
+            <div class="request-heading">
+
+                Wallet Top-up Request
+
+            </div>
+
+
+            <p class="request-description">
+
+                Verify the payment receipt and request information before approving the deposit.
+
+            </p>
+
+
+        </div>
+
+
+        <!-- MAIN GRID -->
+
+        <div class="page-grid">
+
+
+            <!-- =========================================
+                 REQUEST INFORMATION
+            ========================================== -->
+
+            <div class="card-box">
+
+
+                <div class="card-title">
+
+                    Request Information
+
+                </div>
+
+
+                <div class="card-subtitle">
+
+                    Details submitted by the travel agent.
+
+                </div>
+
+
+                <div class="info-box">
+
+
+                    <!-- AGENT -->
+
+                    <div class="info-row">
+
+                        <span class="info-label">
+
+                            Agent
+
+                        </span>
+
+
+                        <span class="info-value">
+
+                            {{ topup.agent.name }}
+
+                        </span>
+
+                    </div>
+
+
+                    <!-- AGENCY -->
+
+                    <div class="info-row">
+
+                        <span class="info-label">
+
+                            Agency
+
+                        </span>
+
+
+                        <span class="info-value">
+
+                            {{ topup.agent.agency }}
+
+                        </span>
+
+                    </div>
+
+
+                    <!-- EMAIL -->
+
+                    <div class="info-row">
+
+                        <span class="info-label">
+
+                            Email
+
+                        </span>
+
+
+                        <span class="info-value">
+
+                            {{ topup.agent.email }}
+
+                        </span>
+
+                    </div>
+
+
+                    <!-- PHONE -->
+
+                    <div class="info-row">
+
+                        <span class="info-label">
+
+                            Phone
+
+                        </span>
+
+
+                        <span class="info-value">
+
+                            {{ topup.agent.phone }}
+
+                        </span>
+
+                    </div>
+
+
+                    <!-- AMOUNT -->
+
+                    <div class="info-row">
+
+                        <span class="info-label">
+
+                            Top-up Amount
+
+                        </span>
+
+
+                        <span class="info-value amount">
+
+                            PKR {{ topup.amount|floatformat:0 }}
+
+                        </span>
+
+                    </div>
+
+
+                    <!-- TRANSACTION DATE -->
+
+                    <div class="info-row">
+
+                        <span class="info-label">
+
+                            Transaction Date
+
+                        </span>
+
+
+                        <span class="info-value">
+
+                            {{ topup.transaction_date|date:"d M Y" }}
+
+                        </span>
+
+                    </div>
+
+
+                    <!-- SUBMITTED -->
+
+                    <div class="info-row">
+
+                        <span class="info-label">
+
+                            Submitted
+
+                        </span>
+
+
+                        <span class="info-value">
+
+                            {{ topup.created_at|date:"d M Y, h:i A" }}
+
+                        </span>
+
+                    </div>
+
+
+                    <!-- STATUS -->
+
+                    <div class="info-row">
+
+                        <span class="info-label">
+
+                            Status
+
+                        </span>
+
+
+                        <span class="info-value">
+
+
+                            {% if topup.status == "PENDING" %}
+
+                                <span class="status-badge status-pending">
+
+                                    <i class="bi bi-hourglass-split"></i>
+
+                                    Pending Review
+
+                                </span>
+
+
+                            {% elif topup.status == "APPROVED" %}
+
+                                <span class="status-badge status-approved">
+
+                                    <i class="bi bi-check-circle-fill"></i>
+
+                                    Approved
+
+                                </span>
+
+
+                            {% elif topup.status == "REJECTED" %}
+
+                                <span class="status-badge status-rejected">
+
+                                    <i class="bi bi-x-circle-fill"></i>
+
+                                    Rejected
+
+                                </span>
+
+
+                            {% else %}
+
+                                <span class="status-badge status-pending">
+
+                                    {{ topup.status }}
+
+                                </span>
+
+                            {% endif %}
+
+
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- ACTION AREA -->
+
+                <div class="action-box">
+
+
+                    <div class="action-title">
+
+                        Admin Decision
+
+                    </div>
+
+
+                    <div class="action-description">
+
+                        Approving this request will add the submitted amount to the agent's wallet.
+
+                    </div>
+
+
+                    {% if topup.status == "PENDING" %}
+
+
+                        <div class="action-row">
+
+
+                            <!-- APPROVE -->
+
+                            <form
+                                method="POST"
+                                action="{% url 'admin_approve_topup' topup.id %}"
+                            >
+
+                                {% csrf_token %}
+
+                                <button
+                                    type="submit"
+                                    class="btn-approve"
+                                    onclick="return confirm('Are you sure you want to approve this wallet top-up?');"
+                                >
+
+                                    <i class="bi bi-check-circle-fill me-1"></i>
+
+                                    Approve Top-up
+
+                                </button>
+
+                            </form>
+
+
+                            <!-- REJECT -->
+
+                            <form
+                                method="POST"
+                                action="{% url 'admin_reject_topup' topup.id %}"
+                            >
+
+                                {% csrf_token %}
+
+                                <button
+                                    type="submit"
+                                    class="btn-reject"
+                                    onclick="return confirm('Are you sure you want to reject this wallet top-up?');"
+                                >
+
+                                    <i class="bi bi-x-circle-fill me-1"></i>
+
+                                    Reject Top-up
+
+                                </button>
+
+                            </form>
+
+
+                            <!-- BACK -->
+
+                            <a
+                                href="{% url 'admin_wallet_requests' %}"
+                                class="btn-back"
+                            >
+
+                                <i class="bi bi-arrow-left"></i>
+
+                                Back
+
+                            </a>
+
+                        </div>
+
+
+                    {% else %}
+
+
+                        <div class="action-row">
+
+
+                            <div class="processed-message">
+
+                                <i class="bi bi-info-circle me-1"></i>
+
+                                This request has already been processed.
+
+                            </div>
+
+
+                            <a
+                                href="{% url 'admin_wallet_requests' %}"
+                                class="btn-back"
+                            >
+
+                                <i class="bi bi-arrow-left"></i>
+
+                                Back to Wallet Requests
+
+                            </a>
+
+
+                        </div>
+
+
+                    {% endif %}
+
+
+                </div>
+
+
+            </div>
+
+
+            <!-- =========================================
+                 RECEIPT
+            ========================================== -->
+
+            <div class="card-box">
+
+
+                <div class="card-title">
+
+                    Payment Receipt
+
+                </div>
+
+
+                <div class="card-subtitle">
+
+                    Receipt uploaded by the travel agent for verification.
+
+                </div>
+
+
+                <div class="receipt-box">
+
+
+                    {% if topup.receipt %}
+
+
+                        {% with receipt_url=topup.receipt.url %}
+
+
+                            <img
+                                src="{{ receipt_url }}"
+                                alt="Deposit Receipt"
+                                class="receipt-preview"
+                            >
+
+
+                            <div class="text-center">
+
+
+                                <div class="receipt-name">
+
+                                    {{ topup.receipt.name }}
+
+                                </div>
+
+
+                                <a
+                                    href="{{ receipt_url }}"
+                                    target="_blank"
+                                    rel="noopener"
+                                    class="open-receipt"
+                                >
+
+                                    <i class="bi bi-box-arrow-up-right"></i>
+
+                                    Open Receipt in New Tab
+
+                                </a>
+
+
+                            </div>
+
+
+                        {% endwith %}
+
+
+                    {% else %}
+
+
+                        <div class="receipt-placeholder">
+
+
+                            <i class="bi bi-file-earmark-x"></i>
+
+
+                            <strong>
+
+                                No receipt uploaded
+
+                            </strong>
+
+
+                            <span style="
+                                font-size:11px;
+                                margin-top:6px;
+                            ">
+
+                                This request does not contain a payment receipt.
+
+                            </span>
+
+
+                        </div>
+
+
+                    {% endif %}
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js">
+</script>
+
+
+</body>
+
+</html>

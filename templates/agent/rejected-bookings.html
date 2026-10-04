@@ -1,0 +1,852 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Rejected Bookings | AL NAJAM</title>
+
+<link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+>
+
+<style>
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        background: #f4f7fb;
+        color: #172033;
+    }
+
+    .page {
+        width: 92%;
+        max-width: 1350px;
+        margin: 35px auto;
+    }
+
+    /* =====================================================
+       HEADER
+    ====================================================== */
+
+    .header {
+        background: #ffffff;
+        padding: 23px;
+        border-radius: 18px;
+        border: 1px solid #e5eaf1;
+        margin-bottom: 20px;
+        box-shadow: 0 5px 20px rgba(20,35,60,.03);
+    }
+
+    .header h1 {
+        margin-bottom: 6px;
+        font-size: 22px;
+    }
+
+    .header p {
+        margin: 0;
+        color: #8a95a7;
+        font-size: 12px;
+    }
+
+    /* =====================================================
+       BOOKING CARD
+    ====================================================== */
+
+    .booking-card {
+        background: #ffffff;
+        border: 1px solid #e5eaf1;
+        border-radius: 17px;
+        padding: 22px;
+        margin-bottom: 15px;
+        box-shadow: 0 5px 18px rgba(20,35,60,.025);
+        transition: .2s ease;
+    }
+
+    .booking-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(20,35,60,.06);
+    }
+
+    .booking-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 18px;
+        gap: 15px;
+    }
+
+    .booking-reference {
+        color: #1675d1;
+        font-size: 13px;
+        font-weight: 700;
+    }
+
+    /* =====================================================
+       BOOKING TYPE
+    ====================================================== */
+
+    .booking-type {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        margin-left: 8px;
+        padding: 5px 9px;
+        border-radius: 20px;
+        font-size: 8px;
+        font-weight: 700;
+        text-transform: uppercase;
+        white-space: nowrap;
+    }
+
+    .type-flight {
+        background: #eef6ff;
+        color: #1675d1;
+    }
+
+    .type-group {
+        background: #fff1d6;
+        color: #d88900;
+    }
+
+    .type-umrah {
+        background: #fff8eb;
+        color: #d88900;
+        border: 1px solid #f4dfb7;
+    }
+
+    /* =====================================================
+       STATUS
+    ====================================================== */
+
+    .status {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        background: #fff1f2;
+        color: #dc2626;
+        padding: 6px 11px;
+        border-radius: 20px;
+        font-size: 10px;
+        font-weight: 700;
+    }
+
+    /* =====================================================
+       DETAILS
+    ====================================================== */
+
+    .details {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 18px;
+    }
+
+    .detail {
+        min-width: 0;
+    }
+
+    .detail label {
+        display: block;
+        font-size: 9px;
+        color: #8a95a7;
+        margin-bottom: 5px;
+    }
+
+    .detail strong {
+        display: block;
+        font-size: 11px;
+        color: #172033;
+        word-break: break-word;
+    }
+
+    .detail-sub {
+        display: block;
+        margin-top: 3px;
+        color: #9ca7b6;
+        font-size: 8px;
+    }
+
+    /* =====================================================
+       UMRAH DETAILS
+    ====================================================== */
+
+    .umrah-extra {
+        margin-top: 18px;
+        background:
+            linear-gradient(
+                135deg,
+                #fffaf0,
+                #fffdf8
+            );
+        border: 1px solid #f3dfb8;
+        border-radius: 12px;
+        padding: 14px;
+    }
+
+    .umrah-extra-title {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        margin-bottom: 10px;
+        color: #8c5b08;
+        font-size: 8px;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: .6px;
+    }
+
+    .umrah-extra-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+    }
+
+    .umrah-item {
+        background: #ffffff;
+        border: 1px solid #f0e7d4;
+        border-radius: 9px;
+        padding: 10px;
+    }
+
+    .umrah-item span {
+        display: block;
+        color: #9b8d72;
+        font-size: 7px;
+        text-transform: uppercase;
+        font-weight: 700;
+        margin-bottom: 4px;
+    }
+
+    .umrah-item strong {
+        display: block;
+        color: #172033;
+        font-size: 9px;
+    }
+
+    /* =====================================================
+       REJECTION BOX
+    ====================================================== */
+
+    .rejection-box {
+        margin-top: 18px;
+        background: #fff7f7;
+        border: 1px solid #ffdede;
+        border-radius: 10px;
+        padding: 12px 14px;
+    }
+
+    .rejection-box span {
+        display: block;
+        color: #a56b6b;
+        font-size: 9px;
+        margin-bottom: 4px;
+        font-weight: 700;
+    }
+
+    .rejection-box strong {
+        color: #b42318;
+        font-size: 10px;
+    }
+
+    /* =====================================================
+       EMPTY
+    ====================================================== */
+
+    .empty {
+        background: #ffffff;
+        border: 1px dashed #dce3ec;
+        border-radius: 16px;
+        padding: 55px 20px;
+        text-align: center;
+        color: #8a95a7;
+    }
+
+    .empty i {
+        display: block;
+        font-size: 32px;
+        color: #a9b4c5;
+        margin-bottom: 10px;
+    }
+
+    .empty h3 {
+        margin-bottom: 6px;
+        font-size: 15px;
+        color: #69778d;
+    }
+
+    .empty p {
+        font-size: 10px;
+    }
+
+    /* =====================================================
+       RESPONSIVE
+    ====================================================== */
+
+    @media (max-width: 1050px) {
+
+        .details {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .umrah-extra-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+    }
+
+    @media (max-width: 700px) {
+
+        .details {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .umrah-extra-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .booking-top {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+    }
+
+    @media (max-width: 450px) {
+
+        .details {
+            grid-template-columns: 1fr;
+        }
+
+    }
+
+</style>
+
+</head>
+
+<body>
+
+<div class="page">
+
+<!-- =====================================================
+     HEADER
+====================================================== -->
+
+<div class="header">
+
+    <h1>
+        Rejected Bookings
+    </h1>
+
+    <p>
+        Flight, group-ticket and Umrah bookings rejected by
+        AL NAJAM administration.
+    </p>
+
+</div>
+
+
+{% if bookings %}
+
+
+    {% for booking in bookings %}
+
+
+    <div class="booking-card">
+
+
+        <!-- =================================================
+             TOP
+        ================================================== -->
+
+        <div class="booking-top">
+
+
+            <div>
+
+
+                <span class="booking-reference">
+
+                    {{ booking.booking_reference }}
+
+                </span>
+
+
+                <!-- UMRAH -->
+
+                {% if booking.booking_type == "UMRAH" %}
+
+                    <span class="booking-type type-umrah">
+
+                        <i class="bi bi-moon-stars-fill"></i>
+
+                        Umrah
+
+                    </span>
+
+
+                <!-- GROUP -->
+
+                {% elif booking.booking_type == "GROUP" %}
+
+                    <span class="booking-type type-group">
+
+                        <i class="bi bi-people-fill"></i>
+
+                        Group Ticket
+
+                    </span>
+
+
+                <!-- FLIGHT -->
+
+                {% else %}
+
+                    <span class="booking-type type-flight">
+
+                        <i class="bi bi-airplane-fill"></i>
+
+                        Flight
+
+                    </span>
+
+                {% endif %}
+
+
+            </div>
+
+
+            <div class="status">
+
+                <i class="bi bi-x-circle-fill"></i>
+
+                Rejected
+
+            </div>
+
+
+        </div>
+
+
+        <!-- =================================================
+             DETAILS
+        ================================================== -->
+
+        <div class="details">
+
+
+            <!-- PASSENGER -->
+
+            <div class="detail">
+
+                <label>
+                    Passenger
+                </label>
+
+
+                {% if booking.booking_type == "UMRAH" %}
+
+                    <strong>
+
+                        {{ booking.lead_passenger.first_name }}
+
+                        {{ booking.lead_passenger.last_name }}
+
+                    </strong>
+
+                    <span class="detail-sub">
+
+                        Lead Pilgrim
+
+                    </span>
+
+                {% else %}
+
+                    <strong>
+
+                        {{ booking.passenger.first_name }}
+
+                        {{ booking.passenger.last_name }}
+
+                    </strong>
+
+                {% endif %}
+
+            </div>
+
+
+            <!-- FLIGHT -->
+
+            <div class="detail">
+
+                <label>
+
+                    {% if booking.booking_type == "UMRAH" %}
+
+                        Umrah Flight
+
+                    {% elif booking.booking_type == "GROUP" %}
+
+                        Group Ticket
+
+                    {% else %}
+
+                        Flight
+
+                    {% endif %}
+
+                </label>
+
+
+                <strong>
+
+
+                    {% if booking.booking_type == "UMRAH" %}
+
+                        {{ booking.package.airline.name }}
+
+                        {{ booking.package.outbound_flight_number }}
+
+                    {% elif booking.booking_type == "GROUP" %}
+
+                        {{ booking.group_ticket.airline.name }}
+
+                        {{ booking.group_ticket.flight_number }}
+
+                    {% else %}
+
+                        {{ booking.flight.airline.name }}
+
+                        {{ booking.flight.flight_number }}
+
+                    {% endif %}
+
+                </strong>
+
+
+                {% if booking.booking_type == "UMRAH" %}
+
+                    <span class="detail-sub">
+
+                        {{ booking.package.airline.code }}
+
+                    </span>
+
+                {% endif %}
+
+            </div>
+
+
+            <!-- ROUTE -->
+
+            <div class="detail">
+
+                <label>
+                    Route
+                </label>
+
+
+                <strong>
+
+
+                    {% if booking.booking_type == "UMRAH" %}
+
+                        {{ booking.package.outbound_departure_airport.code }}
+
+                        →
+
+                        {{ booking.package.outbound_arrival_airport.code }}
+
+                    {% elif booking.booking_type == "GROUP" %}
+
+                        {{ booking.group_ticket.departure_airport.code }}
+
+                        →
+
+                        {{ booking.group_ticket.arrival_airport.code }}
+
+                    {% else %}
+
+                        {{ booking.flight.departure_airport.code }}
+
+                        →
+
+                        {{ booking.flight.arrival_airport.code }}
+
+                    {% endif %}
+
+
+                </strong>
+
+
+                {% if booking.booking_type == "UMRAH" %}
+
+                    <span class="detail-sub">
+
+                        {{ booking.package.outbound_departure_airport.city }}
+
+                        →
+
+                        {{ booking.package.outbound_arrival_airport.city }}
+
+                    </span>
+
+                {% endif %}
+
+            </div>
+
+
+            <!-- SEATS / PILGRIMS -->
+
+            <div class="detail">
+
+                <label>
+
+                    {% if booking.booking_type == "UMRAH" %}
+
+                        Pilgrims
+
+                    {% else %}
+
+                        Seats
+
+                    {% endif %}
+
+                </label>
+
+
+                <strong>
+
+
+                    {% if booking.booking_type == "UMRAH" %}
+
+                        {{ booking.pilgrims_count }}
+
+                        Pilgrim{{ booking.pilgrims_count|pluralize }}
+
+                    {% else %}
+
+                        {{ booking.seats_booked }}
+
+                    {% endif %}
+
+
+                </strong>
+
+            </div>
+
+
+            <!-- TOTAL -->
+
+            <div class="detail">
+
+                <label>
+                    Total
+                </label>
+
+
+                <strong>
+
+                    PKR {{ booking.total_price|floatformat:0 }}
+
+                </strong>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- =================================================
+             UMRAH PACKAGE DETAILS
+        ================================================== -->
+
+        {% if booking.booking_type == "UMRAH" %}
+
+
+            <div class="umrah-extra">
+
+
+                <div class="umrah-extra-title">
+
+                    <i class="bi bi-moon-stars-fill"></i>
+
+                    Umrah Package Details
+
+                </div>
+
+
+                <div class="umrah-extra-grid">
+
+
+                    <div class="umrah-item">
+
+                        <span>
+                            Package
+                        </span>
+
+                        <strong>
+
+                            {{ booking.package.name }}
+
+                        </strong>
+
+                    </div>
+
+
+                    <div class="umrah-item">
+
+                        <span>
+                            Room Type
+                        </span>
+
+                        <strong>
+
+                            {{ booking.package.room_type|title }}
+
+                        </strong>
+
+                    </div>
+
+
+                    <div class="umrah-item">
+
+                        <span>
+                            Makkah Hotel
+                        </span>
+
+                        <strong>
+
+                            {{ booking.package.makkah_hotel.name }}
+
+                        </strong>
+
+                    </div>
+
+
+                    <div class="umrah-item">
+
+                        <span>
+                            Madinah Hotel
+                        </span>
+
+                        <strong>
+
+                            {{ booking.package.madinah_hotel.name }}
+
+                        </strong>
+
+                    </div>
+
+
+                    <div class="umrah-item">
+
+                        <span>
+                            Makkah Nights
+                        </span>
+
+                        <strong>
+
+                            {{ booking.package.nights_in_makkah }}
+
+                        </strong>
+
+                    </div>
+
+
+                    <div class="umrah-item">
+
+                        <span>
+                            Madinah Nights
+                        </span>
+
+                        <strong>
+
+                            {{ booking.package.nights_in_madinah }}
+
+                        </strong>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+        {% endif %}
+
+
+        <!-- =================================================
+             REJECTION REASON
+        ================================================== -->
+
+        {% if booking.rejection_reason %}
+
+
+            <div class="rejection-box">
+
+                <span>
+                    REJECTION REASON
+                </span>
+
+                <strong>
+
+                    {{ booking.rejection_reason }}
+
+                </strong>
+
+            </div>
+
+
+        {% endif %}
+
+
+    </div>
+
+
+    {% endfor %}
+
+
+{% else %}
+
+
+    <!-- =================================================
+         EMPTY
+    ================================================== -->
+
+    <div class="empty">
+
+        <i class="bi bi-x-circle"></i>
+
+        <h3>
+            No rejected bookings
+        </h3>
+
+        <p>
+            You don't have any rejected flight, group-ticket
+            or Umrah bookings.
+        </p>
+
+    </div>
+
+
+{% endif %}
+
+</div>
+
+</body>
+
+</html>

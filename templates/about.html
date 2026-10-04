@@ -1,0 +1,835 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>About Us | AL NAJAM Travel & Tours</title>
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <style>
+
+        /* ================= ABOUT PAGE ================= */
+
+        .about-page {
+            min-height: 100vh;
+            padding: 140px 6% 80px;
+            background: #f7f9fc;
+        }
+
+
+        /* ================= HEADER ================= */
+
+        .about-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 60px;
+        }
+
+        .about-header span {
+            color: #F59E0B;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 3px;
+        }
+
+        .about-header h1 {
+            margin: 12px 0 18px;
+            font-size: 52px;
+            color: #172033;
+            line-height: 1.15;
+        }
+
+        .about-header p {
+            color: #687386;
+            font-size: 17px;
+            line-height: 1.8;
+        }
+
+
+        /* ================= INTRO SECTION ================= */
+
+        .about-intro {
+            max-width: 1150px;
+            margin: 0 auto 70px;
+
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 35px;
+            align-items: stretch;
+        }
+
+
+        .about-intro-content {
+            background: white;
+            padding: 40px;
+            border-radius: 18px;
+            border: 1px solid #e9edf3;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+        }
+
+        .about-intro-content span {
+            color: #F59E0B;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .about-intro-content h2 {
+            margin: 12px 0 18px;
+            color: #172033;
+            font-size: 32px;
+        }
+
+        .about-intro-content p {
+            color: #687386;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+
+        /* ================= IMAGE ================= */
+
+        .about-image {
+            min-height: 420px;
+            border-radius: 18px;
+
+            background-image:
+                linear-gradient(
+                    rgba(0, 0, 0, 0.20),
+                    rgba(0, 0, 0, 0.20)
+                ),
+                url("https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1200&q=85");
+
+            background-size: cover;
+            background-position: center;
+
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+        }
+
+
+        /* ================= WHY CHOOSE US ================= */
+
+        .why-section {
+            max-width: 1150px;
+            margin: 0 auto 70px;
+        }
+
+        .why-heading {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .why-heading span {
+            color: #F59E0B;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 3px;
+        }
+
+        .why-heading h2 {
+            color: #172033;
+            font-size: 40px;
+            margin: 12px 0;
+        }
+
+        .why-heading p {
+            color: #687386;
+            line-height: 1.7;
+        }
+
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+
+        .why-card {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            border: 1px solid #e9edf3;
+            transition: 0.3s ease;
+        }
+
+        .why-card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+        }
+
+
+        .why-icon {
+            width: 55px;
+            height: 55px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 12px;
+
+            background: #fff6d6;
+            color: #F59E0B;
+
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .why-card h3 {
+            color: #172033;
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+
+        .why-card p {
+            color: #687386;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+
+        /* ================= MISSION VISION ================= */
+
+        .mission-section {
+            max-width: 1150px;
+            margin: 0 auto 70px;
+
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+
+        .mission-card {
+            background: #172033;
+            color: white;
+            padding: 38px;
+            border-radius: 18px;
+        }
+
+        .mission-card h2 {
+            margin-bottom: 15px;
+            font-size: 28px;
+        }
+
+        .mission-card p {
+            color: #d5dbe5;
+            line-height: 1.8;
+            margin: 0;
+        }
+
+
+        .vision-card {
+            background: #F59E0B;
+            color: white;
+            padding: 38px;
+            border-radius: 18px;
+        }
+
+        .vision-card h2 {
+            margin-bottom: 15px;
+            font-size: 28px;
+        }
+
+        .vision-card p {
+            color: white;
+            line-height: 1.8;
+            margin: 0;
+        }
+
+
+        /* ================= CTA ================= */
+
+        .about-cta {
+            max-width: 1150px;
+            margin: auto;
+
+            padding: 50px 40px;
+
+            border-radius: 20px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(23, 32, 51, 0.96),
+                    rgba(23, 32, 51, 0.82)
+                );
+
+            text-align: center;
+            color: white;
+        }
+
+        .about-cta h2 {
+            font-size: 36px;
+            margin-bottom: 12px;
+        }
+
+        .about-cta p {
+            max-width: 650px;
+            margin: 0 auto 25px;
+
+            color: #d5dbe5;
+            line-height: 1.7;
+        }
+
+        .about-cta a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            padding: 14px 25px;
+
+            background: #F59E0B;
+            color: white;
+
+            border-radius: 8px;
+
+            text-decoration: none;
+            font-weight: 700;
+
+            transition: 0.3s;
+        }
+
+        .about-cta a:hover {
+            transform: translateY(-3px);
+        }
+
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 900px) {
+
+            .about-intro {
+                grid-template-columns: 1fr;
+            }
+
+            .why-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .mission-section {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .about-page {
+                padding: 120px 20px 60px;
+            }
+
+            .about-header h1 {
+                font-size: 38px;
+            }
+
+            .about-header p {
+                font-size: 15px;
+            }
+
+            .about-intro-content {
+                padding: 28px;
+            }
+
+            .why-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .why-heading h2 {
+                font-size: 32px;
+            }
+
+            .mission-card,
+            .vision-card {
+                padding: 28px;
+            }
+
+            .about-cta {
+                padding: 40px 25px;
+            }
+
+            .about-cta h2 {
+                font-size: 30px;
+            }
+
+        }
+        
+        .brand-logo {
+    width: 72px;
+    height: 72px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+    overflow: hidden;
+}
+
+.brand-logo img {
+    width: 72px;
+    height: 72px;
+    object-fit: contain;
+    display: block;
+}
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header class="main-header">
+
+        <nav class="navbar">
+
+
+            <!-- BRAND -->
+
+            <a href="{% url 'home' %}" class="brand">
+
+                <div class="brand-logo">
+                    <img
+                        src="{% static 'images/logo.png' %}"
+                        alt="AL NAJAM Travel & Tours"
+                    >
+                </div>
+
+                <div class="brand-text">
+                    <strong>AL NAJAM</strong>
+                    <small>TRAVEL & TOURS</small>
+                </div>
+
+            </a>
+
+
+            <!-- NAVIGATION -->
+
+            <div class="nav-links">
+
+                <a href="{% url 'home' %}">
+                    Home
+                </a>
+
+                <a href="{% url 'flights' %}">
+                    Flights
+                </a>
+
+                <a href="{% url 'hotels' %}">
+                    Hotels
+                </a>
+
+                <a href="{% url 'visa' %}">
+                    Visa
+                </a>
+
+                <a href="{% url 'umrah' %}">
+                    Umrah
+                </a>
+
+                <a href="{% url 'tours' %}">
+                    Tours
+                </a>
+
+                <a href="{% url 'about' %}" class="active">
+                    About
+                </a>
+
+                <a href="{% url 'contact' %}">
+                    Contact
+                </a>
+
+            </div>
+
+
+            <!-- RIGHT SIDE -->
+
+            <div class="nav-actions">
+
+                <a href="#" class="login-btn">
+
+                    <i class="bi bi-person"></i>
+
+                    Agent Login
+
+                </a>
+
+
+                <a href="#" class="agent-btn">
+
+                    Become an Agent
+
+                </a>
+
+            </div>
+
+
+            <!-- MOBILE MENU -->
+
+            <button class="mobile-menu">
+
+                <i class="bi bi-list"></i>
+
+            </button>
+
+        </nav>
+
+    </header>
+
+
+
+    <!-- ================= ABOUT PAGE ================= -->
+
+    <main class="about-page">
+
+
+        <!-- HEADER -->
+
+        <div class="about-header">
+
+            <span>ABOUT AL NAJAM</span>
+
+            <h1>
+                Your Trusted Travel Partner
+            </h1>
+
+            <p>
+                AL NAJAM Travel & Tours is committed to making
+                every journey comfortable, convenient and memorable.
+                We provide professional travel solutions designed
+                around the needs of our customers.
+            </p>
+
+        </div>
+
+
+
+        <!-- ================= INTRO ================= -->
+
+        <section class="about-intro">
+
+
+            <div class="about-intro-content">
+
+                <span>WHO WE ARE</span>
+
+                <h2>
+                    Discover AL NAJAM Travel & Tours
+                </h2>
+
+                <p>
+                    AL NAJAM Travel & Tours provides a complete
+                    range of travel services for individuals,
+                    families and businesses.
+                </p>
+
+                <p>
+                    From flights and hotels to visa assistance,
+                    Umrah packages and holiday tours, our goal is
+                    to make your travel experience simple and
+                    stress-free.
+                </p>
+
+                <p>
+                    Our team focuses on reliable service,
+                    personalized assistance and helping customers
+                    choose travel solutions that suit their needs.
+                </p>
+
+            </div>
+
+
+            <div class="about-image"></div>
+
+
+        </section>
+
+
+
+        <!-- ================= WHY CHOOSE US ================= -->
+
+        <section class="why-section">
+
+
+            <div class="why-heading">
+
+                <span>WHY CHOOSE US</span>
+
+                <h2>
+                    Travel With Confidence
+                </h2>
+
+                <p>
+                    We believe great travel begins with reliable
+                    service and professional guidance.
+                </p>
+
+            </div>
+
+
+            <div class="why-grid">
+
+
+                <!-- CARD 1 -->
+
+                <div class="why-card">
+
+                    <div class="why-icon">
+
+                        <i class="bi bi-shield-check"></i>
+
+                    </div>
+
+                    <h3>
+                        Reliable Service
+                    </h3>
+
+                    <p>
+                        We focus on providing dependable travel
+                        assistance and clear communication
+                        throughout your journey.
+                    </p>
+
+                </div>
+
+
+
+                <!-- CARD 2 -->
+
+                <div class="why-card">
+
+                    <div class="why-icon">
+
+                        <i class="bi bi-person-check"></i>
+
+                    </div>
+
+                    <h3>
+                        Personal Assistance
+                    </h3>
+
+                    <p>
+                        Our team helps you understand your
+                        options and select travel solutions
+                        according to your requirements.
+                    </p>
+
+                </div>
+
+
+
+                <!-- CARD 3 -->
+
+                <div class="why-card">
+
+                    <div class="why-icon">
+
+                        <i class="bi bi-globe2"></i>
+
+                    </div>
+
+                    <h3>
+                        Complete Solutions
+                    </h3>
+
+                    <p>
+                        Flights, hotels, visas, Umrah packages
+                        and tours are available through one
+                        convenient travel partner.
+                    </p>
+
+                </div>
+
+
+
+                <!-- CARD 4 -->
+
+                <div class="why-card">
+
+                    <div class="why-icon">
+
+                        <i class="bi bi-headset"></i>
+
+                    </div>
+
+                    <h3>
+                        Customer Support
+                    </h3>
+
+                    <p>
+                        We are available to assist customers
+                        with their travel questions and
+                        requirements.
+                    </p>
+
+                </div>
+
+
+
+                <!-- CARD 5 -->
+
+                <div class="why-card">
+
+                    <div class="why-icon">
+
+                        <i class="bi bi-airplane"></i>
+
+                    </div>
+
+                    <h3>
+                        Travel Expertise
+                    </h3>
+
+                    <p>
+                        We provide guidance across different
+                        travel services to help make planning
+                        easier.
+                    </p>
+
+                </div>
+
+
+
+                <!-- CARD 6 -->
+
+                <div class="why-card">
+
+                    <div class="why-icon">
+
+                        <i class="bi bi-heart"></i>
+
+                    </div>
+
+                    <h3>
+                        Customer Focused
+                    </h3>
+
+                    <p>
+                        Your comfort and satisfaction remain
+                        at the center of our travel services.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= MISSION & VISION ================= -->
+
+        <section class="mission-section">
+
+
+            <div class="mission-card">
+
+                <h2>
+                    Our Mission
+                </h2>
+
+                <p>
+                    Our mission is to provide convenient,
+                    professional and customer-focused travel
+                    services that make every journey easier.
+                    We aim to build long-term relationships
+                    through quality service and personalized
+                    travel assistance.
+                </p>
+
+            </div>
+
+
+            <div class="vision-card">
+
+                <h2>
+                    Our Vision
+                </h2>
+
+                <p>
+                    Our vision is to become a trusted travel
+                    partner known for reliable services,
+                    professional guidance and memorable
+                    travel experiences for customers.
+                </p>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- ================= CTA ================= -->
+
+        <section class="about-cta">
+
+            <h2>
+                Ready to Plan Your Journey?
+            </h2>
+
+            <p>
+                Whether you need a flight, hotel, visa assistance,
+                Umrah package or holiday tour, our team is ready
+                to help you.
+            </p>
+
+            <a href="{% url 'contact' %}">
+
+                Contact Us
+
+                <i class="bi bi-arrow-right"></i>
+
+            </a>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="footer">
+
+        <div class="footer-content">
+
+            <h3>
+                AL NAJAM
+            </h3>
+
+            <p>
+                Travel & Tours
+            </p>
+
+            <span>
+                © 2026 AL NAJAM Travel & Tours.
+                All rights reserved.
+            </span>
+
+        </div>
+
+    </footer>
+
+
+</body>
+
+</html>

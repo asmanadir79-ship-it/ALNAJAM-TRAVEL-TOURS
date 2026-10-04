@@ -1,0 +1,2136 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Group Booking | AL NAJAM Agent Portal
+    </title>
+
+    <!-- Bootstrap -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <!-- Bootstrap Icons -->
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    >
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        /* =====================================================
+           GLOBAL
+        ===================================================== */
+
+        body {
+            margin: 0;
+            background: #f4f7fb;
+            color: #172033;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+
+        /* =====================================================
+           NAVBAR
+        ===================================================== */
+
+        .topbar {
+
+            background: #ffffff;
+
+            border-bottom: 1px solid #e7ebf1;
+
+            min-height: 72px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 14px 30px;
+
+            box-shadow:
+                0 3px 15px rgba(20,35,60,.03);
+        }
+
+
+        .brand {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            text-decoration: none;
+        }
+
+
+        .brand-icon {
+
+            width: 40px;
+            height: 40px;
+
+            border-radius: 10px;
+
+            background: #f59e0b;
+
+            color: white;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+        }
+
+
+        .brand-text {
+
+            font-size: 18px;
+
+            font-weight: 700;
+
+            color: #172033;
+        }
+
+
+        .brand-text span {
+
+            color: #f59e0b;
+        }
+
+
+        .back-button {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            padding: 9px 14px;
+
+            border: 1px solid #dfe5ec;
+
+            border-radius: 9px;
+
+            background: #ffffff;
+
+            color: #5e6b80;
+
+            text-decoration: none;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            transition: .2s;
+        }
+
+
+        .back-button:hover {
+
+            background: #fff8eb;
+
+            border-color: #f6c15b;
+
+            color: #d88900;
+        }
+
+
+        /* =====================================================
+           MAIN
+        ===================================================== */
+
+        .main-content {
+
+            max-width: 1250px;
+
+            margin: 0 auto;
+
+            padding: 30px;
+        }
+
+
+        /* =====================================================
+           PAGE HEADER
+        ===================================================== */
+
+        .page-header {
+
+            background: #ffffff;
+
+            border: 1px solid #e7ebf1;
+
+            border-radius: 18px;
+
+            padding: 22px 24px;
+
+            margin-bottom: 20px;
+
+            box-shadow:
+                0 5px 20px rgba(20,35,60,.03);
+        }
+
+
+        .page-header h1 {
+
+            margin: 0 0 5px;
+
+            font-size: 21px;
+
+            font-weight: 700;
+
+            color: #172033;
+        }
+
+
+        .page-header p {
+
+            margin: 0;
+
+            color: #7f8a9d;
+
+            font-size: 11px;
+        }
+
+
+        .header-badge {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 6px;
+
+            padding: 6px 10px;
+
+            border-radius: 20px;
+
+            background: #fff1d6;
+
+            color: #d88900;
+
+            font-size: 9px;
+
+            font-weight: 700;
+
+            margin-bottom: 9px;
+        }
+
+
+        /* =====================================================
+           CARDS
+        ===================================================== */
+
+        .card-box {
+
+            background: #ffffff;
+
+            border: 1px solid #e7ebf1;
+
+            border-radius: 18px;
+
+            padding: 23px;
+
+            margin-bottom: 20px;
+
+            box-shadow:
+                0 5px 20px rgba(20,35,60,.03);
+        }
+
+
+        .card-title {
+
+            font-size: 15px;
+
+            font-weight: 700;
+
+            color: #172033;
+
+            margin-bottom: 3px;
+        }
+
+
+        .card-subtitle {
+
+            font-size: 10px;
+
+            color: #98a2b3;
+
+            margin-bottom: 20px;
+        }
+
+
+        /* =====================================================
+           TICKET SUMMARY
+        ===================================================== */
+
+        .ticket-summary {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #fff9ef,
+                    #ffffff
+                );
+
+            border: 1px solid #f8dfb1;
+
+            border-radius: 15px;
+
+            padding: 20px;
+        }
+
+
+        .airline-box {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+        }
+
+
+        .airline-icon {
+
+            width: 42px;
+            height: 42px;
+
+            border-radius: 11px;
+
+            background: #eef6ff;
+
+            color: #1675d1;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            font-size: 17px;
+        }
+
+
+        .airline-name {
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            color: #172033;
+        }
+
+
+        .airline-code {
+
+            font-size: 9px;
+
+            color: #98a2b3;
+
+            margin-top: 2px;
+
+            display: block;
+        }
+
+
+        .flight-number {
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            color: #172033;
+        }
+
+
+        .flight-date {
+
+            font-size: 9px;
+
+            color: #98a2b3;
+
+            margin-top: 3px;
+
+        }
+
+
+        .route-box {
+
+            text-align: center;
+
+        }
+
+
+        .route-codes {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 12px;
+
+        }
+
+
+        .airport-code {
+
+            font-size: 23px;
+
+            font-weight: 700;
+
+            color: #172033;
+        }
+
+
+        .route-arrow {
+
+            color: #f59e0b;
+
+            font-size: 18px;
+        }
+
+
+        .airport-city {
+
+            color: #8994a7;
+
+            font-size: 9px;
+
+            margin-top: 2px;
+        }
+
+
+        .time-box {
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            color: #172033;
+
+            text-align: center;
+        }
+
+
+        .arrival-label {
+
+            display: block;
+
+            font-size: 8px;
+
+            color: #98a2b3;
+
+            margin-top: 3px;
+        }
+
+
+        .price-box {
+
+            text-align: right;
+        }
+
+
+        .price-label {
+
+            font-size: 8px;
+
+            color: #98a2b3;
+
+            display: block;
+
+            margin-bottom: 3px;
+        }
+
+
+        .price {
+
+            font-size: 21px;
+
+            font-weight: 700;
+
+            color: #f59e0b;
+
+        }
+
+
+        .price-sub {
+
+            font-size: 8px;
+
+            color: #98a2b3;
+
+            display: block;
+
+            margin-top: 2px;
+        }
+
+
+        .ticket-meta {
+
+            margin-top: 18px;
+
+            padding-top: 16px;
+
+            border-top: 1px solid #f0e6d4;
+        }
+
+
+        .meta-box {
+
+            padding-right: 15px;
+        }
+
+
+        .meta-label {
+
+            font-size: 8px;
+
+            color: #98a2b3;
+
+            display: block;
+
+            margin-bottom: 4px;
+
+            text-transform: uppercase;
+
+            letter-spacing: .5px;
+        }
+
+
+        .meta-value {
+
+            font-size: 10px;
+
+            font-weight: 700;
+
+            color: #172033;
+        }
+
+
+        /* =====================================================
+           FORM
+        ===================================================== */
+
+        .form-label {
+
+            font-size: 10px;
+
+            font-weight: 700;
+
+            color: #536176;
+
+            margin-bottom: 7px;
+        }
+
+
+        .required {
+
+            color: #dc2626;
+        }
+
+
+        .form-control,
+        .form-select {
+
+            min-height: 43px;
+
+            border: 1px solid #dfe5ec;
+
+            border-radius: 9px;
+
+            font-size: 11px;
+
+            color: #172033;
+
+            box-shadow: none;
+        }
+
+
+        .form-control:focus,
+        .form-select:focus {
+
+            border-color: #f59e0b;
+
+            box-shadow:
+                0 0 0 3px rgba(245,158,11,.08);
+        }
+
+
+        .form-text {
+
+            font-size: 8px;
+
+            color: #9aa4b5;
+        }
+
+
+        .error-text {
+
+            color: #dc2626;
+
+            font-size: 9px;
+
+            margin-top: 4px;
+        }
+
+
+        .seat-box {
+
+            background: #f8fafc;
+
+            border: 1px solid #edf1f5;
+
+            border-radius: 12px;
+
+            padding: 15px;
+        }
+
+
+        .seat-available {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 5px;
+
+            background: #e8faf3;
+
+            color: #08a76b;
+
+            border-radius: 20px;
+
+            padding: 5px 9px;
+
+            font-size: 8px;
+
+            font-weight: 700;
+        }
+
+
+        /* =====================================================
+           TOTAL BOX
+        ===================================================== */
+
+        .total-box {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #172033,
+                    #263653
+                );
+
+            color: white;
+
+            border-radius: 15px;
+
+            padding: 20px;
+
+            margin-top: 20px;
+        }
+
+
+        .total-label {
+
+            font-size: 9px;
+
+            color: rgba(255,255,255,.70);
+
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
+        }
+
+
+        .total-seats {
+
+            margin-top: 5px;
+
+            font-size: 10px;
+
+            color: rgba(255,255,255,.60);
+        }
+
+
+        .total-price {
+
+            font-size: 25px;
+
+            font-weight: 700;
+
+            color: #f59e0b;
+
+        }
+
+
+        /* =====================================================
+           ACTIONS
+        ===================================================== */
+
+        .action-row {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 12px;
+
+            margin-top: 20px;
+        }
+
+
+        .cancel-button {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            padding: 11px 17px;
+
+            border: 1px solid #dfe5ec;
+
+            background: #ffffff;
+
+            border-radius: 9px;
+
+            color: #6b7280;
+
+            text-decoration: none;
+
+            font-size: 10px;
+
+            font-weight: 700;
+
+        }
+
+
+        .cancel-button:hover {
+
+            background: #f5f7fa;
+
+            color: #172033;
+        }
+
+
+        .confirm-button {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 7px;
+
+            padding: 12px 20px;
+
+            border: none;
+
+            border-radius: 9px;
+
+            background: #f59e0b;
+
+            color: white;
+
+            font-size: 10px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: .2s;
+
+        }
+
+
+        .confirm-button:hover {
+
+            background: #d88900;
+
+            transform: translateY(-1px);
+        }
+
+
+        /* =====================================================
+           SIDE PANEL
+        ===================================================== */
+
+        .summary-row {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 11px 0;
+
+            border-bottom: 1px solid #f0f2f6;
+
+            font-size: 10px;
+        }
+
+
+        .summary-row:last-child {
+
+            border-bottom: none;
+        }
+
+
+        .summary-row span {
+
+            color: #8b96a9;
+        }
+
+
+        .summary-row strong {
+
+            color: #172033;
+        }
+
+
+        .info-list {
+
+            padding-left: 18px;
+
+            margin: 0;
+        }
+
+
+        .info-list li {
+
+            color: #7f8a9d;
+
+            font-size: 9px;
+
+            margin-bottom: 10px;
+
+            line-height: 1.6;
+        }
+
+
+        .pending-box {
+
+            background: #fffaf0;
+
+            border: 1px solid #f6e3a9;
+
+            border-radius: 12px;
+
+            padding: 14px;
+        }
+
+
+        .pending-title {
+
+            font-size: 10px;
+
+            font-weight: 700;
+
+            color: #a56b00;
+
+            margin-bottom: 5px;
+        }
+
+
+        .pending-text {
+
+            font-size: 9px;
+
+            color: #7a6b48;
+
+            line-height: 1.6;
+
+        }
+
+
+        /* =====================================================
+           MESSAGES
+        ===================================================== */
+
+        .alert {
+
+            border-radius: 10px;
+
+            font-size: 10px;
+        }
+
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        .footer {
+
+            text-align: center;
+
+            padding: 20px;
+
+            color: #9aa4b5;
+
+            font-size: 8px;
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media (max-width: 991px) {
+
+            .main-content {
+
+                padding: 20px;
+            }
+
+            .price-box {
+
+                text-align: left;
+
+                margin-top: 15px;
+            }
+
+        }
+
+
+        @media (max-width: 767px) {
+
+            .topbar {
+
+                padding: 12px 15px;
+            }
+
+            .brand-text {
+
+                font-size: 16px;
+            }
+
+            .main-content {
+
+                padding: 15px;
+            }
+
+            .page-header {
+
+                padding: 18px;
+            }
+
+            .route-box {
+
+                margin: 18px 0;
+            }
+
+            .action-row {
+
+                flex-direction: column-reverse;
+
+                align-items: stretch;
+            }
+
+            .cancel-button,
+            .confirm-button {
+
+                width: 100%;
+
+                justify-content: center;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     TOPBAR
+===================================================== -->
+
+<header class="topbar">
+
+    <a
+        href="{% url 'agent_dashboard' %}"
+        class="brand"
+    >
+
+        <div class="brand-icon">
+
+            <i class="bi bi-airplane-fill"></i>
+
+        </div>
+
+        <div class="brand-text">
+
+            AL <span>NAJAM</span>
+
+        </div>
+
+    </a>
+
+
+    <a
+        href="{% url 'agent_group_tickets' %}"
+        class="back-button"
+    >
+
+        <i class="bi bi-arrow-left"></i>
+
+        Back to Group Tickets
+
+    </a>
+
+</header>
+
+
+
+<!-- =====================================================
+     MAIN CONTENT
+===================================================== -->
+
+<main class="main-content">
+
+
+    <!-- PAGE HEADER -->
+
+    <section class="page-header">
+
+        <span class="header-badge">
+
+            <i class="bi bi-people-fill"></i>
+
+            GROUP BOOKING
+
+        </span>
+
+
+        <h1>
+
+            Create Group Booking
+
+        </h1>
+
+
+        <p>
+
+            Enter passenger information, select seats and submit your
+            group-ticket booking request for admin approval.
+
+        </p>
+
+    </section>
+
+
+
+    <!-- DJANGO MESSAGES -->
+
+    {% if messages %}
+
+        {% for message in messages %}
+
+            <div class="alert alert-{{ message.tags }}">
+
+                {{ message }}
+
+            </div>
+
+        {% endfor %}
+
+    {% endif %}
+
+
+
+    <div class="row g-4">
+
+
+        <!-- =================================================
+             LEFT COLUMN
+        ================================================= -->
+
+        <div class="col-lg-8">
+
+
+            <!-- GROUP TICKET DETAILS -->
+
+            <section class="card-box">
+
+                <div class="card-title">
+
+                    <i class="bi bi-ticket-perforated me-2"
+                       style="color:#f59e0b;"></i>
+
+                    Group Ticket Details
+
+                </div>
+
+
+                <div class="card-subtitle">
+
+                    Review the selected group-ticket inventory before entering
+                    passenger information.
+
+                </div>
+
+
+                <div class="ticket-summary">
+
+
+                    <div class="row align-items-center">
+
+
+                        <!-- AIRLINE -->
+
+                        <div class="col-md-3">
+
+                            <div class="airline-box">
+
+                                <div class="airline-icon">
+
+                                    <i class="bi bi-airplane-fill"></i>
+
+                                </div>
+
+
+                                <div>
+
+                                    <div class="airline-name">
+
+                                        {{ group_ticket.airline.name }}
+
+                                    </div>
+
+
+                                    <span class="airline-code">
+
+                                        {{ group_ticket.airline.code }}
+
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <div
+                                class="flight-number mt-3"
+                            >
+
+                                {{ group_ticket.flight_number }}
+
+                            </div>
+
+
+                            <div class="flight-date">
+
+                                {{ group_ticket.departure_date|date:"d M Y" }}
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- ROUTE -->
+
+                        <div class="col-md-5">
+
+                            <div class="route-box">
+
+                                <div class="route-codes">
+
+                                    <div>
+
+                                        <div class="airport-code">
+
+                                            {{ group_ticket.departure_airport.code }}
+
+                                        </div>
+
+                                        <div class="airport-city">
+
+                                            {{ group_ticket.departure_airport.city }}
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <i
+                                        class="bi bi-arrow-right route-arrow"
+                                    ></i>
+
+
+                                    <div>
+
+                                        <div class="airport-code">
+
+                                            {{ group_ticket.arrival_airport.code }}
+
+                                        </div>
+
+                                        <div class="airport-city">
+
+                                            {{ group_ticket.arrival_airport.city }}
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- TIME -->
+
+                        <div class="col-md-2">
+
+
+                            <div class="time-box">
+
+                                Depart
+
+                                <strong class="d-block mt-1">
+
+                                    {{ group_ticket.departure_time|time:"H:i" }}
+
+                                </strong>
+
+
+                                <span class="arrival-label">
+
+                                    Arrival
+
+                                    {{ group_ticket.arrival_time|time:"H:i" }}
+
+                                </span>
+
+                            </div>
+
+
+                        </div>
+
+
+
+                        <!-- PRICE -->
+
+                        <div class="col-md-2">
+
+                            <div class="price-box">
+
+                                <span class="price-label">
+
+                                    PRICE / SEAT
+
+                                </span>
+
+
+                                <span class="price">
+
+                                    PKR {{ group_ticket.price|floatformat:0 }}
+
+                                </span>
+
+
+                                <span class="price-sub">
+
+                                    Per passenger
+
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- META -->
+
+                    <div class="row ticket-meta">
+
+
+                        <div class="col-6 col-md-3">
+
+                            <div class="meta-box">
+
+                                <span class="meta-label">
+
+                                    Baggage
+
+                                </span>
+
+                                <span class="meta-value">
+
+                                    {{ group_ticket.baggage|default:"—" }}
+
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-6 col-md-3">
+
+                            <div class="meta-box">
+
+                                <span class="meta-label">
+
+                                    Meal
+
+                                </span>
+
+                                <span class="meta-value">
+
+                                    {{ group_ticket.meal|default:"—" }}
+
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-6 col-md-3 mt-3 mt-md-0">
+
+                            <div class="meta-box">
+
+                                <span class="meta-label">
+
+                                    Category
+
+                                </span>
+
+                                <span class="meta-value">
+
+                                    {{ group_ticket.get_category_display }}
+
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-6 col-md-3 mt-3 mt-md-0">
+
+                            <div class="meta-box">
+
+                                <span class="meta-label">
+
+                                    Available
+
+                                </span>
+
+                                <span class="seat-available">
+
+                                    <i class="bi bi-check-circle-fill"></i>
+
+                                    {{ group_ticket.available_seats }}
+                                    Seats
+
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- PASSENGER INFORMATION -->
+
+            <section class="card-box">
+
+                <div class="card-title">
+
+                    <i class="bi bi-person-fill me-2"
+                       style="color:#f59e0b;"></i>
+
+                    Passenger Information
+
+                </div>
+
+
+                <div class="card-subtitle">
+
+                    Please enter passenger details exactly as shown on
+                    the travel document.
+
+                </div>
+
+
+
+                <form
+                    method="POST"
+                    id="groupBookingForm"
+                >
+
+                    {% csrf_token %}
+
+
+
+                    {% if passenger_form.non_field_errors %}
+
+                        <div class="alert alert-danger">
+
+                            {{ passenger_form.non_field_errors }}
+
+                        </div>
+
+                    {% endif %}
+
+
+
+                    <div class="row g-3">
+
+
+                        <!-- FIRST NAME -->
+
+                        <div class="col-md-6">
+
+                            <label class="form-label">
+
+                                First Name
+
+                                <span class="required">*</span>
+
+                            </label>
+
+
+                            {{ passenger_form.first_name }}
+
+
+                            {% for error in passenger_form.first_name.errors %}
+
+                                <div class="error-text">
+
+                                    {{ error }}
+
+                                </div>
+
+                            {% endfor %}
+
+                        </div>
+
+
+
+                        <!-- LAST NAME -->
+
+                        <div class="col-md-6">
+
+                            <label class="form-label">
+
+                                Last Name
+
+                                <span class="required">*</span>
+
+                            </label>
+
+
+                            {{ passenger_form.last_name }}
+
+
+                            {% for error in passenger_form.last_name.errors %}
+
+                                <div class="error-text">
+
+                                    {{ error }}
+
+                                </div>
+
+                            {% endfor %}
+
+                        </div>
+
+
+
+                        <!-- PASSPORT -->
+
+                        <div class="col-md-6">
+
+                            <label class="form-label">
+
+                                Passport Number
+
+                                <span class="required">*</span>
+
+                            </label>
+
+
+                            {{ passenger_form.passport_number }}
+
+
+                            {% for error in passenger_form.passport_number.errors %}
+
+                                <div class="error-text">
+
+                                    {{ error }}
+
+                                </div>
+
+                            {% endfor %}
+
+                        </div>
+
+
+
+                        <!-- DOB -->
+
+                        <div class="col-md-6">
+
+                            <label class="form-label">
+
+                                Date of Birth
+
+                            </label>
+
+
+                            {{ passenger_form.date_of_birth }}
+
+
+                            {% for error in passenger_form.date_of_birth.errors %}
+
+                                <div class="error-text">
+
+                                    {{ error }}
+
+                                </div>
+
+                            {% endfor %}
+
+                        </div>
+
+
+
+                        <!-- GENDER -->
+
+                        <div class="col-md-6">
+
+                            <label class="form-label">
+
+                                Gender
+
+                            </label>
+
+
+                            {{ passenger_form.gender }}
+
+
+                            {% for error in passenger_form.gender.errors %}
+
+                                <div class="error-text">
+
+                                    {{ error }}
+
+                                </div>
+
+                            {% endfor %}
+
+                        </div>
+
+
+
+                        <!-- NATIONALITY -->
+
+                        <div class="col-md-6">
+
+                            <label class="form-label">
+
+                                Nationality
+
+                            </label>
+
+
+                            {{ passenger_form.nationality }}
+
+
+                            {% for error in passenger_form.nationality.errors %}
+
+                                <div class="error-text">
+
+                                    {{ error }}
+
+                                </div>
+
+                            {% endfor %}
+
+                        </div>
+
+
+
+                        <!-- PHONE -->
+
+                        <div class="col-md-6">
+
+                            <label class="form-label">
+
+                                Phone
+
+                            </label>
+
+
+                            {{ passenger_form.phone }}
+
+
+                            {% for error in passenger_form.phone.errors %}
+
+                                <div class="error-text">
+
+                                    {{ error }}
+
+                                </div>
+
+                            {% endfor %}
+
+                        </div>
+
+
+
+                        <!-- EMAIL -->
+
+                        <div class="col-md-6">
+
+                            <label class="form-label">
+
+                                Email
+
+                            </label>
+
+
+                            {{ passenger_form.email }}
+
+
+                            {% for error in passenger_form.email.errors %}
+
+                                <div class="error-text">
+
+                                    {{ error }}
+
+                                </div>
+
+                            {% endfor %}
+
+                        </div>
+
+
+
+                        <!-- SEATS -->
+
+                        <div class="col-12">
+
+                            <div class="seat-box mt-2">
+
+
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+
+                                    <label class="form-label mb-0">
+
+                                        Number of Seats
+
+                                        <span class="required">*</span>
+
+                                    </label>
+
+
+                                    <span class="seat-available">
+
+                                        <i class="bi bi-people-fill"></i>
+
+                                        {{ group_ticket.available_seats }} Available
+
+                                    </span>
+
+                                </div>
+
+
+                                <input
+                                    type="number"
+                                    name="seats_booked"
+                                    id="seats_booked"
+                                    class="form-control"
+                                    min="1"
+                                    max="{{ group_ticket.available_seats }}"
+                                    value="1"
+                                    required
+                                >
+
+
+                                <div class="form-text">
+
+                                    Select between 1 and
+                                    {{ group_ticket.available_seats }}
+                                    seat{{ group_ticket.available_seats|pluralize }}.
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- TOTAL -->
+
+                    <div class="total-box">
+
+                        <div class="d-flex justify-content-between align-items-center">
+
+
+                            <div>
+
+                                <div class="total-label">
+
+                                    Group Booking Total
+
+                                </div>
+
+
+                                <div class="total-seats">
+
+                                    <span id="seatCount">
+                                        1
+                                    </span>
+
+                                    seat
+
+                                </div>
+
+                            </div>
+
+
+                            <div>
+
+                                <span class="me-1">
+
+                                    PKR
+
+                                </span>
+
+
+                                <span
+                                    class="total-price"
+                                    id="totalPrice"
+                                >
+
+                                    {{ group_ticket.price|floatformat:0 }}
+
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- ACTIONS -->
+
+                    <div class="action-row">
+
+
+                        <a
+                            href="{% url 'agent_group_tickets' %}"
+                            class="cancel-button"
+                        >
+
+                            <i class="bi bi-arrow-left"></i>
+
+                            Back
+
+                        </a>
+
+
+                        <button
+                            type="submit"
+                            class="confirm-button"
+                        >
+
+                            <i class="bi bi-check-circle"></i>
+
+                            Submit Group Booking
+
+                        </button>
+
+                    </div>
+
+
+                </form>
+
+            </section>
+
+        </div>
+
+
+
+        <!-- =================================================
+             RIGHT COLUMN
+        ================================================= -->
+
+        <div class="col-lg-4">
+
+
+            <!-- BOOKING SUMMARY -->
+
+            <section class="card-box">
+
+                <div class="card-title">
+
+                    Booking Summary
+
+                </div>
+
+
+                <div class="card-subtitle">
+
+                    Review the booking request before submitting.
+
+                </div>
+
+
+                <div class="summary-row">
+
+                    <span>
+                        Airline
+                    </span>
+
+                    <strong>
+                        {{ group_ticket.airline.code }}
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-row">
+
+                    <span>
+                        Flight
+                    </span>
+
+                    <strong>
+                        {{ group_ticket.flight_number }}
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-row">
+
+                    <span>
+                        Route
+                    </span>
+
+                    <strong>
+
+                        {{ group_ticket.departure_airport.code }}
+
+                        →
+
+                        {{ group_ticket.arrival_airport.code }}
+
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-row">
+
+                    <span>
+                        Travel Date
+                    </span>
+
+                    <strong>
+
+                        {{ group_ticket.departure_date|date:"d M Y" }}
+
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-row">
+
+                    <span>
+                        Seats
+                    </span>
+
+                    <strong id="summarySeats">
+                        1
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-row">
+
+                    <span>
+                        Price / Seat
+                    </span>
+
+                    <strong>
+
+                        PKR {{ group_ticket.price|floatformat:0 }}
+
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-row">
+
+                    <span>
+                        Total
+                    </span>
+
+                    <strong style="color:#f59e0b;">
+
+                        PKR
+
+                        <span id="summaryPrice">
+
+                            {{ group_ticket.price|floatformat:0 }}
+
+                        </span>
+
+                    </strong>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- PENDING INFO -->
+
+            <section class="card-box">
+
+                <div class="pending-box">
+
+                    <div class="pending-title">
+
+                        <i class="bi bi-clock-history me-1"></i>
+
+                        Admin Approval Required
+
+                    </div>
+
+
+                    <div class="pending-text">
+
+                        After submission, your group booking will be
+                        created with <strong>Pending</strong> status.
+                        The AL NAJAM administrator will review the
+                        request and either confirm or reject it.
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- IMPORTANT INFORMATION -->
+
+            <section class="card-box">
+
+                <div class="card-title">
+
+                    <i class="bi bi-info-circle me-2"
+                       style="color:#1675d1;"></i>
+
+                    Important Information
+
+                </div>
+
+
+                <ul class="info-list">
+
+                    <li>
+
+                        Passenger information should match the passport
+                        or travel document.
+
+                    </li>
+
+
+                    <li>
+
+                        Available group-ticket seats are reduced when
+                        the request is submitted.
+
+                    </li>
+
+
+                    <li>
+
+                        Your request remains pending until reviewed
+                        by the administrator.
+
+                    </li>
+
+
+                    <li>
+
+                        Please verify passenger and seat information
+                        before submitting.
+
+                    </li>
+
+                </ul>
+
+            </section>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- FOOTER -->
+
+    <footer class="footer">
+
+        © 2026 AL NAJAM Travel & Tours — Agent Portal
+
+    </footer>
+
+
+</main>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script>
+
+    const seatInput =
+        document.getElementById("seats_booked");
+
+    const seatCount =
+        document.getElementById("seatCount");
+
+    const totalPrice =
+        document.getElementById("totalPrice");
+
+    const summarySeats =
+        document.getElementById("summarySeats");
+
+    const summaryPrice =
+        document.getElementById("summaryPrice");
+
+
+    const pricePerSeat =
+        parseFloat("{{ group_ticket.price }}");
+
+
+    seatInput.addEventListener(
+        "input",
+        function () {
+
+            let seats =
+                parseInt(this.value) || 1;
+
+
+            if (seats < 1) {
+
+                seats = 1;
+
+                this.value = 1;
+
+            }
+
+
+            const maximum =
+                parseInt(this.max);
+
+
+            if (seats > maximum) {
+
+                seats = maximum;
+
+                this.value = maximum;
+
+            }
+
+
+            const total =
+                pricePerSeat * seats;
+
+
+            seatCount.textContent =
+                seats;
+
+
+            summarySeats.textContent =
+                seats;
+
+
+            totalPrice.textContent =
+                total.toLocaleString(
+                    "en-PK",
+                    {
+                        maximumFractionDigits: 0
+                    }
+                );
+
+
+            summaryPrice.textContent =
+                total.toLocaleString(
+                    "en-PK",
+                    {
+                        maximumFractionDigits: 0
+                    }
+                );
+
+        }
+    );
+
+</script>
+
+
+</body>
+
+</html>

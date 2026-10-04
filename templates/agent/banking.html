@@ -1,0 +1,1336 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Banking | AL NAJAM Agent Workspace
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    >
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background:
+                linear-gradient(
+                    135deg,
+                    #f3f6fa,
+                    #eef3f8
+                );
+            color: #172033;
+        }
+
+
+        /* =========================================
+           PAGE
+        ========================================= */
+
+        .page {
+            width: 92%;
+            max-width: 1250px;
+            margin: 35px auto 55px;
+        }
+
+
+        /* =========================================
+           TOP HEADER
+        ========================================= */
+
+        .top-header {
+            background: #ffffff;
+            border: 1px solid #e3e9f0;
+            border-radius: 22px;
+            padding: 27px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 25px;
+            margin-bottom: 22px;
+            box-shadow: 0 10px 30px rgba(20, 35, 60, .045);
+        }
+
+        .workspace-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            background: #eef6ff;
+            color: #1675d1;
+            padding: 7px 11px;
+            border-radius: 8px;
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: .9px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .top-header h1 {
+            margin: 0 0 7px;
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: -.4px;
+        }
+
+        .top-header p {
+            margin: 0;
+            color: #8491a4;
+            font-size: 12px;
+        }
+
+
+        /* =========================================
+           HEADER RIGHT / AGENT OWNER
+        ========================================= */
+
+        .agent-owner {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            padding: 10px 14px;
+            background: #fbfcfe;
+            border: 1px solid #e2e8ef;
+            border-radius: 14px;
+            flex-shrink: 0;
+        }
+
+        .agent-avatar {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: #f59e0b;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 800;
+        }
+
+        .owner-text strong {
+            display: block;
+            font-size: 11px;
+        }
+
+        .owner-text span {
+            display: block;
+            margin-top: 3px;
+            font-size: 9px;
+            color: #8c98aa;
+        }
+
+
+        /* =========================================
+           WALLET BUTTON
+        ========================================= */
+
+        .wallet-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            margin-top: 18px;
+            padding: 11px 16px;
+            border-radius: 9px;
+            background: #1675d1;
+            color: white;
+            text-decoration: none;
+            font-size: 10px;
+            font-weight: 700;
+            transition: .2s ease;
+            box-shadow: 0 6px 15px rgba(22,117,209,.16);
+        }
+
+        .wallet-link:hover {
+            background: #0e63b7;
+            color: white;
+            transform: translateY(-1px);
+        }
+
+
+        /* =========================================
+           INSTRUCTION CARD
+        ========================================= */
+
+        .instruction-card {
+            background:
+                linear-gradient(
+                    135deg,
+                    #101b2f,
+                    #1f3559
+                );
+            color: white;
+            border-radius: 21px;
+            padding: 29px 31px;
+            margin-bottom: 25px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 14px 38px rgba(20,35,60,.09);
+        }
+
+        .instruction-card::after {
+            content: "";
+            position: absolute;
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            right: -115px;
+            top: -160px;
+            border: 1px solid rgba(255,255,255,.08);
+            box-shadow:
+                0 0 0 32px rgba(255,255,255,.025),
+                0 0 0 65px rgba(255,255,255,.02);
+        }
+
+        .instruction-card h2 {
+            margin: 0 0 7px;
+            font-size: 19px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .instruction-card p {
+            margin: 0 0 22px;
+            color: #c8d2e0;
+            font-size: 11px;
+            position: relative;
+            z-index: 2;
+        }
+
+
+        /* =========================================
+           STEPS
+        ========================================= */
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 13px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .step-card {
+            background: rgba(255,255,255,.065);
+            border: 1px solid rgba(255,255,255,.09);
+            border-radius: 14px;
+            padding: 16px;
+            transition: .2s ease;
+        }
+
+        .step-card:hover {
+            background: rgba(255,255,255,.095);
+            transform: translateY(-2px);
+        }
+
+        .step-number {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #f59e0b;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .step-card strong {
+            display: block;
+            font-size: 10px;
+            margin-bottom: 5px;
+        }
+
+        .step-card span {
+            color: #bcc7d6;
+            font-size: 9px;
+            line-height: 1.6;
+        }
+
+
+        /* =========================================
+           SECTION HEADING
+        ========================================= */
+
+        .section-heading {
+            margin-bottom: 18px;
+        }
+
+        .section-heading h2 {
+            margin: 0 0 5px;
+            font-size: 19px;
+        }
+
+        .section-heading p {
+            margin: 0;
+            color: #8995a7;
+            font-size: 11px;
+        }
+
+
+        /* =========================================
+           BANK GRID
+        ========================================= */
+
+        .bank-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            align-items: stretch;
+        }
+
+
+        /* =========================================
+           BANK CARD
+        ========================================= */
+
+        .bank-card {
+            background: #ffffff;
+            border: 1px solid #e0e7ef;
+            border-radius: 20px;
+            padding: 24px;
+            box-shadow: 0 8px 28px rgba(20,35,60,.045);
+            position: relative;
+            overflow: hidden;
+            transition: .25s ease;
+        }
+
+        .bank-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 17px 38px rgba(20,35,60,.09);
+            border-color: #d4dee9;
+        }
+
+        .bank-card::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 5px;
+        }
+
+        .bankislami-card::before {
+            background: linear-gradient(90deg, #008b74, #00b894);
+        }
+
+        .bop-card::before {
+            background: linear-gradient(90deg, #d71920, #ef4444);
+        }
+
+        .hbl-card::before {
+            background: linear-gradient(90deg, #008f89, #11b8b0);
+        }
+
+
+        /* =========================================
+           BANK LOGO AREA
+        ========================================= */
+
+        .bank-logo-wrap {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 18px;
+            padding-top: 7px;
+        }
+
+        .bank-logo {
+            width: 205px;
+            height: 82px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 18px;
+            background: #ffffff;
+            overflow: hidden;
+            box-shadow:
+                0 6px 18px rgba(20,35,60,.055);
+        }
+
+        .bank-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
+        .bankislami-logo {
+            border: 1px solid #cdeee7;
+            background:
+                linear-gradient(
+                    180deg,
+                    #ffffff,
+                    #f5fffc
+                );
+        }
+
+        .bop-logo {
+            border: 1px solid #f0d3d7;
+            background:
+                linear-gradient(
+                    180deg,
+                    #ffffff,
+                    #fff8f8
+                );
+        }
+
+        .hbl-logo {
+            border: 1px solid #cdeeed;
+            background:
+                linear-gradient(
+                    180deg,
+                    #ffffff,
+                    #f5fffe
+                );
+        }
+
+
+        /* =========================================
+           BANK NAME
+        ========================================= */
+
+        .bank-name {
+            text-align: center;
+            font-size: 15px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: #172033;
+        }
+
+
+        /* =========================================
+           BANK DETAILS
+        ========================================= */
+
+        .bank-detail {
+            margin-bottom: 15px;
+        }
+
+        .bank-detail label {
+            display: block;
+            font-size: 9px;
+            color: #8a95a7;
+            text-transform: uppercase;
+            letter-spacing: .6px;
+            margin-bottom: 6px;
+        }
+
+        .bank-detail strong {
+            display: block;
+            font-size: 12px;
+            color: #172033;
+            line-height: 1.5;
+        }
+
+
+        /* =========================================
+           COPY BOX
+        ========================================= */
+
+        .copy-box {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            background: #f8fafc;
+            border: 1px solid #dfe6ee;
+            border-radius: 11px;
+            padding: 9px 10px 9px 12px;
+            transition: .2s ease;
+        }
+
+        .copy-box:hover {
+            border-color: #cbd7e4;
+            background: #f5f8fb;
+        }
+
+        .copy-value {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .35px;
+            color: #172033;
+            word-break: break-all;
+        }
+
+        .copy-button {
+            flex-shrink: 0;
+            width: 31px;
+            height: 31px;
+            border: none;
+            border-radius: 8px;
+            background: #eaf2f9;
+            color: #1675d1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: .2s ease;
+        }
+
+        .copy-button:hover {
+            background: #1675d1;
+            color: white;
+        }
+
+        .copy-button.copied {
+            background: #e8faf3;
+            color: #0b8a57;
+        }
+
+
+        /* =========================================
+           VERIFIED
+        ========================================= */
+
+        .verified {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            font-size: 9px;
+            font-weight: 700;
+            color: #118457;
+            margin-top: 19px;
+            padding-top: 13px;
+            border-top: 1px solid #edf1f5;
+        }
+
+
+        /* =========================================
+           SECURITY NOTE
+        ========================================= */
+
+        .security-note {
+            margin-top: 22px;
+            background: #fffaf0;
+            border: 1px solid #f1dfb1;
+            border-radius: 15px;
+            padding: 15px 17px;
+            display: flex;
+            gap: 11px;
+            align-items: flex-start;
+        }
+
+        .security-note i {
+            color: #d88900;
+            font-size: 16px;
+            margin-top: 1px;
+        }
+
+        .security-note strong {
+            display: block;
+            color: #9a6500;
+            font-size: 10px;
+            margin-bottom: 4px;
+        }
+
+        .security-note span {
+            color: #7e6b4c;
+            font-size: 9px;
+            line-height: 1.6;
+        }
+
+
+        /* =========================================
+           FOOTER
+        ========================================= */
+
+        .page-footer {
+            text-align: center;
+            padding: 27px 10px 5px;
+            color: #a0a9b7;
+            font-size: 9px;
+        }
+
+
+        /* =========================================
+           RESPONSIVE
+        ========================================= */
+
+        @media (max-width: 1050px) {
+
+            .bank-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .steps-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+        }
+
+
+        @media (max-width: 720px) {
+
+            .page {
+                width: 95%;
+                margin-top: 20px;
+            }
+
+            .top-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .agent-owner {
+                width: 100%;
+            }
+
+            .bank-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .steps-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .bank-logo {
+                width: 220px;
+            }
+
+        }
+
+
+        @media (max-width: 450px) {
+
+            .top-header {
+                padding: 22px 20px;
+            }
+
+            .instruction-card {
+                padding: 23px 20px;
+            }
+
+            .bank-card {
+                padding: 20px;
+            }
+
+            .bank-logo {
+                width: 195px;
+                height: 78px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="page">
+
+
+    <!-- =========================================
+         HEADER
+    ========================================= -->
+
+    <div class="top-header">
+
+        <div>
+
+            <div class="workspace-label">
+
+                <i class="bi bi-grid-1x2-fill"></i>
+
+                Workspace
+
+            </div>
+
+            <h1>
+                Agent Workspace
+            </h1>
+
+            <p>
+                Enterprise portal for agent workflows.
+            </p>
+
+            <a
+                href="{% url 'agent_wallet' %}"
+                class="wallet-link"
+            >
+
+                <i class="bi bi-wallet2"></i>
+
+                Go to Wallet
+
+            </a>
+
+        </div>
+
+
+        <div class="agent-owner">
+
+            <div class="agent-avatar">
+
+                {% if agent.name %}
+
+                    {{ agent.name|first|upper }}
+
+                {% else %}
+
+                    A
+
+                {% endif %}
+
+            </div>
+
+
+            <div class="owner-text">
+
+                <strong>
+                    {{ agent.name }}
+                </strong>
+
+                <span>
+                    {{ agent.agency }}
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================================
+         TOP-UP INSTRUCTIONS
+    ========================================= -->
+
+    <div class="instruction-card">
+
+        <h2>
+            Wallet Top-up Instructions
+        </h2>
+
+        <p>
+            Follow these simple steps to add credits to your agency booking wallet.
+        </p>
+
+
+        <div class="steps-grid">
+
+
+            <div class="step-card">
+
+                <div class="step-number">
+                    1
+                </div>
+
+                <strong>
+                    Choose Bank
+                </strong>
+
+                <span>
+                    Choose one of AL NAJAM's active bank accounts below.
+                </span>
+
+            </div>
+
+
+            <div class="step-card">
+
+                <div class="step-number">
+                    2
+                </div>
+
+                <strong>
+                    Transfer Funds
+                </strong>
+
+                <span>
+                    Transfer your funds using your banking mobile app or ATM.
+                </span>
+
+            </div>
+
+
+            <div class="step-card">
+
+                <div class="step-number">
+                    3
+                </div>
+
+                <strong>
+                    Upload Receipt
+                </strong>
+
+                <span>
+                    Capture a screenshot or photo of the deposit slip or receipt.
+                </span>
+
+            </div>
+
+
+            <div class="step-card">
+
+                <div class="step-number">
+                    4
+                </div>
+
+                <strong>
+                    Request Top-up
+                </strong>
+
+                <span>
+                    Go to Wallet, request a top-up and upload your payment receipt.
+                </span>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================================
+         BANK ACCOUNTS
+    ========================================= -->
+
+    <div class="section-heading">
+
+        <h2>
+            Platform Bank Accounts
+        </h2>
+
+        <p>
+            Choose an account below and use the copy button to quickly copy the required banking information.
+        </p>
+
+    </div>
+
+
+    <div class="bank-grid">
+
+
+        <!-- =====================================
+             BANK ISLAMI
+        ====================================== -->
+
+        <div class="bank-card bankislami-card">
+
+
+            <div class="bank-logo-wrap">
+
+                <div class="bank-logo bankislami-logo">
+
+                    <img
+                        src="{% static 'images/banks/images.png' %}"
+                        alt="Bank Islami Logo"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="bank-name">
+                Bank Islami
+            </div>
+
+
+            <div class="bank-detail">
+
+                <label>
+                    Bank Name
+                </label>
+
+                <strong>
+                    Bank Islami
+                </strong>
+
+            </div>
+
+
+            <div class="bank-detail">
+
+                <label>
+                    Account Title
+                </label>
+
+                <strong>
+                    MUHAMMAD ATIF
+                </strong>
+
+            </div>
+
+
+            <div class="bank-detail">
+
+                <label>
+                    Account Number
+                </label>
+
+                <div class="copy-box">
+
+                    <span
+                        class="copy-value"
+                        id="account1"
+                    >
+                        307900466550201
+                    </span>
+
+                    <button
+                        type="button"
+                        class="copy-button"
+                        onclick="copyText('account1', this)"
+                        title="Copy Account Number"
+                    >
+
+                        <i class="bi bi-copy"></i>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="bank-detail">
+
+                <label>
+                    IBAN
+                </label>
+
+                <div class="copy-box">
+
+                    <span
+                        class="copy-value"
+                        id="iban1"
+                    >
+                        PK61BKIP0307900466550201
+                    </span>
+
+                    <button
+                        type="button"
+                        class="copy-button"
+                        onclick="copyText('iban1', this)"
+                        title="Copy IBAN"
+                    >
+
+                        <i class="bi bi-copy"></i>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="verified">
+
+                <i class="bi bi-patch-check-fill"></i>
+
+                Verified Platform Account
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =====================================
+             BANK OF PUNJAB
+        ====================================== -->
+
+        <div class="bank-card bop-card">
+
+
+            <div class="bank-logo-wrap">
+
+                <div class="bank-logo bop-logo">
+
+                    <img
+                        src="{% static 'images/banks/bop.png' %}"
+                        alt="Bank of Punjab Logo"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="bank-name">
+                Bank of Punjab
+            </div>
+
+
+            <div class="bank-detail">
+
+                <label>
+                    Bank Name
+                </label>
+
+                <strong>
+                    Bank of Punjab
+                </strong>
+
+            </div>
+
+
+            <div class="bank-detail">
+
+                <label>
+                    Account Title
+                </label>
+
+                <strong>
+                    MUHAMMAD ATIF
+                </strong>
+
+            </div>
+
+
+            <div class="bank-detail">
+
+                <label>
+                    Account Number
+                </label>
+
+                <div class="copy-box">
+
+                    <span
+                        class="copy-value"
+                        id="account2"
+                    >
+                        6050083577400016
+                    </span>
+
+                    <button
+                        type="button"
+                        class="copy-button"
+                        onclick="copyText('account2', this)"
+                        title="Copy Account Number"
+                    >
+
+                        <i class="bi bi-copy"></i>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="bank-detail">
+
+                <label>
+                    IBAN
+                </label>
+
+                <div class="copy-box">
+
+                    <span
+                        class="copy-value"
+                        id="iban2"
+                    >
+                        PK77BPUN6050083577400016
+                    </span>
+
+                    <button
+                        type="button"
+                        class="copy-button"
+                        onclick="copyText('iban2', this)"
+                        title="Copy IBAN"
+                    >
+
+                        <i class="bi bi-copy"></i>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="verified">
+
+                <i class="bi bi-patch-check-fill"></i>
+
+                Verified Platform Account
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =====================================
+             HBL
+        ====================================== -->
+
+        <div class="bank-card hbl-card">
+
+
+            <div class="bank-logo-wrap">
+
+                <div class="bank-logo hbl-logo">
+
+                    <img
+                        src="{% static 'images/banks/hbl.png' %}"
+                        alt="HBL Logo"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="bank-name">
+                HABIB BANK LIMITED
+            </div>
+
+
+            <div class="bank-detail">
+
+                <label>
+                    Bank Name
+                </label>
+
+                <strong>
+                    HABIB BANK LIMITED
+                </strong>
+
+            </div>
+
+
+            <div class="bank-detail">
+
+                <label>
+                    Account Title
+                </label>
+
+                <strong>
+                    AZEEM UR REHMAN
+                </strong>
+
+            </div>
+
+
+            <div class="bank-detail">
+
+                <label>
+                    Account Number
+                </label>
+
+                <div class="copy-box">
+
+                    <span
+                        class="copy-value"
+                        id="account3"
+                    >
+                        0050037000364003
+                    </span>
+
+                    <button
+                        type="button"
+                        class="copy-button"
+                        onclick="copyText('account3', this)"
+                        title="Copy Account Number"
+                    >
+
+                        <i class="bi bi-copy"></i>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="bank-detail">
+
+                <label>
+                    IBAN
+                </label>
+
+                <div class="copy-box">
+
+                    <span
+                        class="copy-value"
+                        id="iban3"
+                    >
+                        PK75HABB0050037000364003
+                    </span>
+
+                    <button
+                        type="button"
+                        class="copy-button"
+                        onclick="copyText('iban3', this)"
+                        title="Copy IBAN"
+                    >
+
+                        <i class="bi bi-copy"></i>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="verified">
+
+                <i class="bi bi-patch-check-fill"></i>
+
+                Verified Platform Account
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =========================================
+         SECURITY / NOTICE
+    ========================================= -->
+
+    <div class="security-note">
+
+        <i class="bi bi-shield-check"></i>
+
+        <div>
+
+            <strong>
+                Payment Safety Notice
+            </strong>
+
+            <span>
+                Only transfer funds to the verified platform accounts displayed on this page.
+                After making payment, submit the receipt through the Wallet top-up request.
+            </span>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================================
+         FOOTER
+    ========================================= -->
+
+    <div class="page-footer">
+
+        AL NAJAM Travel & Tours • Agent Banking Workspace
+
+    </div>
+
+
+</div>
+
+
+
+<script>
+
+    function copyText(elementId, button) {
+
+        const element =
+            document.getElementById(elementId);
+
+        const value =
+            element.textContent.trim();
+
+
+        navigator.clipboard.writeText(value)
+            .then(function () {
+
+                const original =
+                    button.innerHTML;
+
+                button.innerHTML =
+                    '<i class="bi bi-check2"></i>';
+
+                button.classList.add("copied");
+
+
+                setTimeout(function () {
+
+                    button.innerHTML =
+                        original;
+
+                    button.classList.remove("copied");
+
+                }, 1500);
+
+            })
+            .catch(function () {
+
+                const textarea =
+                    document.createElement("textarea");
+
+                textarea.value = value;
+
+                document.body.appendChild(
+                    textarea
+                );
+
+                textarea.select();
+
+                document.execCommand(
+                    "copy"
+                );
+
+                textarea.remove();
+
+
+                const original =
+                    button.innerHTML;
+
+                button.innerHTML =
+                    '<i class="bi bi-check2"></i>';
+
+                button.classList.add("copied");
+
+
+                setTimeout(function () {
+
+                    button.innerHTML =
+                        original;
+
+                    button.classList.remove("copied");
+
+                }, 1500);
+
+            });
+
+    }
+
+</script>
+
+
+</body>
+
+</html>
+

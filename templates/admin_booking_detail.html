@@ -1,0 +1,599 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Booking Details | AL NAJAM
+    </title>
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+</head>
+
+
+<body style="background:#f7f8fa;">
+
+
+<div class="container py-5">
+
+
+    <!-- =========================
+         HEADER
+    ========================== -->
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <div>
+
+            <h2>
+                Booking Details
+            </h2>
+
+            <p class="text-muted mb-0">
+                Review and manage this booking.
+            </p>
+
+        </div>
+
+
+        <a
+            href="{% url 'admin_dashboard' %}"
+            class="btn btn-outline-secondary"
+        >
+            Back to Dashboard
+        </a>
+
+    </div>
+
+
+    <!-- =========================
+         BOOKING REFERENCE
+    ========================== -->
+
+    <div class="card mb-4 shadow-sm">
+
+        <div class="card-body">
+
+            <h5>
+                Booking Reference
+            </h5>
+
+            <h2 class="text-warning mb-0">
+
+                {{ booking.booking_reference }}
+
+            </h2>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         TICKETING INFORMATION
+    ========================== -->
+
+    <div class="card mb-4 shadow-sm">
+
+        <div class="card-body">
+
+            <h5 class="mb-3">
+                Ticketing Information
+            </h5>
+
+
+            <p>
+
+                <strong>Booking Reference:</strong>
+
+                {{ booking.booking_reference }}
+
+            </p>
+
+
+            <p>
+
+                <strong>PNR:</strong>
+
+                {% if booking.pnr %}
+
+                    {{ booking.pnr }}
+
+                {% else %}
+
+                    <span class="text-muted">
+                        Not Assigned Yet
+                    </span>
+
+                {% endif %}
+
+            </p>
+
+
+            <p class="mb-0">
+
+                <strong>Ticket Number:</strong>
+
+                {% if booking.ticket_number %}
+
+                    {{ booking.ticket_number }}
+
+                {% else %}
+
+                    <span class="text-muted">
+                        Not Assigned Yet
+                    </span>
+
+                {% endif %}
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         STATUS
+    ========================== -->
+
+    <div class="card mb-4 shadow-sm">
+
+        <div class="card-body">
+
+            <h5 class="mb-3">
+                Booking Status
+            </h5>
+
+
+            {% if booking.status == "PENDING" %}
+
+                <span class="badge bg-warning text-dark fs-6">
+                    Pending
+                </span>
+
+
+            {% elif booking.status == "CONFIRMED" %}
+
+                <span class="badge bg-success fs-6">
+                    Confirmed
+                </span>
+
+
+            {% elif booking.status == "CANCELLED" %}
+
+                <span class="badge bg-danger fs-6">
+                    Cancelled
+                </span>
+
+
+            {% elif booking.status == "COMPLETED" %}
+
+                <span class="badge bg-primary fs-6">
+                    Completed
+                </span>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         AGENT INFORMATION
+    ========================== -->
+
+    <div class="card mb-4 shadow-sm">
+
+        <div class="card-body">
+
+            <h5 class="mb-3">
+                Agent Information
+            </h5>
+
+
+            <p>
+                <strong>Name:</strong>
+                {{ booking.agent.name }}
+            </p>
+
+
+            <p>
+                <strong>Agency:</strong>
+                {{ booking.agent.agency }}
+            </p>
+
+
+            <p>
+                <strong>Email:</strong>
+                {{ booking.agent.email }}
+            </p>
+
+
+            <p class="mb-0">
+                <strong>Phone:</strong>
+                {{ booking.agent.phone }}
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         PASSENGER INFORMATION
+    ========================== -->
+
+    <div class="card mb-4 shadow-sm">
+
+        <div class="card-body">
+
+            <h5 class="mb-3">
+                Passenger Information
+            </h5>
+
+
+            <p>
+
+                <strong>Name:</strong>
+
+                {{ booking.passenger.first_name }}
+
+                {{ booking.passenger.last_name }}
+
+            </p>
+
+
+            <p>
+
+                <strong>Passport:</strong>
+
+                {{ booking.passenger.passport_number }}
+
+            </p>
+
+
+            <p>
+
+                <strong>Date of Birth:</strong>
+
+                {{ booking.passenger.date_of_birth|date:"d M Y" }}
+
+            </p>
+
+
+            <p>
+
+                <strong>Gender:</strong>
+
+                {{ booking.passenger.get_gender_display }}
+
+            </p>
+
+
+            <p>
+
+                <strong>Nationality:</strong>
+
+                {{ booking.passenger.nationality }}
+
+            </p>
+
+
+            <p>
+
+                <strong>Phone:</strong>
+
+                {{ booking.passenger.phone }}
+
+            </p>
+
+
+            <p class="mb-0">
+
+                <strong>Email:</strong>
+
+                {{ booking.passenger.email }}
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         FLIGHT INFORMATION
+    ========================== -->
+
+    <div class="card mb-4 shadow-sm">
+
+        <div class="card-body">
+
+            <h5 class="mb-3">
+                Flight Information
+            </h5>
+
+
+            <p>
+
+                <strong>Airline:</strong>
+
+                {{ booking.flight.airline.name }}
+
+            </p>
+
+
+            <p>
+
+                <strong>Flight:</strong>
+
+                {{ booking.flight.flight_number }}
+
+            </p>
+
+
+            <p>
+
+                <strong>Route:</strong>
+
+                {{ booking.flight.departure_airport.code }}
+
+                →
+
+                {{ booking.flight.arrival_airport.code }}
+
+            </p>
+
+
+            <p>
+
+                <strong>Travel Date:</strong>
+
+                {{ booking.flight.departure_date|date:"d M Y" }}
+
+            </p>
+
+
+            <p>
+
+                <strong>Departure Time:</strong>
+
+                {{ booking.flight.departure_time }}
+
+            </p>
+
+
+            <p>
+
+                <strong>Arrival Time:</strong>
+
+                {{ booking.flight.arrival_time }}
+
+            </p>
+
+
+            <p>
+
+                <strong>Baggage:</strong>
+
+                {{ booking.flight.baggage }}
+
+            </p>
+
+
+            <p class="mb-0">
+
+                <strong>Meal:</strong>
+
+                {{ booking.flight.meal }}
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         BOOKING FARE
+    ========================== -->
+
+    <div class="card mb-4 shadow-sm">
+
+        <div class="card-body">
+
+            <h5 class="mb-3">
+                Booking Fare
+            </h5>
+
+
+            <p>
+
+                <strong>Seats:</strong>
+
+                {{ booking.seats_booked }}
+
+            </p>
+
+
+            <p class="mb-0">
+
+                <strong>Total Price:</strong>
+
+                PKR {{ booking.total_price|floatformat:0 }}
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         BOOKING ACTIONS
+    ========================== -->
+
+    {% if booking.status == "PENDING" %}
+
+
+        <div class="card shadow-sm">
+
+            <div class="card-body">
+
+                <h5 class="mb-3">
+                    Booking Actions
+                </h5>
+
+
+                <p class="text-muted">
+                    This booking is waiting for admin approval.
+                    You can confirm or cancel it.
+                </p>
+
+
+                <div class="d-flex gap-2">
+
+
+                    <!-- =========================
+                         CONFIRM BOOKING
+                    ========================== -->
+
+                    <form
+                        method="POST"
+                        action="{% url 'confirm_booking' booking.id %}"
+                    >
+
+                        {% csrf_token %}
+
+                        <button
+                            type="submit"
+                            class="btn btn-success"
+                        >
+
+                            Confirm Booking
+
+                        </button>
+
+                    </form>
+
+
+                    <!-- =========================
+                         CANCEL BOOKING
+                    ========================== -->
+
+                    <form
+                        method="POST"
+                        action="{% url 'cancel_booking' booking.id %}"
+                    >
+
+                        {% csrf_token %}
+
+                        <button
+                            type="submit"
+                            class="btn btn-danger"
+                        >
+
+                            Cancel Booking
+
+                        </button>
+
+                    </form>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    {% elif booking.status == "CONFIRMED" %}
+
+
+        <div class="card border-success shadow-sm">
+
+            <div class="card-body">
+
+                <h5 class="text-success">
+                    Booking Confirmed
+                </h5>
+
+                <p class="mb-0">
+                    This booking has been confirmed successfully.
+                </p>
+
+            </div>
+
+        </div>
+
+
+    {% elif booking.status == "CANCELLED" %}
+
+
+        <div class="card border-danger shadow-sm">
+
+            <div class="card-body">
+
+                <h5 class="text-danger">
+                    Booking Cancelled
+                </h5>
+
+                <p class="mb-0">
+                    This booking has been cancelled.
+                </p>
+
+            </div>
+
+        </div>
+
+
+    {% elif booking.status == "COMPLETED" %}
+
+
+        <div class="card border-primary shadow-sm">
+
+            <div class="card-body">
+
+                <h5 class="text-primary">
+                    Booking Completed
+                </h5>
+
+                <p class="mb-0">
+                    This booking has been completed.
+                </p>
+
+            </div>
+
+        </div>
+
+
+    {% endif %}
+
+
+</div>
+
+
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+></script>
+
+
+</body>
+
+</html>
+

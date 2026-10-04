@@ -1,0 +1,989 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Agent Login | AL NAJAM Travel & Tours</title>
+
+<!-- Bootstrap Icons -->
+<link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+<!-- Main CSS -->
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+<style>
+
+    /* ================================
+       LOGIN PAGE
+    ================================= */
+
+    .login-page {
+        min-height: calc(100vh - 80px);
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        padding: 70px 20px;
+
+        background:
+            linear-gradient(
+                rgba(15, 23, 42, 0.90),
+                rgba(15, 23, 42, 0.95)
+            ),
+            url("https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=2000&q=85");
+
+        background-size: cover;
+        background-position: center;
+    }
+
+
+    /* ================================
+       LOGIN BOX
+    ================================= */
+
+    .login-box {
+
+        width: 100%;
+        max-width: 470px;
+
+        background: #ffffff;
+
+        padding: 42px;
+
+        border-radius: 22px;
+
+        box-shadow:
+            0 25px 70px rgba(0, 0, 0, 0.30);
+
+        animation: loginFade 0.6s ease;
+    }
+
+
+    @keyframes loginFade {
+
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+
+    /* ================================
+       HEADER
+    ================================= */
+
+    .login-header {
+
+        text-align: center;
+
+        margin-bottom: 30px;
+    }
+
+
+    .login-logo {
+
+width: 85px;
+height: 85px;
+
+margin: 0 auto 18px;
+
+display: flex;
+align-items: center;
+justify-content: center;
+
+background: transparent;
+
+overflow: hidden;
+}
+
+.login-logo img {
+
+width: 100%;
+height: 100%;
+
+object-fit: contain;
+
+display: block;
+}
+        
+
+
+    .login-header h1 {
+
+        margin: 0 0 8px;
+
+        color: #172033;
+
+        font-size: 30px;
+
+        font-weight: 800;
+    }
+
+
+    .login-header p {
+
+        margin: 0;
+
+        color: #687386;
+
+        font-size: 14px;
+
+        line-height: 1.6;
+    }
+
+
+    /* ================================
+       LOGIN INFORMATION
+    ================================= */
+
+    .login-info {
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 10px;
+
+        padding: 12px 14px;
+
+        margin-bottom: 24px;
+
+        border-radius: 10px;
+
+        background: #fff8e7;
+
+        border: 1px solid #fde6a8;
+
+        color: #8a6100;
+
+        font-size: 13px;
+
+        line-height: 1.5;
+    }
+
+
+    .login-info i {
+
+        font-size: 17px;
+
+        flex-shrink: 0;
+
+        color: #F59E0B;
+    }
+
+
+    /* ================================
+       DJANGO MESSAGES
+    ================================= */
+
+    .login-message {
+
+        padding: 12px 15px;
+
+        margin-bottom: 20px;
+
+        border-radius: 9px;
+
+        background: #fff1f2;
+
+        border: 1px solid #fecdd3;
+
+        color: #be123c;
+
+        font-size: 13px;
+
+        text-align: center;
+    }
+
+
+    /* ================================
+       FORM
+    ================================= */
+
+    .login-form {
+
+        margin-top: 10px;
+    }
+
+
+    .login-group {
+
+        margin-bottom: 21px;
+    }
+
+
+    .login-group label {
+
+        display: block;
+
+        margin-bottom: 8px;
+
+        color: #172033;
+
+        font-size: 14px;
+
+        font-weight: 700;
+    }
+
+
+    .input-wrapper {
+
+        position: relative;
+    }
+
+
+    .input-wrapper i {
+
+        position: absolute;
+
+        left: 15px;
+        top: 50%;
+
+        transform: translateY(-50%);
+
+        color: #9aa3b2;
+
+        font-size: 17px;
+
+        pointer-events: none;
+    }
+
+
+    .login-group input {
+
+        width: 100%;
+
+        padding: 14px 45px 14px 45px;
+
+        border: 1px solid #dfe4ec;
+
+        border-radius: 10px;
+
+        outline: none;
+
+        font-family: inherit;
+
+        font-size: 14px;
+
+        color: #172033;
+
+        background: #ffffff;
+
+        transition: all 0.3s ease;
+
+        box-sizing: border-box;
+    }
+
+
+    .login-group input:focus {
+
+        border-color: #F59E0B;
+
+        box-shadow:
+            0 0 0 3px rgba(245, 158, 11, 0.12);
+    }
+
+
+    .login-group input::placeholder {
+
+        color: #a0a8b5;
+    }
+
+
+    /* ================================
+       PASSWORD TOGGLE
+    ================================= */
+    .password-toggle {
+    position: absolute;
+
+    right: 12px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 35px;
+    height: 35px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+
+    background: transparent;
+
+    color: #9aa3b2;
+
+    cursor: pointer;
+
+    padding: 0;
+
+    margin: 0;
+
+    z-index: 5;
+
+    font-size: 17px;
+}
+
+.password-toggle:hover {
+    color: #F59E0B;
+}
+
+.password-toggle:focus {
+    outline: none;
+}
+
+
+    .password-toggle:hover {
+
+        color: #F59E0B;
+    }
+
+
+    /* ================================
+       OPTIONS
+    ================================= */
+
+    .login-options {
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: space-between;
+
+        margin-bottom: 25px;
+
+        font-size: 13px;
+    }
+
+
+    .remember-me {
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 7px;
+
+        color: #687386;
+
+        cursor: pointer;
+    }
+
+
+    .remember-me input {
+
+        width: auto;
+
+        accent-color: #F59E0B;
+
+        cursor: pointer;
+    }
+
+
+    .forgot-password {
+
+        color: #D49700;
+
+        text-decoration: none;
+
+        font-weight: 700;
+    }
+
+
+    .forgot-password:hover {
+
+        color: #F59E0B;
+
+        text-decoration: underline;
+    }
+
+
+    /* ================================
+       LOGIN BUTTON
+    ================================= */
+
+    .login-submit {
+
+        width: 100%;
+
+        border: none;
+
+        padding: 15px 20px;
+
+        border-radius: 10px;
+
+        background: #F59E0B;
+
+        color: white;
+
+        font-size: 15px;
+
+        font-weight: 700;
+
+        cursor: pointer;
+
+        transition: all 0.3s ease;
+    }
+
+
+    .login-submit:hover {
+
+        transform: translateY(-2px);
+
+        background: #e99605;
+
+        box-shadow:
+            0 10px 25px rgba(245, 158, 11, 0.30);
+    }
+
+
+    .login-submit i {
+
+        margin-left: 6px;
+    }
+
+
+    /* ================================
+       DIVIDER
+    ================================= */
+
+    .login-divider {
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 12px;
+
+        margin: 28px 0;
+
+        color: #a0a8b5;
+
+        font-size: 12px;
+
+        font-weight: 600;
+    }
+
+
+    .login-divider::before,
+    .login-divider::after {
+
+        content: "";
+
+        flex: 1;
+
+        height: 1px;
+
+        background: #e5e8ee;
+    }
+
+
+    /* ================================
+       REGISTER
+    ================================= */
+
+    .register-text {
+
+        text-align: center;
+
+        color: #687386;
+
+        font-size: 14px;
+    }
+
+
+    .register-text a {
+
+        color: #D49700;
+
+        font-weight: 700;
+
+        text-decoration: none;
+    }
+
+
+    .register-text a:hover {
+
+        color: #F59E0B;
+
+        text-decoration: underline;
+    }
+
+
+    /* ================================
+       SECURITY TEXT
+    ================================= */
+
+    .security-text {
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        gap: 6px;
+
+        margin-top: 20px;
+
+        color: #9aa3b2;
+
+        font-size: 12px;
+    }
+
+
+    .security-text i {
+
+        color: #7b8798;
+    }
+
+
+    /* ================================
+       RESPONSIVE
+    ================================= */
+
+    @media (max-width: 600px) {
+
+        .login-page {
+
+            padding: 50px 15px;
+        }
+
+
+        .login-box {
+
+            padding: 30px 22px;
+
+            border-radius: 18px;
+        }
+
+
+        .login-header h1 {
+
+            font-size: 26px;
+        }
+
+
+        .login-options {
+
+            font-size: 12px;
+        }
+
+    }
+    .brand-logo {
+    width: 55px;
+    height: 55px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+}
+
+.brand-logo img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    display: block;
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<!-- ================================
+     NAVBAR
+================================= -->
+
+<header class="main-header">
+
+    <nav class="navbar">
+
+
+        <!-- BRAND -->
+
+        <a href="{% url 'home' %}" class="brand">
+
+            <div class="brand-logo">
+                <img
+                    src="{% static 'images/logo.png' %}"
+                    alt="AL NAJAM Travel & Tours"
+                >
+            </div>
+
+            <div class="brand-text">
+
+                <strong>AL NAJAM</strong>
+
+                <small>
+                    TRAVEL & TOURS
+                </small>
+
+            </div>
+
+        </a>
+
+
+        <!-- NAVIGATION -->
+
+        <div class="nav-links">
+
+            <a href="{% url 'home' %}">
+                Home
+            </a>
+
+            <a href="{% url 'flights' %}">
+                Flights
+            </a>
+
+            <a href="{% url 'hotels' %}">
+                Hotels
+            </a>
+
+            <a href="{% url 'visa' %}">
+                Visa
+            </a>
+
+            <a href="{% url 'umrah' %}">
+                Umrah
+            </a>
+
+            <a href="{% url 'tours' %}">
+                Tours
+            </a>
+
+            <a href="{% url 'about' %}">
+                About
+            </a>
+
+            <a href="{% url 'contact' %}">
+                Contact
+            </a>
+
+        </div>
+
+
+        <!-- MOBILE MENU -->
+
+        <button class="mobile-menu">
+
+            <i class="bi bi-list"></i>
+
+        </button>
+
+    </nav>
+
+</header>
+
+
+
+<!-- ================================
+     LOGIN PAGE
+================================= -->
+
+<main class="login-page">
+
+
+    <div class="login-box">
+
+
+        <!-- HEADER -->
+
+        <div class="login-header">
+
+            <div class="login-logo">
+                <img
+                    src="{% static 'images/logo.png' %}"
+                    alt="AL NAJAM Travel & Tours"
+                >
+            </div>
+
+            <h1>
+                Agent Login
+            </h1>
+
+            <p>
+                Sign in to access your AL NAJAM
+                agent portal.
+            </p>
+
+        </div>
+
+
+
+        <!-- LOGIN INFORMATION -->
+
+        <div class="login-info">
+
+            <i class="bi bi-info-circle-fill"></i>
+
+            <span>
+                <strong>Use your registered email address</strong>
+                and password to login.
+            </span>
+
+        </div>
+
+
+
+        <!-- DJANGO MESSAGES -->
+
+        {% if messages %}
+
+            {% for message in messages %}
+
+                <div class="login-message">
+                    {{ message }}
+                </div>
+
+            {% endfor %}
+
+        {% endif %}
+
+
+
+        <!-- LOGIN FORM -->
+
+        <form method="POST"
+              action="{% url 'login' %}"
+              class="login-form">
+
+            {% csrf_token %}
+
+
+            <!-- EMAIL -->
+
+            <div class="login-group">
+
+                <label for="username">
+                    Email Address
+                </label>
+
+                <div class="input-wrapper">
+
+                    <i class="bi bi-envelope"></i>
+
+                    <input
+                        type="email"
+                        id="username"
+                        name="username"
+                        placeholder="Enter your registered email"
+                        autocomplete="email"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+
+            <!-- PASSWORD -->
+
+            <!-- PASSWORD -->
+
+<div class="login-group">
+
+    <label for="password">
+        Password
+    </label>
+
+    <div class="input-wrapper">
+
+        <i class="bi bi-lock"></i>
+
+        <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Enter your password"
+            autocomplete="current-password"
+            required
+        >
+
+        <button
+            type="button"
+            class="password-toggle"
+            onclick="togglePassword()"
+            aria-label="Show password"
+        >
+            <i class="bi bi-eye" id="passwordIcon"></i>
+        </button>
+
+    </div>
+
+</div>
+
+
+            <!-- OPTIONS -->
+
+            <div class="login-options">
+
+                <label class="remember-me">
+
+                    <input
+                        type="checkbox"
+                        name="remember"
+                    >
+
+                    Remember me
+
+                </label>
+
+
+                <a href="#"
+                   class="forgot-password">
+
+                    Forgot Password?
+
+                </a>
+
+            </div>
+
+
+
+            <!-- LOGIN BUTTON -->
+
+            <button
+                type="submit"
+                class="login-submit"
+            >
+
+                Login to Agent Portal
+
+                <i class="bi bi-arrow-right"></i>
+
+            </button>
+
+        </form>
+
+
+
+        <!-- DIVIDER -->
+
+        <div class="login-divider">
+            OR
+        </div>
+
+
+
+        <!-- REGISTER -->
+
+        <div class="register-text">
+
+            Don't have an agent account?
+
+            <a href="{% url 'become_agent' %}">
+                Become an Agent
+            </a>
+
+        </div>
+
+
+
+        <!-- SECURITY -->
+
+        <div class="security-text">
+
+            <i class="bi bi-shield-lock-fill"></i>
+
+            Secure login powered by AL NAJAM
+
+        </div>
+
+
+    </div>
+
+</main>
+
+
+
+<!-- ================================
+     FOOTER
+================================= -->
+
+<footer class="footer">
+
+    <div class="footer-content">
+
+        <h3>
+            AL NAJAM
+        </h3>
+
+        <p>
+            Travel & Tours
+        </p>
+
+        <span>
+            © 2026 AL NAJAM Travel & Tours.
+            All rights reserved.
+        </span>
+
+    </div>
+
+</footer>
+
+
+
+<!-- ================================
+     PASSWORD SCRIPT
+================================= -->
+
+<script>
+
+    function togglePassword() {
+
+        const passwordInput =
+            document.getElementById("password");
+
+        const passwordIcon =
+            document.getElementById("passwordIcon");
+
+
+        if (passwordInput.type === "password") {
+
+            passwordInput.type = "text";
+
+            passwordIcon.classList.remove("bi-eye");
+
+            passwordIcon.classList.add("bi-eye-slash");
+
+        } else {
+
+            passwordInput.type = "password";
+
+            passwordIcon.classList.remove("bi-eye-slash");
+
+            passwordIcon.classList.add("bi-eye");
+
+        }
+
+    }
+
+</script>
+
+
+</body>
+
+</html>

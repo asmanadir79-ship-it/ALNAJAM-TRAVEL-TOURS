@@ -1,0 +1,4861 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Group Tickets | AL NAJAM Travel & Tours
+    </title>
+
+
+    <!-- =====================================================
+         BOOTSTRAP
+    ====================================================== -->
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+
+    <!-- =====================================================
+         BOOTSTRAP ICONS
+    ====================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    >
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        /* =====================================================
+           ROOT
+        ====================================================== */
+
+        :root {
+
+            --navy: #172033;
+            --navy-light: #263d60;
+
+            --blue: #1675d1;
+            --blue-dark: #0d62b5;
+
+            --orange: #f59e0b;
+            --orange-dark: #d88900;
+
+            --green: #08a76b;
+            --green-soft: #eaf9f2;
+
+            --red: #dc3545;
+            --red-soft: #fff0f1;
+
+            --text: #172033;
+            --muted: #8a95a7;
+
+            --border: #e5eaf1;
+
+            --surface: #ffffff;
+            --surface-soft: #f8fafc;
+
+        }
+
+
+        /* =====================================================
+           BODY
+        ====================================================== */
+
+        body {
+
+            margin: 0;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f7f9fc 0%,
+                    #eef4f9 100%
+                );
+
+            color: var(--text);
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            min-height: 100vh;
+
+        }
+
+
+        /* =====================================================
+           SCROLLBAR
+        ====================================================== */
+
+        ::-webkit-scrollbar {
+
+            width: 7px;
+            height: 7px;
+
+        }
+
+
+        ::-webkit-scrollbar-track {
+
+            background: #f1f4f8;
+
+        }
+
+
+        ::-webkit-scrollbar-thumb {
+
+            background: #cbd5e1;
+
+            border-radius: 20px;
+
+        }
+
+
+        ::-webkit-scrollbar-thumb:hover {
+
+            background: #aeb9c8;
+
+        }
+
+
+        /* =====================================================
+           SIDEBAR
+        ====================================================== */
+
+        .sidebar {
+
+            position: fixed;
+
+            left: 0;
+            top: 0;
+            bottom: 0;
+
+            width: 260px;
+
+            background:
+                rgba(255,255,255,.96);
+
+            border-right:
+                1px solid var(--border);
+
+            box-shadow:
+                8px 0 30px rgba(20,35,60,.04);
+
+            z-index: 1000;
+
+            overflow-y: auto;
+
+            padding:
+                18px 13px;
+
+        }
+
+
+        /* =====================================================
+           LOGO
+        ====================================================== */
+
+        .sidebar-logo {
+
+            text-align: center;
+
+            padding:
+                5px 0 21px;
+
+            margin-bottom: 21px;
+
+            border-bottom:
+                1px solid #edf0f5;
+
+        }
+
+
+        .sidebar-logo-image {
+
+            width: 88px;
+            height: 88px;
+
+            display: block;
+
+            margin: 0 auto;
+
+            object-fit: contain;
+
+        }
+
+
+        .sidebar-logo h2 {
+
+            margin:
+                10px 0 0;
+
+            font-size: 16px;
+
+            font-weight: 800;
+
+            letter-spacing: .2px;
+
+            color: var(--navy);
+
+        }
+
+
+        .sidebar-logo span {
+
+            display: block;
+
+            margin-top: 4px;
+
+            font-size: 9px;
+
+            letter-spacing: 1.4px;
+
+            font-weight: 700;
+
+            color: var(--muted);
+
+        }
+
+
+        /* =====================================================
+           SIDEBAR SECTION
+        ====================================================== */
+
+        .sidebar-section {
+
+            margin-bottom: 23px;
+
+        }
+
+
+        .sidebar-title {
+
+            padding:
+                0 12px;
+
+            margin-bottom: 8px;
+
+            font-size: 9px;
+
+            font-weight: 800;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1.5px;
+
+            color: #99a4b4;
+
+        }
+
+
+        /* =====================================================
+           SIDEBAR LINKS
+        ====================================================== */
+
+        .sidebar-link {
+
+            width: 100%;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 11px;
+
+            padding:
+                10px 11px;
+
+            margin-bottom: 4px;
+
+            border-radius: 11px;
+
+            color: #5c6879;
+
+            text-decoration: none;
+
+            font-size: 12px;
+
+            font-weight: 600;
+
+            transition:
+                all .22s ease;
+
+            border:
+                1px solid transparent;
+
+        }
+
+
+        .sidebar-link i {
+
+            width: 32px;
+            height: 32px;
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 9px;
+
+            background:
+                #f4f7fb;
+
+            color: #68778d;
+
+            font-size: 14px;
+
+            flex-shrink: 0;
+
+            transition:
+                all .22s ease;
+
+        }
+
+
+        .sidebar-link:hover {
+
+            color:
+                var(--blue);
+
+            background:
+                #f7fbff;
+
+            border-color:
+                #dceafa;
+
+        }
+
+
+        .sidebar-link:hover i {
+
+            background:
+                #e9f4ff;
+
+            color:
+                var(--blue);
+
+        }
+
+
+        .sidebar-link.active {
+
+            color:
+                var(--orange-dark);
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #fff7e8,
+                    #fff0d2
+                );
+
+            border-color:
+                #f4deb5;
+
+            box-shadow:
+                0 5px 14px rgba(245,158,11,.08);
+
+        }
+
+
+        .sidebar-link.active i {
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--orange),
+                    var(--orange-dark)
+                );
+
+            box-shadow:
+                0 5px 12px rgba(245,158,11,.20);
+
+        }
+
+
+        /* =====================================================
+           LOGOUT
+        ====================================================== */
+
+        .logout-form {
+
+            margin: 0;
+
+            padding: 0;
+
+        }
+
+
+        .logout-link {
+
+            border: none;
+
+            background: transparent;
+
+            font-family: inherit;
+
+            text-align: left;
+
+            cursor: pointer;
+
+        }
+
+
+        .logout-link:hover {
+
+            color:
+                var(--red);
+
+            background:
+                var(--red-soft);
+
+            border-color:
+                #f2c5ca;
+
+        }
+
+
+        .logout-link:hover i {
+
+            color:
+                var(--red);
+
+            background:
+                #ffe1e4;
+
+        }
+
+
+        /* =====================================================
+           MAIN CONTENT
+        ====================================================== */
+
+        .main-content {
+
+            margin-left: 260px;
+
+            min-height: 100vh;
+
+            padding:
+                22px 28px 35px;
+
+        }
+
+
+        /* =====================================================
+           TOP HEADER
+        ====================================================== */
+
+        .top-header {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 20px;
+
+            background:
+                rgba(255,255,255,.97);
+
+            border:
+                1px solid var(--border);
+
+            border-radius: 18px;
+
+            padding:
+                18px 21px;
+
+            margin-bottom: 18px;
+
+            box-shadow:
+                0 6px 24px rgba(20,35,60,.04);
+
+        }
+
+
+        .header-left {
+
+            min-width: 0;
+
+        }
+
+
+        .header-label {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 6px;
+
+            background:
+                #eef6ff;
+
+            color:
+                var(--blue);
+
+            border:
+                1px solid #d6e8fb;
+
+            padding:
+                5px 8px;
+
+            border-radius: 7px;
+
+            font-size: 8px;
+
+            font-weight: 800;
+
+            letter-spacing: .8px;
+
+        }
+
+
+        .header-label i {
+
+            font-size: 10px;
+
+        }
+
+
+        .top-header h1 {
+
+            margin:
+                8px 0 4px;
+
+            font-size: 23px;
+
+            font-weight: 800;
+
+            letter-spacing: -.3px;
+
+            color: var(--navy);
+
+        }
+
+
+        .top-header p {
+
+            margin: 0;
+
+            color:
+                var(--muted);
+
+            font-size: 10px;
+
+        }
+
+
+        /* =====================================================
+           AGENT PROFILE
+        ====================================================== */
+
+        .agent-profile {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            background:
+                #ffffff;
+
+            border:
+                1px solid #e2e8f0;
+
+            border-radius: 13px;
+
+            padding:
+                7px 11px;
+
+            flex-shrink: 0;
+
+        }
+
+
+        .agent-avatar {
+
+            width: 39px;
+            height: 39px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f59e0b,
+                    #d97706
+                );
+
+            color: #ffffff;
+
+            font-size: 14px;
+
+            font-weight: 800;
+
+            box-shadow:
+                0 6px 14px rgba(245,158,11,.17);
+
+        }
+
+
+        .agent-details strong {
+
+            display: block;
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+            color: var(--navy);
+
+        }
+
+
+        .agent-details span {
+
+            display: block;
+
+            margin-top: 3px;
+
+            color:
+                var(--muted);
+
+            font-size: 8px;
+
+        }
+
+
+        .agent-status {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 5px;
+
+            margin-top: 4px;
+
+            color:
+                var(--green);
+
+            font-size: 7px;
+
+            font-weight: 700;
+
+        }
+
+
+        .agent-status-dot {
+
+            width: 6px;
+            height: 6px;
+
+            background:
+                var(--green);
+
+            border-radius: 50%;
+
+        }
+
+
+        /* =====================================================
+           BREADCRUMB
+        ====================================================== */
+
+        .breadcrumb-bar {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            margin-bottom: 15px;
+
+            color:
+                #8b95a5;
+
+            font-size: 8px;
+
+        }
+
+
+        .breadcrumb-bar a {
+
+            text-decoration: none;
+
+            color:
+                var(--blue);
+
+            font-weight: 700;
+
+        }
+
+
+        .breadcrumb-bar i {
+
+            font-size: 9px;
+
+        }
+
+
+        /* =====================================================
+           SEARCH PANEL
+        ====================================================== */
+
+        .ticket-search-panel {
+
+            position: relative;
+
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #ffffff,
+                    #fbfdff
+                );
+
+            border:
+                1px solid #dfe7f0;
+
+            border-radius: 20px;
+
+            padding:
+                18px;
+
+            margin-bottom: 18px;
+
+            box-shadow:
+                0 8px 30px rgba(20,35,60,.04);
+
+        }
+
+
+        .ticket-search-panel::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 180px;
+            height: 180px;
+
+            right: -90px;
+            top: -115px;
+
+            border:
+                1px solid rgba(22,117,209,.07);
+
+            border-radius: 50%;
+
+            box-shadow:
+                0 0 0 22px rgba(22,117,209,.018),
+                0 0 0 44px rgba(22,117,209,.012);
+
+        }
+
+
+        .search-panel-header {
+
+            position: relative;
+
+            z-index: 2;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            margin-bottom: 13px;
+
+        }
+
+
+        .search-panel-title {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            font-size: 13px;
+
+            font-weight: 800;
+
+            color: var(--navy);
+
+        }
+
+
+        .search-panel-title-icon {
+
+            width: 31px;
+            height: 31px;
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 9px;
+
+            color:
+                var(--blue);
+
+            background:
+                #eef6ff;
+
+            font-size: 13px;
+
+        }
+
+
+        .search-panel-subtitle {
+
+            margin-top: 3px;
+
+            color:
+                var(--muted);
+
+            font-size: 8px;
+
+        }
+
+
+        .inventory-pill {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 6px;
+
+            border-radius: 20px;
+
+            background:
+                #eaf9f2;
+
+            border:
+                1px solid #cdebdc;
+
+            color:
+                #118257;
+
+            padding:
+                7px 10px;
+
+            font-size: 8px;
+
+            font-weight: 800;
+
+            white-space: nowrap;
+
+        }
+
+
+        .search-row {
+
+            position: relative;
+
+            z-index: 2;
+
+            display: grid;
+
+            grid-template-columns:
+                1fr
+                1fr
+                1fr
+                1.5fr
+                auto;
+
+            gap: 9px;
+
+            align-items: stretch;
+
+        }
+
+
+        .search-field {
+
+            position: relative;
+
+            background:
+                #ffffff;
+
+            border:
+                1px solid #dfe6ef;
+
+            border-radius: 11px;
+
+            min-width: 0;
+
+            transition:
+                .2s ease;
+
+        }
+
+
+        .search-field:focus-within {
+
+            border-color:
+                #b9d5ef;
+
+            box-shadow:
+                0 0 0 3px rgba(22,117,209,.06);
+
+        }
+
+
+        .search-field-icon {
+
+            position: absolute;
+
+            left: 12px;
+
+            top: 50%;
+
+            transform:
+                translateY(-50%);
+
+            color:
+                #9aa6b6;
+
+            font-size: 12px;
+
+            pointer-events: none;
+
+        }
+
+
+        .search-field input {
+
+            width: 100%;
+
+            min-height: 45px;
+
+            border: none;
+
+            outline: none;
+
+            background: transparent;
+
+            padding:
+                0 12px 0 35px;
+
+            color:
+                var(--navy);
+
+            font-size: 9px;
+
+            font-weight: 600;
+
+        }
+
+
+        .search-field input::placeholder {
+
+            color:
+                #9aa6b6;
+
+            font-weight: 500;
+
+        }
+
+
+        .search-button {
+
+            min-height: 45px;
+
+            border: none;
+
+            border-radius: 11px;
+
+            padding:
+                0 16px;
+
+                background: linear-gradient(
+    135deg,
+    var(--orange),
+    var(--orange-dark)
+);
+
+            color: white;
+
+            font-size: 9px;
+
+            font-weight: 800;
+
+            cursor: pointer;
+
+            transition:
+                .2s ease;
+
+            box-shadow:
+                0 7px 16px rgba(22,117,209,.16);
+
+            white-space: nowrap;
+
+        }
+
+
+        .search-button:hover {
+
+            transform:
+                translateY(-1px);
+
+            box-shadow:
+                0 10px 20px rgba(22,117,209,.22);
+
+        }
+
+
+        /* =====================================================
+           CATEGORY AREA
+        ====================================================== */
+
+        .category-header {
+
+            position: relative;
+
+            z-index: 2;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 10px;
+
+            margin:
+                17px 0 9px;
+
+        }
+
+
+        .category-title-wrap {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+        }
+
+
+        .category-title-icon {
+
+            width: 29px;
+            height: 29px;
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background:
+                #fff5e6;
+
+            color:
+                var(--orange-dark);
+
+            border-radius: 8px;
+
+            font-size: 12px;
+
+        }
+
+
+        .category-title {
+
+            font-size: 8px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1.3px;
+
+            font-weight: 800;
+
+            color:
+                #778398;
+
+        }
+
+
+        .selected-category-text {
+
+            margin-top: 3px;
+
+            font-size: 8px;
+
+            color:
+                #a0aabb;
+
+        }
+
+
+        .clear-category-button {
+
+            border:
+                1px solid #dfe5ed;
+
+            background:
+                white;
+
+            border-radius: 9px;
+
+            padding:
+                8px 11px;
+
+            color:
+                #667386;
+
+            font-size: 8px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition:
+                .2s ease;
+
+        }
+
+
+        .clear-category-button:hover {
+
+            background:
+                #f8fafc;
+
+            color:
+                #334155;
+
+        }
+
+
+        .category-buttons {
+
+            position: relative;
+
+            z-index: 2;
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 7px;
+
+        }
+
+
+        .category-button {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 6px;
+
+            border:
+                1px solid #dfe6ef;
+
+            background:
+                #ffffff;
+
+            color:
+                #58667a;
+
+            border-radius: 22px;
+
+            padding:
+                8px 12px;
+
+            font-size: 8px;
+
+            font-weight: 800;
+
+            cursor: pointer;
+
+            transition:
+                .2s ease;
+
+        }
+
+
+        .category-button i {
+
+            font-size: 10px;
+
+        }
+
+
+        .category-button:hover {
+
+            background:
+                #eef6ff;
+
+            color:
+                var(--blue);
+
+            border-color:
+                #cde1f5;
+
+            transform:
+                translateY(-1px);
+
+        }
+
+
+        .category-button.active {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #1675d1,
+                    #0d62b5
+                );
+
+            color:
+                #ffffff;
+
+            border-color:
+                #1675d1;
+
+            box-shadow:
+                0 6px 14px rgba(22,117,209,.18);
+
+        }
+
+
+        /* =====================================================
+           ROUTE AREA
+        ====================================================== */
+
+        .route-container {
+
+            display: none;
+
+            position: relative;
+
+            z-index: 2;
+
+            margin-top: 10px;
+
+            background:
+                #f8fbfe;
+
+            border:
+                1px solid #e5edf5;
+
+            border-radius: 12px;
+
+            padding:
+                11px;
+
+        }
+
+
+        .route-container.show {
+
+            display: block;
+
+            animation:
+                fadeDown .22s ease;
+
+        }
+
+
+        @keyframes fadeDown {
+
+            from {
+
+                opacity: 0;
+
+                transform:
+                    translateY(-4px);
+
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform:
+                    translateY(0);
+
+            }
+
+        }
+
+
+        .route-container-title {
+
+            margin-bottom: 7px;
+
+            color:
+                #8996a8;
+
+            font-size: 7px;
+
+            text-transform: uppercase;
+
+            letter-spacing: .8px;
+
+            font-weight: 800;
+
+        }
+
+
+        .route-buttons {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 7px;
+
+        }
+
+
+        .route-button {
+
+            border:
+                1px solid #dfe6ef;
+
+            background:
+                white;
+
+            color:
+                #526176;
+
+            border-radius: 20px;
+
+            padding:
+                7px 10px;
+
+            font-size: 8px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition:
+                .2s ease;
+
+        }
+
+
+        .route-button:hover {
+
+            border-color:
+                #c3ddef;
+
+            color:
+                var(--blue);
+
+            background:
+                #edf7ff;
+
+        }
+
+        /* =====================================================
+   ROUTE WITH AVAILABLE INVENTORY
+===================================================== */
+
+.route-button.inventory-available {
+
+color:
+    #08794d;
+
+background:
+    #eaf9f2;
+
+border-color:
+    #bfe6d1;
+
+box-shadow:
+    0 4px 10px rgba(8,167,107,.10);
+
+}
+
+
+.route-button.inventory-available::after {
+
+content:
+    "Available";
+
+margin-left:
+    5px;
+
+padding:
+    3px 5px;
+
+border-radius:
+    10px;
+
+background:
+    #08a76b;
+
+color:
+    white;
+
+font-size:
+    6px;
+
+font-weight:
+    800;
+
+letter-spacing:
+    .2px;
+
+}
+
+
+/* =====================================================
+SELECTED ROUTE
+===================================================== */
+
+.route-button.active {
+
+color:
+    white;
+
+background:
+    var(--orange);
+
+border-color:
+    var(--orange);
+
+box-shadow:
+    0 5px 12px rgba(245,158,11,.16);
+
+}
+
+
+.route-button.active::after {
+
+display:
+    none;
+
+}   
+        /* =====================================================
+           RESULTS CARD
+        ====================================================== */
+
+        .results-card {
+
+            background:
+                #ffffff;
+
+            border:
+                1px solid #e4eaf1;
+
+            border-radius: 19px;
+
+            box-shadow:
+                0 8px 26px rgba(20,35,60,.04);
+
+            overflow: hidden;
+
+        }
+
+
+        .results-header {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 15px;
+
+            padding:
+                17px 19px;
+
+            border-bottom:
+                1px solid #edf0f4;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #ffffff,
+                    #fcfdff
+                );
+
+        }
+
+
+        .results-title-wrap {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 9px;
+
+        }
+
+
+        .results-icon {
+
+            width: 36px;
+            height: 36px;
+
+            border-radius: 10px;
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            color:
+                var(--blue);
+
+            background:
+                #eef6ff;
+
+            font-size: 15px;
+
+        }
+
+
+        .results-title {
+
+            margin: 0 0 3px;
+
+            font-size: 14px;
+
+            font-weight: 800;
+
+            color:
+                var(--navy);
+
+        }
+
+
+        .results-subtitle {
+
+            margin: 0;
+
+            color:
+                var(--muted);
+
+            font-size: 8px;
+
+        }
+
+
+        .results-count {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 6px;
+
+            padding:
+                7px 10px;
+
+            border-radius: 20px;
+
+            background:
+                #eef6ff;
+
+            color:
+                var(--blue);
+
+            border:
+                1px solid #d7e8f8;
+
+            font-size: 8px;
+
+            font-weight: 800;
+
+            white-space: nowrap;
+
+        }
+
+
+        /* =====================================================
+           TABLE
+        ====================================================== */
+
+        .table-wrap {
+
+            overflow-x: auto;
+
+        }
+
+
+        .ticket-table {
+
+            width: 100%;
+
+            min-width: 1180px;
+
+            border-collapse: collapse;
+
+        }
+
+
+        .ticket-table th {
+
+            padding:
+                11px 13px;
+
+            background:
+                #f8fafc;
+
+            border-bottom:
+                1px solid #e5eaf0;
+
+            color:
+                #7d8899;
+
+            font-size: 7px;
+
+            font-weight: 800;
+
+            letter-spacing: .8px;
+
+            white-space: nowrap;
+
+            text-transform: uppercase;
+
+        }
+
+
+        .ticket-table td {
+
+            padding:
+                14px 13px;
+
+            border-bottom:
+                1px solid #eff2f5;
+
+            vertical-align: middle;
+
+            font-size: 9px;
+
+            color:
+                #445167;
+
+        }
+
+
+        .ticket-table tbody tr {
+
+            transition:
+                background .18s ease;
+
+        }
+
+
+        .ticket-table tbody tr:hover {
+
+            background:
+                #fbfdff;
+
+        }
+
+
+        .ticket-table tbody tr:last-child td {
+
+            border-bottom: none;
+
+        }
+
+
+        /* =====================================================
+           AIRLINE
+        ====================================================== */
+
+        .airline-wrap {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 9px;
+
+        }
+
+
+        .airline-icon {
+
+            width: 35px;
+            height: 35px;
+
+            flex-shrink: 0;
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 10px;
+
+            background:
+                #eef6ff;
+
+            color:
+                var(--blue);
+
+            border:
+                1px solid #d9eafa;
+
+        }
+
+
+        .airline-name {
+
+            font-size: 9px;
+
+            font-weight: 800;
+
+            color:
+                var(--navy);
+
+            white-space: nowrap;
+
+        }
+
+
+        .airline-code {
+
+            display: block;
+
+            margin-top: 3px;
+
+            color:
+                #9aa5b5;
+
+            font-size: 7px;
+
+        }
+
+
+        /* =====================================================
+           FLIGHT
+        ====================================================== */
+
+        .flight-number {
+
+            display: inline-flex;
+
+            padding:
+                5px 7px;
+
+            background:
+                #f5f8fb;
+
+            border:
+                1px solid #e8edf2;
+
+            border-radius: 7px;
+
+            color:
+                var(--navy);
+
+            font-size: 8px;
+
+            font-weight: 800;
+
+        }
+
+
+        /* =====================================================
+           ROUTE
+        ====================================================== */
+
+        .route-main {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 6px;
+
+            white-space: nowrap;
+
+        }
+
+
+        .route-code {
+
+            font-size: 10px;
+
+            font-weight: 800;
+
+            color:
+                var(--navy);
+
+        }
+
+
+        .route-arrow {
+
+            color:
+                var(--orange);
+
+            font-size: 10px;
+
+        }
+
+
+        .route-city {
+
+            display: block;
+
+            margin-top: 3px;
+
+            color:
+                #98a2b3;
+
+            font-size: 7px;
+
+        }
+
+
+        /* =====================================================
+           DATE
+        ====================================================== */
+
+        .date-main {
+
+            display: block;
+
+            color:
+                var(--navy);
+
+            font-size: 9px;
+
+            font-weight: 800;
+
+            white-space: nowrap;
+
+        }
+
+
+        .small-muted {
+
+            display: block;
+
+            margin-top: 3px;
+
+            color:
+                #9aa4b4;
+
+            font-size: 7px;
+
+        }
+
+
+        /* =====================================================
+           PRICE
+        ====================================================== */
+
+        .price-main {
+
+            display: block;
+
+            color:
+                var(--navy);
+
+            font-size: 10px;
+
+            font-weight: 800;
+
+            white-space: nowrap;
+
+        }
+
+
+        .price-sub {
+
+            display: block;
+
+            margin-top: 3px;
+
+            color:
+                #9aa4b4;
+
+            font-size: 7px;
+
+        }
+
+
+        /* =====================================================
+           SEATS
+        ====================================================== */
+
+        .seat-number {
+
+            display: block;
+
+            color:
+                var(--navy);
+
+            font-size: 9px;
+
+            font-weight: 800;
+
+        }
+
+
+        .seat-progress {
+
+            width: 74px;
+
+            height: 5px;
+
+            margin-top: 6px;
+
+            overflow: hidden;
+
+            background:
+                #edf1f5;
+
+            border-radius: 20px;
+
+        }
+
+
+        .seat-progress-fill {
+
+            height: 100%;
+
+            width: 0;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    var(--green),
+                    #10b981
+                );
+
+            border-radius: 20px;
+
+        }
+
+
+        /* =====================================================
+           STATUS BADGES
+        ====================================================== */
+
+        .status-badge {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 4px;
+
+            padding:
+                5px 8px;
+
+            border-radius: 20px;
+
+            font-size: 7px;
+
+            font-weight: 800;
+
+            white-space: nowrap;
+
+        }
+
+
+        .active-badge {
+
+            color:
+                #08794d;
+
+            background:
+                var(--green-soft);
+
+            border:
+                1px solid #cfeadc;
+
+        }
+
+
+        .available-badge {
+
+            color:
+                var(--blue);
+
+            background:
+                #eef6ff;
+
+            border:
+                1px solid #d8e9fa;
+
+        }
+
+
+        .soldout-badge {
+
+            color:
+                #c62030;
+
+            background:
+                var(--red-soft);
+
+            border:
+                1px solid #f2d0d4;
+
+        }
+
+
+        .inactive-badge {
+
+            color:
+                #697386;
+
+            background:
+                #f3f5f7;
+
+            border:
+                1px solid #e4e8ed;
+
+        }
+
+
+        /* =====================================================
+           BOOK BUTTON
+        ====================================================== */
+
+        .book-btn {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 5px;
+
+            min-height: 33px;
+
+            padding:
+                0 10px;
+
+            border-radius: 8px;
+
+            border: none;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--orange),
+                    var(--orange-dark)
+                );
+
+            color:
+                white;
+
+            text-decoration: none;
+
+            font-size: 8px;
+
+            font-weight: 800;
+
+            white-space: nowrap;
+
+            transition:
+                all .2s ease;
+
+            box-shadow:
+                0 5px 12px rgba(245,158,11,.15);
+
+        }
+
+
+        .book-btn:hover {
+
+            color: white;
+
+            transform:
+                translateY(-1px);
+
+            box-shadow:
+                0 8px 16px rgba(245,158,11,.21);
+
+        }
+
+
+        .book-btn.disabled {
+
+            background:
+                #e8ebef;
+
+            color:
+                #8993a3;
+
+            box-shadow: none;
+
+            pointer-events: none;
+
+        }
+
+
+        /* =====================================================
+           EMPTY STATE
+        ====================================================== */
+
+        .empty-state {
+
+            text-align: center;
+
+            padding:
+                68px 20px;
+
+        }
+
+
+        .empty-icon {
+
+            width: 68px;
+            height: 68px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            margin:
+                0 auto 15px;
+
+            border-radius: 19px;
+
+            background:
+                #eef6ff;
+
+            color:
+                var(--blue);
+
+            font-size: 27px;
+
+            border:
+                1px solid #d9eafa;
+
+        }
+
+
+        .empty-state h4 {
+
+            margin:
+                0 0 6px;
+
+            font-size: 15px;
+
+            font-weight: 800;
+
+            color:
+                var(--navy);
+
+        }
+
+
+        .empty-state p {
+
+            max-width: 500px;
+
+            margin:
+                0 auto;
+
+            color:
+                #98a2b3;
+
+            font-size: 9px;
+
+            line-height: 1.7;
+
+        }
+
+
+        /* =====================================================
+           FOOTER
+        ====================================================== */
+
+        .dashboard-footer {
+
+            text-align: center;
+
+            padding:
+                22px 10px 8px;
+
+            color:
+                #9aa4b4;
+
+            font-size: 8px;
+
+        }
+
+
+        /* =====================================================
+           RESPONSIVE TABLET
+        ====================================================== */
+
+        @media (max-width: 1200px) {
+
+            .main-content {
+
+                padding:
+                    18px;
+
+            }
+
+
+            .sidebar {
+
+                width:
+                    235px;
+
+            }
+
+
+            .main-content {
+
+                margin-left:
+                    235px;
+
+            }
+
+
+            .search-row {
+
+                grid-template-columns:
+                    repeat(3, 1fr);
+
+            }
+
+
+            .airline-search-field {
+
+                grid-column:
+                    span 2;
+
+            }
+
+
+            .search-button {
+
+                width:
+                    100%;
+
+            }
+
+        }
+
+
+        /* =====================================================
+           RESPONSIVE 900
+        ====================================================== */
+
+        @media (max-width: 900px) {
+
+            .sidebar {
+
+                width:
+                    76px;
+
+                padding:
+                    15px 8px;
+
+            }
+
+
+            .sidebar-logo h2,
+            .sidebar-logo span,
+            .sidebar-title,
+            .sidebar-link span {
+
+                display: none;
+
+            }
+
+
+            .sidebar-logo {
+
+                border:
+                    none;
+
+                margin-bottom:
+                    15px;
+
+            }
+
+
+            .sidebar-logo-image {
+
+                width:
+                    54px;
+
+                height:
+                    54px;
+
+            }
+
+
+            .sidebar-link {
+
+                justify-content:
+                    center;
+
+                padding:
+                    8px;
+
+            }
+
+
+            .sidebar-link i {
+
+                width:
+                    39px;
+
+                height:
+                    39px;
+
+            }
+
+
+            .main-content {
+
+                margin-left:
+                    76px;
+
+            }
+
+
+            .top-header {
+
+                align-items:
+                    flex-start;
+
+            }
+
+
+            .search-row {
+
+                grid-template-columns:
+                    1fr 1fr;
+
+            }
+
+
+            .airline-search-field {
+
+                grid-column:
+                    auto;
+
+            }
+
+        }
+
+
+        /* =====================================================
+           RESPONSIVE MOBILE
+        ====================================================== */
+
+        @media (max-width: 680px) {
+
+            .sidebar {
+
+                position:
+                    relative;
+
+                width:
+                    100%;
+
+                height:
+                    auto;
+
+                padding:
+                    10px;
+
+                border-right:
+                    none;
+
+                border-bottom:
+                    1px solid var(--border);
+
+            }
+
+
+            .sidebar-logo {
+
+                display:
+                    flex;
+
+                align-items:
+                    center;
+
+                justify-content:
+                    flex-start;
+
+                gap:
+                    10px;
+
+                text-align:
+                    left;
+
+                padding:
+                    4px 8px 12px;
+
+                margin-bottom:
+                    8px;
+
+                border-bottom:
+                    1px solid #edf0f5;
+
+            }
+
+
+            .sidebar-logo-image {
+
+                width:
+                    49px;
+
+                height:
+                    49px;
+
+                margin:
+                    0;
+
+            }
+
+
+            .sidebar-logo h2,
+            .sidebar-logo span {
+
+                display:
+                    block;
+
+            }
+
+
+            .sidebar-logo h2 {
+
+                margin:
+                    0;
+
+            }
+
+
+            .sidebar-logo span {
+
+                margin-top:
+                    3px;
+
+            }
+
+
+            .sidebar-section {
+
+                display:
+                    flex;
+
+                flex-wrap:
+                    wrap;
+
+                align-items:
+                    center;
+
+                gap:
+                    4px;
+
+                margin-bottom:
+                    7px;
+
+            }
+
+
+            .sidebar-title {
+
+                display:
+                    none;
+
+            }
+
+
+            .sidebar-link {
+
+                width:
+                    auto;
+
+                justify-content:
+                    center;
+
+                margin-bottom:
+                    0;
+
+            }
+
+
+            .sidebar-link span {
+
+                display:
+                    none;
+
+            }
+
+
+            .sidebar-link i {
+
+                width:
+                    35px;
+
+                height:
+                    35px;
+
+            }
+
+
+            .main-content {
+
+                margin-left:
+                    0;
+
+                padding:
+                    14px;
+
+            }
+
+
+            .top-header {
+
+                flex-direction:
+                    column;
+
+                align-items:
+                    stretch;
+
+            }
+
+
+            .agent-profile {
+
+                width:
+                    100%;
+
+            }
+
+
+            .search-row {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+
+            .airline-search-field {
+
+                grid-column:
+                    auto;
+
+            }
+
+
+            .search-button {
+
+                width:
+                    100%;
+
+            }
+
+
+            .category-header {
+
+                align-items:
+                    flex-start;
+
+                flex-direction:
+                    column;
+
+            }
+
+
+            .clear-category-button {
+
+                width:
+                    100%;
+
+            }
+
+
+            .results-header {
+
+                align-items:
+                    flex-start;
+
+                flex-direction:
+                    column;
+
+            }
+
+
+            .results-count {
+
+                align-self:
+                    flex-start;
+
+            }
+
+        }
+
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
+
+<aside class="sidebar">
+
+
+    <!-- =================================================
+         LOGO
+    ================================================== -->
+
+    <div class="sidebar-logo">
+
+        <img
+            src="{% static 'images/logo.png' %}"
+            alt="AL NAJAM Travel & Tours"
+            class="sidebar-logo-image"
+        >
+
+        <div>
+
+            <h2>
+                AL NAJAM
+            </h2>
+
+            <span>
+                TRAVEL & TOURS
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         CORE
+    ================================================== -->
+
+    <div class="sidebar-section">
+
+        <div class="sidebar-title">
+            CORE
+        </div>
+
+
+        <a
+            href="{% url 'agent_dashboard' %}"
+            class="sidebar-link"
+        >
+
+            <i class="bi bi-grid-1x2"></i>
+
+            <span>
+                Overview
+            </span>
+
+        </a>
+
+
+        <a
+            href="{% url 'agent_group_tickets' %}"
+            class="sidebar-link active"
+        >
+
+            <i class="bi bi-people"></i>
+
+            <span>
+                Group Tickets
+            </span>
+
+        </a>
+
+
+        <a
+            href="{% url 'agent_umrah_bookings' %}"
+            class="sidebar-link"
+        >
+
+            <i class="bi bi-moon-stars"></i>
+
+            <span>
+                Umrah
+            </span>
+
+        </a>
+
+    </div>
+
+
+    <!-- =================================================
+         BOOKINGS
+    ================================================== -->
+
+    <div class="sidebar-section">
+
+        <div class="sidebar-title">
+            BOOKINGS
+        </div>
+
+
+        <a
+            href="{% url 'agent_all_bookings' %}"
+            class="sidebar-link"
+        >
+
+            <i class="bi bi-ticket-perforated"></i>
+
+            <span>
+                My Bookings
+            </span>
+
+        </a>
+
+    </div>
+
+
+    <!-- =================================================
+         SERVICES
+    ================================================== -->
+
+    <div class="sidebar-section">
+
+        <div class="sidebar-title">
+            SERVICES
+        </div>
+
+
+        <a
+            href="#"
+            class="sidebar-link"
+        >
+
+            <i class="bi bi-passport"></i>
+
+            <span>
+                Visa
+            </span>
+
+        </a>
+
+
+        <a
+            href="#"
+            class="sidebar-link"
+        >
+
+            <i class="bi bi-globe2"></i>
+
+            <span>
+                Tours
+            </span>
+
+        </a>
+
+    </div>
+
+
+    <!-- =================================================
+         ORGANIZATION
+    ================================================== -->
+
+    <div class="sidebar-section">
+
+        <div class="sidebar-title">
+            ORGANIZATION
+        </div>
+
+
+        <a
+            href="{% url 'agency_profile' %}"
+            class="sidebar-link"
+        >
+
+            <i class="bi bi-person-badge"></i>
+
+            <span>
+                Profile
+            </span>
+
+        </a>
+
+
+        <a
+            href="{% url 'agent_settings' %}"
+            class="sidebar-link"
+        >
+
+            <i class="bi bi-gear"></i>
+
+            <span>
+                Settings
+            </span>
+
+        </a>
+
+
+        <!-- LOGOUT -->
+
+        <form
+            method="POST"
+            action="{% url 'logout' %}"
+            class="logout-form"
+        >
+
+            {% csrf_token %}
+
+            <button
+                type="submit"
+                class="sidebar-link logout-link"
+            >
+
+                <i class="bi bi-box-arrow-right"></i>
+
+                <span>
+                    Logout
+                </span>
+
+            </button>
+
+        </form>
+
+    </div>
+
+
+</aside>
+
+
+
+<!-- =====================================================
+     MAIN CONTENT
+===================================================== -->
+
+<main class="main-content">
+
+
+    <!-- =================================================
+         HEADER
+    ================================================== -->
+
+    <header class="top-header">
+
+
+        <div class="header-left">
+
+            <span class="header-label">
+
+                <i class="bi bi-briefcase-fill"></i>
+
+                AGENT PORTAL
+
+            </span>
+
+
+            <h1>
+
+                Group Tickets
+
+            </h1>
+
+
+            <p>
+
+                Search available group-ticket inventory and secure seats for your customers.
+
+            </p>
+
+        </div>
+
+
+        <!-- =================================================
+             AGENT PROFILE
+        ================================================== -->
+
+        <div class="agent-profile">
+
+
+            <div class="agent-avatar">
+
+                {% if agent.name %}
+
+                    {{ agent.name|first|upper }}
+
+                {% else %}
+
+                    A
+
+                {% endif %}
+
+            </div>
+
+
+            <div class="agent-details">
+
+                <strong>
+
+                    {{ agent.name }}
+
+                </strong>
+
+
+                <span>
+
+                    {{ agent.agency }}
+
+                </span>
+
+
+                <div class="agent-status">
+
+                    <span class="agent-status-dot"></span>
+
+                    Online
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+    </header>
+
+
+
+    <!-- =================================================
+         BREADCRUMB
+    ================================================== -->
+
+    <div class="breadcrumb-bar">
+
+        <a
+            href="{% url 'agent_dashboard' %}"
+        >
+
+            Dashboard
+
+        </a>
+
+
+        <i class="bi bi-chevron-right"></i>
+
+
+        <span>
+            Group Tickets
+        </span>
+
+    </div>
+
+
+
+    <!-- =================================================
+         SEARCH PANEL
+    ================================================== -->
+
+    <form
+        method="GET"
+        action=""
+    >
+    <input
+    type="hidden"
+    id="categoryField"
+    name="category"
+    value=""
+>
+
+
+        <section class="ticket-search-panel">
+
+
+            <!-- SEARCH HEADER -->
+
+            <div class="search-panel-header">
+
+
+                <div>
+
+
+                    <div class="search-panel-title">
+
+                        <span class="search-panel-title-icon">
+
+                            <i class="bi bi-search"></i>
+
+                        </span>
+
+
+                        Search Group Tickets
+
+                    </div>
+
+
+                    <div class="search-panel-subtitle">
+
+                        Search by route, travel date, airline or ticket category.
+
+                    </div>
+
+                </div>
+
+
+                <div class="inventory-pill">
+
+                    <i class="bi bi-broadcast-pin"></i>
+
+                    Live Inventory
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- SEARCH ROW -->
+
+            <div class="search-row">
+
+
+                <!-- FROM -->
+
+                <div class="search-field">
+
+                    <i class="bi bi-geo-alt search-field-icon"></i>
+
+                    <input
+                        type="text"
+                        id="fromField"
+                        name="from"
+                        placeholder="From airport"
+                        value="{{ search_from|default:'' }}"
+                    >
+
+                </div>
+
+
+                <!-- TO -->
+
+                <div class="search-field">
+
+                    <i class="bi bi-geo-alt-fill search-field-icon"></i>
+
+                    <input
+                        type="text"
+                        id="toField"
+                        name="to"
+                        placeholder="To airport"
+                        value="{{ search_to|default:'' }}"
+                    >
+
+                </div>
+
+
+                <!-- DATE -->
+
+                <div class="search-field">
+
+                    <i class="bi bi-calendar3 search-field-icon"></i>
+
+                    <input
+                        type="date"
+                        id="dateField"
+                        name="date"
+                        value="{{ search_date|default:'' }}"
+                    >
+
+                </div>
+
+
+                <!-- AIRLINE -->
+
+                <div class="search-field airline-search-field">
+
+                    <i class="bi bi-airplane search-field-icon"></i>
+
+                    <input
+                        type="text"
+                        id="airlineField"
+                        name="airline"
+                        placeholder="Airline code or airline name"
+                        value="{{ search_airline|default:'' }}"
+                    >
+
+                </div>
+
+
+                <!-- SEARCH -->
+
+                <button
+                    type="submit"
+                    class="search-button"
+                >
+
+                    <i class="bi bi-search me-1"></i>
+
+                    Search
+
+                </button>
+
+
+            </div>
+
+
+
+            <!-- =================================================
+                 CATEGORY HEADER
+            ================================================== -->
+
+            <div class="category-header">
+
+
+                <div class="category-title-wrap">
+
+
+                    <div class="category-title-icon">
+
+                        <i class="bi bi-lightning-charge-fill"></i>
+
+                    </div>
+
+
+                    <div>
+
+
+                        <div class="category-title">
+
+                            Quick Categories
+
+                        </div>
+
+
+                        <div
+                            id="selectedCategoryText"
+                            class="selected-category-text"
+                        >
+
+                            Select a ticket category to see routes
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+                <button
+                    type="button"
+                    id="clearCategory"
+                    class="clear-category-button"
+                >
+
+                    <i class="bi bi-arrow-counterclockwise me-1"></i>
+
+                    Reset
+
+                </button>
+
+
+            </div>
+
+
+
+            <!-- =================================================
+                 CATEGORY BUTTONS
+            ================================================== -->
+
+            <div class="category-buttons">
+
+
+                <button
+                    type="button"
+                    class="category-button"
+                    data-category="BAHRAIN"
+                >
+
+                    <i class="bi bi-globe2"></i>
+
+                    Bahrain Oneway
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="category-button"
+                    data-category="KSA"
+                >
+
+                    <i class="bi bi-moon-stars"></i>
+
+                    KSA One Way
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="category-button"
+                    data-category="OMAN"
+                >
+
+                    <i class="bi bi-buildings"></i>
+
+                    Oman One Way
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="category-button"
+                    data-category="QATAR"
+                >
+
+                    <i class="bi bi-airplane"></i>
+
+                    Qatar One Way
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="category-button"
+                    data-category="UAE"
+                >
+
+                    <i class="bi bi-buildings-fill"></i>
+
+                    UAE Oneway
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="category-button"
+                    data-category="UMRAH"
+                >
+
+                    <i class="bi bi-moon-stars-fill"></i>
+
+                    Umrah
+
+                </button>
+
+
+            </div>
+
+
+
+            <!-- =================================================
+                 ROUTES
+            ================================================== -->
+
+            <div
+                id="routeContainer"
+                class="route-container"
+            >
+
+                <div class="route-container-title">
+
+                    Available Routes
+
+                </div>
+
+
+                <div
+                    id="routeButtons"
+                    class="route-buttons"
+                ></div>
+
+
+            </div>
+
+
+        </section>
+
+
+    </form>
+
+
+
+    <!-- =================================================
+         RESULTS
+    ================================================== -->
+
+    <section class="results-card">
+
+
+        <!-- RESULTS HEADER -->
+
+        <div class="results-header">
+
+
+            <div class="results-title-wrap">
+
+
+                <div class="results-icon">
+
+                    <i class="bi bi-ticket-detailed"></i>
+
+                </div>
+
+
+                <div>
+
+
+                    <h2 class="results-title">
+
+                        Available Group Tickets
+
+                    </h2>
+
+
+                    <p class="results-subtitle">
+
+                        Inventory currently available for agent booking.
+
+                    </p>
+
+
+                </div>
+
+
+            </div>
+
+
+            <div class="results-count">
+
+                <i class="bi bi-collection"></i>
+
+                {{ group_tickets|length }}
+
+                Ticket{{ group_tickets|length|pluralize }}
+
+            </div>
+
+
+        </div>
+
+
+
+        {% if group_tickets %}
+
+
+            <!-- =================================================
+                 TABLE
+            ================================================== -->
+
+            <div class="table-wrap">
+
+
+                <table class="ticket-table">
+
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Airline
+                            </th>
+
+                            <th>
+                                Flight
+                            </th>
+
+                            <th>
+                                Route
+                            </th>
+
+                            <th>
+                                Date
+                            </th>
+
+                            <th>
+                                Schedule
+                            </th>
+
+                            <th>
+                                Baggage
+                            </th>
+
+                            <th>
+                                Meal
+                            </th>
+
+                            <th>
+                                Price
+                            </th>
+
+                            <th>
+                                Seats
+                            </th>
+
+                            <th>
+                                Status
+                            </th>
+
+                            <th>
+                                Action
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+
+                        {% for ticket in group_tickets %}
+
+                        <tr
+                            data-ticket-from="{{ ticket.departure_airport.code }}"
+                            data-ticket-to="{{ ticket.arrival_airport.code }}"
+                        >
+
+
+                            <!-- =================================================
+                                 AIRLINE
+                            ================================================== -->
+
+                            <td>
+
+
+                                <div class="airline-wrap">
+
+
+                                    <div class="airline-icon">
+
+                                        <i class="bi bi-airplane-fill"></i>
+
+                                    </div>
+
+
+                                    <div>
+
+                                        <div class="airline-name">
+
+                                            {{ ticket.airline.name }}
+
+                                        </div>
+
+
+                                        <span class="airline-code">
+
+                                            {{ ticket.airline.code }}
+
+                                        </span>
+
+                                    </div>
+
+
+                                </div>
+
+
+                            </td>
+
+
+
+                            <!-- =================================================
+                                 FLIGHT
+                            ================================================== -->
+
+                            <td>
+
+
+                                <span class="flight-number">
+
+                                    {{ ticket.flight_number }}
+
+                                </span>
+
+
+                            </td>
+
+
+
+                            <!-- =================================================
+                                 ROUTE
+                            ================================================== -->
+
+                            <td>
+
+
+                                <div class="route-main">
+
+
+                                    <span class="route-code">
+
+                                        {{ ticket.departure_airport.code }}
+
+                                    </span>
+
+
+                                    <i
+                                        class="bi bi-arrow-right route-arrow"
+                                    ></i>
+
+
+                                    <span class="route-code">
+
+                                        {{ ticket.arrival_airport.code }}
+
+                                    </span>
+
+
+                                </div>
+
+
+                                <span class="route-city">
+
+                                    {{ ticket.departure_airport.city }}
+
+                                    →
+
+                                    {{ ticket.arrival_airport.city }}
+
+                                </span>
+
+
+                            </td>
+
+
+
+                            <!-- =================================================
+                                 DATE
+                            ================================================== -->
+
+                            <td>
+
+
+                                <span class="date-main">
+
+                                    {{ ticket.departure_date|date:"d M Y" }}
+
+                                </span>
+
+
+                            </td>
+
+
+
+                            <!-- =================================================
+                                 TIME
+                            ================================================== -->
+
+                            <td>
+
+
+                                <span class="date-main">
+
+                                    {{ ticket.departure_time|time:"H:i" }}
+
+                                </span>
+
+
+                                <span class="small-muted">
+
+                                    Arrival
+
+                                    {{ ticket.arrival_time|time:"H:i" }}
+
+                                </span>
+
+
+                            </td>
+
+
+
+                            <!-- =================================================
+                                 BAGGAGE
+                            ================================================== -->
+
+                            <td>
+
+                                <span class="small-muted"
+                                      style="
+                                          display:inline-flex;
+                                          align-items:center;
+                                          gap:5px;
+                                          color:#526176;
+                                          font-size:8px;
+                                      "
+                                >
+
+                                    <i class="bi bi-luggage-fill"></i>
+
+                                    {{ ticket.baggage|default:"—" }}
+
+                                </span>
+
+                            </td>
+
+
+
+                            <!-- =================================================
+                                 MEAL
+                            ================================================== -->
+
+                            <td>
+
+                                <span class="small-muted"
+                                      style="
+                                          display:inline-flex;
+                                          align-items:center;
+                                          gap:5px;
+                                          color:#526176;
+                                          font-size:8px;
+                                      "
+                                >
+
+                                    <i class="bi bi-cup-hot-fill"></i>
+
+                                    {{ ticket.meal|default:"—" }}
+
+                                </span>
+
+                            </td>
+
+
+
+                            <!-- =================================================
+                                 PRICE
+                            ================================================== -->
+
+                            <td>
+
+
+                                <span class="price-main">
+
+                                    PKR
+
+                                    {{ ticket.price|floatformat:0 }}
+
+                                </span>
+
+
+                                <span class="price-sub">
+
+                                    Per Seat
+
+                                </span>
+
+
+                            </td>
+
+
+
+                            <!-- =================================================
+                                 SEATS
+                            ================================================== -->
+
+                            <td>
+
+
+                                <span class="seat-number">
+
+                                    {{ ticket.available_seats }}
+
+                                    /
+
+                                    {{ ticket.total_seats }}
+
+                                </span>
+
+
+                                {% if ticket.total_seats %}
+
+
+                                    <div class="seat-progress">
+
+
+                                        <div
+                                            class="seat-progress-fill"
+                                            data-available="{{ ticket.available_seats }}"
+                                            data-total="{{ ticket.total_seats }}"
+                                        ></div>
+
+
+                                    </div>
+
+
+                                {% endif %}
+
+
+                                {% if ticket.available_seats == 0 %}
+
+
+                                    <span
+                                        class="status-badge soldout-badge mt-2"
+                                    >
+
+                                        <i class="bi bi-x-circle-fill"></i>
+
+                                        Sold Out
+
+                                    </span>
+
+
+                                {% else %}
+
+
+                                    <span
+                                        class="status-badge available-badge mt-2"
+                                    >
+
+                                        <i class="bi bi-check-circle-fill"></i>
+
+                                        Available
+
+                                    </span>
+
+
+                                {% endif %}
+
+
+                            </td>
+
+
+
+                            <!-- =================================================
+                                 STATUS
+                            ================================================== -->
+
+                            <td>
+
+
+                                {% if ticket.is_active %}
+
+
+                                    {% if ticket.available_seats > 0 %}
+
+
+                                        <span
+                                            class="status-badge active-badge"
+                                        >
+
+                                            <i class="bi bi-check-circle-fill"></i>
+
+                                            Active
+
+                                        </span>
+
+
+                                    {% else %}
+
+
+                                        <span
+                                            class="status-badge soldout-badge"
+                                        >
+
+                                            <i class="bi bi-x-circle-fill"></i>
+
+                                            Sold Out
+
+                                        </span>
+
+
+                                    {% endif %}
+
+
+                                {% else %}
+
+
+                                    <span
+                                        class="status-badge inactive-badge"
+                                    >
+
+                                        <i class="bi bi-pause-circle-fill"></i>
+
+                                        Inactive
+
+                                    </span>
+
+
+                                {% endif %}
+
+
+                            </td>
+
+
+
+                            <!-- =================================================
+                                 ACTION
+                            ================================================== -->
+
+                            <td>
+
+
+                                {% if ticket.is_active and ticket.available_seats > 0 %}
+
+
+                                    <a
+                                        href="{% url 'create_group_booking' ticket.id %}"
+                                        class="book-btn"
+                                    >
+
+                                        <i class="bi bi-ticket-perforated-fill"></i>
+
+                                        Book Now
+
+                                    </a>
+
+
+                                {% else %}
+
+
+                                    <span class="book-btn disabled">
+
+                                        <i class="bi bi-lock-fill"></i>
+
+                                        Unavailable
+
+                                    </span>
+
+
+                                {% endif %}
+
+
+                            </td>
+
+
+                        </tr>
+
+
+                    {% endfor %}
+
+
+                    </tbody>
+
+
+                </table>
+
+
+            </div>
+
+
+        {% else %}
+
+
+            <!-- =================================================
+                 EMPTY STATE
+            ================================================== -->
+
+            <div class="empty-state">
+
+
+                <div class="empty-icon">
+
+                    <i class="bi bi-ticket-detailed"></i>
+
+                </div>
+
+
+                <h4>
+
+                    No Group Tickets Found
+
+                </h4>
+
+
+                <p>
+
+                    There are currently no group-ticket records matching
+                    your search criteria. Try another airport, airline,
+                    travel date or category.
+
+                </p>
+
+
+            </div>
+
+
+        {% endif %}
+
+
+    </section>
+
+
+
+    <!-- =================================================
+         FOOTER
+    ================================================== -->
+
+    <footer class="dashboard-footer">
+
+        © 2026 AL NAJAM Travel & Tours — B2B Agent Portal
+
+    </footer>
+
+
+</main>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+
+    /* =====================================================
+       SEAT PROGRESS
+    ===================================================== */
+
+    document
+        .querySelectorAll(".seat-progress-fill")
+        .forEach(function (bar) {
+
+            const available = parseInt(
+                bar.dataset.available || "0",
+                10
+            );
+
+            const total = parseInt(
+                bar.dataset.total || "0",
+                10
+            );
+
+            if (total > 0) {
+
+                let percentage =
+                    (available / total) * 100;
+
+                percentage = Math.max(
+                    0,
+                    Math.min(100, percentage)
+                );
+
+                bar.style.width =
+                    percentage + "%";
+
+            } else {
+
+                bar.style.width = "0%";
+
+            }
+
+        });
+
+
+
+    /* =====================================================
+       ROUTE DATA
+    ===================================================== */
+
+    const routeData = {
+
+        BAHRAIN: [
+            {
+                label: "ISB-BAH",
+                from: "ISB",
+                to: "BAH"
+            }
+        ],
+
+        KSA: [
+            {
+                label: "ISB-DMM",
+                from: "ISB",
+                to: "DMM"
+            },
+            {
+                label: "ISB-JED",
+                from: "ISB",
+                to: "JED"
+            },
+            {
+                label: "ISB-RUH",
+                from: "ISB",
+                to: "RUH"
+            },
+            {
+                label: "LHE-DMM",
+                from: "LHE",
+                to: "DMM"
+            },
+            {
+                label: "LHE-RUH",
+                from: "LHE",
+                to: "RUH"
+            },
+            {
+                label: "PEW-JED",
+                from: "PEW",
+                to: "JED"
+            },
+            {
+                label: "PEW-RUH",
+                from: "PEW",
+                to: "RUH"
+            },
+            {
+                label: "SKT-RUH",
+                from: "SKT",
+                to: "RUH"
+            },
+            {
+                label: "SKT-JED",
+                from: "SKT",
+                to: "JED"
+            },
+            {
+                label: "MUX-JED",
+                from: "MUX",
+                to: "JED"
+            }
+        ],
+
+        OMAN: [
+            {
+                label: "ISB-MCT",
+                from: "ISB",
+                to: "MCT"
+            },
+            {
+                label: "LHE-MCT",
+                from: "LHE",
+                to: "MCT"
+            },
+            {
+                label: "MUX-MCT",
+                from: "MUX",
+                to: "MCT"
+            }
+        ],
+
+        QATAR: [
+            {
+                label: "SKT-DOH",
+                from: "SKT",
+                to: "DOH"
+            }
+        ],
+
+        UAE: [
+            {
+                label: "ISB-DXB",
+                from: "ISB",
+                to: "DXB"
+            },
+            {
+                label: "ISB-SHJ",
+                from: "ISB",
+                to: "SHJ"
+            },
+            {
+                label: "LHE-DXB",
+                from: "LHE",
+                to: "DXB"
+            },
+            {
+                label: "LYP-SHJ",
+                from: "LYP",
+                to: "SHJ"
+            },
+            {
+                label: "PEW-SHJ",
+                from: "PEW",
+                to: "SHJ"
+            },
+            {
+                label: "LHE-SHJ",
+                from: "LHE",
+                to: "SHJ"
+            }
+        ],
+
+        UMRAH: [
+            {
+                label: "LHE-JED-LHE",
+                from: "LHE",
+                to: "JED"
+            },
+            {
+                label: "LYP-JED-LYP",
+                from: "LYP",
+                to: "JED"
+            },
+            {
+                label: "SKT-JED-SKT",
+                from: "SKT",
+                to: "JED"
+            }
+        ]
+
+    };
+
+
+
+    /* =====================================================
+       CATEGORY NAMES
+    ===================================================== */
+
+    const categoryNames = {
+
+        BAHRAIN: "Bahrain Oneway",
+
+        KSA: "KSA One Way",
+
+        OMAN: "Oman One Way",
+
+        QATAR: "Qatar One Way",
+
+        UAE: "UAE Oneway",
+
+        UMRAH: "Umrah"
+
+    };
+
+
+
+    /* =====================================================
+       GET ELEMENTS
+    ===================================================== */
+
+    const categoryButtons =
+        document.querySelectorAll(
+            ".category-button"
+        );
+
+    const routeContainer =
+        document.getElementById(
+            "routeContainer"
+        );
+
+    const routeButtons =
+        document.getElementById(
+            "routeButtons"
+        );
+
+    const selectedCategoryText =
+        document.getElementById(
+            "selectedCategoryText"
+        );
+
+    const clearCategory =
+        document.getElementById(
+            "clearCategory"
+        );
+
+    const categoryField =
+        document.getElementById(
+            "categoryField"
+        );
+
+    const fromField =
+        document.getElementById(
+            "fromField"
+        );
+
+    const toField =
+        document.getElementById(
+            "toField"
+        );
+
+    const searchForm =
+        categoryField
+            ? categoryField.closest("form")
+            : null;
+
+
+
+    /* =====================================================
+       AVAILABLE INVENTORY FROM DJANGO
+       
+       SAFE JSON CONVERSION
+    ===================================================== */
+
+    let availableRoutesArray = [];
+
+    try {
+
+        availableRoutesArray =
+            JSON.parse(
+                '{{ available_routes_json|escapejs }}'
+            );
+
+    } catch (error) {
+
+        console.error(
+            "Could not load available group ticket routes:",
+            error
+        );
+
+        availableRoutesArray = [];
+
+    }
+
+
+    const availableRoutes =
+        new Set(
+            (availableRoutesArray || [])
+                .map(function (route) {
+
+                    return String(route)
+                        .trim()
+                        .toUpperCase();
+
+                })
+        );
+
+
+    console.log(
+        "Available Group Ticket Routes:",
+        Array.from(availableRoutes)
+    );
+
+
+
+    /* =====================================================
+       CURRENT CATEGORY
+    ===================================================== */
+
+    let selectedCategory =
+        categoryField &&
+        categoryField.value
+            ? categoryField.value
+                .trim()
+                .toUpperCase()
+            : null;
+
+
+
+    /* =====================================================
+       HIGHLIGHT CATEGORIES WITH INVENTORY
+    ===================================================== */
+
+    function highlightAvailableCategories() {
+
+        categoryButtons.forEach(
+            function (button) {
+
+                const category =
+                    (
+                        button.dataset.category ||
+                        ""
+                    )
+                        .trim()
+                        .toUpperCase();
+
+
+                const routes =
+                    routeData[category] || [];
+
+
+                const categoryHasInventory =
+                    routes.some(
+                        function (route) {
+
+                            const routeKey =
+                                (
+                                    route.from +
+                                    "-" +
+                                    route.to
+                                )
+                                    .trim()
+                                    .toUpperCase();
+
+
+                            return availableRoutes.has(
+                                routeKey
+                            );
+
+                        }
+                    );
+
+
+                if (categoryHasInventory) {
+
+                    button.classList.add(
+                        "has-inventory"
+                    );
+
+                } else {
+
+                    button.classList.remove(
+                        "has-inventory"
+                    );
+
+                }
+
+            }
+        );
+
+    }
+
+
+
+    /* =====================================================
+       CREATE ROUTE BUTTONS
+    ===================================================== */
+
+    function showRoutes(category) {
+
+        if (
+            !routeButtons ||
+            !routeContainer
+        ) {
+
+            return;
+
+        }
+
+
+        routeButtons.innerHTML = "";
+
+
+        const routes =
+            routeData[category] || [];
+
+
+        /* ---------------------------------------------
+           CATEGORY TITLE
+        --------------------------------------------- */
+
+        if (selectedCategoryText) {
+
+            selectedCategoryText.textContent =
+                categoryNames[category] ||
+                category;
+
+        }
+
+
+
+        /* ---------------------------------------------
+           CURRENT SEARCH ROUTE
+        --------------------------------------------- */
+
+        const currentFrom =
+            fromField
+                ? fromField.value
+                    .trim()
+                    .toUpperCase()
+                : "";
+
+        const currentTo =
+            toField
+                ? toField.value
+                    .trim()
+                    .toUpperCase()
+                : "";
+
+
+
+        /* ---------------------------------------------
+           CREATE ROUTE BUTTONS
+        --------------------------------------------- */
+
+        routes.forEach(
+            function (route) {
+
+                const routeButton =
+                    document.createElement(
+                        "button"
+                    );
+
+
+                routeButton.type =
+                    "button";
+
+
+                routeButton.className =
+                    "route-button";
+
+
+                routeButton.textContent =
+                    route.label;
+
+
+                routeButton.dataset.from =
+                    route.from;
+
+
+                routeButton.dataset.to =
+                    route.to;
+
+
+
+                /* -------------------------------------
+                   ROUTE KEY
+                ------------------------------------- */
+
+                const routeKey =
+                    (
+                        route.from +
+                        "-" +
+                        route.to
+                    )
+                        .trim()
+                        .toUpperCase();
+
+
+
+                /* -------------------------------------
+                   CHECK ACTUAL INVENTORY
+                ------------------------------------- */
+
+                const hasInventory =
+                    availableRoutes.has(
+                        routeKey
+                    );
+
+
+
+                /* -------------------------------------
+                   HIGHLIGHT ROUTE WITH INVENTORY
+                ------------------------------------- */
+
+                if (hasInventory) {
+
+                    routeButton.classList.add(
+                        "inventory-available"
+                    );
+
+                }
+
+
+
+                /* -------------------------------------
+                   HIGHLIGHT CURRENT SEARCHED ROUTE
+                ------------------------------------- */
+
+                if (
+                    route.from === currentFrom &&
+                    route.to === currentTo
+                ) {
+
+                    routeButton.classList.add(
+                        "active"
+                    );
+
+                }
+
+
+
+                /* -------------------------------------
+                   ROUTE CLICK
+                ------------------------------------- */
+
+                routeButton.addEventListener(
+                    "click",
+                    function () {
+
+
+                        /* Remove active
+                           from all route buttons */
+
+                        routeButtons
+                            .querySelectorAll(
+                                ".route-button"
+                            )
+                            .forEach(
+                                function (btn) {
+
+                                    btn.classList.remove(
+                                        "active"
+                                    );
+
+                                }
+                            );
+
+
+                        /* Add active to clicked route */
+
+                        this.classList.add(
+                            "active"
+                        );
+
+
+                        /* Set FROM */
+
+                        if (fromField) {
+
+                            fromField.value =
+                                this.dataset.from;
+
+                        }
+
+
+                        /* Set TO */
+
+                        if (toField) {
+
+                            toField.value =
+                                this.dataset.to;
+
+                        }
+
+
+                        /* Keep category */
+
+                        if (categoryField) {
+
+                            categoryField.value =
+                                selectedCategory;
+
+                        }
+
+
+                        /* Submit search */
+
+                        if (searchForm) {
+
+                            searchForm.submit();
+
+                        }
+
+                    }
+                );
+
+
+                routeButtons.appendChild(
+                    routeButton
+                );
+
+            }
+        );
+
+
+
+        /* ---------------------------------------------
+           SHOW ROUTE CONTAINER
+        --------------------------------------------- */
+
+        if (routes.length > 0) {
+
+            routeContainer.classList.add(
+                "show"
+            );
+
+        } else {
+
+            routeContainer.classList.remove(
+                "show"
+            );
+
+        }
+
+    }
+
+
+
+    /* =====================================================
+       SELECT CATEGORY
+    ===================================================== */
+
+    function selectCategory(category) {
+
+        if (!category) {
+
+            return;
+
+        }
+
+
+        selectedCategory =
+            category
+                .trim()
+                .toUpperCase();
+
+
+
+        /* ---------------------------------------------
+           SAVE CATEGORY
+        --------------------------------------------- */
+
+        if (categoryField) {
+
+            categoryField.value =
+                selectedCategory;
+
+        }
+
+
+
+        /* ---------------------------------------------
+           ACTIVE CATEGORY BUTTON
+        --------------------------------------------- */
+
+        categoryButtons.forEach(
+            function (button) {
+
+                button.classList.remove(
+                    "active"
+                );
+
+
+                const buttonCategory =
+                    (
+                        button.dataset.category ||
+                        ""
+                    )
+                        .trim()
+                        .toUpperCase();
+
+
+                if (
+                    buttonCategory ===
+                    selectedCategory
+                ) {
+
+                    button.classList.add(
+                        "active"
+                    );
+
+                }
+
+            }
+        );
+
+
+
+        /* ---------------------------------------------
+           SHOW ROUTES
+        --------------------------------------------- */
+
+        showRoutes(
+            selectedCategory
+        );
+
+    }
+
+
+
+    /* =====================================================
+       CATEGORY BUTTON CLICK
+    ===================================================== */
+
+    categoryButtons.forEach(
+        function (button) {
+
+            button.addEventListener(
+                "click",
+                function () {
+
+                    const category =
+                        this.dataset.category;
+
+
+                    selectCategory(
+                        category
+                    );
+
+                }
+            );
+
+        }
+    );
+
+
+
+    /* =====================================================
+       RESET CATEGORY
+    ===================================================== */
+
+    if (clearCategory) {
+
+        clearCategory.addEventListener(
+            "click",
+            function () {
+
+
+                selectedCategory =
+                    null;
+
+
+
+                /* Clear category */
+
+                if (categoryField) {
+
+                    categoryField.value =
+                        "";
+
+                }
+
+
+
+                /* Remove category active */
+
+                categoryButtons.forEach(
+                    function (button) {
+
+                        button.classList.remove(
+                            "active"
+                        );
+
+                    }
+                );
+
+
+
+                /* Clear routes */
+
+                if (routeButtons) {
+
+                    routeButtons.innerHTML =
+                        "";
+
+                }
+
+
+
+                /* Hide routes */
+
+                if (routeContainer) {
+
+                    routeContainer.classList.remove(
+                        "show"
+                    );
+
+                }
+
+
+
+                /* Reset category text */
+
+                if (selectedCategoryText) {
+
+                    selectedCategoryText.textContent =
+                        "Select a ticket category to see routes";
+
+                }
+
+
+
+                /* Clear FROM */
+
+                if (fromField) {
+
+                    fromField.value =
+                        "";
+
+                }
+
+
+
+                /* Clear TO */
+
+                if (toField) {
+
+                    toField.value =
+                        "";
+
+                }
+
+
+
+                /* Submit empty search */
+
+                if (searchForm) {
+
+                    searchForm.submit();
+
+                }
+
+            }
+        );
+
+    }
+
+
+
+    /* =====================================================
+       INITIALIZE INVENTORY HIGHLIGHTS
+    ===================================================== */
+
+    highlightAvailableCategories();
+
+
+
+    /* =====================================================
+       RESTORE CATEGORY AFTER PAGE LOAD
+    ===================================================== */
+
+    if (selectedCategory) {
+
+        selectCategory(
+            selectedCategory
+        );
+
+    }
+
+
+
+});
+
+</script>
+
+</body>
+
+</html>

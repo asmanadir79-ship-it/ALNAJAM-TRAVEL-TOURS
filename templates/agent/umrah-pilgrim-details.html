@@ -1,0 +1,1934 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Pilgrim Details | AL NAJAM Agent Portal
+    </title>
+
+
+    <!-- BOOTSTRAP -->
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+
+    <!-- BOOTSTRAP ICONS -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    >
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            margin: 0;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f7f9fc,
+                    #eef4f9
+                );
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            color: #172033;
+
+        }
+
+
+        ::-webkit-scrollbar {
+            width: 7px;
+        }
+
+
+        ::-webkit-scrollbar-track {
+            background: #f1f4f8;
+        }
+
+
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 20px;
+        }
+
+
+        /* =========================================
+           DJANGO MESSAGES
+        ========================================= */
+
+        .message-container {
+
+            position: fixed;
+
+            top: 20px;
+
+            right: 25px;
+
+            width: min(430px, calc(100% - 40px));
+
+            z-index: 9999;
+
+        }
+
+
+        .alert-message {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            padding: 13px 15px;
+
+            margin-bottom: 10px;
+
+            border-radius: 12px;
+
+            font-size: 10px;
+
+            font-weight: 700;
+
+            box-shadow:
+                0 10px 28px rgba(20,35,60,.12);
+
+            animation:
+                slideIn .25s ease;
+
+        }
+
+
+        .success-message {
+
+            background: #eaf8ef;
+
+            border: 1px solid #cce9d6;
+
+            color: #16784f;
+
+        }
+
+
+        .error-message {
+
+            background: #fff0f1;
+
+            border: 1px solid #f4c7cb;
+
+            color: #c62838;
+
+        }
+
+
+        .warning-message {
+
+            background: #fff8eb;
+
+            border: 1px solid #f4dfb7;
+
+            color: #9a6500;
+
+        }
+
+
+        .alert-message > i {
+            font-size: 16px;
+        }
+
+
+        .message-text {
+
+            flex: 1;
+
+            line-height: 1.45;
+
+        }
+
+
+        .message-close {
+
+            margin-left: auto;
+
+            border: none;
+
+            background: transparent;
+
+            color: inherit;
+
+            cursor: pointer;
+
+            font-size: 15px;
+
+            padding: 0;
+
+        }
+
+
+        @keyframes slideIn {
+
+            from {
+
+                opacity: 0;
+
+                transform:
+                    translateY(-10px);
+
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform:
+                    translateY(0);
+
+            }
+
+        }
+
+
+        /* =========================================
+           MAIN
+        ========================================= */
+
+        .main {
+
+            margin-left: 255px;
+
+            min-height: 100vh;
+
+            padding:
+                28px 30px 45px;
+
+        }
+
+
+        /* =========================================
+           HEADER
+        ========================================= */
+
+        .page-header {
+
+            position: relative;
+
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #172033,
+                    #263e61
+                );
+
+            color: white;
+
+            border-radius: 21px;
+
+            padding:
+                27px 29px;
+
+            margin-bottom: 20px;
+
+            box-shadow:
+                0 14px 34px rgba(20,35,60,.10);
+
+        }
+
+
+        .page-header::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 230px;
+
+            height: 230px;
+
+            border-radius: 50%;
+
+            right: -95px;
+
+            top: -135px;
+
+            border:
+                1px solid rgba(255,255,255,.08);
+
+            box-shadow:
+                0 0 0 30px rgba(255,255,255,.025),
+                0 0 0 60px rgba(255,255,255,.018);
+
+        }
+
+
+        .header-content {
+
+            position: relative;
+
+            z-index: 2;
+
+        }
+
+
+        .header-badge {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 6px;
+
+            background:
+                rgba(255,255,255,.09);
+
+            border:
+                1px solid rgba(255,255,255,.12);
+
+            padding:
+                6px 10px;
+
+            border-radius: 8px;
+
+            font-size: 8px;
+
+            font-weight: 800;
+
+            letter-spacing: .9px;
+
+            text-transform: uppercase;
+
+        }
+
+
+        .page-header h1 {
+
+            margin:
+                13px 0 6px;
+
+            font-size: 24px;
+
+            font-weight: 800;
+
+        }
+
+
+        .page-header p {
+
+            margin: 0;
+
+            color: #cbd5e1;
+
+            font-size: 10px;
+
+            line-height: 1.6;
+
+            max-width: 720px;
+
+        }
+
+
+        /* =========================================
+           GRID
+        ========================================= */
+
+        .content-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                minmax(0, 1fr)
+                320px;
+
+            gap: 18px;
+
+        }
+
+
+        /* =========================================
+           CARD
+        ========================================= */
+
+        .card-box {
+
+            background: #ffffff;
+
+            border:
+                1px solid #e5e9ef;
+
+            border-radius: 18px;
+
+            padding: 21px;
+
+            margin-bottom: 18px;
+
+            box-shadow:
+                0 7px 24px rgba(20,35,60,.035);
+
+        }
+
+
+        /* =========================================
+           PACKAGE
+        ========================================= */
+
+        .package-mini {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 15px;
+
+            padding:
+                14px;
+
+            background:
+                #fafbfc;
+
+            border:
+                1px solid #edf0f4;
+
+            border-radius: 13px;
+
+            margin-bottom: 18px;
+
+        }
+
+
+        .package-mini-left {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 11px;
+
+        }
+
+
+        .package-icon {
+
+            width: 42px;
+
+            height: 42px;
+
+            border-radius: 11px;
+
+            background:
+                #fff5e2;
+
+            color:
+                #d88900;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 18px;
+
+        }
+
+
+        .package-name {
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+            color: #172033;
+
+        }
+
+
+        .package-route {
+
+            margin-top: 3px;
+
+            font-size: 8px;
+
+            color: #8b95a5;
+
+        }
+
+
+        .package-price {
+
+            text-align: right;
+
+        }
+
+
+        .package-price-label {
+
+            display: block;
+
+            color: #9aa3b0;
+
+            font-size: 7px;
+
+            text-transform: uppercase;
+
+            font-weight: 800;
+
+            letter-spacing: .5px;
+
+        }
+
+
+        .package-price-value {
+
+            display: block;
+
+            margin-top: 3px;
+
+            color: #d88900;
+
+            font-size: 15px;
+
+            font-weight: 800;
+
+        }
+
+
+        /* =========================================
+           SECTION
+        ========================================= */
+
+        .section-heading {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            margin-bottom: 18px;
+
+        }
+
+
+        .section-icon {
+
+            width: 38px;
+
+            height: 38px;
+
+            border-radius: 11px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background: #fff5e2;
+
+            color: #d88900;
+
+            font-size: 16px;
+
+        }
+
+
+        .section-title {
+
+            margin: 0;
+
+            font-size: 14px;
+
+            font-weight: 800;
+
+        }
+
+
+        .section-subtitle {
+
+            margin:
+                3px 0 0;
+
+            color: #98a2b3;
+
+            font-size: 8px;
+
+        }
+
+
+        /* =========================================
+           FORM
+        ========================================= */
+
+        .field-label {
+
+            display: block;
+
+            margin-bottom: 6px;
+
+            color: #69778d;
+
+            font-size: 8px;
+
+            font-weight: 800;
+
+            text-transform: uppercase;
+
+            letter-spacing: .5px;
+
+        }
+
+
+        .form-control,
+        .form-select {
+
+            min-height: 43px;
+
+            border:
+                1px solid #dfe5ed;
+
+            border-radius: 10px;
+
+            font-size: 10px;
+
+            color: #202733;
+
+            box-shadow: none;
+
+        }
+
+
+        .form-control::placeholder {
+            color: #a8b0bc;
+        }
+
+
+        .form-control:focus,
+        .form-select:focus {
+
+            border-color: #f1c76e;
+
+            box-shadow:
+                0 0 0 3px rgba(245,158,11,.08);
+
+        }
+
+
+        .form-text {
+
+            margin-top: 5px;
+
+            color: #9aa3b0;
+
+            font-size: 7px;
+
+        }
+
+
+        /* =========================================
+           PILGRIM COUNT
+        ========================================= */
+
+        .pilgrim-count-box {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #fffaf0,
+                    #fffdf8
+                );
+
+            border:
+                1px solid #f3dfb8;
+
+            border-radius: 14px;
+
+            padding: 15px;
+
+        }
+
+
+        .count-title {
+
+            color: #8c5b08;
+
+            font-size: 9px;
+
+            font-weight: 800;
+
+        }
+
+
+        .count-subtitle {
+
+            margin-top: 3px;
+
+            color: #aa8550;
+
+            font-size: 7px;
+
+        }
+
+
+        .count-control {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            margin-top: 12px;
+
+        }
+
+
+        .count-control input {
+
+            max-width: 110px;
+
+        }
+
+
+        .count-total-price {
+
+            margin-top: 10px;
+
+            color: #8c5b08;
+
+            font-size: 8px;
+
+            font-weight: 700;
+
+        }
+
+
+        /* =========================================
+           NOTE
+        ========================================= */
+
+        .required-note {
+
+            margin-top: 15px;
+
+            padding:
+                9px 11px;
+
+            border-radius: 9px;
+
+            background: #f8fafc;
+
+            border:
+                1px solid #edf0f4;
+
+            color: #8b95a5;
+
+            font-size: 8px;
+
+        }
+
+
+        .required-note i {
+            color: #d88900;
+        }
+
+
+        /* =========================================
+           SUMMARY
+        ========================================= */
+
+        .booking-sidebar {
+
+            position: sticky;
+
+            top: 95px;
+
+            align-self: start;
+
+        }
+
+
+        .summary-card {
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #ffffff,
+                    #f9fbfd
+                );
+
+            border:
+                1px solid #e5e9ef;
+
+            border-radius: 18px;
+
+            padding: 20px;
+
+            box-shadow:
+                0 10px 28px rgba(20,35,60,.05);
+
+        }
+
+
+        .summary-title {
+
+            font-size: 14px;
+
+            font-weight: 800;
+
+            margin-bottom: 15px;
+
+        }
+
+
+        .summary-row {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            gap: 10px;
+
+            padding:
+                9px 0;
+
+            border-bottom:
+                1px solid #edf0f4;
+
+            font-size: 9px;
+
+        }
+
+
+        .summary-label {
+
+            color: #8b95a5;
+
+        }
+
+
+        .summary-value {
+
+            color: #263238;
+
+            font-weight: 800;
+
+            text-align: right;
+
+        }
+
+
+        .summary-divider {
+
+            margin:
+                15px 0;
+
+            border: none;
+
+            border-top:
+                1px solid #e9edf2;
+
+        }
+
+
+        .summary-price-label {
+
+            color: #98a2b3;
+
+            font-size: 7px;
+
+            font-weight: 800;
+
+            text-transform: uppercase;
+
+            letter-spacing: .6px;
+
+        }
+
+
+        .summary-price {
+
+            margin-top: 4px;
+
+            color: #d88900;
+
+            font-size: 22px;
+
+            font-weight: 800;
+
+        }
+
+
+        .summary-note {
+
+            margin-top: 3px;
+
+            color: #98a2b3;
+
+            font-size: 7px;
+
+            line-height: 1.5;
+
+        }
+
+
+        .seat-box {
+
+            margin-top: 14px;
+
+            padding:
+                11px;
+
+            background:
+                #fff8eb;
+
+            border:
+                1px solid #f4dfb7;
+
+            border-radius: 11px;
+
+        }
+
+
+        .seat-label {
+
+            font-size: 7px;
+
+            color: #b66f00;
+
+            text-transform: uppercase;
+
+            font-weight: 800;
+
+            letter-spacing: .5px;
+
+        }
+
+
+        .seat-value {
+
+            margin-top: 3px;
+
+            font-size: 13px;
+
+            color: #8f5800;
+
+            font-weight: 800;
+
+        }
+
+
+        /* =========================================
+           BUTTONS
+        ========================================= */
+
+        .action-row {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 8px;
+
+            margin-top: 18px;
+
+        }
+
+
+        .continue-btn {
+
+            min-height: 44px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 7px;
+
+            border: none;
+
+            border-radius: 10px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f59e0b,
+                    #df8508
+                );
+
+            color: white;
+
+            font-size: 9px;
+
+            font-weight: 800;
+
+            box-shadow:
+                0 8px 18px rgba(245,158,11,.20);
+
+            transition: .2s ease;
+
+            cursor: pointer;
+
+        }
+
+
+        .continue-btn:hover {
+
+            color: white;
+
+            transform:
+                translateY(-1px);
+
+            box-shadow:
+                0 11px 22px rgba(245,158,11,.27);
+
+        }
+
+
+        .back-btn {
+
+            min-height: 42px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 7px;
+
+            border:
+                1px solid #dfe5ed;
+
+            border-radius: 10px;
+
+            background: white;
+
+            color: #667386;
+
+            text-decoration: none;
+
+            font-size: 9px;
+
+            font-weight: 800;
+
+        }
+
+
+        .back-btn:hover {
+
+            background: #f8fafc;
+
+            color: #334155;
+
+        }
+
+
+        /* =========================================
+           FOOTER
+        ========================================= */
+
+        .footer {
+
+            text-align: center;
+
+            padding:
+                20px 10px 5px;
+
+            color:
+                #98a2b0;
+
+            font-size: 8px;
+
+        }
+
+
+        /* =========================================
+           RESPONSIVE
+        ========================================= */
+
+        @media (max-width: 1100px) {
+
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .booking-sidebar {
+                position: static;
+            }
+
+        }
+
+
+        @media (max-width: 900px) {
+
+            .main {
+
+                margin-left: 0;
+
+                padding: 18px;
+
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .package-mini {
+
+                align-items: flex-start;
+
+                flex-direction: column;
+
+            }
+
+            .package-price {
+
+                text-align: left;
+
+            }
+
+            .count-control {
+
+                align-items: flex-start;
+
+                flex-direction: column;
+
+            }
+
+            .count-control input {
+
+                max-width: 100%;
+
+                width: 100%;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================
+     DJANGO MESSAGES
+========================================= -->
+
+{% if messages %}
+
+    <div class="message-container">
+
+        {% for message in messages %}
+
+            <div
+                class="
+                    alert-message
+                    {% if message.tags == 'success' %}
+                        success-message
+                    {% elif message.tags == 'warning' %}
+                        warning-message
+                    {% else %}
+                        error-message
+                    {% endif %}
+                "
+            >
+
+                <i
+                    class="
+                        bi
+                        {% if message.tags == 'success' %}
+                            bi-check-circle-fill
+                        {% elif message.tags == 'warning' %}
+                            bi-exclamation-triangle-fill
+                        {% else %}
+                            bi-exclamation-circle-fill
+                        {% endif %}
+                    "
+                ></i>
+
+                <span class="message-text">
+                    {{ message }}
+                </span>
+
+                <button
+                    type="button"
+                    class="message-close"
+                    onclick="this.parentElement.remove()"
+                >
+                    <i class="bi bi-x"></i>
+                </button>
+
+            </div>
+
+        {% endfor %}
+
+    </div>
+
+{% endif %}
+
+
+<div class="main">
+
+
+    <!-- =========================================
+         HEADER
+    ========================================== -->
+
+    <div class="page-header">
+
+        <div class="header-content">
+
+            <span class="header-badge">
+
+                <i class="bi bi-person-vcard"></i>
+
+                PILGRIM INFORMATION
+
+            </span>
+
+
+            <h1>
+                Passenger Details
+            </h1>
+
+
+            <p>
+
+                Enter the lead passenger information for this Umrah booking.
+                Make sure the passport and personal details are entered correctly.
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="content-grid">
+
+
+        <!-- =========================================
+             LEFT SIDE
+        ========================================== -->
+
+        <div>
+
+
+            <div class="card-box">
+
+
+                <!-- PACKAGE -->
+
+                <div class="package-mini">
+
+                    <div class="package-mini-left">
+
+                        <div class="package-icon">
+
+                            <i class="bi bi-moon-stars-fill"></i>
+
+                        </div>
+
+
+                        <div>
+
+                            <div class="package-name">
+
+                                {{ package.name }}
+
+                            </div>
+
+
+                            <div class="package-route">
+
+                                {{ package.sector }}
+
+                                ·
+
+                                {{ package.airline.name }}
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="package-price">
+
+                        <span class="package-price-label">
+
+                            Price / Pilgrim
+
+                        </span>
+
+
+                        <span class="package-price-value">
+
+                            PKR {{ package.price|floatformat:0 }}
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =========================================
+                     IMPORTANT:
+                     FORM NOW POSTS TO THE CORRECT VIEW
+                ========================================== -->
+
+                <form
+                    method="POST"
+                    action="{% url 'agent_umrah_pilgrim_details' package.id %}"
+                    id="pilgrimForm"
+                >
+
+                    {% csrf_token %}
+
+
+                    <!-- PILGRIM COUNT -->
+
+                    <div class="section-heading">
+
+                        <div class="section-icon">
+
+                            <i class="bi bi-people-fill"></i>
+
+                        </div>
+
+
+                        <div>
+
+                            <h2 class="section-title">
+
+                                Booking Participants
+
+                            </h2>
+
+
+                            <p class="section-subtitle">
+
+                                Select the number of pilgrims travelling together
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="pilgrim-count-box">
+
+
+                        <div class="count-title">
+
+                            Number of Pilgrims
+
+                        </div>
+
+
+                        <div class="count-subtitle">
+
+                            Enter the total number of passengers travelling together.
+
+                        </div>
+
+
+                        <div class="count-control">
+
+                            <input
+                                type="number"
+                                name="pilgrims_count"
+                                id="pilgrimsCount"
+                                class="form-control"
+                                min="1"
+                                max="{{ package.available_seats }}"
+                                value="1"
+                                required
+                            >
+
+
+                            <span class="form-text">
+
+                                Maximum {{ package.available_seats }} available
+
+                            </span>
+
+                        </div>
+
+
+                        <div class="count-total-price">
+
+                            Estimated booking total:
+
+                            <strong id="estimatedTotal">
+
+                                PKR {{ package.price|floatformat:0 }}
+
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- =========================================
+                         LEAD PASSENGER
+                    ========================================== -->
+
+                    <div
+                        class="section-heading"
+                        style="margin-top: 25px;"
+                    >
+
+                        <div class="section-icon">
+
+                            <i class="bi bi-person-fill"></i>
+
+                        </div>
+
+
+                        <div>
+
+                            <h2 class="section-title">
+
+                                Lead Passenger Information
+
+                            </h2>
+
+
+                            <p class="section-subtitle">
+
+                                Enter the primary passenger's official details
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="row g-3">
+
+
+                        <!-- FIRST NAME -->
+
+                        <div class="col-md-6">
+
+                            <label class="field-label">
+                                First Name
+                            </label>
+
+
+                            <input
+                                type="text"
+                                name="first_name"
+                                class="form-control"
+                                placeholder="Enter first name"
+                                autocomplete="given-name"
+                                required
+                            >
+
+                        </div>
+
+
+                        <!-- LAST NAME -->
+
+                        <div class="col-md-6">
+
+                            <label class="field-label">
+                                Last Name
+                            </label>
+
+
+                            <input
+                                type="text"
+                                name="last_name"
+                                class="form-control"
+                                placeholder="Enter last name"
+                                autocomplete="family-name"
+                                required
+                            >
+
+                        </div>
+
+
+                        <!-- PASSPORT -->
+
+                        <div class="col-md-6">
+
+                            <label class="field-label">
+                                Passport Number
+                            </label>
+
+
+                            <input
+                                type="text"
+                                name="passport_number"
+                                class="form-control"
+                                placeholder="Enter passport number"
+                                autocomplete="off"
+                                required
+                            >
+
+
+                            <div class="form-text">
+
+                                Enter the passport number exactly as shown on the passport.
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- DOB -->
+
+                        <div class="col-md-6">
+
+                            <label class="field-label">
+                                Date of Birth
+                            </label>
+
+
+                            <input
+                                type="date"
+                                name="date_of_birth"
+                                class="form-control"
+                                required
+                            >
+
+                        </div>
+
+
+                        <!-- GENDER -->
+
+                        <div class="col-md-6">
+
+                            <label class="field-label">
+                                Gender
+                            </label>
+
+
+                            <select
+                                name="gender"
+                                class="form-select"
+                                required
+                            >
+
+                                <option value="">
+                                    Select Gender
+                                </option>
+
+                                <option value="MALE">
+                                    Male
+                                </option>
+
+                                <option value="FEMALE">
+                                    Female
+                                </option>
+
+                                <option value="OTHER">
+                                    Other
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <!-- NATIONALITY -->
+
+                        <div class="col-md-6">
+
+                            <label class="field-label">
+                                Nationality
+                            </label>
+
+
+                            <input
+                                type="text"
+                                name="nationality"
+                                class="form-control"
+                                placeholder="e.g. Pakistani"
+                                value="Pakistani"
+                                required
+                            >
+
+                        </div>
+
+
+                        <!-- PHONE -->
+
+                        <div class="col-md-6">
+
+                            <label class="field-label">
+                                Contact Number
+                            </label>
+
+
+                            <input
+                                type="tel"
+                                name="phone"
+                                class="form-control"
+                                placeholder="e.g. 03001234567"
+                                autocomplete="tel"
+                                required
+                            >
+
+                        </div>
+
+
+                        <!-- EMAIL -->
+
+                        <div class="col-md-6">
+
+                            <label class="field-label">
+                                Email Address
+                            </label>
+
+
+                            <input
+                                type="email"
+                                name="email"
+                                class="form-control"
+                                placeholder="Enter email address"
+                                autocomplete="email"
+                            >
+
+                        </div>
+
+
+                    </div>
+
+
+                    <!-- NOTE -->
+
+                    <div class="required-note">
+
+                        <i class="bi bi-info-circle-fill me-1"></i>
+
+                        Please ensure all passenger details exactly match
+                        the travel document before submitting the booking.
+
+                    </div>
+
+
+                    <!-- ACTIONS -->
+
+                    <div
+                        class="card-box"
+                        style="margin-top: 20px;"
+                    >
+
+                        <div class="action-row">
+
+                            <button
+                                type="submit"
+                                class="continue-btn"
+                            >
+
+                                <i class="bi bi-check-circle-fill"></i>
+
+                                Submit Umrah Booking
+
+                                <i class="bi bi-arrow-right"></i>
+
+                            </button>
+
+
+                            <a
+                                href="{% url 'agent_umrah_bookings' %}"
+                                class="back-btn"
+                            >
+
+                                <i class="bi bi-arrow-left"></i>
+
+                                Back to Umrah Packages
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+                </form>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================================
+             RIGHT SIDE
+        ========================================== -->
+
+        <div class="booking-sidebar">
+
+
+            <div class="summary-card">
+
+
+                <div class="summary-title">
+
+                    Booking Summary
+
+                </div>
+
+
+                <div class="summary-row">
+
+                    <span class="summary-label">
+                        Package
+                    </span>
+
+                    <span class="summary-value">
+                        {{ package.name }}
+                    </span>
+
+                </div>
+
+
+                <div class="summary-row">
+
+                    <span class="summary-label">
+                        Sector
+                    </span>
+
+                    <span class="summary-value">
+                        {{ package.sector }}
+                    </span>
+
+                </div>
+
+
+                <div class="summary-row">
+
+                    <span class="summary-label">
+                        Airline
+                    </span>
+
+                    <span class="summary-value">
+                        {{ package.airline.code }}
+                    </span>
+
+                </div>
+
+
+                <div class="summary-row">
+
+                    <span class="summary-label">
+                        Room
+                    </span>
+
+                    <span class="summary-value">
+                        {{ package.room_type|title }}
+                    </span>
+
+                </div>
+
+
+                <div class="summary-row">
+
+                    <span class="summary-label">
+                        Makkah Nights
+                    </span>
+
+                    <span class="summary-value">
+                        {{ package.nights_in_makkah }}
+                    </span>
+
+                </div>
+
+
+                <div class="summary-row">
+
+                    <span class="summary-label">
+                        Madinah Nights
+                    </span>
+
+                    <span class="summary-value">
+                        {{ package.nights_in_madinah }}
+                    </span>
+
+                </div>
+
+
+                <hr class="summary-divider">
+
+
+                <div class="summary-price-label">
+                    Price / Pilgrim
+                </div>
+
+
+                <div class="summary-price">
+
+                    PKR {{ package.price|floatformat:0 }}
+
+                </div>
+
+
+                <div class="summary-note">
+
+                    Total booking amount is calculated according to
+                    the number of pilgrims entered.
+
+                </div>
+
+
+                <div class="seat-box">
+
+                    <div class="seat-label">
+                        Available Seats
+                    </div>
+
+
+                    <div class="seat-value">
+
+                        {{ package.available_seats }}
+
+                        Seat{{ package.available_seats|pluralize }}
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <div class="footer">
+
+        © 2026 AL NAJAM Travel & Tours — Agent Portal
+
+    </div>
+
+
+</div>
+
+
+<!-- =========================================
+     JAVASCRIPT
+========================================= -->
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        const pilgrimsInput =
+            document.getElementById("pilgrimsCount");
+
+        const estimatedTotal =
+            document.getElementById("estimatedTotal");
+
+        const packagePrice =
+            parseFloat("{{ package.price }}") || 0;
+
+        const availableSeats =
+            parseInt("{{ package.available_seats }}") || 0;
+
+
+        function updateTotal() {
+
+            let count =
+                parseInt(
+                    pilgrimsInput.value
+                ) || 1;
+
+
+            if (count < 1) {
+
+                count = 1;
+
+                pilgrimsInput.value = 1;
+
+            }
+
+
+            if (availableSeats > 0 && count > availableSeats) {
+
+                count = availableSeats;
+
+                pilgrimsInput.value =
+                    availableSeats;
+
+            }
+
+
+            const total =
+                packagePrice * count;
+
+
+            estimatedTotal.textContent =
+                "PKR " +
+                total.toLocaleString("en-PK");
+
+        }
+
+
+        pilgrimsInput.addEventListener(
+            "input",
+            updateTotal
+        );
+
+
+        pilgrimsInput.addEventListener(
+            "change",
+            updateTotal
+        );
+
+
+        updateTotal();
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>

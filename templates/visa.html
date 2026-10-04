@@ -1,0 +1,952 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Visa Services | AL NAJAM Travel & Tours</title>
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <style>
+
+        .visa-page {
+            background: #f7f9fc;
+            min-height: 100vh;
+        }
+
+        /* ================= HERO ================= */
+
+        .visa-hero {
+            min-height: 520px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    rgba(10, 20, 35, 0.72),
+                    rgba(10, 20, 35, 0.72)
+                ),
+                url("https://images.unsplash.com/photo-1521292270410-a8c4d716d518?auto=format&fit=crop&w=2000&q=85");
+
+            background-size: cover;
+            background-position: center;
+        }
+
+        .visa-hero-content {
+            position: relative;
+            z-index: 2;
+
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+
+            padding-top: 80px;
+
+            color: white;
+        }
+
+        .visa-small-title {
+            display: inline-block;
+
+            color: #F59E0B;
+
+            font-size: 13px;
+            font-weight: 700;
+
+            letter-spacing: 3px;
+
+            margin-bottom: 18px;
+        }
+
+        .visa-hero h1 {
+            font-size: clamp(45px, 6vw, 72px);
+            line-height: 1.1;
+
+            margin: 0 0 22px;
+
+            font-weight: 800;
+        }
+
+        .visa-hero h1 span {
+            color: #F59E0B;
+        }
+
+        .visa-hero p {
+            max-width: 650px;
+
+            font-size: 18px;
+            line-height: 1.7;
+
+            color: rgba(255,255,255,0.9);
+
+            margin-bottom: 30px;
+        }
+
+        .visa-hero-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+
+            padding: 14px 24px;
+
+            background: #F59E0B;
+            color: white;
+
+            border-radius: 8px;
+
+            font-weight: 700;
+
+            text-decoration: none;
+
+            transition: 0.3s;
+        }
+
+        .visa-hero-btn:hover {
+            transform: translateY(-3px);
+            color: white;
+        }
+
+
+        /* ================= VISA SERVICES ================= */
+
+        .visa-services {
+            padding: 90px 6%;
+        }
+
+        .visa-heading {
+            text-align: center;
+
+            max-width: 700px;
+
+            margin: 0 auto 55px;
+        }
+
+        .visa-heading span {
+            color: #F59E0B;
+
+            font-size: 13px;
+            font-weight: 700;
+
+            letter-spacing: 3px;
+        }
+
+        .visa-heading h2 {
+            font-size: 42px;
+
+            color: #172033;
+
+            margin: 12px 0 15px;
+        }
+
+        .visa-heading p {
+            color: #687386;
+
+            font-size: 17px;
+            line-height: 1.7;
+        }
+
+
+        .visa-grid {
+            max-width: 1200px;
+
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 25px;
+        }
+
+
+        .visa-card {
+            background: white;
+
+            padding: 32px 28px;
+
+            border-radius: 16px;
+
+            border: 1px solid #e9edf3;
+
+            transition: 0.3s;
+        }
+
+        .visa-card:hover {
+            transform: translateY(-8px);
+
+            box-shadow:
+                0 18px 40px rgba(0,0,0,0.08);
+        }
+
+
+        .visa-icon {
+            width: 58px;
+            height: 58px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #fff6d6;
+
+            color: #F59E0B;
+
+            border-radius: 13px;
+
+            font-size: 25px;
+
+            margin-bottom: 20px;
+        }
+
+
+        .visa-card h3 {
+            font-size: 21px;
+
+            color: #172033;
+
+            margin-bottom: 12px;
+        }
+
+
+        .visa-card p {
+            color: #687386;
+
+            line-height: 1.7;
+
+            font-size: 14px;
+
+            margin-bottom: 20px;
+        }
+
+
+        .visa-card a {
+            color: #c28c00;
+
+            text-decoration: none;
+
+            font-weight: 700;
+
+            font-size: 14px;
+        }
+
+        .visa-card a i {
+            margin-left: 5px;
+
+            transition: 0.3s;
+        }
+
+        .visa-card a:hover i {
+            margin-left: 10px;
+        }
+
+
+        /* ================= PROCESS ================= */
+
+        .visa-process {
+            background: white;
+
+            padding: 90px 6%;
+        }
+
+        .process-heading {
+            text-align: center;
+
+            margin-bottom: 50px;
+        }
+
+        .process-heading span {
+            color: #F59E0B;
+
+            font-size: 13px;
+            font-weight: 700;
+
+            letter-spacing: 3px;
+        }
+
+        .process-heading h2 {
+            color: #172033;
+
+            font-size: 40px;
+
+            margin-top: 12px;
+        }
+
+
+        .process-grid {
+            max-width: 1100px;
+
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns: repeat(4, 1fr);
+
+            gap: 20px;
+        }
+
+
+        .process-step {
+            text-align: center;
+
+            padding: 25px;
+        }
+
+
+        .process-number {
+            width: 55px;
+            height: 55px;
+
+            margin: 0 auto 18px;
+
+            border-radius: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #F59E0B;
+
+            color: white;
+
+            font-size: 18px;
+
+            font-weight: 800;
+        }
+
+
+        .process-step h3 {
+            color: #172033;
+
+            font-size: 18px;
+
+            margin-bottom: 10px;
+        }
+
+
+        .process-step p {
+            color: #687386;
+
+            font-size: 13px;
+
+            line-height: 1.6;
+        }
+
+
+        /* ================= CTA ================= */
+
+        .visa-cta {
+            padding: 80px 20px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #172033,
+                    #27364f
+                );
+
+            text-align: center;
+
+            color: white;
+        }
+
+        .visa-cta h2 {
+            font-size: 40px;
+
+            margin-bottom: 15px;
+        }
+
+        .visa-cta p {
+            color: #d4dae4;
+
+            max-width: 650px;
+
+            margin: 0 auto 30px;
+
+            line-height: 1.7;
+        }
+
+        .visa-cta a {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            padding: 14px 25px;
+
+            background: #F59E0B;
+
+            color: white;
+
+            border-radius: 8px;
+
+            text-decoration: none;
+
+            font-weight: 700;
+        }
+
+
+        /* ================= MOBILE ================= */
+
+        @media (max-width: 900px) {
+
+            .visa-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .process-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .visa-hero {
+                min-height: 560px;
+            }
+
+            .visa-hero-content {
+                padding-top: 100px;
+            }
+
+            .visa-hero h1 {
+                font-size: 45px;
+            }
+
+            .visa-services,
+            .visa-process {
+                padding: 65px 20px;
+            }
+
+            .visa-heading h2,
+            .process-heading h2 {
+                font-size: 32px;
+            }
+
+            .visa-grid,
+            .process-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .visa-cta h2 {
+                font-size: 32px;
+            }
+
+        }
+        .brand-logo {
+    width: 72px;
+    height: 72px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+    overflow: hidden;
+}
+
+.brand-logo img {
+    width: 72px;
+    height: 72px;
+    object-fit: contain;
+    display: block;
+}
+    </style>
+
+</head>
+
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<header class="main-header">
+
+    <nav class="navbar">
+
+        <!-- BRAND -->
+
+        <a href="/" class="brand">
+
+            <div class="brand-logo">
+                <img
+                    src="{% static 'images/logo.png' %}"
+                    alt="AL NAJAM Travel & Tours"
+                >
+            </div>
+
+            <div class="brand-text">
+
+                <strong>AL NAJAM</strong>
+
+                <small>TRAVEL & TOURS</small>
+
+            </div>
+
+        </a>
+
+
+        <!-- NAVIGATION -->
+
+        <div class="nav-links">
+
+            <a href="{% url 'home' %}">Home</a>
+        
+            <a href="{% url 'flights' %}">Flights</a>
+        
+            <a href="{% url 'hotels' %}">Hotels</a>
+        
+            <a href="{% url 'visa' %}" class="active">Visa</a>
+        
+            <a href="{% url 'umrah' %}">Umrah</a>
+        
+            <a href="{% url 'tours' %}">Tours</a>
+        
+            <a href="{% url 'about' %}">About</a>
+        
+            <a href="{% url 'contact' %}">Contact</a>
+        
+        </div>
+        <!-- RIGHT SIDE -->
+
+        <div class="nav-actions">
+
+            <a href="#" class="login-btn">
+
+                <i class="bi bi-person"></i>
+
+                Agent Login
+
+            </a>
+
+            <a href="#" class="agent-btn">
+
+                Become an Agent
+
+            </a>
+
+        </div>
+
+
+        <!-- MOBILE -->
+
+        <button class="mobile-menu">
+
+            <i class="bi bi-list"></i>
+
+        </button>
+
+    </nav>
+
+</header>
+
+
+<!-- ================= PAGE ================= -->
+
+<main class="visa-page">
+
+
+    <!-- ================= HERO ================= -->
+
+    <section class="visa-hero">
+
+        <div class="visa-hero-content">
+
+            <span class="visa-small-title">
+                VISA ASSISTANCE
+            </span>
+
+            <h1>
+                Your Journey Starts
+                <br>
+                With <span>Confidence</span>
+            </h1>
+
+            <p>
+                Professional visa assistance and travel documentation
+                support to help make your international journey easier.
+            </p>
+
+            <a href="/contact/" class="visa-hero-btn">
+
+                Get Visa Assistance
+
+                <i class="bi bi-arrow-right"></i>
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= SERVICES ================= -->
+
+    <section class="visa-services">
+
+        <div class="visa-heading">
+
+            <span>OUR VISA SERVICES</span>
+
+            <h2>
+                Visa Solutions Made Simple
+            </h2>
+
+            <p>
+                We help travelers understand the visa process,
+                prepare documents and move forward with confidence.
+            </p>
+
+        </div>
+
+
+        <div class="visa-grid">
+
+
+            <!-- TOURIST VISA -->
+
+            <div class="visa-card">
+
+                <div class="visa-icon">
+
+                    <i class="bi bi-airplane"></i>
+
+                </div>
+
+                <h3>
+                    Tourist Visa
+                </h3>
+
+                <p>
+                    Assistance with tourist visa applications
+                    for your international holidays and trips.
+                </p>
+
+                <a href="/contact/">
+
+                    Get Assistance
+
+                    <i class="bi bi-arrow-right"></i>
+
+                </a>
+
+            </div>
+
+
+            <!-- BUSINESS VISA -->
+
+            <div class="visa-card">
+
+                <div class="visa-icon">
+
+                    <i class="bi bi-briefcase"></i>
+
+                </div>
+
+                <h3>
+                    Business Visa
+                </h3>
+
+                <p>
+                    Professional guidance for travelers
+                    visiting other countries for business purposes.
+                </p>
+
+                <a href="/contact/">
+
+                    Get Assistance
+
+                    <i class="bi bi-arrow-right"></i>
+
+                </a>
+
+            </div>
+
+
+            <!-- FAMILY VISA -->
+
+            <div class="visa-card">
+
+                <div class="visa-icon">
+
+                    <i class="bi bi-people"></i>
+
+                </div>
+
+                <h3>
+                    Family Visa
+                </h3>
+
+                <p>
+                    Assistance for families planning international
+                    travel and preparing required documents.
+                </p>
+
+                <a href="/contact/">
+
+                    Get Assistance
+
+                    <i class="bi bi-arrow-right"></i>
+
+                </a>
+
+            </div>
+
+
+            <!-- STUDENT VISA -->
+
+            <div class="visa-card">
+
+                <div class="visa-icon">
+
+                    <i class="bi bi-mortarboard"></i>
+
+                </div>
+
+                <h3>
+                    Student Visa
+                </h3>
+
+                <p>
+                    Guidance for students preparing documents
+                    and planning their international studies.
+                </p>
+
+                <a href="/contact/">
+
+                    Get Assistance
+
+                    <i class="bi bi-arrow-right"></i>
+
+                </a>
+
+            </div>
+
+
+            <!-- TRANSIT VISA -->
+
+            <div class="visa-card">
+
+                <div class="visa-icon">
+
+                    <i class="bi bi-signpost-split"></i>
+
+                </div>
+
+                <h3>
+                    Transit Visa
+                </h3>
+
+                <p>
+                    Support for travelers who need transit
+                    documentation during international journeys.
+                </p>
+
+                <a href="/contact/">
+
+                    Get Assistance
+
+                    <i class="bi bi-arrow-right"></i>
+
+                </a>
+
+            </div>
+
+
+            <!-- VISA CONSULTANCY -->
+
+            <div class="visa-card">
+
+                <div class="visa-icon">
+
+                    <i class="bi bi-headset"></i>
+
+                </div>
+
+                <h3>
+                    Visa Consultancy
+                </h3>
+
+                <p>
+                    Get personalized guidance about visa
+                    requirements and travel documentation.
+                </p>
+
+                <a href="/contact/">
+
+                    Contact Us
+
+                    <i class="bi bi-arrow-right"></i>
+
+                </a>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= PROCESS ================= -->
+
+    <section class="visa-process">
+
+        <div class="process-heading">
+
+            <span>HOW IT WORKS</span>
+
+            <h2>
+                Simple Visa Process
+            </h2>
+
+        </div>
+
+
+        <div class="process-grid">
+
+
+            <div class="process-step">
+
+                <div class="process-number">
+                    01
+                </div>
+
+                <h3>
+                    Contact Us
+                </h3>
+
+                <p>
+                    Tell us about your destination
+                    and travel requirements.
+                </p>
+
+            </div>
+
+
+            <div class="process-step">
+
+                <div class="process-number">
+                    02
+                </div>
+
+                <h3>
+                    Document Check
+                </h3>
+
+                <p>
+                    We help you understand the
+                    documents required for your application.
+                </p>
+
+            </div>
+
+
+            <div class="process-step">
+
+                <div class="process-number">
+                    03
+                </div>
+
+                <h3>
+                    Application Support
+                </h3>
+
+                <p>
+                    Get assistance with preparing
+                    your visa application.
+                </p>
+
+            </div>
+
+
+            <div class="process-step">
+
+                <div class="process-number">
+                    04
+                </div>
+
+                <h3>
+                    Travel Ready
+                </h3>
+
+                <p>
+                    Once approved, prepare for
+                    your exciting journey.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= CTA ================= -->
+
+    <section class="visa-cta">
+
+        <h2>
+            Need Help With Your Visa?
+        </h2>
+
+        <p>
+            Contact AL NAJAM Travel & Tours today
+            and let our team guide you through the process.
+        </p>
+
+        <a href="/contact/">
+
+            Contact Us
+
+            <i class="bi bi-arrow-right"></i>
+
+        </a>
+
+    </section>
+
+
+</main>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="footer">
+
+    <div class="footer-content">
+
+        <h3>
+            AL NAJAM
+        </h3>
+
+        <p>
+            Travel & Tours
+        </p>
+
+        <span>
+            © 2026 AL NAJAM Travel & Tours.
+            All rights reserved.
+        </span>
+
+    </div>
+
+</footer>
+
+
+</body>
+
+</html>

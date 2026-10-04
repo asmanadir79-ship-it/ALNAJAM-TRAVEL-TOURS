@@ -1,0 +1,1351 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+
+>
+
+<title>
+    Agent Wallet Statement | AL NAJAM Admin
+</title>
+
+<link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+>
+
+<link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+>
+
+<style>
+
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+
+        margin: 0;
+
+        background: #f7f8fa;
+
+        font-family: Arial, sans-serif;
+
+        color: #263238;
+
+    }
+
+    .main-content {
+
+        margin-left: 250px;
+
+        min-height: 100vh;
+
+    }
+
+    .sidebar {
+
+        position: fixed;
+
+        left: 0;
+
+        top: 0;
+
+        width: 250px;
+
+        height: 100vh;
+
+        background: white;
+
+        border-right: 1px solid #eeeeee;
+
+        overflow-y: auto;
+
+    }
+
+    /* BRAND */
+
+.brand {
+    height: 90px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 4px 10px;
+
+    border-bottom: 1px solid #e7ebf1;
+}
+
+
+.brand-logo {
+    width: 82px;
+    height: 82px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+}
+
+
+.brand-logo img {
+    width: 82px;
+    height: 82px;
+
+    object-fit: contain;
+    display: block;
+}
+    .brand-text {
+
+        font-size: 19px;
+
+        font-weight: 700;
+
+        color: #222222;
+
+    }
+
+    .brand-text span {
+
+        color: #f58220;
+
+    }
+
+    .sidebar-title {
+
+        font-size: 11px;
+
+        font-weight: 700;
+
+        color: #9aa0a6;
+
+        padding: 25px 25px 10px;
+
+        text-transform: uppercase;
+
+        letter-spacing: 1px;
+
+    }
+
+    .sidebar a {
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 13px;
+
+        margin: 4px 12px;
+
+        padding: 12px 14px;
+
+        border-radius: 9px;
+
+        text-decoration: none;
+
+        color: #5f6368;
+
+        font-size: 14px;
+
+    }
+
+    .sidebar a:hover {
+
+        background: #fff3e8;
+
+        color: #f58220;
+
+    }
+
+    .sidebar a.active {
+
+        background: #f58220;
+
+        color: white;
+
+    }
+
+    .logout-link {
+
+        color: #dc3545 !important;
+
+    }
+
+    .topbar {
+
+        height: 75px;
+
+        background: white;
+
+        border-bottom: 1px solid #eeeeee;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: space-between;
+
+        padding: 0 30px;
+
+    }
+
+    .page-title {
+
+        font-size: 21px;
+
+        font-weight: 700;
+
+        margin: 0;
+
+    }
+
+    .page-subtitle {
+
+        font-size: 13px;
+
+        color: #888888;
+
+        margin-top: 3px;
+
+    }
+
+    .content {
+
+        padding: 30px;
+
+    }
+
+    .summary-card {
+
+        background: white;
+
+        border: 1px solid #eeeeee;
+
+        border-radius: 14px;
+
+        padding: 20px;
+
+        height: 100%;
+
+    }
+
+    .summary-label {
+
+        font-size: 12px;
+
+        color: #777777;
+
+    }
+
+    .summary-number {
+
+        margin-top: 5px;
+
+        font-size: 24px;
+
+        font-weight: 700;
+
+    }
+
+    .statement-card {
+
+        background: white;
+
+        border: 1px solid #eeeeee;
+
+        border-radius: 15px;
+
+        padding: 24px;
+
+        margin-top: 25px;
+
+    }
+
+    .agent-header {
+
+        display: flex;
+
+        justify-content: space-between;
+
+        align-items: center;
+
+        gap: 20px;
+
+    }
+
+    .agent-name {
+
+        font-size: 22px;
+
+        font-weight: 700;
+
+        color: #222222;
+
+    }
+
+    .agency-name {
+
+        color: #888888;
+
+        font-size: 13px;
+
+        margin-top: 4px;
+
+    }
+
+    .balance-box {
+
+        background: #fff3e8;
+
+        border: 1px solid #f5d7bd;
+
+        border-radius: 12px;
+
+        padding: 15px 20px;
+
+        text-align: right;
+
+    }
+
+    .balance-label {
+
+        font-size: 10px;
+
+        color: #888888;
+
+    }
+
+    .balance-number {
+
+        font-size: 22px;
+
+        font-weight: 700;
+
+        color: #f58220;
+
+        margin-top: 4px;
+
+    }
+
+    .filter-box {
+
+        background: #fafbfc;
+
+        border: 1px solid #eeeeee;
+
+        border-radius: 12px;
+
+        padding: 15px;
+
+        margin-top: 22px;
+
+    }
+
+    .filter-row {
+
+        display: flex;
+
+        gap: 12px;
+
+        align-items: end;
+
+        flex-wrap: wrap;
+
+    }
+
+    .filter-label {
+
+        display: block;
+
+        font-size: 10px;
+
+        font-weight: 700;
+
+        color: #777777;
+
+        margin-bottom: 6px;
+
+    }
+
+    .date-input {
+
+        height: 36px;
+
+        border: 1px solid #dddddd;
+
+        border-radius: 8px;
+
+        padding: 0 10px;
+
+        font-size: 12px;
+
+    }
+
+    .filter-btn {
+
+        height: 36px;
+
+        border: none;
+
+        border-radius: 8px;
+
+        background: #f58220;
+
+        color: white;
+
+        padding: 0 15px;
+
+        font-size: 12px;
+
+        font-weight: 600;
+
+    }
+
+    .clear-btn {
+
+        height: 36px;
+
+        display: inline-flex;
+
+        align-items: center;
+
+        padding: 0 14px;
+
+        border-radius: 8px;
+
+        border: 1px solid #dddddd;
+
+        background: white;
+
+        color: #666666;
+
+        text-decoration: none;
+
+        font-size: 12px;
+
+    }
+
+    .export-btn {
+
+        height: 36px;
+
+        display: inline-flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        gap: 6px;
+
+        padding: 0 14px;
+
+        border-radius: 8px;
+
+        background: #198754;
+
+        border: 1px solid #198754;
+
+        color: white;
+
+        text-decoration: none;
+
+        font-size: 12px;
+
+        font-weight: 600;
+
+        transition: .2s ease;
+
+    }
+
+    .export-btn:hover {
+
+        background: #157347;
+
+        border-color: #157347;
+
+        color: white;
+
+    }
+
+    .pdf-btn {
+
+        background: #dc3545;
+
+        border-color: #dc3545;
+
+    }
+
+    .pdf-btn:hover {
+
+        background: #bb2d3b;
+
+        border-color: #bb2d3b;
+
+        color: white;
+
+    }
+
+    .table th {
+
+        font-size: 11px;
+
+        color: #777777;
+
+        white-space: nowrap;
+
+    }
+
+    .table td {
+
+        font-size: 13px;
+
+        vertical-align: middle;
+
+    }
+
+    .credit {
+
+        color: #198754;
+
+        font-weight: 700;
+
+    }
+
+    .debit {
+
+        color: #dc3545;
+
+        font-weight: 700;
+
+    }
+
+    .closing-box {
+
+        margin-top: 20px;
+
+        background: #172033;
+
+        color: white;
+
+        border-radius: 14px;
+
+        padding: 18px 22px;
+
+        display: flex;
+
+        justify-content: space-between;
+
+        align-items: center;
+
+    }
+
+    .closing-label {
+
+        font-size: 10px;
+
+        opacity: .7;
+
+    }
+
+    .closing-number {
+
+        font-size: 24px;
+
+        font-weight: 700;
+
+        margin-top: 4px;
+
+    }
+
+    .back-btn {
+
+        display: inline-flex;
+
+        align-items: center;
+
+        gap: 6px;
+
+        margin-bottom: 18px;
+
+        color: #f58220;
+
+        text-decoration: none;
+
+        font-size: 12px;
+
+        font-weight: 700;
+
+    }
+
+    @media (max-width: 767px) {
+
+        .sidebar {
+
+            position: relative;
+
+            width: 100%;
+
+            height: auto;
+
+        }
+
+        .main-content {
+
+            margin-left: 0;
+
+        }
+
+        .agent-header,
+
+        .closing-box {
+
+            flex-direction: column;
+
+            align-items: flex-start;
+
+        }
+
+        .balance-box {
+
+            text-align: left;
+
+        }
+
+        .filter-row {
+
+            flex-direction: column;
+
+            align-items: stretch;
+
+        }
+
+        .filter-row > div,
+
+        .date-input,
+
+        .filter-btn,
+
+        .clear-btn,
+
+        .export-btn {
+
+            width: 100%;
+
+        }
+
+    }
+
+</style>
+
+</head>
+
+<body>
+
+<div class="sidebar">
+
+<div class="brand">
+
+
+    <div class="brand-logo">
+
+        <img
+            src="{% static 'images/logo.png' %}"
+            alt="AL NAJAM Travel & Tours"
+        >
+
+    </div>
+
+<div class="brand-text">
+
+    AL <span>NAJAM</span>
+
+</div>
+
+
+</div>
+
+<div class="sidebar-title">
+
+Main Menu
+
+
+</div>
+
+<a href="{% url 'admin_dashboard' %}">
+
+
+<i class="bi bi-grid-1x2-fill"></i>
+
+Dashboard
+
+
+</a>
+
+<a href="{% url 'admin_wallet_requests' %}" class="active">
+
+
+<i class="bi bi-wallet2"></i>
+
+Wallet Requests
+
+
+</a>
+
+<div class="sidebar-title">
+
+
+Operations
+
+
+</div>
+
+<a href="{% url 'admin_group_tickets' %}">
+
+
+<i class="bi bi-people-fill"></i>
+
+Group Tickets
+
+
+</a>
+
+<div style="margin-top:20px;">
+
+
+<a
+    href="{% url 'logout' %}"
+    class="logout-link"
+>
+
+    <i class="bi bi-box-arrow-right"></i>
+
+    Logout
+
+</a>
+
+
+</div>
+
+</div>
+
+<div class="main-content">
+
+<div class="topbar">
+
+
+<div>
+
+    <h1 class="page-title">
+
+        Agent Wallet Statement
+
+    </h1>
+
+    <p class="page-subtitle">
+
+        Complete wallet transaction history for this agent.
+
+    </p>
+
+</div>
+
+
+</div>
+
+<div class="content">
+
+
+<a
+    href="{% url 'admin_wallet_requests' %}"
+    class="back-btn"
+>
+
+    <i class="bi bi-arrow-left"></i>
+
+    Back to Wallet Requests
+
+</a>
+
+
+<!-- AGENT HEADER -->
+
+<div class="statement-card">
+
+
+    <div class="agent-header">
+
+
+        <div>
+
+            <div class="agent-name">
+
+                {{ agent.name }}
+
+            </div>
+
+            <div class="agency-name">
+
+                {{ agent.agency }}
+
+            </div>
+
+            <div class="agency-name">
+
+                {{ agent.email }}
+
+            </div>
+
+        </div>
+
+
+        <div class="balance-box">
+
+            <div class="balance-label">
+
+                CURRENT WALLET BALANCE
+
+            </div>
+
+            <div class="balance-number">
+
+                PKR {{ wallet.balance|floatformat:0 }}
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+<!-- SUMMARY -->
+
+<div class="row g-4 mt-1">
+
+
+    <div class="col-md-3">
+
+        <div class="summary-card">
+
+            <div class="summary-label">
+
+                TOTAL DEPOSITED
+
+            </div>
+
+            <div class="summary-number">
+
+                PKR {{ wallet.total_deposited|floatformat:0 }}
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="col-md-3">
+
+        <div class="summary-card">
+
+            <div class="summary-label">
+
+                TOTAL SPENT
+
+            </div>
+
+            <div class="summary-number">
+
+                PKR {{ wallet.total_spent|floatformat:0 }}
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="col-md-3">
+
+        <div class="summary-card">
+
+            <div class="summary-label">
+
+                TOTAL CREDITS
+
+            </div>
+
+            <div class="summary-number">
+
+                PKR {{ total_credit|floatformat:0 }}
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="col-md-3">
+
+        <div class="summary-card">
+
+            <div class="summary-label">
+
+                TOTAL DEBITS
+
+            </div>
+
+            <div class="summary-number">
+
+                PKR {{ total_debit|floatformat:0 }}
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+<!-- FILTER -->
+
+<div class="statement-card">
+
+
+    <div class="filter-box">
+
+
+        <form
+            method="GET"
+            action="{% url 'admin_agent_wallet_statement' agent.id %}"
+        >
+
+            <div class="filter-row">
+
+
+                <div>
+
+                    <label class="filter-label">
+
+                        FROM DATE
+
+                    </label>
+
+                    <input
+                        type="date"
+                        name="date_from"
+                        class="date-input"
+                        value="{{ date_from }}"
+                    >
+
+                </div>
+
+
+                <div>
+
+                    <label class="filter-label">
+
+                        TO DATE
+
+                    </label>
+
+                    <input
+                        type="date"
+                        name="date_to"
+                        class="date-input"
+                        value="{{ date_to }}"
+                    >
+
+                </div>
+
+
+                <div>
+
+                    <label class="filter-label">
+
+                        &nbsp;
+
+                    </label>
+
+                    <button
+                        type="submit"
+                        class="filter-btn"
+                    >
+
+                        <i class="bi bi-search me-1"></i>
+
+                        Filter
+
+                    </button>
+
+                </div>
+
+
+                {% if date_from or date_to %}
+
+                    <div>
+
+                        <label class="filter-label">
+
+                            &nbsp;
+
+                        </label>
+
+                        <a
+                            href="{% url 'admin_agent_wallet_statement' agent.id %}"
+                            class="clear-btn"
+                        >
+
+                            <i class="bi bi-x-circle me-1"></i>
+
+                            Clear
+
+                        </a>
+
+                    </div>
+
+                {% endif %}
+
+
+                <!-- EXPORT EXCEL -->
+
+                <div>
+
+                    <label class="filter-label">
+
+                        &nbsp;
+
+                    </label>
+
+                    <a
+                        href="{% url 'admin_agent_wallet_statement_excel' agent.id %}?date_from={{ date_from|urlencode }}&date_to={{ date_to|urlencode }}"
+                        class="export-btn"
+                    >
+
+                        <i class="bi bi-file-earmark-excel"></i>
+
+                        Export Excel
+
+                    </a>
+
+                </div>
+
+
+                <!-- EXPORT PDF -->
+
+                <div>
+
+                    <label class="filter-label">
+
+                        &nbsp;
+
+                    </label>
+
+                    <a
+                        href="{% url 'admin_agent_wallet_statement_pdf' agent.id %}?date_from={{ date_from|urlencode }}&date_to={{ date_to|urlencode }}"
+                        class="export-btn pdf-btn"
+                    >
+
+                        <i class="bi bi-file-earmark-pdf"></i>
+
+                        Save PDF
+
+                    </a>
+
+                </div>
+
+
+            </div>
+
+        </form>
+
+
+    </div>
+
+
+    <!-- TRANSACTION TABLE -->
+
+    <div class="table-responsive mt-4">
+
+
+        <table class="table align-middle">
+
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        DATE
+                    </th>
+
+                    <th>
+                        REFERENCE
+                    </th>
+
+                    <th>
+                        DESCRIPTION
+                    </th>
+
+                    <th>
+                        TYPE
+                    </th>
+
+                    <th>
+                        DEBIT
+                    </th>
+
+                    <th>
+                        CREDIT
+                    </th>
+
+                    <th>
+                        BALANCE AFTER
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+
+            {% if transactions %}
+
+
+                {% for transaction in transactions %}
+
+
+                    <tr>
+
+
+                        <td>
+
+                            {{ transaction.created_at|date:"d M Y, h:i A" }}
+
+                        </td>
+
+
+                        <td>
+
+                            <strong>
+
+                                {{ transaction.reference }}
+
+                            </strong>
+
+                        </td>
+
+
+                        <td>
+
+                            {{ transaction.description }}
+
+                        </td>
+
+
+                        <td>
+
+                            {% if transaction.transaction_type == "CREDIT" %}
+
+                                <span class="badge text-bg-success">
+
+                                    Credit
+
+                                </span>
+
+                            {% else %}
+
+                                <span class="badge text-bg-danger">
+
+                                    Debit
+
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+
+                        <td>
+
+                            {% if transaction.debit > 0 %}
+
+                                <span class="debit">
+
+                                    - PKR {{ transaction.debit|floatformat:0 }}
+
+                                </span>
+
+                            {% else %}
+
+                                —
+
+                            {% endif %}
+
+                        </td>
+
+
+                        <td>
+
+                            {% if transaction.credit > 0 %}
+
+                                <span class="credit">
+
+                                    + PKR {{ transaction.credit|floatformat:0 }}
+
+                                </span>
+
+                            {% else %}
+
+                                —
+
+                            {% endif %}
+
+                        </td>
+
+
+                        <td>
+
+                            <strong>
+
+                                PKR {{ transaction.balance_after|floatformat:0 }}
+
+                            </strong>
+
+                        </td>
+
+
+                    </tr>
+
+
+                {% endfor %}
+
+
+            {% else %}
+
+
+                <tr>
+
+                    <td colspan="7" class="text-center py-5">
+
+                        <i class="bi bi-journal-x"
+                           style="font-size:30px;color:#bbb;">
+                        </i>
+
+                        <div class="mt-2">
+
+                            No wallet transactions found.
+
+                        </div>
+
+                    </td>
+
+                </tr>
+
+
+            {% endif %}
+
+
+            </tbody>
+
+
+        </table>
+
+
+    </div>
+
+
+    <!-- CLOSING BALANCE -->
+
+    <div class="closing-box">
+
+
+        <div>
+
+            <div class="closing-label">
+
+                OPENING BALANCE
+
+            </div>
+
+            <div class="closing-number">
+
+                PKR {{ opening_balance|floatformat:0 }}
+
+            </div>
+
+        </div>
+
+
+        <div>
+
+            <div class="closing-label">
+
+                CLOSING BALANCE
+
+            </div>
+
+            <div class="closing-number">
+
+                PKR {{ closing_balance|floatformat:0 }}
+
+            </div>
+
+        </div>
+
+
+        <div>
+
+            <div class="closing-label">
+
+                TRANSACTIONS
+
+            </div>
+
+            <div class="closing-number">
+
+                {{ transaction_count }}
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+</div>
+
+</div>
+
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js">
+</script>
+
+</body>
+
+</html>

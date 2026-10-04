@@ -1,0 +1,582 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        My Bookings | AL NAJAM
+    </title>
+
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+
+    <style>
+
+        body {
+            background: #f5f7fa;
+        }
+
+        .page-header {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            height: 100%;
+        }
+
+        .booking-card {
+            background: white;
+            border-radius: 12px;
+            padding: 22px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .booking-reference {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .route {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .label {
+            font-size: 13px;
+            color: #777;
+            margin-bottom: 3px;
+        }
+
+        .value {
+            font-weight: 600;
+        }
+
+        .status-badge {
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .status-pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status-confirmed {
+            background: #d1e7dd;
+            color: #0f5132;
+        }
+
+        .status-cancelled {
+            background: #f8d7da;
+            color: #842029;
+        }
+
+        .status-completed {
+            background: #cfe2ff;
+            color: #084298;
+        }
+
+        .empty-box {
+            background: white;
+            border-radius: 12px;
+            padding: 60px 20px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="container py-5">
+
+
+    <!-- =========================
+         PAGE HEADER
+    ========================== -->
+
+    <div class="page-header">
+
+        <div class="d-flex justify-content-between align-items-center">
+
+            <div>
+
+                <h2 class="mb-1">
+                    My Bookings
+                </h2>
+
+                <p class="text-muted mb-0">
+
+                    Welcome,
+                    <strong>{{ agent.name }}</strong>
+
+                </p>
+
+            </div>
+
+
+            <a
+                href="{% url 'agent_dashboard' %}"
+                class="btn btn-outline-secondary"
+            >
+                Back to Dashboard
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         STATISTICS
+    ========================== -->
+
+    <div class="row g-3 mb-4">
+
+
+        <!-- PENDING -->
+
+        <div class="col-md-3">
+
+            <div class="stat-card">
+
+                <div class="text-muted">
+                    Pending
+                </div>
+
+                <h2 class="mb-0 text-warning">
+                    {{ pending_count }}
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <!-- CONFIRMED -->
+
+        <div class="col-md-3">
+
+            <div class="stat-card">
+
+                <div class="text-muted">
+                    Confirmed
+                </div>
+
+                <h2 class="mb-0 text-success">
+                    {{ confirmed_count }}
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <!-- CANCELLED -->
+
+        <div class="col-md-3">
+
+            <div class="stat-card">
+
+                <div class="text-muted">
+                    Cancelled
+                </div>
+
+                <h2 class="mb-0 text-danger">
+                    {{ cancelled_count }}
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <!-- COMPLETED -->
+
+        <div class="col-md-3">
+
+            <div class="stat-card">
+
+                <div class="text-muted">
+                    Completed
+                </div>
+
+                <h2 class="mb-0 text-primary">
+                    {{ completed_count }}
+                </h2>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- =========================
+         BOOKINGS
+    ========================== -->
+
+    {% if bookings %}
+
+
+        {% for booking in bookings %}
+
+
+            <div class="booking-card">
+
+
+                <!-- TOP -->
+
+                <div class="d-flex justify-content-between align-items-start mb-4">
+
+
+                    <div>
+
+                        <div class="label">
+                            Booking Reference
+                        </div>
+
+                        <div class="booking-reference">
+
+                            {{ booking.booking_reference }}
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- STATUS -->
+
+                    <div>
+
+
+                        {% if booking.status == "PENDING" %}
+
+                            <span class="status-badge status-pending">
+                                🟡 Pending
+                            </span>
+
+
+                        {% elif booking.status == "CONFIRMED" %}
+
+                            <span class="status-badge status-confirmed">
+                                🟢 Confirmed
+                            </span>
+
+
+                        {% elif booking.status == "CANCELLED" %}
+
+                            <span class="status-badge status-cancelled">
+                                🔴 Cancelled
+                            </span>
+
+
+                        {% elif booking.status == "COMPLETED" %}
+
+                            <span class="status-badge status-completed">
+                                🔵 Completed
+                            </span>
+
+                        {% endif %}
+
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- FLIGHT -->
+
+                <div class="row g-4">
+
+
+                    <!-- AIRLINE -->
+
+                    <div class="col-md-3">
+
+                        <div class="label">
+                            Airline
+                        </div>
+
+                        <div class="value">
+
+                            {{ booking.flight.airline.name }}
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- FLIGHT NUMBER -->
+
+                    <div class="col-md-2">
+
+                        <div class="label">
+                            Flight
+                        </div>
+
+                        <div class="value">
+
+                            {{ booking.flight.flight_number }}
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ROUTE -->
+
+                    <div class="col-md-3">
+
+                        <div class="label">
+                            Route
+                        </div>
+
+                        <div class="route">
+
+                            {{ booking.flight.departure_airport.code }}
+
+                            →
+
+                            {{ booking.flight.arrival_airport.code }}
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- DATE -->
+
+                    <div class="col-md-2">
+
+                        <div class="label">
+                            Travel Date
+                        </div>
+
+                        <div class="value">
+
+                            {{ booking.flight.departure_date|date:"d M Y" }}
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- SEATS -->
+
+                    <div class="col-md-2">
+
+                        <div class="label">
+                            Seats
+                        </div>
+
+                        <div class="value">
+
+                            {{ booking.seats_booked }}
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+                <hr>
+
+
+                <!-- PASSENGER + PRICE -->
+
+                <div class="row g-4">
+
+
+                    <div class="col-md-4">
+
+                        <div class="label">
+                            Passenger
+                        </div>
+
+                        <div class="value">
+
+                            {{ booking.passenger.first_name }}
+
+                            {{ booking.passenger.last_name }}
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="label">
+                            Passport
+                        </div>
+
+                        <div class="value">
+
+                            {{ booking.passenger.passport_number }}
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="label">
+                            Total Price
+                        </div>
+
+                        <div class="value">
+
+                            PKR
+                            {{ booking.total_price|floatformat:0 }}
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+                <hr>
+
+
+                <!-- FOOTER -->
+
+                <div class="d-flex justify-content-between align-items-center">
+
+
+                    <div class="text-muted small">
+
+                        Booked:
+
+                        {{ booking.booked_at|date:"d M Y, h:i A" }}
+
+                    </div>
+
+
+                    <!-- VIEW DETAILS -->
+
+                    {% if booking.status == "PENDING" %}
+
+                        <span class="text-warning">
+                            Waiting for admin approval
+                        </span>
+
+
+                    {% elif booking.status == "CONFIRMED" %}
+
+                        <span class="text-success fw-semibold">
+
+                            Booking confirmed by admin
+
+                        </span>
+
+
+                    {% elif booking.status == "CANCELLED" %}
+
+                        <span class="text-danger fw-semibold">
+
+                            Booking cancelled by admin
+
+                        </span>
+
+
+                    {% elif booking.status == "COMPLETED" %}
+
+                        <span class="text-primary fw-semibold">
+
+                            Booking completed
+
+                        </span>
+
+                    {% endif %}
+
+
+                </div>
+
+
+            </div>
+
+
+        {% endfor %}
+
+
+    {% else %}
+
+
+        <!-- =========================
+             NO BOOKINGS
+        ========================== -->
+
+        <div class="empty-box">
+
+            <h4>
+                No Bookings Yet
+            </h4>
+
+            <p class="text-muted">
+                You have not created any flight bookings yet.
+            </p>
+
+
+            <a
+                href="{% url 'book_flight' %}"
+                class="btn btn-primary"
+            >
+
+                Book a Flight
+
+            </a>
+
+        </div>
+
+
+    {% endif %}
+
+
+</div>
+
+
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+></script>
+
+
+</body>
+
+</html>
+

@@ -1,0 +1,2888 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>
+    Umrah E-Ticket | {{ agent.agency }}
+</title>
+
+<link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+>
+
+<style>
+
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+
+        margin: 0;
+
+        font-family:
+            Arial,
+            Helvetica,
+            sans-serif;
+
+        background:
+            linear-gradient(
+                135deg,
+                #f3f6fa,
+                #eef3f8
+            );
+
+        color: #172033;
+
+    }
+
+
+    /* =========================================
+       PAGE
+    ========================================= */
+
+    .page {
+
+        width: 94%;
+
+        max-width: 1120px;
+
+        margin: 35px auto 55px;
+
+    }
+
+
+    /* =========================================
+       PAGE TOP
+    ========================================= */
+
+    .top-header {
+
+        display: flex;
+
+        justify-content: space-between;
+
+        align-items: center;
+
+        gap: 20px;
+
+        margin-bottom: 22px;
+
+    }
+
+
+    .top-header h1 {
+
+        margin: 0 0 6px;
+
+        font-size: 26px;
+
+        font-weight: 800;
+
+        letter-spacing: -.3px;
+
+        color: #172033;
+
+    }
+
+
+    .top-header p {
+
+        margin: 0;
+
+        font-size: 12px;
+
+        color: #8190a5;
+
+    }
+
+
+    .back-button {
+
+        display: inline-flex;
+
+        align-items: center;
+
+        gap: 7px;
+
+        padding: 11px 16px;
+
+        border-radius: 10px;
+
+        background: #ffffff;
+
+        border: 1px solid #dbe3ec;
+
+        color: #526074;
+
+        text-decoration: none;
+
+        font-size: 11px;
+
+        font-weight: 700;
+
+        transition: .2s ease;
+
+    }
+
+
+    .back-button:hover {
+
+        background: #fff8eb;
+
+        border-color: #f0c46a;
+
+        color: #d88900;
+
+    }
+
+
+    /* =========================================
+       MAIN TICKET
+    ========================================= */
+
+    .ticket {
+
+        background: #ffffff;
+
+        border: 1px solid #dce4ee;
+
+        border-radius: 24px;
+
+        overflow: hidden;
+
+        box-shadow:
+            0 18px 50px rgba(20,35,60,.08);
+
+    }
+
+
+    /* =========================================
+       AGENCY HEADER
+    ========================================= */
+
+    .ticket-header {
+
+        position: relative;
+
+        background:
+            linear-gradient(
+                135deg,
+                #101b2f,
+                #1f3559
+            );
+
+        color: #ffffff;
+
+        padding: 28px 32px;
+
+        display: flex;
+
+        justify-content: space-between;
+
+        align-items: center;
+
+        gap: 25px;
+
+        overflow: hidden;
+
+    }
+
+
+    .ticket-header::after {
+
+        content: "";
+
+        position: absolute;
+
+        width: 300px;
+
+        height: 300px;
+
+        border-radius: 50%;
+
+        right: -120px;
+
+        top: -190px;
+
+        border: 1px solid rgba(255,255,255,.08);
+
+        box-shadow:
+            0 0 0 35px rgba(255,255,255,.025),
+            0 0 0 70px rgba(255,255,255,.02);
+
+    }
+
+
+    .agency-brand {
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 16px;
+
+        min-width: 0;
+
+        position: relative;
+
+        z-index: 2;
+
+    }
+
+
+    /* =========================================
+       AGENCY LOGO
+    ========================================= */
+
+    .agency-logo {
+
+        width: 78px;
+
+        height: 78px;
+
+        border-radius: 15px;
+
+        background: #ffffff;
+
+        border: 2px solid rgba(255,255,255,.45);
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        overflow: hidden;
+
+        flex-shrink: 0;
+
+        box-shadow:
+            0 7px 18px rgba(0,0,0,.16);
+
+    }
+
+
+    .agency-logo img {
+
+        width: 100%;
+
+        height: 100%;
+
+        object-fit: contain;
+
+        padding: 6px;
+
+        display: block;
+
+    }
+
+
+    .agency-logo-placeholder {
+
+        font-size: 11px;
+
+        font-weight: 800;
+
+        color: #d88900;
+
+        text-align: center;
+
+        padding: 8px;
+
+    }
+
+
+    .agency-name {
+
+        font-size: 24px;
+
+        font-weight: 800;
+
+        line-height: 1.15;
+
+    }
+
+
+    .agency-tagline {
+
+        margin-top: 5px;
+
+        color: #cdd7e5;
+
+        font-size: 10px;
+
+        letter-spacing: 1.5px;
+
+        font-weight: 700;
+
+    }
+
+
+    .agency-contact {
+
+        margin-top: 9px;
+
+        display: flex;
+
+        flex-wrap: wrap;
+
+        gap: 8px 18px;
+
+        color: #dbe4ef;
+
+        font-size: 9px;
+
+    }
+
+
+    .agency-contact span {
+
+        display: inline-flex;
+
+        align-items: center;
+
+        gap: 5px;
+
+    }
+
+
+    .agency-contact i {
+
+        color: #f5a623;
+
+    }
+
+
+    /* =========================================
+       TICKET HEADING
+    ========================================= */
+
+    .ticket-heading {
+
+        text-align: right;
+
+        flex-shrink: 0;
+
+        position: relative;
+
+        z-index: 2;
+
+    }
+
+
+    .ticket-heading h2 {
+
+        margin: 0;
+
+        font-size: 23px;
+
+        font-weight: 800;
+
+        letter-spacing: .5px;
+
+    }
+
+
+    .ticket-heading p {
+
+        margin: 6px 0 0;
+
+        color: #cbd5e1;
+
+        font-size: 10px;
+
+    }
+
+
+    .ticket-label {
+
+        display: inline-block;
+
+        margin-top: 10px;
+
+        padding: 6px 10px;
+
+        border-radius: 20px;
+
+        background: rgba(245,158,11,.14);
+
+        border: 1px solid rgba(245,158,11,.35);
+
+        color: #f7bb59;
+
+        font-size: 8px;
+
+        font-weight: 700;
+
+        letter-spacing: 1px;
+
+    }
+
+
+    /* =========================================
+       STATUS
+    ========================================= */
+
+    .status-section {
+
+        padding: 20px 32px;
+
+        border-bottom: 1px dashed #d9e1eb;
+
+        display: flex;
+
+        justify-content: space-between;
+
+        align-items: center;
+
+        gap: 20px;
+
+        background: #fbfcfe;
+
+    }
+
+
+    .status-label {
+
+        display: block;
+
+        margin-bottom: 7px;
+
+        color: #8a95a7;
+
+        font-size: 9px;
+
+        text-transform: uppercase;
+
+        letter-spacing: .9px;
+
+    }
+
+
+    .confirmed-badge {
+
+        display: inline-flex;
+
+        align-items: center;
+
+        gap: 7px;
+
+        background: #e7f8ef;
+
+        color: #087443;
+
+        padding: 8px 13px;
+
+        border-radius: 30px;
+
+        font-size: 10px;
+
+        font-weight: 800;
+
+        border: 1px solid #ccefdc;
+
+    }
+
+
+    .reference-box {
+
+        text-align: right;
+
+    }
+
+
+    .reference-box label {
+
+        display: block;
+
+        margin-bottom: 4px;
+
+        color: #8a95a7;
+
+        font-size: 9px;
+
+        letter-spacing: .6px;
+
+    }
+
+
+    .reference-box strong {
+
+        color: #1468b8;
+
+        font-size: 19px;
+
+        letter-spacing: .8px;
+
+    }
+
+
+    /* =========================================
+       SECTIONS
+    ========================================= */
+
+    .section {
+
+        padding: 26px 32px;
+
+        border-bottom: 1px solid #edf1f5;
+
+    }
+
+
+    .section-title {
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 9px;
+
+        font-size: 15px;
+
+        font-weight: 800;
+
+        margin-bottom: 18px;
+
+        color: #172033;
+
+    }
+
+
+    .section-title i {
+
+        width: 29px;
+
+        height: 29px;
+
+        display: inline-flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        border-radius: 9px;
+
+        background: #fff4df;
+
+        color: #d88900;
+
+        font-size: 13px;
+
+    }
+
+
+    /* =========================================
+       BOOKING DETAILS
+    ========================================= */
+
+    .details {
+
+        display: grid;
+
+        grid-template-columns:
+            repeat(3, 1fr);
+
+        gap: 15px;
+
+    }
+
+
+    .detail {
+
+        padding: 14px;
+
+        background: #fbfcfd;
+
+        border: 1px solid #edf1f5;
+
+        border-radius: 11px;
+
+        transition: .2s ease;
+
+    }
+
+
+    .detail:hover {
+
+        border-color: #dce5ef;
+
+        background: #f8fafc;
+
+    }
+
+
+    .detail label {
+
+        display: block;
+
+        margin-bottom: 6px;
+
+        color: #8a95a7;
+
+        font-size: 9px;
+
+        text-transform: uppercase;
+
+        letter-spacing: .5px;
+
+    }
+
+
+    .detail strong {
+
+        display: block;
+
+        color: #172033;
+
+        font-size: 12px;
+
+        line-height: 1.4;
+
+    }
+
+
+    /* =========================================
+       PACKAGE
+    ========================================= */
+
+    .package-box {
+
+        background:
+            linear-gradient(
+                135deg,
+                #fffaf0,
+                #fffdf8
+            );
+
+        border: 1px solid #f3dfb8;
+
+        border-radius: 15px;
+
+        padding: 18px;
+
+    }
+
+
+    .package-header {
+
+        display: flex;
+
+        justify-content: space-between;
+
+        align-items: flex-start;
+
+        gap: 20px;
+
+        margin-bottom: 15px;
+
+    }
+
+
+    .package-name {
+
+        font-size: 18px;
+
+        font-weight: 800;
+
+        color: #172033;
+
+    }
+
+
+    .package-sector {
+
+        margin-top: 5px;
+
+        color: #8a95a7;
+
+        font-size: 9px;
+
+    }
+
+
+    .package-price-box {
+
+        text-align: right;
+
+    }
+
+
+    .package-price-label {
+
+        display: block;
+
+        color: #9b8d72;
+
+        font-size: 8px;
+
+        text-transform: uppercase;
+
+        letter-spacing: .5px;
+
+    }
+
+
+    .package-price {
+
+        display: block;
+
+        margin-top: 4px;
+
+        color: #d88900;
+
+        font-size: 18px;
+
+        font-weight: 800;
+
+    }
+
+
+    /* =========================================
+       ROUTE
+    ========================================= */
+
+    .route-box {
+
+        position: relative;
+
+        background:
+            linear-gradient(
+                135deg,
+                #f8fafc,
+                #f3f7fb
+            );
+
+        border: 1px solid #dde5ee;
+
+        border-radius: 16px;
+
+        padding: 25px;
+
+    }
+
+
+    .route {
+
+        display: grid;
+
+        grid-template-columns:
+            1fr
+            auto
+            1fr;
+
+        align-items: center;
+
+        gap: 25px;
+
+        text-align: center;
+
+    }
+
+
+    .airport-code {
+
+        font-size: 31px;
+
+        font-weight: 800;
+
+        letter-spacing: .5px;
+
+        color: #172033;
+
+    }
+
+
+    .airport-city {
+
+        margin-top: 5px;
+
+        color: #6f7d91;
+
+        font-size: 11px;
+
+        font-weight: 600;
+
+    }
+
+
+    .airport-country {
+
+        margin-top: 2px;
+
+        color: #a0a9b7;
+
+        font-size: 9px;
+
+    }
+
+
+    .route-middle {
+
+        color: #f59e0b;
+
+        font-size: 23px;
+
+    }
+
+
+    .route-line {
+
+        width: 100px;
+
+        height: 1px;
+
+        margin: 8px auto 0;
+
+        background:
+            repeating-linear-gradient(
+                to right,
+                #c8d3df 0,
+                #c8d3df 6px,
+                transparent 6px,
+                transparent 11px
+            );
+
+    }
+
+
+    .route-time {
+
+        margin-top: 7px;
+
+        color: #566477;
+
+        font-size: 10px;
+
+        font-weight: 600;
+
+    }
+
+
+    /* =========================================
+       FLIGHT DETAILS
+    ========================================= */
+
+    .flight-card {
+
+        margin-top: 16px;
+
+        padding: 15px;
+
+        background: #fafbfd;
+
+        border: 1px solid #e4eaf1;
+
+        border-radius: 12px;
+
+    }
+
+
+    .flight-card-grid {
+
+        display: grid;
+
+        grid-template-columns:
+            repeat(3, 1fr);
+
+        gap: 12px;
+
+    }
+
+
+    .flight-detail {
+
+        padding: 11px;
+
+        background: #ffffff;
+
+        border: 1px solid #edf1f5;
+
+        border-radius: 9px;
+
+    }
+
+
+    .flight-detail label {
+
+        display: block;
+
+        color: #8a95a7;
+
+        font-size: 8px;
+
+        text-transform: uppercase;
+
+        margin-bottom: 5px;
+
+    }
+
+
+    .flight-detail strong {
+
+        display: block;
+
+        color: #172033;
+
+        font-size: 10px;
+
+    }
+
+
+    /* =========================================
+       LEAD PILGRIM
+    ========================================= */
+
+    .passenger-card {
+
+        background:
+            linear-gradient(
+                135deg,
+                #f9fbfd,
+                #f5f8fb
+            );
+
+        border: 1px solid #e1e8ef;
+
+        border-radius: 14px;
+
+        overflow: hidden;
+
+    }
+
+
+    .passenger-header {
+
+        padding: 16px;
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 12px;
+
+        background: #f4f7fa;
+
+        border-bottom: 1px solid #e5ebf1;
+
+    }
+
+
+    .passenger-avatar {
+
+        width: 43px;
+
+        height: 43px;
+
+        border-radius: 12px;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        background: #eaf3fb;
+
+        color: #1675d1;
+
+        font-size: 17px;
+
+    }
+
+
+    .passenger-label {
+
+        color: #8a95a7;
+
+        font-size: 8px;
+
+        text-transform: uppercase;
+
+        letter-spacing: .6px;
+
+    }
+
+
+    .passenger-name {
+
+        margin-top: 3px;
+
+        color: #172033;
+
+        font-size: 17px;
+
+        font-weight: 800;
+
+    }
+
+
+    .passenger-grid {
+
+        display: grid;
+
+        grid-template-columns:
+            repeat(3, 1fr);
+
+        gap: 13px;
+
+        padding: 15px;
+
+    }
+
+
+    /* =========================================
+       TOTAL
+    ========================================= */
+
+    .total-box {
+
+        display: flex;
+
+        justify-content: space-between;
+
+        align-items: center;
+
+        gap: 20px;
+
+        padding: 19px;
+
+        border-radius: 14px;
+
+        background:
+            linear-gradient(
+                135deg,
+                #fffaf0,
+                #fffdf8
+            );
+
+        border: 1px solid #f1ddb5;
+
+    }
+
+
+    .total-label {
+
+        color: #8c5b08;
+
+        font-size: 9px;
+
+        font-weight: 800;
+
+        text-transform: uppercase;
+
+        letter-spacing: .5px;
+
+    }
+
+
+    .total-subtitle {
+
+        margin-top: 4px;
+
+        color: #9d906f;
+
+        font-size: 8px;
+
+    }
+
+
+    .total-value {
+
+        color: #d88900;
+
+        font-size: 25px;
+
+        font-weight: 900;
+
+    }
+
+
+    /* =========================================
+       NOTICE
+    ========================================= */
+
+    .notice {
+
+        margin-top: 18px;
+
+        padding: 13px 15px;
+
+        border-radius: 11px;
+
+        background: #fff8eb;
+
+        border: 1px solid #f4dfae;
+
+        display: flex;
+
+        align-items: flex-start;
+
+        gap: 10px;
+
+    }
+
+
+    .notice i {
+
+        color: #d88900;
+
+        margin-top: 1px;
+
+    }
+
+
+    .notice-text {
+
+        font-size: 10px;
+
+        color: #7e6b4c;
+
+        line-height: 1.6;
+
+    }
+
+
+    .notice-text strong {
+
+        color: #9a6500;
+
+    }
+
+
+    /* =========================================
+       FOOTER
+    ========================================= */
+
+    .ticket-footer {
+
+        padding: 24px 32px;
+
+        background:
+            linear-gradient(
+                180deg,
+                #f8fafc,
+                #f4f7fa
+            );
+
+        display: flex;
+
+        justify-content: space-between;
+
+        align-items: flex-end;
+
+        gap: 25px;
+
+        border-top: 1px solid #e8edf3;
+
+    }
+
+
+    .footer-text {
+
+        color: #7e8a9c;
+
+        font-size: 9px;
+
+        line-height: 1.8;
+
+        text-align: left;
+
+        flex: 1;
+
+    }
+
+
+    .footer-text strong {
+
+        color: #172033;
+
+        font-size: 11px;
+
+        font-weight: 800;
+
+    }
+
+
+    .print-button {
+
+        border: none;
+
+        background:
+            linear-gradient(
+                135deg,
+                #f59e0b,
+                #df8b06
+            );
+
+        color: #ffffff;
+
+        padding: 11px 18px;
+
+        border-radius: 9px;
+
+        cursor: pointer;
+
+        font-size: 10px;
+
+        font-weight: 800;
+
+        display: inline-flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        gap: 7px;
+
+        white-space: nowrap;
+
+        flex-shrink: 0;
+
+        box-shadow:
+            0 7px 16px rgba(245,158,11,.20);
+
+        transition: .2s ease;
+
+    }
+
+
+    .print-button:hover {
+
+        transform: translateY(-1px);
+
+        box-shadow:
+            0 9px 20px rgba(245,158,11,.27);
+
+    }
+
+
+    /* =========================================
+       RESPONSIVE
+    ========================================= */
+
+    @media (max-width: 900px) {
+
+        .details {
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+        }
+
+
+        .flight-card-grid {
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+        }
+
+    }
+
+
+    @media (max-width: 700px) {
+
+        .page {
+
+            width: 95%;
+
+            margin-top: 20px;
+
+        }
+
+
+        .top-header {
+
+            flex-direction: column;
+
+            align-items: flex-start;
+
+        }
+
+
+        .ticket-header {
+
+            flex-direction: column;
+
+            align-items: flex-start;
+
+        }
+
+
+        .ticket-heading {
+
+            text-align: left;
+
+        }
+
+
+        .status-section {
+
+            flex-direction: column;
+
+            align-items: flex-start;
+
+        }
+
+
+        .reference-box {
+
+            text-align: left;
+
+        }
+
+
+        .package-header {
+
+            flex-direction: column;
+
+        }
+
+
+        .package-price-box {
+
+            text-align: left;
+
+        }
+
+
+        .route {
+
+            grid-template-columns:
+                1fr;
+
+        }
+
+
+        .route-middle {
+
+            transform:
+                rotate(90deg);
+
+        }
+
+
+        .route-line {
+
+            width: 70px;
+
+        }
+
+
+        .flight-card-grid {
+
+            grid-template-columns:
+                1fr;
+
+        }
+
+
+    }
+
+
+    @media (max-width: 520px) {
+
+        .details,
+        .passenger-grid {
+
+            grid-template-columns:
+                1fr;
+
+        }
+
+
+        .section {
+
+            padding:
+                21px 18px;
+
+        }
+
+
+        .status-section {
+
+            padding:
+                18px;
+
+        }
+
+
+        .ticket-header {
+
+            padding:
+                22px 18px;
+
+        }
+
+
+        .ticket-footer {
+
+            padding:
+                20px 18px;
+
+            flex-direction:
+                row;
+
+            justify-content:
+                space-between;
+
+            align-items:
+                flex-end;
+
+            gap:
+                12px;
+
+        }
+
+
+        .agency-contact {
+
+            flex-direction:
+                column;
+
+            gap:
+                6px;
+
+        }
+
+
+        .agency-name {
+
+            font-size:
+                20px;
+
+        }
+
+
+        .airport-code {
+
+            font-size:
+                27px;
+
+        }
+
+    }
+
+
+    /* =========================================
+       PRINT
+    ========================================= */
+
+    @media print {
+
+        body {
+
+            background:
+                #ffffff;
+
+        }
+
+
+        .page {
+
+            width: 100%;
+
+            max-width: none;
+
+            margin: 0;
+
+        }
+
+
+        .top-header,
+        .print-button {
+
+            display: none;
+
+        }
+
+
+        .ticket {
+
+            border: none;
+
+            border-radius: 0;
+
+            box-shadow: none;
+
+        }
+
+
+        .detail:hover {
+
+            border-color:
+                #edf1f5;
+
+            background:
+                #fbfcfd;
+
+        }
+
+    }
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="page">
+
+
+    <!-- =========================================
+         PAGE HEADER
+    ========================================= -->
+
+    <div class="top-header">
+
+        <div>
+
+            <h1>
+                Umrah E-Ticket
+            </h1>
+
+            <p>
+                Confirmed Umrah booking issued by
+                {{ agent.agency }}.
+            </p>
+
+        </div>
+
+
+        <a
+            href="{% url 'agent_confirmed_bookings' %}"
+            class="back-button"
+        >
+
+            <i class="bi bi-arrow-left"></i>
+
+            Back to Confirmed Bookings
+
+        </a>
+
+    </div>
+
+
+    <!-- =========================================
+         TICKET
+    ========================================= -->
+
+    <div class="ticket">
+
+
+        <!-- =========================================
+             AGENCY HEADER
+        ========================================= -->
+
+        <div class="ticket-header">
+
+
+            <div class="agency-brand">
+
+
+                <div class="agency-logo">
+
+                    {% if agent.agency_logo %}
+
+                        <img
+                            src="{{ agent.agency_logo.url }}"
+                            alt="{{ agent.agency }} Logo"
+                        >
+
+                    {% else %}
+
+                        <div class="agency-logo-placeholder">
+
+                            {{ agent.agency|first|upper }}
+
+                        </div>
+
+                    {% endif %}
+
+                </div>
+
+
+                <div>
+
+                    <div class="agency-name">
+
+                        {{ agent.agency }}
+
+                    </div>
+
+
+                    <div class="agency-tagline">
+
+                        TRAVEL & TOURS
+
+                    </div>
+
+
+                    <div class="agency-contact">
+
+
+                        {% if agent.email %}
+
+                            <span>
+
+                                <i class="bi bi-envelope-fill"></i>
+
+                                {{ agent.email }}
+
+                            </span>
+
+                        {% endif %}
+
+
+                        {% if agent.phone %}
+
+                            <span>
+
+                                <i class="bi bi-telephone-fill"></i>
+
+                                {{ agent.phone }}
+
+                            </span>
+
+                        {% endif %}
+
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <div class="ticket-heading">
+
+                <h2>
+                    UMRAH E-TICKET
+                </h2>
+
+                <p>
+                    Confirmed Umrah Booking
+                </p>
+
+                <span class="ticket-label">
+                    OFFICIAL BOOKING DOCUMENT
+                </span>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- =========================================
+             STATUS
+        ========================================= -->
+
+        <div class="status-section">
+
+
+            <div>
+
+                <span class="status-label">
+                    Booking Status
+                </span>
+
+
+                <span class="confirmed-badge">
+
+                    {% if booking.status == "CONFIRMED" %}
+
+                        <i class="bi bi-check-circle-fill"></i>
+
+                        CONFIRMED
+
+                    {% elif booking.status == "EXPIRED" %}
+
+                        <i class="bi bi-clock-history"></i>
+
+                        EXPIRED
+
+                    {% else %}
+
+                        <i class="bi bi-info-circle-fill"></i>
+
+                        {{ booking.get_status_display|upper }}
+
+                    {% endif %}
+
+                </span>
+
+            </div>
+
+
+            <div class="reference-box">
+
+                <label>
+                    BOOKING REFERENCE
+                </label>
+
+                <strong>
+
+                    {{ booking.booking_reference }}
+
+                </strong>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- =========================================
+             BOOKING INFORMATION
+        ========================================= -->
+
+        <div class="section">
+
+
+            <div class="section-title">
+
+                <i class="bi bi-ticket-perforated"></i>
+
+                Booking Information
+
+            </div>
+
+
+            <div class="details">
+
+
+                <div class="detail">
+
+                    <label>
+                        Booking Reference
+                    </label>
+
+                    <strong>
+                        {{ booking.booking_reference }}
+                    </strong>
+
+                </div>
+
+
+                <div class="detail">
+
+                    <label>
+                        Booking Date
+                    </label>
+
+                    <strong>
+
+                        {{ booking.booked_at|date:"d M Y, h:i A" }}
+
+                    </strong>
+
+                </div>
+
+
+                <div class="detail">
+
+                    <label>
+                        Approved At
+                    </label>
+
+                    <strong>
+
+                        {% if booking.confirmed_at %}
+
+                            {{ booking.confirmed_at|date:"d M Y, h:i A" }}
+
+                        {% else %}
+
+                            Not available
+
+                        {% endif %}
+
+                    </strong>
+
+                </div>
+
+
+                <div class="detail">
+
+                    <label>
+                        Total Pilgrims
+                    </label>
+
+                    <strong>
+
+                        {{ booking.pilgrims_count }}
+
+                        Pilgrim{{ booking.pilgrims_count|pluralize }}
+
+                    </strong>
+
+                </div>
+
+
+                <div class="detail">
+
+                    <label>
+                        Booking Status
+                    </label>
+
+                    <strong>
+
+                        {{ booking.get_status_display }}
+
+                    </strong>
+
+                </div>
+
+
+                <div class="detail">
+
+                    <label>
+                        Issued By
+                    </label>
+
+                    <strong>
+
+                        {{ agent.agency }}
+
+                    </strong>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+        <!-- =========================================
+             UMRAH PACKAGE
+        ========================================= -->
+
+        <div class="section">
+
+
+            <div class="section-title">
+
+                <i class="bi bi-moon-stars-fill"></i>
+
+                Umrah Package
+
+            </div>
+
+
+            <div class="package-box">
+
+
+                <div class="package-header">
+
+
+                    <div>
+
+                        <div class="package-name">
+
+                            {{ booking.package.name }}
+
+                        </div>
+
+
+                        <div class="package-sector">
+
+                            Sector:
+                            {{ booking.package.sector }}
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="package-price-box">
+
+                        <span class="package-price-label">
+
+                            Price / Pilgrim
+
+                        </span>
+
+
+                        <span class="package-price">
+
+                            PKR
+                            {{ booking.package.price|floatformat:0 }}
+
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="details">
+
+
+                    <div class="detail">
+
+                        <label>
+                            Room Type
+                        </label>
+
+                        <strong>
+
+                            {{ booking.package.get_room_type_display }}
+
+                        </strong>
+
+                    </div>
+
+
+                    <div class="detail">
+
+                        <label>
+                            Makkah Nights
+                        </label>
+
+                        <strong>
+
+                            {{ booking.package.nights_in_makkah }}
+
+                            Nights
+
+                        </strong>
+
+                    </div>
+
+
+                    <div class="detail">
+
+                        <label>
+                            Madinah Nights
+                        </label>
+
+                        <strong>
+
+                            {{ booking.package.nights_in_madinah }}
+
+                            Nights
+
+                        </strong>
+
+                    </div>
+
+
+                    <div class="detail">
+
+                        <label>
+                            Makkah Hotel
+                        </label>
+
+                        <strong>
+
+                            {{ booking.package.makkah_hotel.name }}
+
+                        </strong>
+
+                    </div>
+
+
+                    <div class="detail">
+
+                        <label>
+                            Madinah Hotel
+                        </label>
+
+                        <strong>
+
+                            {{ booking.package.madinah_hotel.name }}
+
+                        </strong>
+
+                    </div>
+
+
+                    <div class="detail">
+
+                        <label>
+                            Airline
+                        </label>
+
+                        <strong>
+
+                            {{ booking.package.airline.name }}
+
+                            ({{ booking.package.airline.code }})
+
+                        </strong>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+        <!-- =========================================
+             OUTBOUND JOURNEY
+        ========================================= -->
+
+        <div class="section">
+
+
+            <div class="section-title">
+
+                <i class="bi bi-airplane-fill"></i>
+
+                Outbound Journey
+
+            </div>
+
+
+            <div class="route-box">
+
+
+                <div class="route">
+
+
+                    <div>
+
+
+                        <div class="airport-code">
+
+                            {{ booking.package.outbound_departure_airport.code }}
+
+                        </div>
+
+
+                        <div class="airport-city">
+
+                            {{ booking.package.outbound_departure_airport.city }}
+
+                        </div>
+
+
+                        <div class="airport-country">
+
+                            {{ booking.package.outbound_departure_airport.country }}
+
+                        </div>
+
+
+                        <div class="route-time">
+
+                            Departure:
+
+                            {% if booking.package.outbound_departure_date %}
+
+                                {{ booking.package.outbound_departure_date|date:"d M Y" }}
+
+                            {% endif %}
+
+                            {% if booking.package.outbound_departure_time %}
+
+                                ·
+
+                                {{ booking.package.outbound_departure_time|time:"H:i" }}
+
+                            {% endif %}
+
+                        </div>
+
+
+                    </div>
+
+
+                    <div>
+
+
+                        <div class="route-middle">
+
+                            <i class="bi bi-airplane-fill"></i>
+
+                        </div>
+
+
+                        <div class="route-line"></div>
+
+
+                        <div class="route-time">
+
+                            {{ booking.package.airline.code }}
+
+                            {{ booking.package.outbound_flight_number }}
+
+                        </div>
+
+
+                    </div>
+
+
+                    <div>
+
+
+                        <div class="airport-code">
+
+                            {{ booking.package.outbound_arrival_airport.code }}
+
+                        </div>
+
+
+                        <div class="airport-city">
+
+                            {{ booking.package.outbound_arrival_airport.city }}
+
+                        </div>
+
+
+                        <div class="airport-country">
+
+                            {{ booking.package.outbound_arrival_airport.country }}
+
+                        </div>
+
+
+                        <div class="route-time">
+
+                            Arrival:
+
+                            {% if booking.package.outbound_departure_date %}
+
+                                {{ booking.package.outbound_departure_date|date:"d M Y" }}
+
+                            {% endif %}
+
+                            {% if booking.package.outbound_arrival_time %}
+
+                                ·
+
+                                {{ booking.package.outbound_arrival_time|time:"H:i" }}
+
+                            {% endif %}
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+            <div class="flight-card">
+
+
+                <div class="flight-card-grid">
+
+
+                    <div class="flight-detail">
+
+                        <label>
+                            Airline
+                        </label>
+
+                        <strong>
+
+                            {{ booking.package.airline.name }}
+
+                        </strong>
+
+                    </div>
+
+
+                    <div class="flight-detail">
+
+                        <label>
+                            Flight Number
+                        </label>
+
+                        <strong>
+
+                            {{ booking.package.outbound_flight_number }}
+
+                        </strong>
+
+                    </div>
+
+
+                    <div class="flight-detail">
+
+                        <label>
+                            Baggage
+                        </label>
+
+                        <strong>
+
+                            {{ booking.package.outbound_baggage }}
+
+                        </strong>
+
+                    </div>
+
+
+                    <div class="flight-detail">
+
+                        <label>
+                            Meal
+                        </label>
+
+                        <strong>
+
+                            {{ booking.package.outbound_meal }}
+
+                        </strong>
+
+                    </div>
+
+
+                    <div class="flight-detail">
+
+                        <label>
+                            Departure Time
+                        </label>
+
+                        <strong>
+
+                            {% if booking.package.outbound_departure_time %}
+
+                                {{ booking.package.outbound_departure_time|time:"H:i" }}
+
+                            {% else %}
+
+                                Not available
+
+                            {% endif %}
+
+                        </strong>
+
+                    </div>
+
+
+                    <div class="flight-detail">
+
+                        <label>
+                            Arrival Time
+                        </label>
+
+                        <strong>
+
+                            {% if booking.package.outbound_arrival_time %}
+
+                                {{ booking.package.outbound_arrival_time|time:"H:i" }}
+
+                            {% else %}
+
+                                Not available
+
+                            {% endif %}
+
+                        </strong>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+        <!-- =========================================
+             RETURN JOURNEY
+        ========================================= -->
+
+        <div class="section">
+
+
+            <div class="section-title">
+
+                <i class="bi bi-airplane-fill"></i>
+
+                Return Journey
+
+            </div>
+
+
+            <div class="route-box">
+
+
+                <div class="route">
+
+
+                    <div>
+
+
+                        <div class="airport-code">
+
+                            {{ booking.package.return_departure_airport.code }}
+
+                        </div>
+
+
+                        <div class="airport-city">
+
+                            {{ booking.package.return_departure_airport.city }}
+
+                        </div>
+
+
+                        <div class="airport-country">
+
+                            {{ booking.package.return_departure_airport.country }}
+
+                        </div>
+
+
+                        <div class="route-time">
+
+                            Departure:
+
+                            {% if booking.package.return_departure_date %}
+
+                                {{ booking.package.return_departure_date|date:"d M Y" }}
+
+                            {% endif %}
+
+                            {% if booking.package.return_departure_time %}
+
+                                ·
+
+                                {{ booking.package.return_departure_time|time:"H:i" }}
+
+                            {% endif %}
+
+                        </div>
+
+
+                    </div>
+
+
+                    <div>
+
+
+                        <div class="route-middle">
+
+                            <i class="bi bi-airplane-fill"></i>
+
+                        </div>
+
+
+                        <div class="route-line"></div>
+
+
+                        <div class="route-time">
+
+                            {{ booking.package.airline.code }}
+
+                            {{ booking.package.return_flight_number }}
+
+                        </div>
+
+
+                    </div>
+
+
+                    <div>
+
+
+                        <div class="airport-code">
+
+                            {{ booking.package.return_arrival_airport.code }}
+
+                        </div>
+
+
+                        <div class="airport-city">
+
+                            {{ booking.package.return_arrival_airport.city }}
+
+                        </div>
+
+
+                        <div class="airport-country">
+
+                            {{ booking.package.return_arrival_airport.country }}
+
+                        </div>
+
+
+                        <div class="route-time">
+
+                            Arrival:
+
+                            {% if booking.package.return_departure_date %}
+
+                                {{ booking.package.return_departure_date|date:"d M Y" }}
+
+                            {% endif %}
+
+                            {% if booking.package.return_arrival_time %}
+
+                                ·
+
+                                {{ booking.package.return_arrival_time|time:"H:i" }}
+
+                            {% endif %}
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+            <div class="flight-card">
+
+
+                <div class="flight-card-grid">
+
+
+                    <div class="flight-detail">
+
+                        <label>
+                            Airline
+                        </label>
+
+                        <strong>
+
+                            {{ booking.package.airline.name }}
+
+                        </strong>
+
+                    </div>
+
+
+                    <div class="flight-detail">
+
+                        <label>
+                            Flight Number
+                        </label>
+
+                        <strong>
+
+                            {{ booking.package.return_flight_number }}
+
+                        </strong>
+
+                    </div>
+
+
+                    <div class="flight-detail">
+
+                        <label>
+                            Baggage
+                        </label>
+
+                        <strong>
+
+                            {{ booking.package.return_baggage }}
+
+                        </strong>
+
+                    </div>
+
+
+                    <div class="flight-detail">
+
+                        <label>
+                            Meal
+                        </label>
+
+                        <strong>
+
+                            {{ booking.package.return_meal }}
+
+                        </strong>
+
+                    </div>
+
+
+                    <div class="flight-detail">
+
+                        <label>
+                            Departure Time
+                        </label>
+
+                        <strong>
+
+                            {% if booking.package.return_departure_time %}
+
+                                {{ booking.package.return_departure_time|time:"H:i" }}
+
+                            {% else %}
+
+                                Not available
+
+                            {% endif %}
+
+                        </strong>
+
+                    </div>
+
+
+                    <div class="flight-detail">
+
+                        <label>
+                            Arrival Time
+                        </label>
+
+                        <strong>
+
+                            {% if booking.package.return_arrival_time %}
+
+                                {{ booking.package.return_arrival_time|time:"H:i" }}
+
+                            {% else %}
+
+                                Not available
+
+                            {% endif %}
+
+                        </strong>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+        <!-- =========================================
+             LEAD PILGRIM
+        ========================================= -->
+
+        <div class="section">
+
+
+            <div class="section-title">
+
+                <i class="bi bi-person-vcard-fill"></i>
+
+                Lead Pilgrim Information
+
+            </div>
+
+
+            <div class="passenger-card">
+
+
+                <div class="passenger-header">
+
+
+                    <div class="passenger-avatar">
+
+                        <i class="bi bi-person-fill"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <div class="passenger-label">
+
+                            Primary Traveller
+
+                        </div>
+
+
+                        <div class="passenger-name">
+
+                            {{ booking.lead_passenger.first_name }}
+
+                            {{ booking.lead_passenger.last_name }}
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="passenger-grid">
+
+
+                    <div class="detail">
+
+                        <label>
+                            Passport Number
+                        </label>
+
+                        <strong>
+
+                            {{ booking.lead_passenger.passport_number }}
+
+                        </strong>
+
+                    </div>
+
+
+                    <div class="detail">
+
+                        <label>
+                            Date of Birth
+                        </label>
+
+                        <strong>
+
+                            {% if booking.lead_passenger.date_of_birth %}
+
+                                {{ booking.lead_passenger.date_of_birth|date:"d M Y" }}
+
+                            {% else %}
+
+                                Not provided
+
+                            {% endif %}
+
+                        </strong>
+
+                    </div>
+
+
+                    <div class="detail">
+
+                        <label>
+                            Gender
+                        </label>
+
+                        <strong>
+
+                            {% if booking.lead_passenger.gender %}
+
+                                {{ booking.lead_passenger.get_gender_display }}
+
+                            {% else %}
+
+                                Not provided
+
+                            {% endif %}
+
+                        </strong>
+
+                    </div>
+
+
+                    <div class="detail">
+
+                        <label>
+                            Nationality
+                        </label>
+
+                        <strong>
+
+                            {{ booking.lead_passenger.nationality|default:"Not provided" }}
+
+                        </strong>
+
+                    </div>
+
+
+                    <div class="detail">
+
+                        <label>
+                            Contact Number
+                        </label>
+
+                        <strong>
+
+                            {{ booking.lead_passenger.phone|default:"Not provided" }}
+
+                        </strong>
+
+                    </div>
+
+
+                    <div class="detail">
+
+                        <label>
+                            Email Address
+                        </label>
+
+                        <strong>
+
+                            {{ booking.lead_passenger.email|default:"Not provided" }}
+
+                        </strong>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+        <!-- =========================================
+             TOTAL
+        ========================================= -->
+
+        <div class="section">
+
+
+            <div class="total-box">
+
+
+                <div>
+
+                    <div class="total-label">
+
+                        Total Booking Amount
+
+                    </div>
+
+
+                    <div class="total-subtitle">
+
+                        {{ booking.pilgrims_count }}
+
+                        pilgrim{{ booking.pilgrims_count|pluralize }}
+
+                        ·
+
+                        {{ booking.package.name }}
+
+                    </div>
+
+                </div>
+
+
+                <div class="total-value">
+
+                    PKR
+                    {{ booking.total_price|floatformat:0 }}
+
+                </div>
+
+
+            </div>
+
+
+            <div class="notice">
+
+
+                <i class="bi bi-info-circle-fill"></i>
+
+
+                <div class="notice-text">
+
+                    <strong>
+                        Important:
+                    </strong>
+
+                    Please verify the pilgrim name, passport details,
+                    flight information, hotel details and travel dates
+                    before travel.
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+        <!-- =========================================
+             FOOTER
+        ========================================= -->
+
+        <div class="ticket-footer">
+
+
+            <div class="footer-text">
+
+                <strong>
+                    {{ agent.agency }}
+                </strong>
+
+                <br>
+
+                Email:
+                {{ agent.email }}
+
+                {% if agent.phone %}
+
+                    <br>
+
+                    Phone:
+                    {{ agent.phone }}
+
+                {% endif %}
+
+                <br>
+
+                Official Umrah booking confirmation.
+
+                <br>
+
+                Please retain this document for your records.
+
+            </div>
+
+
+            <button
+                type="button"
+                class="print-button"
+                onclick="window.print()"
+            >
+
+                <i class="bi bi-printer-fill"></i>
+
+                Print Ticket
+
+            </button>
+
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,2489 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Wallet | AL NAJAM Travel & Tours</title>
+
+<link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+>
+
+<style>
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        background: #f4f7fb;
+        color: #172033;
+    }
+
+    .dashboard {
+        display: flex;
+        min-height: 100vh;
+    }
+
+
+    /* =========================================
+       SIDEBAR
+    ========================================= */
+
+    .sidebar {
+        width: 255px;
+        min-height: 100vh;
+        background: #ffffff;
+        border-right: 1px solid #e7ebf1;
+        padding: 25px 15px;
+        position: fixed;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        overflow-y: auto;
+        z-index: 20;
+    }
+
+    .sidebar-logo {
+        text-align: center;
+        padding: 8px 0 28px;
+        border-bottom: 1px solid #e7ebf1;
+        margin-bottom: 25px;
+    }
+    .sidebar-logo-image {
+    width: 88px;
+    height: 88px;
+    margin: auto;
+    display: block;
+    object-fit: contain;
+}
+
+    .sidebar-logo h2 {
+        margin-top: 12px;
+        font-size: 16px;
+        color: #172033;
+    }
+
+    .sidebar-logo span {
+        display: block;
+        margin-top: 4px;
+        font-size: 9px;
+        color: #758197;
+        letter-spacing: 1.5px;
+    }
+
+    .sidebar-section {
+        margin-bottom: 24px;
+    }
+
+    .sidebar-title {
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        color: #8792a5;
+        padding: 0 12px;
+        margin-bottom: 9px;
+    }
+
+    .sidebar-link {
+        display: flex;
+        align-items: center;
+        gap: 13px;
+        width: 100%;
+        padding: 12px 13px;
+        margin-bottom: 5px;
+        border-radius: 13px;
+        color: #5e6b80;
+        text-decoration: none;
+        font-size: 13px;
+        transition: .25s ease;
+        border: 1px solid transparent;
+        font-family: inherit;
+    }
+
+    .sidebar-link i {
+        width: 31px;
+        height: 31px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 9px;
+        background: #f4f7fb;
+        font-size: 15px;
+        transition: .25s ease;
+    }
+
+    .sidebar-link:hover {
+        background: #fff8eb;
+        color: #d88900;
+    }
+
+    .sidebar-link:hover i {
+        background: #fff1d6;
+        color: #d88900;
+    }
+
+    .sidebar-link.active {
+        background: #fff1d6;
+        color: #d88900;
+        border-color: #f6d58d;
+        font-weight: 600;
+        box-shadow: 0 8px 20px rgba(245,158,11,.08);
+    }
+
+    .sidebar-link.active i {
+        background: #f59e0b;
+        color: white;
+    }
+
+    .active-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #f59e0b;
+        margin-left: auto;
+    }
+
+
+    /* =========================================
+       BOOKINGS MENU
+    ========================================= */
+
+    .bookings-menu {
+        width: 100%;
+    }
+
+    .bookings-toggle {
+        border: none;
+        background: transparent;
+        font-family: inherit;
+        cursor: pointer;
+        text-align: left;
+    }
+
+    .bookings-toggle span {
+        flex: 1;
+    }
+
+    .bookings-arrow {
+        width: auto !important;
+        height: auto !important;
+        background: transparent !important;
+        font-size: 11px !important;
+        margin-left: auto;
+        transition: transform .25s ease;
+    }
+
+    .bookings-toggle.open .bookings-arrow {
+        transform: rotate(180deg);
+    }
+
+    .bookings-submenu {
+        display: none;
+        margin: 2px 0 7px 43px;
+        padding-left: 10px;
+        border-left: 1px solid #e7ebf1;
+    }
+
+    .bookings-submenu.show {
+        display: block;
+    }
+
+    .booking-sub-link {
+        display: block;
+        padding: 9px 10px;
+        margin-bottom: 2px;
+        color: #758197;
+        text-decoration: none;
+        font-size: 12px;
+        border-radius: 8px;
+        transition: .2s ease;
+    }
+
+    .booking-sub-link:hover {
+        background: #fff8eb;
+        color: #d88900;
+    }
+
+    .booking-sub-link.active {
+        background: #fff1d6;
+        color: #d88900;
+        font-weight: 600;
+    }
+
+
+    /* =========================================
+       LOGOUT
+    ========================================= */
+
+    .logout-form {
+        margin: 0;
+        padding: 0;
+    }
+
+    .logout-link {
+        width: 100%;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        text-align: left;
+    }
+
+    .logout-link:hover {
+        background: #fff1f2;
+        color: #dc2626;
+    }
+
+    .logout-link:hover i {
+        background: #fee2e2;
+        color: #dc2626;
+    }
+
+
+    /* =========================================
+       MAIN CONTENT
+    ========================================= */
+
+    .main-content {
+        margin-left: 255px;
+        width: calc(100% - 255px);
+        padding: 25px 30px 45px;
+    }
+
+
+    /* =========================================
+       HEADER
+    ========================================= */
+
+    .top-header {
+        background: rgba(255,255,255,.94);
+        border: 1px solid #e7ebf1;
+        border-radius: 22px;
+        padding: 20px 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 20px;
+        box-shadow: 0 8px 28px rgba(20,35,60,.04);
+    }
+
+    .header-label {
+        display: inline-block;
+        background: #f5f7fa;
+        color: #758197;
+        padding: 5px 9px;
+        border-radius: 7px;
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: .8px;
+        margin-bottom: 6px;
+    }
+
+    .top-header h1 {
+        font-size: 21px;
+        margin-bottom: 5px;
+        color: #172033;
+    }
+
+    .top-header p {
+        color: #758197;
+        font-size: 11px;
+    }
+
+
+    /* =========================================
+       AGENT PROFILE
+    ========================================= */
+
+    .agent-profile {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 13px;
+        border: 1px solid #e7ebf1;
+        border-radius: 13px;
+        background: #fff;
+    }
+
+    .agent-avatar {
+        width: 37px;
+        height: 37px;
+        border-radius: 50%;
+        background: #f59e0b;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+    }
+
+    .agent-details strong {
+        display: block;
+        font-size: 12px;
+        color: #172033;
+    }
+
+    .agent-details span {
+        display: block;
+        font-size: 9px;
+        color: #758197;
+        margin-top: 3px;
+    }
+
+
+    /* =========================================
+       MESSAGES
+    ========================================= */
+
+    .message-area {
+        margin-bottom: 18px;
+    }
+
+    .message {
+        padding: 12px 15px;
+        border-radius: 12px;
+        margin-bottom: 8px;
+        font-size: 10px;
+        display: flex;
+        align-items: center;
+        gap: 9px;
+    }
+
+    .message.success {
+        background: #eaf8f0;
+        border: 1px solid #ccefdc;
+        color: #087443;
+    }
+
+    .message.error {
+        background: #fff0f0;
+        border: 1px solid #f3cccc;
+        color: #b42318;
+    }
+
+    .message.warning {
+        background: #fff8eb;
+        border: 1px solid #f4dfae;
+        color: #9a6500;
+    }
+
+
+    /* =========================================
+       TOP GRID
+    ========================================= */
+
+    .top-grid {
+        display: grid;
+        grid-template-columns: 1.05fr 1.05fr .85fr;
+        gap: 18px;
+        margin-bottom: 20px;
+    }
+
+
+    /* =========================================
+       PANELS
+    ========================================= */
+
+    .panel {
+        background: rgba(255,255,255,.96);
+        border: 1px solid #e7ebf1;
+        border-radius: 21px;
+        padding: 21px;
+        box-shadow: 0 8px 28px rgba(20,35,60,.035);
+    }
+
+    .panel-title-row {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        margin-bottom: 8px;
+    }
+
+    .panel-title-row i {
+        color: #1675d1;
+        font-size: 18px;
+    }
+
+    .panel-title {
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: .4px;
+        color: #758197;
+    }
+
+    .panel-description {
+        font-size: 10px;
+        line-height: 1.6;
+        color: #758197;
+        margin-bottom: 18px;
+    }
+
+
+    /* =========================================
+       DEPOSIT FORM
+    ========================================= */
+
+    .deposit-form {
+        width: 100%;
+    }
+
+    .upload-box {
+        height: 91px;
+        border: 1px dashed #f1c86d;
+        background: #fffaf0;
+        border-radius: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: #d88900;
+        font-size: 10px;
+        cursor: pointer;
+        margin-bottom: 11px;
+        transition: .25s;
+    }
+
+    .upload-box:hover {
+        background: #fff1d6;
+        border-color: #f59e0b;
+    }
+
+    .upload-box i {
+        display: block;
+        font-size: 20px;
+        margin-bottom: 7px;
+    }
+
+    .upload-box span {
+        color: #b58a38;
+        font-size: 8px;
+    }
+
+    .input-box {
+        width: 100%;
+        height: 40px;
+        border: 1px solid #e7ebf1;
+        background: #fff;
+        border-radius: 11px;
+        padding: 0 13px;
+        outline: none;
+        font-size: 11px;
+        color: #172033;
+        margin-bottom: 10px;
+    }
+
+    .input-box:focus {
+        border-color: #f0bf55;
+        box-shadow: 0 0 0 3px rgba(245,158,11,.08);
+    }
+
+    .field-label {
+        font-size: 9px;
+        color: #758197;
+        font-weight: 700;
+        letter-spacing: .8px;
+        display: block;
+        margin: 3px 0 6px;
+    }
+
+    .deposit-footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: #fafbfc;
+        border: 1px solid #e7ebf1;
+        padding: 9px 10px;
+        border-radius: 12px;
+        margin-top: 4px;
+        gap: 10px;
+    }
+
+    .deposit-footer span {
+        font-size: 9px;
+        color: #758197;
+        line-height: 1.5;
+    }
+
+    .submit-btn {
+        border: none;
+        background: #f59e0b;
+        color: white;
+        border-radius: 10px;
+        padding: 10px 17px;
+        font-size: 10px;
+        font-weight: 700;
+        cursor: pointer;
+        box-shadow: 0 7px 15px rgba(245,158,11,.18);
+        transition: .25s;
+        white-space: nowrap;
+    }
+
+    .submit-btn:hover {
+        background: #d88900;
+        transform: translateY(-1px);
+    }
+
+
+    /* =========================================
+       LEDGER
+    ========================================= */
+
+    .ledger-list {
+        max-height: 235px;
+        overflow-y: auto;
+    }
+
+    .ledger-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 12px 0;
+        border-bottom: 1px solid #eef1f5;
+    }
+
+    .ledger-item:last-child {
+        border-bottom: none;
+    }
+
+    .ledger-left strong {
+        display: block;
+        color: #172033;
+        font-size: 10px;
+        margin-bottom: 4px;
+    }
+
+    .ledger-left span {
+        display: block;
+        color: #8a95a7;
+        font-size: 8px;
+    }
+
+    .ledger-right {
+        text-align: right;
+    }
+
+    .ledger-amount {
+        font-size: 10px;
+        font-weight: 700;
+    }
+
+    .ledger-credit {
+        color: #087443;
+    }
+
+    .ledger-debit {
+        color: #c62828;
+    }
+
+    .ledger-balance {
+        display: block;
+        margin-top: 3px;
+        color: #8a95a7;
+        font-size: 8px;
+    }
+
+    .ledger-empty {
+        min-height: 170px;
+        border: 1px dashed #e7ebf1;
+        background: #fafbfc;
+        border-radius: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .ledger-empty-icon {
+        width: 45px;
+        height: 45px;
+        margin: 0 auto 10px;
+        border-radius: 12px;
+        background: #fff1d6;
+        color: #d88900;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+    }
+
+    .ledger-empty strong {
+        display: block;
+        font-size: 11px;
+        color: #172033;
+        margin-bottom: 5px;
+    }
+
+    .ledger-empty span {
+        display: block;
+        font-size: 9px;
+        line-height: 1.5;
+        color: #758197;
+    }
+
+
+    /* =========================================
+       BALANCE CARDS
+    ========================================= */
+
+    .balance-card {
+        min-height: 160px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .balance-card::after {
+        content: "";
+        position: absolute;
+        width: 105px;
+        height: 105px;
+        right: -35px;
+        top: 17px;
+        border: 7px solid #fff1d6;
+        border-radius: 20px;
+        opacity: .85;
+    }
+
+    .balance-label {
+        font-size: 9px;
+        font-weight: 700;
+        color: #758197;
+        letter-spacing: .5px;
+    }
+
+    .balance-number {
+        font-size: 23px;
+        font-weight: 700;
+        margin-top: 14px;
+        color: #172033;
+    }
+
+    .balance-description {
+        position: absolute;
+        bottom: 19px;
+        left: 21px;
+        right: 21px;
+        font-size: 8px;
+        line-height: 1.5;
+        color: #758197;
+    }
+
+    .volume-card::after {
+        content: "";
+        width: 75px;
+        height: 75px;
+        border-radius: 50%;
+        border: 7px solid #eaf3ff;
+        right: -12px;
+        top: 28px;
+    }
+
+
+    /* =========================================
+       STATEMENT
+    ========================================= */
+
+    .statement-panel {
+        margin-bottom: 20px;
+    }
+
+    .statement-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 18px;
+    }
+
+    .statement-header h2 {
+        font-size: 17px;
+        margin-bottom: 5px;
+        color: #172033;
+    }
+
+    .statement-header p {
+        font-size: 9px;
+        color: #758197;
+    }
+
+
+    /* =========================================
+       TABS
+    ========================================= */
+
+    .tabs {
+        display: flex;
+        gap: 4px;
+        background: #f5f7fa;
+        border-radius: 11px;
+        padding: 4px;
+    }
+
+    .tab {
+        padding: 8px 12px;
+        border-radius: 8px;
+        font-size: 9px;
+        font-weight: 700;
+        color: #758197;
+        text-decoration: none;
+    }
+
+    .tab.active {
+        background: #fff;
+        color: #d88900;
+        box-shadow: 0 3px 9px rgba(20,35,60,.06);
+    }
+
+
+    /* =========================================
+       FILTER
+    ========================================= */
+
+    .filter-box {
+        background: #fafbfc;
+        border: 1px solid #e7ebf1;
+        border-radius: 15px;
+        padding: 14px;
+        margin-bottom: 15px;
+    }
+
+    .filter-row {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+    }
+
+    .date-group {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+    }
+
+    .date-label {
+        font-size: 9px;
+        font-weight: 700;
+        color: #758197;
+    }
+
+    .date-input {
+        height: 34px;
+        width: 120px;
+        border: 1px solid #e7ebf1;
+        border-radius: 9px;
+        background: white;
+        padding: 0 9px;
+        font-size: 9px;
+        color: #172033;
+    }
+
+    .search-btn {
+        height: 34px;
+        padding: 0 15px;
+        border: none;
+        border-radius: 9px;
+        background: #1675d1;
+        color: white;
+        font-size: 9px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: .25s;
+    }
+
+    .search-btn:hover {
+        background: #0e63b7;
+    }
+
+    .filter-actions {
+        margin-left: auto;
+        display: flex;
+        gap: 8px;
+    }
+
+    .export-btn {
+        height: 34px;
+        padding: 0 13px;
+        border: 1px solid #e7ebf1;
+        border-radius: 9px;
+        background: #fff;
+        color: #758197;
+        font-size: 9px;
+        font-weight: 700;
+        cursor: pointer;
+    }
+
+    .export-btn:hover {
+        background: #eaf3ff;
+        color: #1675d1;
+        border-color: #cfe3fb;
+    }
+
+    .pdf-btn {
+        background: #172033;
+        color: white;
+        border-color: #172033;
+    }
+
+    .pdf-btn:hover {
+        background: #172033;
+        color: white;
+    }
+
+
+    /* =========================================
+       TABLE
+    ========================================= */
+
+    .table-wrapper {
+        overflow-x: auto;
+    }
+
+    .transactions-table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 850px;
+    }
+
+    .transactions-table th {
+        text-align: left;
+        padding: 13px 10px;
+        font-size: 9px;
+        color: #758197;
+        font-weight: 700;
+        border-bottom: 1px solid #e7ebf1;
+    }
+
+    .transactions-table td {
+        padding: 17px 10px;
+        font-size: 9px;
+        color: #758197;
+        border-bottom: 1px solid #e7ebf1;
+    }
+
+    .empty-transaction {
+        text-align: center !important;
+        padding: 38px 20px !important;
+        color: #758197 !important;
+    }
+
+    .empty-transaction i {
+        display: block;
+        font-size: 22px;
+        color: #b5bfce;
+        margin-bottom: 8px;
+    }
+
+    .empty-transaction strong {
+        display: block;
+        color: #172033;
+        font-size: 10px;
+        margin-bottom: 4px;
+    }
+
+    .empty-transaction span {
+        font-size: 8px;
+        color: #758197;
+    }
+
+
+    /* =========================================
+       STATUS
+    ========================================= */
+
+    .status {
+        display: inline-flex;
+        align-items: center;
+        padding: 5px 9px;
+        border-radius: 20px;
+        font-size: 8px;
+        font-weight: 700;
+    }
+
+    .status-pending {
+        background: #fff5d9;
+        color: #c17a00;
+    }
+
+    .status-issued {
+        background: #e8faf3;
+        color: #00a56b;
+    }
+
+    .status-rejected {
+        background: #fff0f0;
+        color: #dc3545;
+    }
+
+    .receipt-link {
+        color: #1675d1;
+        text-decoration: none;
+        font-weight: 700;
+    }
+
+    .receipt-link:hover {
+        text-decoration: underline;
+    }
+
+
+    /* =========================================
+       CLOSING BALANCE
+    ========================================= */
+
+    .closing-balance {
+        margin-top: 15px;
+        background: linear-gradient(135deg, #172033, #263653);
+        color: white;
+        border-radius: 17px;
+        padding: 18px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        box-shadow: 0 10px 25px rgba(20,35,60,.12);
+    }
+
+    .closing-left span {
+        display: block;
+        font-size: 9px;
+        opacity: .7;
+        letter-spacing: .8px;
+        margin-bottom: 6px;
+    }
+
+    .closing-left strong {
+        font-size: 23px;
+    }
+
+    .closing-right {
+        text-align: right;
+    }
+
+    .closing-right span {
+        display: block;
+        font-size: 9px;
+        opacity: .7;
+        margin-bottom: 4px;
+    }
+
+    .closing-right strong {
+        font-size: 12px;
+    }
+
+
+    /* =========================================
+       TOP-UP REQUESTS
+    ========================================= */
+
+    .topup-section {
+        margin-bottom: 20px;
+    }
+
+
+    /* =========================================
+       FOOTER
+    ========================================= */
+
+    .footer {
+        text-align: center;
+        color: #758197;
+        font-size: 9px;
+        padding: 15px;
+    }
+
+
+    /* =========================================
+       RESPONSIVE
+    ========================================= */
+
+    @media (max-width: 1200px) {
+
+        .top-grid {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .balance-column {
+            grid-column: span 2;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+    }
+
+    @media (max-width: 900px) {
+
+        .sidebar {
+            width: 75px;
+            padding: 15px 8px;
+        }
+
+        .sidebar-logo h2,
+        .sidebar-logo span,
+        .sidebar-title,
+        .sidebar-link span {
+            display: none;
+        }
+
+        .sidebar-logo {
+            border: none;
+        }
+
+        .sidebar-link {
+            justify-content: center;
+        }
+
+        .sidebar-link i {
+            width: 40px;
+            height: 40px;
+        }
+
+        .active-dot {
+            display: none;
+        }
+
+        .bookings-submenu {
+            display: none;
+        }
+
+        .main-content {
+            margin-left: 75px;
+            width: calc(100% - 75px);
+            padding: 18px;
+        }
+
+        .top-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .balance-column {
+            grid-column: auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+    }
+
+    @media (max-width: 650px) {
+
+        .top-header {
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .agent-details {
+            display: none;
+        }
+
+        .balance-column {
+            grid-template-columns: 1fr;
+        }
+
+        .statement-header {
+            align-items: flex-start;
+            gap: 12px;
+            flex-direction: column;
+        }
+
+        .filter-row {
+            flex-wrap: wrap;
+        }
+
+        .filter-actions {
+            margin-left: 0;
+            width: 100%;
+        }
+
+        .filter-actions button {
+            flex: 1;
+        }
+
+        .closing-balance {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .closing-right {
+            text-align: left;
+        }
+
+        .deposit-footer {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .submit-btn {
+            width: 100%;
+        }
+
+    }
+
+</style>
+
+</head>
+
+<body>
+
+<div class="dashboard">
+
+<!-- =====================================================
+     SIDEBAR
+====================================================== -->
+
+<aside class="sidebar">
+
+
+    <!-- LOGO -->
+
+    <div class="sidebar-logo">
+
+        <img src="{% static 'images/logo.png' %}" 
+             alt="AL NAJAM Travel & Tours"
+             class="sidebar-logo-image">
+    
+        <h2>
+            AL NAJAM
+        </h2>
+    
+        <span>
+            TRAVEL & TOURS
+        </span>
+    
+    </div>
+           
+
+
+    <!-- =================================================
+         CORE
+    ================================================== -->
+
+    <div class="sidebar-section">
+
+        <div class="sidebar-title">
+            CORE
+        </div>
+
+
+        <!-- OVERVIEW -->
+
+        <a
+            href="{% url 'agent_dashboard' %}"
+            class="sidebar-link"
+        >
+
+            <i class="bi bi-grid-1x2"></i>
+
+            <span>
+                Overview
+            </span>
+
+        </a>
+
+
+        <!-- GROUP TICKETS -->
+
+        <a
+            href="{% url 'agent_group_tickets' %}"
+            class="sidebar-link"
+        >
+
+            <i class="bi bi-people"></i>
+
+            <span>
+                Group Tickets
+            </span>
+
+        </a>
+
+
+        <!-- UMRAH -->
+
+        <a
+            href="{% url 'agent_umrah_bookings' %}"
+            class="sidebar-link"
+        >
+
+            <i class="bi bi-moon-stars"></i>
+
+            <span>
+                Umrah
+            </span>
+
+        </a>
+
+    </div>
+
+
+    <!-- =================================================
+         BOOKINGS
+    ================================================== -->
+
+    <div class="sidebar-section">
+
+        <div class="sidebar-title">
+            BOOKINGS
+        </div>
+
+
+        <div class="bookings-menu">
+
+
+            <!-- BOOKINGS TOGGLE -->
+
+            <button
+                type="button"
+                class="sidebar-link bookings-toggle"
+                onclick="toggleBookings()"
+            >
+
+                <i class="bi bi-ticket-perforated"></i>
+
+                <span>
+                    Bookings
+                </span>
+
+                <i class="bi bi-chevron-down bookings-arrow"></i>
+
+            </button>
+
+
+            <!-- BOOKINGS SUBMENU -->
+
+            <div
+                class="bookings-submenu"
+                id="bookingsSubmenu"
+            >
+
+
+                <a
+                    href="{% url 'agent_all_bookings' %}"
+                    class="booking-sub-link"
+                >
+                    All Bookings
+                </a>
+
+
+                <a
+                    href="{% url 'agent_pending_bookings' %}"
+                    class="booking-sub-link"
+                >
+                    Pending Approval
+                </a>
+
+
+                <a
+                    href="{% url 'agent_confirmed_bookings' %}"
+                    class="booking-sub-link"
+                >
+                    Confirmed Bookings
+                </a>
+
+
+                <a
+                    href="{% url 'agent_rejected_bookings' %}"
+                    class="booking-sub-link"
+                >
+                    Rejected Bookings
+                </a>
+
+
+                <a
+                    href="{% url 'agent_group_bookings' %}"
+                    class="booking-sub-link"
+                >
+                    Group Bookings
+                </a>
+
+
+                <a
+                    href="{% url 'agent_umrah_bookings' %}"
+                    class="booking-sub-link"
+                >
+                    Umrah Bookings
+                </a>
+
+
+                <a
+                    href="{% url 'agent_tour_bookings' %}"
+                    class="booking-sub-link"
+                >
+                    Tour Bookings
+                </a>
+
+
+                <a
+                    href="{% url 'agent_visa_bookings' %}"
+                    class="booking-sub-link"
+                >
+                    Visa Bookings
+                </a>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         SERVICES
+    ================================================== -->
+
+    <div class="sidebar-section">
+
+        <div class="sidebar-title">
+            SERVICES
+        </div>
+
+
+        <!-- WALLET -->
+
+        <a
+            href="{% url 'agent_wallet' %}"
+            class="sidebar-link active"
+        >
+
+            <i class="bi bi-wallet2"></i>
+
+            <span>
+                Wallet
+            </span>
+
+            <span class="active-dot"></span>
+
+        </a>
+
+
+        <!-- BANKING -->
+
+        <a
+            href="{% url 'agent_banking' %}"
+            class="sidebar-link"
+        >
+
+            <i class="bi bi-bank"></i>
+
+            <span>
+                Banking
+            </span>
+
+        </a>
+
+
+        <!-- VISA -->
+
+        <a
+            href="#"
+            class="sidebar-link"
+        >
+
+            <i class="bi bi-passport"></i>
+
+            <span>
+                Visa
+            </span>
+
+        </a>
+
+
+        <!-- TOURS -->
+
+        <a
+            href="#"
+            class="sidebar-link"
+        >
+
+            <i class="bi bi-globe2"></i>
+
+            <span>
+                Tours
+            </span>
+
+        </a>
+
+    </div>
+
+
+    <!-- =================================================
+         ORGANIZATION
+    ================================================== -->
+
+    <div class="sidebar-section">
+
+        <div class="sidebar-title">
+            ORGANIZATION
+        </div>
+
+
+        <!-- PROFILE -->
+
+        <a
+            href="{% url 'agency_profile' %}"
+            class="sidebar-link"
+        >
+
+            <i class="bi bi-person-badge"></i>
+
+            <span>
+                Profile
+            </span>
+
+        </a>
+
+
+        <!-- SETTINGS -->
+        <a href="{% url 'agent_settings' %}"
+        class="sidebar-link">
+     
+         <i class="bi bi-gear"></i>
+     
+         <span>
+             Settings
+         </span>
+     
+     </a>
+
+
+        <!-- LOGOUT -->
+
+        <form
+            method="POST"
+            action="{% url 'logout' %}"
+            class="logout-form"
+        >
+
+            {% csrf_token %}
+
+            <button
+                type="submit"
+                class="sidebar-link logout-link"
+            >
+
+                <i class="bi bi-box-arrow-right"></i>
+
+                <span>
+                    Logout
+                </span>
+
+            </button>
+
+        </form>
+
+
+    </div>
+
+
+</aside>
+
+
+
+<!-- =====================================================
+     MAIN CONTENT
+====================================================== -->
+
+<main class="main-content">
+
+
+    <!-- HEADER -->
+
+    <header class="top-header">
+
+
+        <div>
+
+            <span class="header-label">
+                WALLET
+            </span>
+
+            <h1>
+                Balance, top-ups, and payment discipline
+            </h1>
+
+            <p>
+                Manage top-ups, receipts, transactions, and agency statements.
+            </p>
+
+        </div>
+
+<!-- AGENT PROFILE -->
+
+<div class="agent-profile">
+
+    <div class="agent-avatar">
+
+        {% if agent.name %}
+            {{ agent.name|first|upper }}
+        {% else %}
+            A
+        {% endif %}
+
+    </div>
+
+
+    <div class="agent-details">
+
+        <strong>
+            {{ agent.name }}
+        </strong>
+
+        <span>
+            {{ agent.agency }}
+        </span>
+
+    </div>
+
+</div>
+
+    </header>
+
+
+    <!-- =====================================================
+         MESSAGES
+    ====================================================== -->
+
+    {% if messages %}
+
+        <div class="message-area">
+
+            {% for message in messages %}
+
+                <div class="
+                    message
+                    {% if message.tags == 'success' %}
+                        success
+                    {% elif message.tags == 'error' %}
+                        error
+                    {% elif message.tags == 'warning' %}
+                        warning
+                    {% endif %}
+                ">
+
+                    {% if message.tags == "success" %}
+
+                        <i class="bi bi-check-circle-fill"></i>
+
+                    {% elif message.tags == "error" %}
+
+                        <i class="bi bi-exclamation-circle-fill"></i>
+
+                    {% else %}
+
+                        <i class="bi bi-info-circle-fill"></i>
+
+                    {% endif %}
+
+                    {{ message }}
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    {% endif %}
+
+
+
+    <!-- =====================================================
+         TOP SECTION
+    ====================================================== -->
+
+    <div class="top-grid">
+
+
+        <!-- DEPOSIT REQUEST -->
+
+        <section class="panel">
+
+
+            <div class="panel-title-row">
+
+                <i class="bi bi-graph-up-arrow"></i>
+
+                <div class="panel-title">
+                    Submit Deposit Request
+                </div>
+
+            </div>
+
+
+            <p class="panel-description">
+
+                Upload bank deposit details to initiate a financial review.
+
+            </p>
+
+
+            <form
+                method="POST"
+                enctype="multipart/form-data"
+                class="deposit-form"
+            >
+
+                {% csrf_token %}
+
+
+                <label class="upload-box">
+
+                    <div>
+
+                        <i class="bi bi-cloud-arrow-up"></i>
+
+                        Upload deposit receipt
+
+                        <br>
+
+                        <span>
+                            JPG, PNG or WEBP
+                        </span>
+
+                    </div>
+
+
+                    <input
+                        type="file"
+                        name="receipt"
+                        accept=".jpg,.jpeg,.png,.webp"
+                        style="display:none;"
+                        required
+                    >
+
+                </label>
+
+
+                <label class="field-label">
+                    TOP-UP AMOUNT
+                </label>
+
+
+                <input
+                    type="number"
+                    name="amount"
+                    class="input-box"
+                    placeholder="Topup amount (PKR)"
+                    min="1"
+                    step="0.01"
+                    required
+                >
+
+
+                <label class="field-label">
+                    TRANSACTION DATE
+                </label>
+
+
+                <input
+                    type="date"
+                    name="transaction_date"
+                    class="input-box"
+                    required
+                >
+
+
+                <div class="deposit-footer">
+
+                    <span>
+                        Your request will be<br>
+                        reviewed by admin.
+                    </span>
+
+
+                    <button
+                        class="submit-btn"
+                        type="submit"
+                    >
+
+                        SUBMIT TOPUP
+
+                    </button>
+
+                </div>
+
+
+            </form>
+
+
+        </section>
+
+
+
+        <!-- RECENT LEDGER -->
+
+        <section class="panel">
+
+
+            <div class="panel-title-row">
+
+                <i class="bi bi-clock-history"></i>
+
+                <div class="panel-title">
+                    Recent Ledger Activity
+                </div>
+
+            </div>
+
+
+            <p class="panel-description">
+
+                Recent wallet and transaction activity will appear here.
+
+            </p>
+
+
+            {% if transactions %}
+
+                <div class="ledger-list">
+
+                    {% for transaction in transactions|slice:":6" %}
+
+                        <div class="ledger-item">
+
+                            <div class="ledger-left">
+
+                                <strong>
+                                    {{ transaction.reference }}
+                                </strong>
+
+                                <span>
+                                    {{ transaction.description }}
+                                </span>
+
+                                <span>
+                                    {{ transaction.created_at|date:"d M Y, h:i A" }}
+                                </span>
+
+                            </div>
+
+
+                            <div class="ledger-right">
+
+                                {% if transaction.credit > 0 %}
+
+                                    <div class="ledger-amount ledger-credit">
+                                        + PKR {{ transaction.credit|floatformat:0 }}
+                                    </div>
+
+                                {% elif transaction.debit > 0 %}
+
+                                    <div class="ledger-amount ledger-debit">
+                                        - PKR {{ transaction.debit|floatformat:0 }}
+                                    </div>
+
+                                {% else %}
+
+                                    <div class="ledger-amount">
+                                        PKR 0
+                                    </div>
+
+                                {% endif %}
+
+
+                                <span class="ledger-balance">
+                                    Balance:
+                                    PKR {{ transaction.balance_after|floatformat:0 }}
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+
+            {% else %}
+
+                <div class="ledger-empty">
+
+                    <div>
+
+                        <div class="ledger-empty-icon">
+
+                            <i class="bi bi-clock-history"></i>
+
+                        </div>
+
+
+                        <strong>
+                            No ledger activity yet
+                        </strong>
+
+
+                        <span>
+                            Your approved deposits and wallet transactions
+                            will appear here when activity is available.
+                        </span>
+
+                    </div>
+
+                </div>
+
+            {% endif %}
+
+
+        </section>
+
+
+
+        <!-- BALANCE -->
+
+        <div class="balance-column">
+
+
+            <section class="panel balance-card">
+
+                <div class="balance-label">
+                    BALANCE SUMMARY
+                </div>
+
+
+                <div class="balance-number">
+                    PKR {{ wallet.balance|floatformat:0 }}
+                </div>
+
+
+                <div class="balance-description">
+                    Current wallet balance from approved financial transactions.
+                </div>
+
+            </section>
+
+
+
+            <section class="panel balance-card volume-card">
+
+                <div class="balance-label">
+                    TOTAL BUSINESS VOLUME
+                </div>
+
+
+                <div class="balance-number">
+                    PKR {{ total_business_volume|floatformat:0 }}
+                </div>
+
+
+                <div class="balance-description">
+                    Total value of your confirmed flight and booking activity.
+                </div>
+
+            </section>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =====================================================
+         TOP-UP REQUESTS
+    ====================================================== -->
+
+    <section class="panel statement-panel topup-section">
+
+
+        <div class="statement-header">
+
+
+            <div>
+
+                <h2>
+                    Top-up Requests
+                </h2>
+
+
+                <p>
+                    Track the status of your submitted deposit requests.
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="table-wrapper">
+
+            <table class="transactions-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            DATE
+                        </th>
+
+                        <th>
+                            AMOUNT
+                        </th>
+
+                        <th>
+                            TRANSACTION DATE
+                        </th>
+
+                        <th>
+                            RECEIPT
+                        </th>
+
+                        <th>
+                            STATUS
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    {% if topup_requests %}
+
+                        {% for topup in topup_requests %}
+
+                            <tr>
+
+                                <td>
+                                    {{ topup.created_at|date:"d M Y" }}
+                                </td>
+
+                                <td>
+                                    PKR {{ topup.amount|floatformat:0 }}
+                                </td>
+
+                                <td>
+                                    {{ topup.transaction_date|date:"d M Y" }}
+                                </td>
+
+                                <td>
+
+                                    {% if topup.receipt %}
+
+                                        <a
+                                            href="{{ topup.receipt.url }}"
+                                            target="_blank"
+                                            class="receipt-link"
+                                        >
+                                            View Receipt
+                                        </a>
+
+                                    {% else %}
+
+                                        —
+
+                                    {% endif %}
+
+                                </td>
+
+                                <td>
+
+                                    {% if topup.status == "PENDING" %}
+
+                                        <span class="status status-pending">
+                                            Pending
+                                        </span>
+
+                                    {% elif topup.status == "APPROVED" %}
+
+                                        <span class="status status-issued">
+                                            Approved
+                                        </span>
+
+                                    {% elif topup.status == "REJECTED" %}
+
+                                        <span class="status status-rejected">
+                                            Rejected
+                                        </span>
+
+                                    {% else %}
+
+                                        <span class="status">
+                                            {{ topup.status }}
+                                        </span>
+
+                                    {% endif %}
+
+                                </td>
+
+                            </tr>
+
+                        {% endfor %}
+
+                    {% else %}
+
+                        <tr>
+
+                            <td
+                                colspan="5"
+                                class="empty-transaction"
+                            >
+
+                                <i class="bi bi-wallet2"></i>
+
+                                <strong>
+                                    No top-up requests yet
+                                </strong>
+
+                                <span>
+                                    Your submitted deposit requests
+                                    will appear here.
+                                </span>
+
+                            </td>
+
+                        </tr>
+
+                    {% endif %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =====================================================
+         ACCOUNT STATEMENT
+    ====================================================== -->
+
+    <section class="panel statement-panel">
+
+
+        <div class="statement-header">
+
+
+            <div>
+
+                <h2>
+                    Account Statement & Transactions
+                </h2>
+
+                <p>
+                    View your complete business ledger, deposits, debits and closing balance.
+                </p>
+
+            </div>
+
+
+            <div class="tabs">
+
+                <div class="tab active">
+                    BUSINESS LEDGER
+                </div>
+
+                <div class="tab">
+                    DEPOSIT REQUESTS
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- FILTER -->
+
+        <div class="filter-box">
+
+            <form
+                method="GET"
+                action="{% url 'agent_wallet' %}"
+            >
+
+                <div class="filter-row">
+
+
+                    <div class="date-group">
+
+                        <span class="date-label">
+                            FROM
+                        </span>
+
+                        <input
+                            type="date"
+                            name="date_from"
+                            class="date-input"
+                            value="{{ date_from }}"
+                        >
+
+                    </div>
+
+
+                    <div class="date-group">
+
+                        <span class="date-label">
+                            TO
+                        </span>
+
+                        <input
+                            type="date"
+                            name="date_to"
+                            class="date-input"
+                            value="{{ date_to }}"
+                        >
+
+                    </div>
+
+
+                    <button
+                        class="search-btn"
+                        type="submit"
+                    >
+
+                        <i class="bi bi-search"></i>
+                        SEARCH
+
+                    </button>
+
+
+                    {% if date_from or date_to %}
+
+                        <a
+                            href="{% url 'agent_wallet' %}"
+                            class="export-btn"
+                            style="
+                                display:flex;
+                                align-items:center;
+                                justify-content:center;
+                                text-decoration:none;
+                            "
+                        >
+
+                            <i class="bi bi-x-circle me-1"></i>
+
+                            CLEAR
+
+                        </a>
+
+                    {% endif %}
+
+
+                    <div class="filter-actions">
+
+
+                        <a
+                            href="{% url 'export_wallet_excel' %}{% if date_from or date_to %}?{% if date_from %}date_from={{ date_from }}{% endif %}{% if date_from and date_to %}&{% endif %}{% if date_to %}date_to={{ date_to }}{% endif %}{% endif %}"
+                            class="export-btn"
+                            style="
+                                display:flex;
+                                align-items:center;
+                                justify-content:center;
+                                text-decoration:none;
+                            "
+                        >
+
+                            <i class="bi bi-download"></i>
+                            EXPORT EXCEL
+
+                        </a>
+
+
+                        <a
+                            href="{% url 'export_wallet_pdf' %}{% if date_from or date_to %}?{% if date_from %}date_from={{ date_from }}{% endif %}{% if date_from and date_to %}&{% endif %}{% if date_to %}date_to={{ date_to }}{% endif %}{% endif %}"
+                            class="export-btn pdf-btn"
+                            style="
+                                display:flex;
+                                align-items:center;
+                                justify-content:center;
+                                text-decoration:none;
+                            "
+                        >
+
+                            <i class="bi bi-file-earmark-pdf"></i>
+                            SAVE PDF
+
+                        </a>
+
+
+                    </div>
+
+
+                </div>
+
+            </form>
+
+        </div>
+
+
+
+        <!-- TRANSACTION TABLE -->
+
+        <div class="table-wrapper">
+
+            <table class="transactions-table">
+
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            DATE
+                        </th>
+
+                        <th>
+                            REFERENCE
+                        </th>
+
+                        <th>
+                            DESCRIPTION
+                        </th>
+
+                        <th>
+                            DEBIT (PKR)
+                        </th>
+
+                        <th>
+                            CREDIT (PKR)
+                        </th>
+
+                        <th>
+                            BALANCE (PKR)
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+
+                    {% if statement_transactions %}
+
+                        {% for transaction in statement_transactions %}
+
+                            <tr>
+
+                                <td>
+                                    {{ transaction.created_at|date:"d M Y" }}
+                                </td>
+
+
+                                <td>
+                                    {{ transaction.reference }}
+                                </td>
+
+
+                                <td>
+                                    {{ transaction.description }}
+                                </td>
+
+
+                                <td>
+
+                                    {% if transaction.debit > 0 %}
+
+                                        PKR
+                                        {{ transaction.debit|floatformat:0 }}
+
+                                    {% else %}
+
+                                        —
+
+                                    {% endif %}
+
+                                </td>
+
+
+                                <td>
+
+                                    {% if transaction.credit > 0 %}
+
+                                        PKR
+                                        {{ transaction.credit|floatformat:0 }}
+
+                                    {% else %}
+
+                                        —
+
+                                    {% endif %}
+
+                                </td>
+
+
+                                <td>
+
+                                    PKR
+                                    {{ transaction.balance_after|floatformat:0 }}
+
+                                </td>
+
+                            </tr>
+
+                        {% endfor %}
+
+                    {% else %}
+
+                        <tr>
+
+                            <td
+                                colspan="6"
+                                class="empty-transaction"
+                            >
+
+                                <i class="bi bi-receipt"></i>
+
+                                <strong>
+                                    No transactions available yet
+                                </strong>
+
+                                <span>
+                                    Wallet deposits, booking payments,
+                                    and other financial transactions
+                                    will appear here when they are recorded.
+                                </span>
+
+                            </td>
+
+                        </tr>
+
+                    {% endif %}
+
+
+                </tbody>
+
+
+            </table>
+
+        </div>
+
+
+
+        <!-- CLOSING BALANCE -->
+
+        <div class="closing-balance">
+
+
+            <div class="closing-left">
+
+                <span>
+                    CLOSING BALANCE
+                </span>
+
+                <strong>
+                    PKR {{ closing_balance|floatformat:0 }}
+                </strong>
+
+            </div>
+
+
+            <div class="closing-right">
+
+                <span>
+                    STATEMENT STATUS
+                </span>
+
+
+                {% if statement_transactions %}
+
+                    <strong>
+                        {{ statement_transactions|length }} transaction(s) recorded
+                    </strong>
+
+                {% else %}
+
+                    <strong>
+                        No transactions recorded for this period
+                    </strong>
+
+                {% endif %}
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <div class="footer">
+
+        © 2026 AL NAJAM Travel & Tours — Agent Portal
+
+    </div>
+
+
+</main>
+
+</div>
+
+
+<script>
+
+    function toggleBookings() {
+
+        const submenu =
+            document.getElementById("bookingsSubmenu");
+
+        const button =
+            document.querySelector(".bookings-toggle");
+
+        submenu.classList.toggle("show");
+
+        button.classList.toggle("open");
+
+    }
+
+
+    /* Show selected receipt filename */
+
+    const receiptInput =
+        document.querySelector(
+            'input[name="receipt"]'
+        );
+
+    const uploadBox =
+        document.querySelector(".upload-box");
+
+    if (receiptInput && uploadBox) {
+
+        receiptInput.addEventListener(
+            "change",
+            function () {
+
+                if (this.files && this.files.length > 0) {
+
+                    const fileName =
+                        this.files[0].name;
+
+                    const display =
+                        uploadBox.querySelector("div");
+
+                    display.innerHTML = `
+                        <i class="bi bi-file-earmark-check"></i>
+                        ${fileName}
+                        <br>
+                        <span>Receipt selected successfully</span>
+                    `;
+
+                }
+
+            }
+        );
+
+    }
+
+</script>
+
+</body>
+
+</html>

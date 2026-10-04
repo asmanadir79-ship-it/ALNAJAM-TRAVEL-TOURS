@@ -1,0 +1,2049 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Book Umrah Package | AL NAJAM Agent Portal
+    </title>
+
+    <!-- =====================================================
+         BOOTSTRAP
+    ====================================================== -->
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <!-- =====================================================
+         BOOTSTRAP ICONS
+    ====================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    >
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        /* =====================================================
+           BODY
+        ====================================================== */
+
+        body {
+
+            margin: 0;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f7f9fc,
+                    #eef4f9
+                );
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            color: #172033;
+
+        }
+
+
+        /* =====================================================
+           SCROLLBAR
+        ====================================================== */
+
+        ::-webkit-scrollbar {
+            width: 7px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f4f8;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 20px;
+        }
+
+
+        /* =====================================================
+           MAIN
+        ====================================================== */
+
+        .main {
+
+            margin-left: 255px;
+
+            min-height: 100vh;
+
+            padding:
+                28px 30px 45px;
+
+        }
+
+
+        /* =====================================================
+           TOP HEADER
+        ====================================================== */
+
+        .page-header {
+
+            position: relative;
+
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #172033,
+                    #263e61
+                );
+
+            color: white;
+
+            border-radius: 22px;
+
+            padding:
+                27px 29px;
+
+            margin-bottom: 20px;
+
+            box-shadow:
+                0 14px 34px rgba(20,35,60,.10);
+
+        }
+
+
+        .page-header::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 230px;
+
+            height: 230px;
+
+            border-radius: 50%;
+
+            right: -95px;
+
+            top: -135px;
+
+            border:
+                1px solid rgba(255,255,255,.08);
+
+            box-shadow:
+                0 0 0 30px rgba(255,255,255,.025),
+                0 0 0 60px rgba(255,255,255,.018);
+
+        }
+
+
+        .header-content {
+
+            position: relative;
+
+            z-index: 2;
+
+        }
+
+
+        .header-badge {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 6px;
+
+            background:
+                rgba(255,255,255,.09);
+
+            border:
+                1px solid rgba(255,255,255,.12);
+
+            padding:
+                6px 10px;
+
+            border-radius: 8px;
+
+            font-size: 8px;
+
+            font-weight: 800;
+
+            letter-spacing: .9px;
+
+            text-transform: uppercase;
+
+        }
+
+
+        .page-header h1 {
+
+            margin:
+                13px 0 6px;
+
+            font-size: 25px;
+
+            font-weight: 800;
+
+        }
+
+
+        .page-header p {
+
+            margin: 0;
+
+            color: #cbd5e1;
+
+            font-size: 10px;
+
+            line-height: 1.6;
+
+            max-width: 720px;
+
+        }
+
+
+        /* =====================================================
+           CONTENT GRID
+        ====================================================== */
+
+        .content-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                minmax(0, 1fr)
+                320px;
+
+            gap: 18px;
+
+        }
+
+
+        /* =====================================================
+           CARD
+        ====================================================== */
+
+        .card-box {
+
+            background: #ffffff;
+
+            border:
+                1px solid #e5e9ef;
+
+            border-radius: 18px;
+
+            padding: 21px;
+
+            margin-bottom: 18px;
+
+            box-shadow:
+                0 7px 24px rgba(20,35,60,.035);
+
+        }
+
+
+        .card-box:last-child {
+
+            margin-bottom: 0;
+
+        }
+
+
+        /* =====================================================
+           SECTION TITLE
+        ====================================================== */
+
+        .section-heading {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            margin-bottom: 17px;
+
+        }
+
+
+        .section-icon {
+
+            width: 37px;
+
+            height: 37px;
+
+            border-radius: 11px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background:
+                #fff5e2;
+
+            color:
+                #d88900;
+
+            font-size: 16px;
+
+        }
+
+
+        .section-title {
+
+            margin: 0;
+
+            font-size: 14px;
+
+            font-weight: 800;
+
+            color: #202733;
+
+        }
+
+
+        .section-subtitle {
+
+            margin:
+                3px 0 0;
+
+            color: #98a2b3;
+
+            font-size: 8px;
+
+        }
+
+
+        /* =====================================================
+           PACKAGE SUMMARY
+        ====================================================== */
+
+        .package-summary {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 10px;
+
+        }
+
+
+        .summary-item {
+
+            padding:
+                12px 13px;
+
+            background:
+                #fafbfc;
+
+            border:
+                1px solid #edf0f4;
+
+            border-radius: 11px;
+
+        }
+
+
+        .summary-label {
+
+            font-size: 7px;
+
+            color: #9aa3b0;
+
+            font-weight: 800;
+
+            text-transform: uppercase;
+
+            letter-spacing: .55px;
+
+        }
+
+
+        .summary-value {
+
+            margin-top: 5px;
+
+            color: #202733;
+
+            font-size: 10px;
+
+            font-weight: 800;
+
+        }
+
+
+        /* =====================================================
+           FLIGHT BOX
+        ====================================================== */
+
+        .flight-card {
+
+            background:
+                #fafbfc;
+
+            border:
+                1px solid #e8edf2;
+
+            border-radius: 14px;
+
+            padding: 15px;
+
+            height: 100%;
+
+        }
+
+
+        .flight-top {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 8px;
+
+            margin-bottom: 12px;
+
+        }
+
+
+        .flight-label {
+
+            font-size: 7px;
+
+            font-weight: 800;
+
+            color: #9aa3b0;
+
+            text-transform: uppercase;
+
+            letter-spacing: .7px;
+
+        }
+
+
+        .flight-badge {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 5px;
+
+            padding:
+                5px 7px;
+
+            border-radius: 20px;
+
+            background:
+                #eef6ff;
+
+            color:
+                #1675d1;
+
+            font-size: 7px;
+
+            font-weight: 800;
+
+        }
+
+
+        .flight-number {
+
+            color: #172033;
+
+            font-size: 13px;
+
+            font-weight: 800;
+
+        }
+
+
+        .flight-route {
+
+            margin-top: 9px;
+
+            color: #172033;
+
+            font-size: 17px;
+
+            font-weight: 800;
+
+        }
+
+
+        .route-arrow {
+
+            color: #f59e0b;
+
+            margin:
+                0 7px;
+
+        }
+
+
+        .flight-cities {
+
+            margin-top: 3px;
+
+            color: #98a2b3;
+
+            font-size: 8px;
+
+        }
+
+
+        .flight-divider {
+
+            margin:
+                12px 0;
+
+            border:
+                0;
+
+            border-top:
+                1px solid #e8edf2;
+
+        }
+
+
+        .flight-meta-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 9px;
+
+        }
+
+
+        .meta-item {
+
+            padding:
+                8px 9px;
+
+            border-radius: 9px;
+
+            background:
+                #ffffff;
+
+            border:
+                1px solid #edf0f4;
+
+        }
+
+
+        .meta-label {
+
+            display: block;
+
+            color: #9aa3b0;
+
+            font-size: 6px;
+
+            font-weight: 800;
+
+            text-transform: uppercase;
+
+            letter-spacing: .5px;
+
+        }
+
+
+        .meta-value {
+
+            display: block;
+
+            margin-top: 3px;
+
+            color: #4f5d73;
+
+            font-size: 8px;
+
+            font-weight: 700;
+
+        }
+
+
+        /* =====================================================
+           HOTEL
+        ====================================================== */
+
+        .hotel-box {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #fafbfc,
+                    #f7f9fc
+                );
+
+            border:
+                1px solid #e8edf2;
+
+            border-radius: 14px;
+
+            padding: 15px;
+
+            height: 100%;
+
+        }
+
+
+        .hotel-top {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 9px;
+
+        }
+
+
+        .hotel-icon {
+
+            width: 35px;
+
+            height: 35px;
+
+            border-radius: 10px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background:
+                #eef6ff;
+
+            color:
+                #1675d1;
+
+            font-size: 14px;
+
+        }
+
+
+        .hotel-label {
+
+            color: #98a2b3;
+
+            font-size: 7px;
+
+            font-weight: 800;
+
+            letter-spacing: .65px;
+
+            text-transform: uppercase;
+
+        }
+
+
+        .hotel-name {
+
+            margin-top: 4px;
+
+            color: #202733;
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+        }
+
+
+        .hotel-distance {
+
+            margin-top: 6px;
+
+            color: #8b95a5;
+
+            font-size: 8px;
+
+            line-height: 1.5;
+
+        }
+
+
+        .night-badge {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 5px;
+
+            margin-top: 9px;
+
+            padding:
+                6px 8px;
+
+            border-radius: 8px;
+
+            background:
+                #fff8eb;
+
+            color:
+                #b66f00;
+
+            font-size: 7px;
+
+            font-weight: 800;
+
+        }
+
+
+        /* =====================================================
+           RIGHT SUMMARY CARD
+        ====================================================== */
+
+        .booking-sidebar {
+
+            position: sticky;
+
+            top: 95px;
+
+            align-self: start;
+
+        }
+
+
+        .booking-summary {
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #ffffff,
+                    #f9fbfd
+                );
+
+            border:
+                1px solid #e5e9ef;
+
+            border-radius: 18px;
+
+            padding: 20px;
+
+            box-shadow:
+                0 10px 28px rgba(20,35,60,.05);
+
+        }
+
+
+        .summary-header {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 10px;
+
+            margin-bottom: 16px;
+
+        }
+
+
+        .summary-heading {
+
+            font-size: 14px;
+
+            font-weight: 800;
+
+        }
+
+
+        .secure-badge {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 5px;
+
+            padding:
+                6px 8px;
+
+            border-radius: 20px;
+
+            background:
+                #eaf8ef;
+
+            color:
+                #198754;
+
+            font-size: 7px;
+
+            font-weight: 800;
+
+        }
+
+
+        .price-label {
+
+            color: #98a2b3;
+
+            font-size: 7px;
+
+            font-weight: 800;
+
+            text-transform: uppercase;
+
+            letter-spacing: .6px;
+
+        }
+
+
+        .price {
+
+            margin-top: 4px;
+
+            color: #172033;
+
+            font-size: 27px;
+
+            font-weight: 800;
+
+        }
+
+
+        .price-note {
+
+            margin-top: 3px;
+
+            color: #98a2b3;
+
+            font-size: 8px;
+
+        }
+
+
+        .summary-divider {
+
+            margin:
+                17px 0;
+
+            border: 0;
+
+            border-top:
+                1px solid #e9edf2;
+
+        }
+
+
+        .summary-row {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            gap: 10px;
+
+            padding:
+                8px 0;
+
+            font-size: 9px;
+
+        }
+
+
+        .summary-row span:first-child {
+
+            color: #8994a7;
+
+        }
+
+
+        .summary-row span:last-child {
+
+            color: #263238;
+
+            font-weight: 800;
+
+            text-align: right;
+
+        }
+
+
+        .availability-box {
+
+            margin-top: 8px;
+
+            padding:
+                11px;
+
+            border-radius: 11px;
+
+            background:
+                #fff8eb;
+
+            border:
+                1px solid #f4dfb7;
+
+        }
+
+
+        .availability-label {
+
+            color: #b66f00;
+
+            font-size: 7px;
+
+            font-weight: 800;
+
+            text-transform: uppercase;
+
+            letter-spacing: .6px;
+
+        }
+
+
+        .availability-value {
+
+            margin-top: 3px;
+
+            color: #8f5800;
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+        }
+
+
+        /* =====================================================
+           BUTTONS
+        ====================================================== */
+
+        .button-row {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 8px;
+
+            margin-top: 18px;
+
+        }
+
+
+        .book-btn {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 7px;
+
+            width: 100%;
+
+            min-height: 44px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f59e0b,
+                    #df8508
+                );
+
+            color: white;
+
+            border: none;
+
+            border-radius: 10px;
+
+            padding:
+                0 16px;
+
+            text-decoration: none;
+
+            font-size: 9px;
+
+            font-weight: 800;
+
+            box-shadow:
+                0 8px 18px rgba(245,158,11,.20);
+
+            transition:
+                .2s ease;
+
+        }
+
+
+        .book-btn:hover {
+
+            color: white;
+
+            transform:
+                translateY(-1px);
+
+            box-shadow:
+                0 11px 22px rgba(245,158,11,.27);
+
+        }
+
+
+        .back-btn {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 7px;
+
+            width: 100%;
+
+            min-height: 42px;
+
+            background: white;
+
+            color: #667386;
+
+            border:
+                1px solid #dfe5ed;
+
+            border-radius: 10px;
+
+            padding:
+                0 15px;
+
+            text-decoration: none;
+
+            font-size: 9px;
+
+            font-weight: 800;
+
+            transition:
+                .2s ease;
+
+        }
+
+
+        .back-btn:hover {
+
+            background:
+                #f8fafc;
+
+            color:
+                #334155;
+
+        }
+
+
+        /* =====================================================
+           FOOTER
+        ====================================================== */
+
+        .footer {
+
+            text-align: center;
+
+            padding:
+                20px 10px 5px;
+
+            color:
+                #98a2b0;
+
+            font-size: 8px;
+
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ====================================================== */
+
+        @media (max-width: 1100px) {
+
+            .content-grid {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+            .booking-sidebar {
+
+                position: static;
+
+            }
+
+        }
+
+
+        @media (max-width: 900px) {
+
+            .main {
+
+                margin-left: 0;
+
+                padding: 18px;
+
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .package-summary {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+            .flight-meta-grid {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+            .page-header {
+
+                padding: 21px;
+
+            }
+
+            .page-header h1 {
+
+                font-size: 21px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="main">
+
+
+    <!-- =====================================================
+         PAGE HEADER
+    ====================================================== -->
+
+    <div class="page-header">
+
+        <div class="header-content">
+
+            <span class="header-badge">
+
+                <i class="bi bi-moon-stars-fill"></i>
+
+                UMRAH BOOKING WORKSPACE
+
+            </span>
+
+
+            <h1>
+
+                Review & Book Package
+
+            </h1>
+
+
+            <p>
+
+                Review the selected Umrah package, flight schedule, hotel
+                arrangements, price and seat availability before proceeding
+                with the booking.
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         CONTENT
+    ====================================================== -->
+
+    <div class="content-grid">
+
+
+        <!-- =================================================
+             LEFT SIDE
+        ================================================== -->
+
+        <div>
+
+
+            <!-- =================================================
+                 PACKAGE INFORMATION
+            ================================================== -->
+
+            <div class="card-box">
+
+
+                <div class="section-heading">
+
+                    <div class="section-icon">
+
+                        <i class="bi bi-box-seam"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <h2 class="section-title">
+
+                            Package Information
+
+                        </h2>
+
+                        <p class="section-subtitle">
+
+                            Selected package details
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="package-summary">
+
+
+                    <div class="summary-item">
+
+                        <div class="summary-label">
+                            Package
+                        </div>
+
+                        <div class="summary-value">
+
+                            {{ package.name }}
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="summary-item">
+
+                        <div class="summary-label">
+                            Sector
+                        </div>
+
+                        <div class="summary-value">
+
+                            {{ package.sector }}
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="summary-item">
+
+                        <div class="summary-label">
+                            Airline
+                        </div>
+
+                        <div class="summary-value">
+
+                            {{ package.airline.name }}
+
+                            ({{ package.airline.code }})
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="summary-item">
+
+                        <div class="summary-label">
+                            Room Type
+                        </div>
+
+                        <div class="summary-value">
+
+                            {{ package.room_type|title }}
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="summary-item">
+
+                        <div class="summary-label">
+                            Total Nights
+                        </div>
+
+                        <div class="summary-value">
+
+                            {{ package.nights_in_makkah|add:package.nights_in_madinah }}
+
+                            Nights
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="summary-item">
+
+                        <div class="summary-label">
+                            Available Seats
+                        </div>
+
+                        <div class="summary-value">
+
+                            {{ package.available_seats }}
+
+                            / {{ package.total_seats }}
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 FLIGHT INFORMATION
+            ================================================== -->
+
+            <div class="card-box">
+
+
+                <div class="section-heading">
+
+                    <div class="section-icon">
+
+                        <i class="bi bi-airplane-fill"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <h2 class="section-title">
+
+                            Flight Information
+
+                        </h2>
+
+                        <p class="section-subtitle">
+
+                            Outbound and return journey schedule
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="row g-3">
+
+
+                    <!-- OUTBOUND -->
+
+                    <div class="col-lg-6">
+
+
+                        <div class="flight-card">
+
+
+                            <div class="flight-top">
+
+
+                                <div class="flight-label">
+
+                                    Outbound Flight
+
+                                </div>
+
+
+                                <span class="flight-badge">
+
+                                    <i class="bi bi-airplane"></i>
+
+                                    Departure
+
+                                </span>
+
+
+                            </div>
+
+
+                            <div class="flight-number">
+
+                                {{ package.outbound_flight_number }}
+
+                            </div>
+
+
+                            <div class="flight-route">
+
+                                {{ package.outbound_departure_airport.code }}
+
+                                <span class="route-arrow">
+                                    →
+                                </span>
+
+                                {{ package.outbound_arrival_airport.code }}
+
+                            </div>
+
+
+                            <div class="flight-cities">
+
+                                {{ package.outbound_departure_airport.city }}
+
+                                →
+
+                                {{ package.outbound_arrival_airport.city }}
+
+                            </div>
+
+
+                            <hr class="flight-divider">
+
+
+                            <div class="flight-meta-grid">
+
+
+                                <div class="meta-item">
+
+                                    <span class="meta-label">
+                                        Date
+                                    </span>
+
+                                    <span class="meta-value">
+
+                                        {{ package.outbound_departure_date|date:"d M Y" }}
+
+                                    </span>
+
+                                </div>
+
+
+                                <div class="meta-item">
+
+                                    <span class="meta-label">
+                                        Time
+                                    </span>
+
+                                    <span class="meta-value">
+
+                                        {{ package.outbound_departure_time|time:"H:i" }}
+
+                                        →
+
+                                        {{ package.outbound_arrival_time|time:"H:i" }}
+
+                                    </span>
+
+                                </div>
+
+
+                                <div class="meta-item">
+
+                                    <span class="meta-label">
+                                        Baggage
+                                    </span>
+
+                                    <span class="meta-value">
+
+                                        {{ package.outbound_baggage }}
+
+                                    </span>
+
+                                </div>
+
+
+                                <div class="meta-item">
+
+                                    <span class="meta-label">
+                                        Meal
+                                    </span>
+
+                                    <span class="meta-value">
+
+                                        {% if package.outbound_meal == "No" %}
+
+                                            No Meal
+
+                                        {% else %}
+
+                                            Included
+
+                                        {% endif %}
+
+                                    </span>
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- RETURN -->
+
+                    <div class="col-lg-6">
+
+
+                        <div class="flight-card">
+
+
+                            <div class="flight-top">
+
+
+                                <div class="flight-label">
+
+                                    Return Flight
+
+                                </div>
+
+
+                                <span class="flight-badge">
+
+                                    <i class="bi bi-airplane-engines"></i>
+
+                                    Return
+
+                                </span>
+
+
+                            </div>
+
+
+                            <div class="flight-number">
+
+                                {{ package.return_flight_number }}
+
+                            </div>
+
+
+                            <div class="flight-route">
+
+                                {{ package.return_departure_airport.code }}
+
+                                <span class="route-arrow">
+                                    →
+                                </span>
+
+                                {{ package.return_arrival_airport.code }}
+
+                            </div>
+
+
+                            <div class="flight-cities">
+
+                                {{ package.return_departure_airport.city }}
+
+                                →
+
+                                {{ package.return_arrival_airport.city }}
+
+                            </div>
+
+
+                            <hr class="flight-divider">
+
+
+                            <div class="flight-meta-grid">
+
+
+                                <div class="meta-item">
+
+                                    <span class="meta-label">
+                                        Date
+                                    </span>
+
+                                    <span class="meta-value">
+
+                                        {{ package.return_departure_date|date:"d M Y" }}
+
+                                    </span>
+
+                                </div>
+
+
+                                <div class="meta-item">
+
+                                    <span class="meta-label">
+                                        Time
+                                    </span>
+
+                                    <span class="meta-value">
+
+                                        {{ package.return_departure_time|time:"H:i" }}
+
+                                        →
+
+                                        {{ package.return_arrival_time|time:"H:i" }}
+
+                                    </span>
+
+                                </div>
+
+
+                                <div class="meta-item">
+
+                                    <span class="meta-label">
+                                        Baggage
+                                    </span>
+
+                                    <span class="meta-value">
+
+                                        {{ package.return_baggage }}
+
+                                    </span>
+
+                                </div>
+
+
+                                <div class="meta-item">
+
+                                    <span class="meta-label">
+                                        Meal
+                                    </span>
+
+                                    <span class="meta-value">
+
+                                        {% if package.return_meal == "No" %}
+
+                                            No Meal
+
+                                        {% else %}
+
+                                            Included
+
+                                        {% endif %}
+
+                                    </span>
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 HOTEL INFORMATION
+            ================================================== -->
+
+            <div class="card-box">
+
+
+                <div class="section-heading">
+
+                    <div class="section-icon">
+
+                        <i class="bi bi-building"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <h2 class="section-title">
+
+                            Hotel Accommodation
+
+                        </h2>
+
+                        <p class="section-subtitle">
+
+                            Makkah and Madinah accommodation details
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="row g-3">
+
+
+                    <!-- MAKKAH -->
+
+                    <div class="col-lg-6">
+
+
+                        <div class="hotel-box">
+
+
+                            <div class="hotel-top">
+
+                                <div class="hotel-icon">
+
+                                    <i class="bi bi-building-fill"></i>
+
+                                </div>
+
+
+                                <div>
+
+                                    <div class="hotel-label">
+
+                                        Makkah Hotel
+
+                                    </div>
+
+
+                                    <div class="hotel-name">
+
+                                        {{ package.makkah_hotel.name }}
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            {% if package.makkah_hotel.distance_from_reference %}
+
+                                <div class="hotel-distance">
+
+                                    <i class="bi bi-geo-alt"></i>
+
+                                    {{ package.makkah_hotel.distance_from_reference }}
+
+                                </div>
+
+                            {% endif %}
+
+
+                            <span class="night-badge">
+
+                                <i class="bi bi-moon-stars"></i>
+
+                                {{ package.nights_in_makkah }}
+
+                                Nights
+
+                            </span>
+
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- MADINAH -->
+
+                    <div class="col-lg-6">
+
+
+                        <div class="hotel-box">
+
+
+                            <div class="hotel-top">
+
+                                <div class="hotel-icon">
+
+                                    <i class="bi bi-building-fill"></i>
+
+                                </div>
+
+
+                                <div>
+
+                                    <div class="hotel-label">
+
+                                        Madinah Hotel
+
+                                    </div>
+
+
+                                    <div class="hotel-name">
+
+                                        {{ package.madinah_hotel.name }}
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            {% if package.madinah_hotel.distance_from_reference %}
+
+                                <div class="hotel-distance">
+
+                                    <i class="bi bi-geo-alt"></i>
+
+                                    {{ package.madinah_hotel.distance_from_reference }}
+
+                                </div>
+
+                            {% endif %}
+
+
+                            <span class="night-badge">
+
+                                <i class="bi bi-moon-stars"></i>
+
+                                {{ package.nights_in_madinah }}
+
+                                Nights
+
+                            </span>
+
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- =================================================
+             RIGHT SIDE BOOKING SUMMARY
+        ================================================== -->
+
+        <div class="booking-sidebar">
+
+
+            <div class="booking-summary">
+
+
+                <div class="summary-header">
+
+                    <div class="summary-heading">
+
+                        Booking Summary
+
+                    </div>
+
+
+                    <span class="secure-badge">
+
+                        <i class="bi bi-shield-check"></i>
+
+                        Secure
+
+                    </span>
+
+                </div>
+
+
+                <div class="price-label">
+
+                    Package Price
+
+                </div>
+
+
+                <div class="price">
+
+                    PKR {{ package.price|floatformat:0 }}
+
+                </div>
+
+
+                <div class="price-note">
+
+                    Total price for the selected package.
+
+                </div>
+
+
+                <hr class="summary-divider">
+
+
+                <div class="summary-row">
+
+                    <span>
+                        Package
+                    </span>
+
+                    <span>
+                        {{ package.name }}
+                    </span>
+
+                </div>
+
+
+                <div class="summary-row">
+
+                    <span>
+                        Room Type
+                    </span>
+
+                    <span>
+                        {{ package.room_type|title }}
+                    </span>
+
+                </div>
+
+
+                <div class="summary-row">
+
+                    <span>
+                        Total Nights
+                    </span>
+
+                    <span>
+
+                        {{ package.nights_in_makkah|add:package.nights_in_madinah }}
+
+                        Nights
+
+                    </span>
+
+                </div>
+
+
+                <div class="summary-row">
+
+                    <span>
+                        Airline
+                    </span>
+
+                    <span>
+                        {{ package.airline.code }}
+                    </span>
+
+                </div>
+
+
+                <div class="availability-box">
+
+                    <div class="availability-label">
+
+                        Current Availability
+
+                    </div>
+
+
+                    <div class="availability-value">
+
+                        {{ package.available_seats }}
+
+                        Seat{{ package.available_seats|pluralize }}
+
+                        Available
+
+                    </div>
+
+                </div>
+
+
+                <div class="button-row">
+
+                    <a
+    href="{% url 'agent_umrah_pilgrim_details' package.id %}"
+    class="book-btn"
+>
+    <i class="bi bi-person-vcard"></i>
+
+    Continue to Pilgrim Details
+
+    <i class="bi bi-arrow-right"></i>
+</a>
+                    
+                    <a
+                        href="{% url 'agent_umrah_bookings' %}"
+                        class="back-btn"
+                    >
+
+                        <i class="bi bi-arrow-left"></i>
+
+                        Back to Packages
+
+                    </a>
+
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <div class="footer">
+
+        © 2026 AL NAJAM Travel & Tours — Agent Portal
+
+    </div>
+
+
+</div>
+
+</body>
+
+</html>

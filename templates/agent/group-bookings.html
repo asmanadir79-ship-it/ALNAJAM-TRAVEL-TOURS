@@ -1,0 +1,2290 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Group Bookings | AL NAJAM Travel & Tours</title>
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f7fb;
+            color: #172033;
+        }
+
+        /* =========================================
+           LAYOUT
+        ========================================= */
+
+        .dashboard {
+            display: flex;
+            min-height: 100vh;
+        }
+
+
+        /* =========================================
+           SIDEBAR
+        ========================================= */
+
+        .sidebar {
+            width: 255px;
+            min-height: 100vh;
+
+            background: #ffffff;
+
+            border-right: 1px solid #e5eaf1;
+
+            padding: 25px 15px;
+
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+
+            overflow-y: auto;
+            z-index: 1000;
+        }
+
+
+        /* LOGO */
+
+        .sidebar-logo {
+            text-align: center;
+
+            padding: 8px 0 28px;
+
+            border-bottom: 1px solid #edf0f5;
+
+            margin-bottom: 25px;
+        }
+
+        .sidebar-logo-image {
+    width: 88px;
+    height: 88px;
+    margin: auto;
+    display: block;
+    object-fit: contain;
+}
+
+        .sidebar-logo h2 {
+            margin-top: 12px;
+
+            font-size: 17px;
+
+            color: #172033;
+        }
+
+        .sidebar-logo span {
+            display: block;
+
+            margin-top: 4px;
+
+            font-size: 10px;
+
+            color: #8a95a7;
+
+            letter-spacing: 1.2px;
+        }
+
+
+        /* SIDEBAR SECTION */
+
+        .sidebar-section {
+            margin-bottom: 25px;
+        }
+
+        .sidebar-title {
+            font-size: 10px;
+
+            font-weight: 700;
+
+            letter-spacing: 1.5px;
+
+            color: #8792a5;
+
+            padding: 0 12px;
+
+            margin-bottom: 9px;
+        }
+
+
+        /* SIDEBAR LINKS */
+
+        .sidebar-link {
+            display: flex;
+
+            align-items: center;
+
+            gap: 13px;
+
+            width: 100%;
+
+            padding: 12px 13px;
+
+            margin-bottom: 4px;
+
+            border-radius: 12px;
+
+            color: #5e6b80;
+
+            text-decoration: none;
+
+            font-size: 13px;
+
+            transition: 0.25s;
+        }
+
+        .sidebar-link i {
+            width: 30px;
+            height: 30px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 9px;
+
+            background: #f4f7fb;
+
+            font-size: 15px;
+        }
+
+        .sidebar-link:hover {
+            background: #fff8eb;
+
+            color: #d48700;
+        }
+
+        .sidebar-link:hover i {
+            background: #fff0d0;
+        }
+
+        .sidebar-link.active {
+            background: #fff1d6;
+
+            color: #d88900;
+
+            font-weight: 600;
+        }
+
+        .sidebar-link.active i {
+            background: #f59e0b;
+
+            color: white;
+        }
+
+
+        /* =========================================
+           BOOKINGS DROPDOWN
+        ========================================= */
+
+        .bookings-menu {
+            width: 100%;
+        }
+
+        .bookings-toggle {
+            border: none;
+            background: transparent;
+            font-family: inherit;
+            cursor: pointer;
+            text-align: left;
+            position: relative;
+        }
+
+        .bookings-toggle > span {
+            flex: 1;
+        }
+
+        .bookings-arrow {
+            width: auto !important;
+            height: auto !important;
+            background: transparent !important;
+
+            font-size: 11px !important;
+
+            margin-left: auto;
+
+            transition: transform 0.25s ease;
+        }
+
+        .bookings-toggle.open .bookings-arrow {
+            transform: rotate(180deg);
+        }
+
+
+        /* SUBMENU */
+
+        .bookings-submenu {
+            display: block;
+
+            margin: 2px 0 7px 43px;
+
+            padding-left: 10px;
+
+            border-left: 1px solid #e6ebf2;
+        }
+
+        .booking-sub-link {
+            display: block;
+
+            padding: 9px 10px;
+
+            margin-bottom: 2px;
+
+            color: #7b8798;
+
+            text-decoration: none;
+
+            font-size: 12px;
+
+            border-radius: 8px;
+
+            transition: 0.2s ease;
+        }
+
+        .booking-sub-link:hover {
+            background: #fff8eb;
+
+            color: #d88900;
+        }
+
+        .booking-sub-link.active {
+            background: #fff1d6;
+
+            color: #d88900;
+
+            font-weight: 600;
+        }
+
+
+        /* =========================================
+           LOGOUT
+        ========================================= */
+
+        .logout-form {
+            margin: 0;
+            padding: 0;
+        }
+
+        .logout-link {
+            border: none;
+
+            background: transparent;
+
+            font-family: inherit;
+
+            cursor: pointer;
+
+            text-align: left;
+        }
+
+        .logout-link:hover {
+            background: #fff1f2;
+
+            color: #dc2626;
+        }
+
+        .logout-link:hover i {
+            background: #fee2e2;
+
+            color: #dc2626;
+        }
+
+
+        /* =========================================
+           MAIN CONTENT
+        ========================================= */
+
+        .main-content {
+            margin-left: 255px;
+
+            width: calc(100% - 255px);
+
+            padding: 25px 30px 45px;
+        }
+
+
+        /* =========================================
+           TOP HEADER
+        ========================================= */
+
+        .top-header {
+            background: white;
+
+            border: 1px solid #e7ebf1;
+
+            border-radius: 20px;
+
+            padding: 20px 24px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            margin-bottom: 18px;
+
+            box-shadow: 0 5px 20px rgba(20, 35, 60, 0.03);
+        }
+
+        .header-label {
+            display: inline-block;
+
+            background: #f5f7fa;
+
+            color: #778398;
+
+            padding: 4px 8px;
+
+            border-radius: 6px;
+
+            font-size: 9px;
+
+            font-weight: 700;
+
+            letter-spacing: 0.8px;
+
+            margin-bottom: 5px;
+        }
+
+        .top-header h1 {
+            font-size: 22px;
+
+            margin-bottom: 5px;
+        }
+
+        .top-header p {
+            color: #8a95a7;
+
+            font-size: 12px;
+        }
+
+
+        /* PROFILE */
+
+        .agent-profile {
+            display: flex;
+
+            align-items: center;
+
+            gap: 11px;
+
+            padding: 8px 13px;
+
+            border: 1px solid #e3e8ef;
+
+            border-radius: 13px;
+
+            background: #fff;
+        }
+
+        .agent-avatar {
+            width: 38px;
+            height: 38px;
+
+            border-radius: 50%;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            background: #f59e0b;
+
+            color: white;
+
+            font-weight: 700;
+
+            font-size: 14px;
+        }
+
+        .agent-details strong {
+            display: block;
+
+            font-size: 12px;
+
+            color: #172033;
+        }
+
+        .agent-details span {
+            font-size: 10px;
+
+            color: #8994a7;
+        }
+
+
+        /* =========================================
+           PAGE ACTION
+        ========================================= */
+
+        .page-action-row {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 18px;
+        }
+
+        .page-heading h2 {
+            font-size: 18px;
+
+            margin-bottom: 5px;
+        }
+
+        .page-heading p {
+            color: #8a95a7;
+
+            font-size: 11px;
+        }
+
+        .primary-button {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            padding: 11px 17px;
+
+            background: #1675d1;
+
+            color: white;
+
+            border-radius: 9px;
+
+            text-decoration: none;
+
+            border: none;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: 0.25s;
+        }
+
+        .primary-button:hover {
+            background: #0e63b7;
+
+            transform: translateY(-1px);
+        }
+
+
+        /* =========================================
+           STATISTICS
+        ========================================= */
+
+        .stats-grid {
+            display: grid;
+
+            grid-template-columns: repeat(4, 1fr);
+
+            gap: 15px;
+
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            background: white;
+
+            border: 1px solid #e7ebf1;
+
+            border-radius: 18px;
+
+            padding: 18px;
+
+            box-shadow: 0 6px 22px rgba(20, 35, 60, 0.03);
+
+            position: relative;
+        }
+
+        .stat-top {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 13px;
+        }
+
+        .stat-label {
+            font-size: 9px;
+
+            font-weight: 700;
+
+            color: #7b8798;
+
+            letter-spacing: 0.4px;
+        }
+
+        .stat-icon {
+            width: 32px;
+            height: 32px;
+
+            border-radius: 9px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            background: #eef6ff;
+
+            color: #1675d1;
+
+            font-size: 14px;
+        }
+
+        .stat-number {
+            font-size: 24px;
+
+            font-weight: 700;
+
+            color: #172033;
+
+            margin-bottom: 4px;
+        }
+
+        .stat-description {
+            color: #9aa4b5;
+
+            font-size: 9px;
+        }
+
+        .stat-orange .stat-icon {
+            background: #fff5df;
+
+            color: #d88900;
+        }
+
+        .stat-green .stat-icon {
+            background: #eafaf3;
+
+            color: #08a76b;
+        }
+
+        .stat-purple .stat-icon {
+            background: #f5efff;
+
+            color: #7c3aed;
+        }
+
+
+        /* =========================================
+           SEARCH / FILTER PANEL
+        ========================================= */
+
+        .filter-panel {
+            background: white;
+
+            border: 1px solid #e7ebf1;
+
+            border-radius: 20px;
+
+            padding: 20px;
+
+            margin-bottom: 18px;
+
+            box-shadow: 0 6px 22px rgba(20, 35, 60, 0.03);
+        }
+
+        .filter-header {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 15px;
+        }
+
+        .filter-title {
+            font-size: 14px;
+
+            font-weight: 700;
+
+            color: #172033;
+        }
+
+        .filter-subtitle {
+            color: #98a2b3;
+
+            font-size: 9px;
+
+            margin-top: 4px;
+        }
+
+        .filter-grid {
+            display: grid;
+
+            grid-template-columns: 2fr 1fr 1fr 1fr auto;
+
+            gap: 10px;
+
+            align-items: end;
+        }
+
+        .field label {
+            display: block;
+
+            font-size: 9px;
+
+            font-weight: 700;
+
+            color: #69778d;
+
+            margin-bottom: 6px;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-wrapper i {
+            position: absolute;
+
+            left: 11px;
+
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            color: #9aa4b5;
+
+            font-size: 13px;
+        }
+
+        .field input,
+        .field select {
+            width: 100%;
+
+            height: 40px;
+
+            border: 1px solid #dfe5ed;
+
+            border-radius: 9px;
+
+            padding: 0 11px;
+
+            outline: none;
+
+            background: #fff;
+
+            color: #172033;
+
+            font-size: 11px;
+
+            font-family: inherit;
+        }
+
+        .input-wrapper input {
+            padding-left: 34px;
+        }
+
+        .field input:focus,
+        .field select:focus {
+            border-color: #9bc8f5;
+
+            box-shadow: 0 0 0 3px rgba(22, 117, 209, 0.07);
+        }
+
+        .filter-button {
+            height: 40px;
+
+            padding: 0 15px;
+
+            border: none;
+
+            border-radius: 9px;
+
+            background: #172033;
+
+            color: white;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+        }
+
+        .filter-button:hover {
+            background: #263653;
+        }
+
+
+        /* =========================================
+           BOOKING TABLE
+        ========================================= */
+
+        .booking-panel {
+            background: white;
+
+            border: 1px solid #e7ebf1;
+
+            border-radius: 20px;
+
+            padding: 21px;
+
+            box-shadow: 0 6px 22px rgba(20, 35, 60, 0.03);
+
+            overflow: hidden;
+        }
+
+        .booking-panel-header {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            margin-bottom: 18px;
+        }
+
+        .booking-panel-title {
+            font-size: 14px;
+
+            font-weight: 700;
+
+            color: #172033;
+        }
+
+        .booking-panel-subtitle {
+            font-size: 10px;
+
+            color: #98a2b3;
+
+            margin-top: 5px;
+        }
+
+        .results-count {
+            font-size: 10px;
+
+            color: #8792a5;
+
+            background: #f5f7fa;
+
+            padding: 6px 10px;
+
+            border-radius: 7px;
+        }
+
+        .table-wrapper {
+            width: 100%;
+
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+
+            border-collapse: collapse;
+
+            min-width: 900px;
+        }
+
+        thead {
+            background: #f8fafc;
+        }
+
+        th {
+            text-align: left;
+
+            padding: 12px 10px;
+
+            font-size: 9px;
+
+            color: #7d899b;
+
+            font-weight: 700;
+
+            letter-spacing: 0.2px;
+
+            border-bottom: 1px solid #edf0f4;
+
+            white-space: nowrap;
+        }
+
+        td {
+            padding: 14px 10px;
+
+            border-bottom: 1px solid #f0f2f6;
+
+            font-size: 10px;
+
+            color: #5e6b80;
+
+            white-space: nowrap;
+        }
+
+        tbody tr:hover {
+            background: #fbfcfe;
+        }
+
+        .booking-id {
+            color: #1675d1;
+
+            font-weight: 700;
+        }
+
+        .route {
+            font-weight: 700;
+
+            color: #172033;
+        }
+
+        .route small {
+            display: block;
+
+            color: #98a2b3;
+
+            font-weight: 400;
+
+            margin-top: 3px;
+
+            font-size: 8px;
+        }
+
+        .passenger-count {
+            font-weight: 700;
+
+            color: #172033;
+        }
+
+        .amount {
+            font-weight: 700;
+
+            color: #172033;
+        }
+
+
+        /* STATUS */
+
+        .status {
+            display: inline-block;
+
+            padding: 5px 9px;
+
+            border-radius: 20px;
+
+            font-size: 8px;
+
+            font-weight: 700;
+        }
+
+        .status-pending {
+            background: #fff5d9;
+
+            color: #c17a00;
+        }
+
+        .status-confirmed {
+            background: #e8faf3;
+
+            color: #00a56b;
+        }
+
+        .status-hold {
+            background: #eef4ff;
+
+            color: #3467c1;
+        }
+
+        .status-cancelled {
+            background: #fff1f2;
+
+            color: #dc2626;
+        }
+
+
+        /* ACTION */
+
+        .table-action {
+            width: 30px;
+            height: 30px;
+
+            display: inline-flex;
+
+            align-items: center;
+            justify-content: center;
+
+            border: 1px solid #e1e6ee;
+
+            background: white;
+
+            color: #69778d;
+
+            border-radius: 8px;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+        .table-action:hover {
+            background: #eef6ff;
+
+            color: #1675d1;
+
+            border-color: #cfe3fb;
+        }
+
+
+        /* =========================================
+           EMPTY STATE
+        ========================================= */
+
+        .empty-state {
+            border: 1px dashed #dce3ec;
+
+            border-radius: 14px;
+
+            padding: 40px 20px;
+
+            text-align: center;
+
+            margin-top: 15px;
+
+            background: #fcfdff;
+        }
+
+        .empty-state-icon {
+            width: 55px;
+            height: 55px;
+
+            border-radius: 50%;
+
+            margin: 0 auto 12px;
+
+            background: #eef6ff;
+
+            color: #1675d1;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            font-size: 23px;
+        }
+
+        .empty-state strong {
+            display: block;
+
+            color: #69778d;
+
+            font-size: 12px;
+
+            margin-bottom: 6px;
+        }
+
+        .empty-state span {
+            color: #a1acbb;
+
+            font-size: 10px;
+
+            display: block;
+
+            max-width: 420px;
+
+            margin: auto;
+
+            line-height: 1.5;
+        }
+
+
+        /* =========================================
+           FOOTER
+        ========================================= */
+
+        .dashboard-footer {
+            text-align: center;
+
+            padding: 20px;
+
+            color: #9aa4b5;
+
+            font-size: 9px;
+        }
+
+
+        /* =========================================
+           RESPONSIVE
+        ========================================= */
+
+        @media (max-width: 1150px) {
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .filter-grid {
+                grid-template-columns: 2fr 1fr 1fr;
+            }
+
+            .filter-button {
+                width: 100%;
+            }
+
+        }
+
+
+        @media (max-width: 850px) {
+
+            .sidebar {
+                width: 75px;
+
+                padding: 15px 8px;
+            }
+
+            .sidebar-logo h2,
+            .sidebar-logo span,
+            .sidebar-title,
+            .sidebar-link span {
+                display: none;
+            }
+
+            .sidebar-logo {
+                border: none;
+            }
+
+            .sidebar-link {
+                justify-content: center;
+
+                padding: 10px;
+            }
+
+            .sidebar-link i {
+                width: 40px;
+                height: 40px;
+            }
+
+            .bookings-submenu {
+                display: none;
+            }
+
+            .main-content {
+                margin-left: 75px;
+
+                width: calc(100% - 75px);
+
+                padding: 18px;
+            }
+
+            .top-header {
+                gap: 15px;
+            }
+
+            .filter-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .top-header {
+                padding: 17px;
+
+                align-items: flex-start;
+            }
+
+            .agent-details {
+                display: none;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .page-action-row {
+                align-items: flex-start;
+
+                gap: 12px;
+
+                flex-direction: column;
+            }
+
+            .filter-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .filter-panel,
+            .booking-panel {
+                padding: 16px;
+            }
+
+            .top-header h1 {
+                font-size: 18px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="dashboard">
+
+
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
+
+<aside class="sidebar">
+
+
+    <!-- =================================================
+         LOGO
+    ================================================= -->
+
+    <div class="sidebar-logo">
+
+        <img src="{% static 'images/logo.png' %}" 
+             alt="AL NAJAM Travel & Tours"
+             class="sidebar-logo-image">
+    
+        <h2>
+            AL NAJAM
+        </h2>
+    
+        <span>
+            TRAVEL & TOURS
+        </span>
+    
+    </div>
+
+
+    <!-- =================================================
+         CORE
+    ================================================= -->
+
+    <div class="sidebar-section">
+
+        <div class="sidebar-title">
+            CORE
+        </div>
+
+
+        <!-- OVERVIEW -->
+
+        <a
+            href="{% url 'agent_dashboard' %}"
+            class="sidebar-link"
+        >
+
+            <i class="bi bi-grid-1x2"></i>
+
+            <span>
+                Overview
+            </span>
+
+        </a>
+
+
+        <!-- GROUP TICKETS -->
+
+        <a
+            href="{% url 'agent_group_tickets' %}"
+            class="sidebar-link"
+        >
+
+            <i class="bi bi-people"></i>
+
+            <span>
+                Group Tickets
+            </span>
+
+        </a>
+
+
+        <!-- UMRAH -->
+
+        <a
+            href="{% url 'agent_umrah_bookings' %}"
+            class="sidebar-link"
+        >
+
+            <i class="bi bi-moon-stars"></i>
+
+            <span>
+                Umrah
+            </span>
+
+        </a>
+
+    </div>
+
+
+    <!-- =================================================
+         BOOKINGS
+    ================================================= -->
+
+    <div class="sidebar-section">
+
+        <div class="sidebar-title">
+            BOOKINGS
+        </div>
+
+
+        <div class="bookings-menu">
+
+
+            <!-- BOOKINGS TOGGLE -->
+
+            <button
+                type="button"
+                class="sidebar-link bookings-toggle open"
+                onclick="toggleBookings()"
+            >
+
+                <i class="bi bi-ticket-perforated"></i>
+
+                <span>
+                    Bookings
+                </span>
+
+                <i class="bi bi-chevron-down bookings-arrow"></i>
+
+            </button>
+
+
+            <!-- BOOKINGS SUBMENU -->
+
+            <div
+                class="bookings-submenu"
+                id="bookingsSubmenu"
+            >
+
+
+                <!-- ALL BOOKINGS -->
+
+                <a
+                    href="{% url 'agent_all_bookings' %}"
+                    class="booking-sub-link"
+                >
+                    All Bookings
+                </a>
+
+
+                <!-- PENDING -->
+
+                <a
+                    href="{% url 'agent_pending_bookings' %}"
+                    class="booking-sub-link"
+                >
+                    Pending Approval
+                </a>
+
+
+                <!-- CONFIRMED -->
+
+                <a
+                    href="{% url 'agent_confirmed_bookings' %}"
+                    class="booking-sub-link"
+                >
+                    Confirmed Bookings
+                </a>
+
+
+                <!-- REJECTED -->
+
+                <a
+                    href="{% url 'agent_rejected_bookings' %}"
+                    class="booking-sub-link"
+                >
+                    Rejected Bookings
+                </a>
+
+
+                <!-- GROUP BOOKINGS - ACTIVE -->
+
+                <a
+                    href="{% url 'agent_group_bookings' %}"
+                    class="booking-sub-link active"
+                >
+                    Group Bookings
+                </a>
+
+
+                <!-- UMRAH BOOKINGS -->
+
+                <a
+                    href="{% url 'agent_umrah_bookings' %}"
+                    class="booking-sub-link"
+                >
+                    Umrah Bookings
+                </a>
+
+
+                <!-- TOUR BOOKINGS -->
+
+                <a
+                    href="{% url 'agent_tour_bookings' %}"
+                    class="booking-sub-link"
+                >
+                    Tour Bookings
+                </a>
+
+
+                <!-- VISA BOOKINGS -->
+
+                <a
+                    href="{% url 'agent_visa_bookings' %}"
+                    class="booking-sub-link"
+                >
+                    Visa Bookings
+                </a>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         SERVICES
+    ================================================= -->
+
+    <div class="sidebar-section">
+
+        <div class="sidebar-title">
+            SERVICES
+        </div>
+
+
+        <!-- WALLET -->
+
+        <a
+            href="{% url 'agent_wallet' %}"
+            class="sidebar-link"
+        >
+
+            <i class="bi bi-wallet2"></i>
+
+            <span>
+                Wallet
+            </span>
+
+        </a>
+
+
+        <!-- BANKING -->
+
+        <a
+            href="{% url 'agent_banking' %}"
+            class="sidebar-link"
+        >
+
+            <i class="bi bi-bank"></i>
+
+            <span>
+                Banking
+            </span>
+
+        </a>
+
+
+        <!-- VISA -->
+
+        <a
+            href="#"
+            class="sidebar-link"
+        >
+
+            <i class="bi bi-passport"></i>
+
+            <span>
+                Visa
+            </span>
+
+        </a>
+
+
+        <!-- TOURS -->
+
+        <a
+            href="#"
+            class="sidebar-link"
+        >
+
+            <i class="bi bi-globe2"></i>
+
+            <span>
+                Tours
+            </span>
+
+        </a>
+
+    </div>
+
+
+    <!-- =================================================
+         ORGANIZATION
+    ================================================= -->
+
+    <div class="sidebar-section">
+
+        <div class="sidebar-title">
+            ORGANIZATION
+        </div>
+
+
+        <!-- PROFILE -->
+
+        <a
+            href="{% url 'agency_profile' %}"
+            class="sidebar-link"
+        >
+
+            <i class="bi bi-person-badge"></i>
+
+            <span>
+                Profile
+            </span>
+
+        </a>
+
+
+        <!-- SETTINGS -->
+
+        <a href="{% url 'agent_settings' %}"
+        class="sidebar-link">
+     
+         <i class="bi bi-gear"></i>
+     
+         <span>
+             Settings
+         </span>
+     
+     </a>
+
+        <!-- LOGOUT -->
+
+        <form
+            method="POST"
+            action="{% url 'logout' %}"
+            class="logout-form"
+        >
+
+            {% csrf_token %}
+
+            <button
+                type="submit"
+                class="sidebar-link logout-link"
+            >
+
+                <i class="bi bi-box-arrow-right"></i>
+
+                <span>
+                    Logout
+                </span>
+
+            </button>
+
+        </form>
+
+
+    </div>
+
+
+</aside>
+
+
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+
+    <main class="main-content">
+
+
+        <!-- TOP HEADER -->
+
+        <header class="top-header">
+
+
+            <div>
+
+                <span class="header-label">
+                    AGENT PORTAL
+                </span>
+
+                <h1>
+                    Group Bookings
+                </h1>
+
+                <p>
+                    Manage group travel requests, passengers, routes and booking status.
+                </p>
+
+            </div>
+
+
+            <!-- AGENT PROFILE -->
+
+            <div class="agent-profile">
+
+                <div class="agent-avatar">
+
+                    {% if agent.name %}
+                        {{ agent.name|first|upper }}
+                    {% else %}
+                        A
+                    {% endif %}
+
+                </div>
+
+
+                <div class="agent-details">
+
+                    <strong>
+                        {{ agent.name }}
+                    </strong>
+
+                    <span>
+                        {{ agent.agency }}
+                    </span>
+
+                </div>
+
+
+                <i class="bi bi-chevron-down"
+                   style="font-size: 10px; color: #8792a5;">
+                </i>
+
+            </div>
+
+
+        </header>
+
+
+
+        <!-- PAGE ACTION -->
+
+        <div class="page-action-row">
+
+            <div class="page-heading">
+
+                <h2>
+                    Group Travel Management
+                </h2>
+
+                <p>
+                    Keep track of your group reservations and passenger requirements.
+                </p>
+
+            </div>
+
+
+            <a href="#"
+               class="primary-button">
+
+                <i class="bi bi-plus-lg"></i>
+
+                New Group Booking
+
+            </a>
+
+        </div>
+
+
+
+        <!-- =====================================================
+             STATISTICS
+        ====================================================== -->
+
+        <section class="stats-grid">
+
+
+            <!-- TOTAL GROUPS -->
+
+            <div class="stat-card">
+
+                <div class="stat-top">
+
+                    <div class="stat-label">
+                        TOTAL GROUP BOOKINGS
+                    </div>
+
+                    <div class="stat-icon">
+
+                        <i class="bi bi-people"></i>
+
+                    </div>
+
+                </div>
+
+                <div class="stat-number">
+                    0
+                </div>
+
+                <div class="stat-description">
+                    All group reservations
+                </div>
+
+            </div>
+
+
+            <!-- PENDING -->
+
+            <div class="stat-card stat-orange">
+
+                <div class="stat-top">
+
+                    <div class="stat-label">
+                        PENDING REQUESTS
+                    </div>
+
+                    <div class="stat-icon">
+
+                        <i class="bi bi-hourglass-split"></i>
+
+                    </div>
+
+                </div>
+
+                <div class="stat-number">
+                    0
+                </div>
+
+                <div class="stat-description">
+                    Waiting for confirmation
+                </div>
+
+            </div>
+
+
+            <!-- CONFIRMED -->
+
+            <div class="stat-card stat-green">
+
+                <div class="stat-top">
+
+                    <div class="stat-label">
+                        CONFIRMED GROUPS
+                    </div>
+
+                    <div class="stat-icon">
+
+                        <i class="bi bi-check-circle"></i>
+
+                    </div>
+
+                </div>
+
+                <div class="stat-number">
+                    0
+                </div>
+
+                <div class="stat-description">
+                    Successfully confirmed
+                </div>
+
+            </div>
+
+
+            <!-- PASSENGERS -->
+
+            <div class="stat-card stat-purple">
+
+                <div class="stat-top">
+
+                    <div class="stat-label">
+                        TOTAL PASSENGERS
+                    </div>
+
+                    <div class="stat-icon">
+
+                        <i class="bi bi-person-vcard"></i>
+
+                    </div>
+
+                </div>
+
+                <div class="stat-number">
+                    0
+                </div>
+
+                <div class="stat-description">
+                    Passengers across groups
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =====================================================
+             SEARCH & FILTERS
+        ====================================================== -->
+
+        <section class="filter-panel">
+
+
+            <div class="filter-header">
+
+                <div>
+
+                    <div class="filter-title">
+                        Search Group Bookings
+                    </div>
+
+                    <div class="filter-subtitle">
+                        Search by group ID, route, date or booking status.
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="filter-grid">
+
+
+                <!-- SEARCH -->
+
+                <div class="field">
+
+                    <label>
+                        SEARCH
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <i class="bi bi-search"></i>
+
+                        <input type="text"
+                               placeholder="Search group ID, route or airline">
+
+                    </div>
+
+                </div>
+
+
+                <!-- STATUS -->
+
+                <div class="field">
+
+                    <label>
+                        STATUS
+                    </label>
+
+                    <select>
+
+                        <option value="">
+                            All Statuses
+                        </option>
+
+                        <option>
+                            Pending
+                        </option>
+
+                        <option>
+                            Confirmed
+                        </option>
+
+                        <option>
+                            On Hold
+                        </option>
+
+                        <option>
+                            Cancelled
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- DATE -->
+
+                <div class="field">
+
+                    <label>
+                        TRAVEL DATE
+                    </label>
+
+                    <input type="date">
+
+                </div>
+
+
+                <!-- AIRLINE -->
+
+                <div class="field">
+
+                    <label>
+                        AIRLINE
+                    </label>
+
+                    <select>
+
+                        <option value="">
+                            All Airlines
+                        </option>
+
+                        <option>
+                            Pakistan International Airlines
+                        </option>
+
+                        <option>
+                            Airblue
+                        </option>
+
+                        <option>
+                            Fly Jinnah
+                        </option>
+
+                        <option>
+                            AirSial
+                        </option>
+
+                        <option>
+                            Emirates
+                        </option>
+
+                        <option>
+                            Qatar Airways
+                        </option>
+
+                        <option>
+                            Saudia
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- BUTTON -->
+
+                <div>
+
+                    <button class="filter-button"
+                            type="button">
+
+                        <i class="bi bi-search"></i>
+
+                        Search
+
+                    </button>
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =====================================================
+             GROUP BOOKINGS TABLE
+        ====================================================== -->
+
+        <section class="booking-panel">
+
+
+            <div class="booking-panel-header">
+
+                <div>
+
+                    <div class="booking-panel-title">
+                        Group Booking Records
+                    </div>
+
+                    <div class="booking-panel-subtitle">
+                        View and manage your group travel reservations.
+                    </div>
+
+                </div>
+
+
+                <div class="results-count">
+                    0 Records
+                </div>
+
+            </div>
+
+
+
+            <!-- TABLE -->
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                GROUP ID
+                            </th>
+
+                            <th>
+                                ROUTE
+                            </th>
+
+                            <th>
+                                TRAVEL DATE
+                            </th>
+
+                            <th>
+                                AIRLINE
+                            </th>
+
+                            <th>
+                                PASSENGERS
+                            </th>
+
+                            <th>
+                                SEATS
+                            </th>
+
+                            <th>
+                                AMOUNT
+                            </th>
+
+                            <th>
+                                STATUS
+                            </th>
+
+                            <th>
+                                ACTION
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                        <!--
+                            Later, when we connect the database,
+                            real group booking records will appear here.
+                        -->
+
+                    </tbody>
+
+                </table>
+
+
+                <!-- EMPTY STATE -->
+
+                <div class="empty-state">
+
+                    <div class="empty-state-icon">
+
+                        <i class="bi bi-people"></i>
+
+                    </div>
+
+                    <strong>
+                        No group bookings yet
+                    </strong>
+
+                    <span>
+                        Your group reservations will appear here once you create or receive your first group booking request.
+                    </span>
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =====================================================
+             GROUP BOOKING INFORMATION
+        ====================================================== -->
+
+        <section class="booking-panel"
+                 style="margin-top:18px;">
+
+
+            <div class="booking-panel-header">
+
+                <div>
+
+                    <div class="booking-panel-title">
+                        Group Booking Workflow
+                    </div>
+
+                    <div class="booking-panel-subtitle">
+                        Your group reservation will move through these stages.
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div style="
+                display:grid;
+                grid-template-columns:repeat(4,1fr);
+                gap:12px;
+            ">
+
+
+                <!-- STEP 1 -->
+
+                <div style="
+                    border:1px solid #edf0f4;
+                    background:#fafbfc;
+                    border-radius:13px;
+                    padding:16px;
+                ">
+
+                    <div style="
+                        width:32px;
+                        height:32px;
+                        border-radius:9px;
+                        background:#eef6ff;
+                        color:#1675d1;
+                        display:flex;
+                        align-items:center;
+                        justify-content:center;
+                        margin-bottom:10px;
+                    ">
+
+                        <i class="bi bi-send"></i>
+
+                    </div>
+
+                    <strong style="
+                        display:block;
+                        font-size:11px;
+                        margin-bottom:5px;
+                    ">
+                        01. Request
+                    </strong>
+
+                    <span style="
+                        font-size:9px;
+                        color:#98a2b3;
+                        line-height:1.5;
+                    ">
+                        Submit your group travel requirements.
+                    </span>
+
+                </div>
+
+
+                <!-- STEP 2 -->
+
+                <div style="
+                    border:1px solid #edf0f4;
+                    background:#fafbfc;
+                    border-radius:13px;
+                    padding:16px;
+                ">
+
+                    <div style="
+                        width:32px;
+                        height:32px;
+                        border-radius:9px;
+                        background:#fff5df;
+                        color:#d88900;
+                        display:flex;
+                        align-items:center;
+                        justify-content:center;
+                        margin-bottom:10px;
+                    ">
+
+                        <i class="bi bi-clock-history"></i>
+
+                    </div>
+
+                    <strong style="
+                        display:block;
+                        font-size:11px;
+                        margin-bottom:5px;
+                    ">
+                        02. Review
+                    </strong>
+
+                    <span style="
+                        font-size:9px;
+                        color:#98a2b3;
+                        line-height:1.5;
+                    ">
+                        Our team reviews availability and group fares.
+                    </span>
+
+                </div>
+
+
+                <!-- STEP 3 -->
+
+                <div style="
+                    border:1px solid #edf0f4;
+                    background:#fafbfc;
+                    border-radius:13px;
+                    padding:16px;
+                ">
+
+                    <div style="
+                        width:32px;
+                        height:32px;
+                        border-radius:9px;
+                        background:#f5efff;
+                        color:#7c3aed;
+                        display:flex;
+                        align-items:center;
+                        justify-content:center;
+                        margin-bottom:10px;
+                    ">
+
+                        <i class="bi bi-check2-square"></i>
+
+                    </div>
+
+                    <strong style="
+                        display:block;
+                        font-size:11px;
+                        margin-bottom:5px;
+                    ">
+                        03. Confirmation
+                    </strong>
+
+                    <span style="
+                        font-size:9px;
+                        color:#98a2b3;
+                        line-height:1.5;
+                    ">
+                        Confirm the available group fare and seats.
+                    </span>
+
+                </div>
+
+
+                <!-- STEP 4 -->
+
+                <div style="
+                    border:1px solid #edf0f4;
+                    background:#fafbfc;
+                    border-radius:13px;
+                    padding:16px;
+                ">
+
+                    <div style="
+                        width:32px;
+                        height:32px;
+                        border-radius:9px;
+                        background:#eafaf3;
+                        color:#08a76b;
+                        display:flex;
+                        align-items:center;
+                        justify-content:center;
+                        margin-bottom:10px;
+                    ">
+
+                        <i class="bi bi-ticket-perforated"></i>
+
+                    </div>
+
+                    <strong style="
+                        display:block;
+                        font-size:11px;
+                        margin-bottom:5px;
+                    ">
+                        04. Ticketing
+                    </strong>
+
+                    <span style="
+                        font-size:9px;
+                        color:#98a2b3;
+                        line-height:1.5;
+                    ">
+                        Complete passenger details and ticket issuance.
+                    </span>
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- FOOTER -->
+
+        <footer class="dashboard-footer">
+
+            © 2026 AL NAJAM Travel & Tours.
+            Agent Portal.
+
+        </footer>
+
+
+    </main>
+
+
+</div>
+
+
+
+<script>
+
+    function toggleBookings() {
+
+        const submenu =
+            document.getElementById("bookingsSubmenu");
+
+        const button =
+            document.querySelector(".bookings-toggle");
+
+        submenu.classList.toggle("show");
+
+        button.classList.toggle("open");
+
+    }
+
+</script>
+
+
+</body>
+
+</html>

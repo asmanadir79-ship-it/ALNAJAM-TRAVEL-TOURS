@@ -1,0 +1,1220 @@
+ {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Umrah Booking Details | AL NAJAM Admin
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    >
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f7fb;
+            color: #172033;
+        }
+
+        .page {
+            width: 92%;
+            max-width: 1200px;
+            margin: 30px auto 50px;
+        }
+
+        .header {
+            background: linear-gradient(
+                135deg,
+                #172033,
+                #263e61
+            );
+            color: white;
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 28px rgba(20,35,60,.10);
+        }
+
+        .header-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 10px;
+            border-radius: 8px;
+            background: rgba(255,255,255,.10);
+            border: 1px solid rgba(255,255,255,.12);
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: .8px;
+        }
+
+        .header h1 {
+            margin-top: 13px;
+            font-size: 24px;
+        }
+
+        .header p {
+            margin-top: 6px;
+            color: #cbd5e1;
+            font-size: 11px;
+        }
+
+        .message-container {
+            margin-bottom: 18px;
+        }
+
+        .message {
+            padding: 12px 15px;
+            border-radius: 10px;
+            margin-bottom: 8px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .message.success {
+            background: #eaf8ef;
+            color: #16784f;
+            border: 1px solid #cce9d6;
+        }
+
+        .message.error {
+            background: #fff0f1;
+            color: #c62838;
+            border: 1px solid #f4c7cb;
+        }
+
+        .message.warning {
+            background: #fff8eb;
+            color: #9a6500;
+            border: 1px solid #f4dfb7;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 330px;
+            gap: 18px;
+        }
+
+        .card {
+            background: #ffffff;
+            border: 1px solid #e5eaf1;
+            border-radius: 18px;
+            padding: 21px;
+            margin-bottom: 18px;
+            box-shadow: 0 6px 20px rgba(20,35,60,.03);
+        }
+
+        .card:last-child {
+            margin-bottom: 0;
+        }
+
+        .card-title {
+            font-size: 15px;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .card-subtitle {
+            color: #8a95a7;
+            font-size: 9px;
+            margin-top: -10px;
+            margin-bottom: 18px;
+        }
+
+        .details {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+        }
+
+        .detail {
+            padding: 13px;
+            background: #f8fafc;
+            border: 1px solid #edf0f4;
+            border-radius: 11px;
+        }
+
+        .detail-label {
+            display: block;
+            color: #8a95a7;
+            font-size: 8px;
+            text-transform: uppercase;
+            letter-spacing: .5px;
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+
+        .detail-value {
+            display: block;
+            color: #172033;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .status {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 6px 10px;
+            border-radius: 20px;
+            font-size: 9px;
+            font-weight: 700;
+        }
+
+        .status-pending {
+            background: #fff5d9;
+            color: #c17a00;
+        }
+
+        .status-confirmed {
+            background: #e8faf3;
+            color: #00a56b;
+        }
+
+        .status-rejected {
+            background: #fff0f0;
+            color: #dc2626;
+        }
+
+        .status-expired {
+            background: #f1f3f5;
+            color: #667085;
+        }
+
+        .status-cancelled {
+            background: #f1f3f5;
+            color: #667085;
+        }
+
+        .status-completed {
+            background: #eef6ff;
+            color: #1675d1;
+        }
+
+        .price {
+            font-size: 20px;
+            font-weight: 800;
+            color: #d88900;
+        }
+
+        .package-box {
+            padding: 15px;
+            background: #fffaf0;
+            border: 1px solid #f3dfb8;
+            border-radius: 13px;
+        }
+
+        .package-name {
+            font-size: 13px;
+            font-weight: 800;
+            color: #172033;
+        }
+
+        .package-sector {
+            margin-top: 5px;
+            color: #8a95a7;
+            font-size: 9px;
+        }
+
+        .passenger-box {
+            padding: 15px;
+            background: #f8fafc;
+            border: 1px solid #e8edf2;
+            border-radius: 13px;
+        }
+
+        .passenger-name {
+            font-size: 15px;
+            font-weight: 800;
+            color: #172033;
+        }
+
+        .passenger-info {
+            margin-top: 10px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .passenger-info div {
+            font-size: 9px;
+            color: #667085;
+        }
+
+        .passenger-info strong {
+            display: block;
+            margin-top: 3px;
+            color: #172033;
+            font-size: 10px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            padding: 10px 0;
+            border-bottom: 1px solid #edf0f4;
+            font-size: 10px;
+        }
+
+        .summary-row:last-child {
+            border-bottom: none;
+        }
+
+        .summary-label {
+            color: #8a95a7;
+        }
+
+        .summary-value {
+            color: #172033;
+            font-weight: 700;
+            text-align: right;
+        }
+
+        .expiry-box {
+            margin-top: 15px;
+            padding: 13px;
+            background: #fff8eb;
+            border: 1px solid #f4dfb7;
+            border-radius: 11px;
+        }
+
+        .expiry-label {
+            font-size: 8px;
+            color: #9a6500;
+            text-transform: uppercase;
+            font-weight: 800;
+        }
+
+        .expiry-value {
+            margin-top: 4px;
+            font-size: 11px;
+            color: #8f5800;
+            font-weight: 800;
+        }
+
+        .actions {
+            margin-top: 18px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            min-height: 42px;
+            border: none;
+            border-radius: 9px;
+            padding: 0 16px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+            text-decoration: none;
+            font-size: 10px;
+            font-weight: 800;
+            cursor: pointer;
+        }
+
+        .btn-approve {
+            background: #08a76b;
+            color: white;
+        }
+
+        .btn-approve:hover {
+            background: #078b59;
+            color: white;
+        }
+
+        .btn-reject {
+            background: #dc2626;
+            color: white;
+        }
+
+        .btn-reject:hover {
+            background: #b91c1c;
+            color: white;
+        }
+
+        .btn-back {
+            background: white;
+            color: #667085;
+            border: 1px solid #dfe5ed;
+        }
+
+        .btn-back:hover {
+            background: #f8fafc;
+            color: #334155;
+        }
+
+        .rejection-box {
+            margin-top: 18px;
+            padding: 14px;
+            background: #fff7f7;
+            border: 1px solid #ffdede;
+            border-radius: 11px;
+        }
+
+        .rejection-title {
+            color: #a56b6b;
+            font-size: 8px;
+            font-weight: 800;
+            margin-bottom: 5px;
+        }
+
+        .rejection-text {
+            color: #b42318;
+            font-size: 10px;
+            font-weight: 700;
+        }
+
+        .reject-form {
+            display: none;
+            margin-top: 14px;
+        }
+
+        .reject-form.show {
+            display: block;
+        }
+
+        .reject-form textarea {
+            width: 100%;
+            min-height: 90px;
+            resize: vertical;
+            padding: 11px;
+            border: 1px solid #dfe5ed;
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 10px;
+            outline: none;
+        }
+
+        .reject-form textarea:focus {
+            border-color: #dc2626;
+            box-shadow: 0 0 0 3px rgba(220,38,38,.07);
+        }
+
+        .reject-form-actions {
+            margin-top: 9px;
+            display: flex;
+            gap: 8px;
+        }
+
+        .small-btn {
+            min-height: 36px;
+            padding: 0 12px;
+            border-radius: 8px;
+            border: none;
+            font-size: 9px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .small-submit {
+            background: #dc2626;
+            color: white;
+        }
+
+        .small-cancel {
+            background: #f1f3f5;
+            color: #667085;
+        }
+
+        .footer {
+            text-align: center;
+            color: #98a2b0;
+            font-size: 8px;
+            padding: 22px 0 5px;
+        }
+
+        @media (max-width: 950px) {
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            .details,
+            .passenger-info {
+                grid-template-columns: 1fr;
+            }
+
+            .actions {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="page">
+
+    <!-- MESSAGES -->
+
+    {% if messages %}
+
+        <div class="message-container">
+
+            {% for message in messages %}
+
+                <div class="message
+                    {% if message.tags == 'success' %}
+                        success
+                    {% elif message.tags == 'warning' %}
+                        warning
+                    {% else %}
+                        error
+                    {% endif %}
+                ">
+
+                    {{ message }}
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    {% endif %}
+
+
+    <!-- HEADER -->
+
+    <div class="header">
+
+        <div class="header-badge">
+
+            <i class="bi bi-moon-stars-fill"></i>
+
+            UMRAH BOOKING
+
+        </div>
+
+        <h1>
+            Booking Details
+        </h1>
+
+        <p>
+            Review the Umrah booking submitted by the travel agent before approving or rejecting it.
+        </p>
+
+    </div>
+
+
+    <div class="grid">
+
+
+        <!-- LEFT -->
+
+        <div>
+
+
+            <!-- BOOKING INFORMATION -->
+
+            <div class="card">
+
+                <div class="card-title">
+                    Booking Information
+                </div>
+
+                <div class="card-subtitle">
+                    Complete booking information submitted by the agent.
+                </div>
+
+
+                <div class="details">
+
+
+                    <div class="detail">
+
+                        <span class="detail-label">
+                            Booking Reference
+                        </span>
+
+                        <span class="detail-value">
+                            {{ booking.booking_reference }}
+                        </span>
+
+                    </div>
+
+
+                    <div class="detail">
+
+                        <span class="detail-label">
+                            Status
+                        </span>
+
+                        <span class="detail-value">
+
+                            {% if booking.status == "PENDING" %}
+
+                                <span class="status status-pending">
+                                    <i class="bi bi-hourglass-split"></i>
+                                    Pending
+                                </span>
+
+                            {% elif booking.status == "CONFIRMED" %}
+
+                                <span class="status status-confirmed">
+                                    <i class="bi bi-check-circle-fill"></i>
+                                    Confirmed
+                                </span>
+
+                            {% elif booking.status == "REJECTED" %}
+
+                                <span class="status status-rejected">
+                                    <i class="bi bi-x-circle-fill"></i>
+                                    Rejected
+                                </span>
+
+                            {% elif booking.status == "EXPIRED" %}
+
+                                <span class="status status-expired">
+                                    <i class="bi bi-clock-history"></i>
+                                    Expired
+                                </span>
+
+                            {% elif booking.status == "CANCELLED" %}
+
+                                <span class="status status-cancelled">
+                                    Cancelled
+                                </span>
+
+                            {% elif booking.status == "COMPLETED" %}
+
+                                <span class="status status-completed">
+                                    Completed
+                                </span>
+
+                            {% endif %}
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="detail">
+
+                        <span class="detail-label">
+                            Agent
+                        </span>
+
+                        <span class="detail-value">
+                            {{ booking.agent.name }}
+                        </span>
+
+                    </div>
+
+
+                    <div class="detail">
+
+                        <span class="detail-label">
+                            Agency
+                        </span>
+
+                        <span class="detail-value">
+                            {{ booking.agent.agency }}
+                        </span>
+
+                    </div>
+
+
+                    <div class="detail">
+
+                        <span class="detail-label">
+                            Pilgrims
+                        </span>
+
+                        <span class="detail-value">
+                            {{ booking.pilgrims_count }}
+                        </span>
+
+                    </div>
+
+
+                    <div class="detail">
+
+                        <span class="detail-label">
+                            Booking Date
+                        </span>
+
+                        <span class="detail-value">
+                            {{ booking.booked_at|date:"d M Y, h:i A" }}
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+            <!-- PACKAGE -->
+
+            <div class="card">
+
+                <div class="card-title">
+                    Umrah Package
+                </div>
+
+
+                <div class="package-box">
+
+                    <div class="package-name">
+                        {{ booking.package.name }}
+                    </div>
+
+                    <div class="package-sector">
+                        {{ booking.package.sector }}
+                    </div>
+
+                </div>
+
+
+                <div class="details" style="margin-top:14px;">
+
+
+                    <div class="detail">
+
+                        <span class="detail-label">
+                            Airline
+                        </span>
+
+                        <span class="detail-value">
+                            {{ booking.package.airline.name }}
+                        </span>
+
+                    </div>
+
+
+                    <div class="detail">
+
+                        <span class="detail-label">
+                            Airline Code
+                        </span>
+
+                        <span class="detail-value">
+                            {{ booking.package.airline.code }}
+                        </span>
+
+                    </div>
+
+
+                    <div class="detail">
+
+                        <span class="detail-label">
+                            Outbound Flight
+                        </span>
+
+                        <span class="detail-value">
+                            {{ booking.package.outbound_flight_number }}
+                        </span>
+
+                    </div>
+
+
+                    <div class="detail">
+
+                        <span class="detail-label">
+                            Return Flight
+                        </span>
+
+                        <span class="detail-value">
+                            {{ booking.package.return_flight_number }}
+                        </span>
+
+                    </div>
+
+
+                    <div class="detail">
+
+                        <span class="detail-label">
+                            Outbound Date
+                        </span>
+
+                        <span class="detail-value">
+                            {{ booking.package.outbound_departure_date|date:"d M Y" }}
+                        </span>
+
+                    </div>
+
+
+                    <div class="detail">
+
+                        <span class="detail-label">
+                            Return Date
+                        </span>
+
+                        <span class="detail-value">
+                            {{ booking.package.return_departure_date|date:"d M Y" }}
+                        </span>
+
+                    </div>
+
+
+                    <div class="detail">
+
+                        <span class="detail-label">
+                            Makkah Hotel
+                        </span>
+
+                        <span class="detail-value">
+                            {{ booking.package.makkah_hotel.name }}
+                        </span>
+
+                    </div>
+
+
+                    <div class="detail">
+
+                        <span class="detail-label">
+                            Madinah Hotel
+                        </span>
+
+                        <span class="detail-value">
+                            {{ booking.package.madinah_hotel.name }}
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+            <!-- LEAD PASSENGER -->
+
+            <div class="card">
+
+                <div class="card-title">
+                    Lead Passenger
+                </div>
+
+                <div class="card-subtitle">
+                    Primary pilgrim information submitted with this booking.
+                </div>
+
+
+                <div class="passenger-box">
+
+                    <div class="passenger-name">
+
+                        {{ booking.lead_passenger.first_name }}
+                        {{ booking.lead_passenger.last_name }}
+
+                    </div>
+
+
+                    <div class="passenger-info">
+
+
+                        <div>
+                            Passport Number
+                            <strong>
+                                {{ booking.lead_passenger.passport_number }}
+                            </strong>
+                        </div>
+
+
+                        <div>
+                            Date of Birth
+                            <strong>
+                                {{ booking.lead_passenger.date_of_birth|date:"d M Y" }}
+                            </strong>
+                        </div>
+
+
+                        <div>
+                            Gender
+                            <strong>
+                                {{ booking.lead_passenger.get_gender_display }}
+                            </strong>
+                        </div>
+
+
+                        <div>
+                            Nationality
+                            <strong>
+                                {{ booking.lead_passenger.nationality }}
+                            </strong>
+                        </div>
+
+
+                        <div>
+                            Contact Number
+                            <strong>
+                                {{ booking.lead_passenger.phone }}
+                            </strong>
+                        </div>
+
+
+                        <div>
+                            Email
+                            <strong>
+                                {{ booking.lead_passenger.email }}
+                            </strong>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- REJECTION REASON -->
+
+            {% if booking.rejection_reason %}
+
+                <div class="card">
+
+                    <div class="rejection-box">
+
+                        <div class="rejection-title">
+                            REJECTION REASON
+                        </div>
+
+                        <div class="rejection-text">
+                            {{ booking.rejection_reason }}
+                        </div>
+
+                    </div>
+
+                </div>
+
+            {% endif %}
+
+
+        </div>
+
+
+        <!-- RIGHT -->
+
+        <div>
+
+
+            <div class="card">
+
+                <div class="card-title">
+                    Booking Summary
+                </div>
+
+
+                <div class="summary-row">
+
+                    <span class="summary-label">
+                        Package
+                    </span>
+
+                    <span class="summary-value">
+                        {{ booking.package.name }}
+                    </span>
+
+                </div>
+
+
+                <div class="summary-row">
+
+                    <span class="summary-label">
+                        Room Type
+                    </span>
+
+                    <span class="summary-value">
+                        {{ booking.package.get_room_type_display }}
+                    </span>
+
+                </div>
+
+
+                <div class="summary-row">
+
+                    <span class="summary-label">
+                        Makkah Nights
+                    </span>
+
+                    <span class="summary-value">
+                        {{ booking.package.nights_in_makkah }}
+                    </span>
+
+                </div>
+
+
+                <div class="summary-row">
+
+                    <span class="summary-label">
+                        Madinah Nights
+                    </span>
+
+                    <span class="summary-value">
+                        {{ booking.package.nights_in_madinah }}
+                    </span>
+
+                </div>
+
+
+                <div class="summary-row">
+
+                    <span class="summary-label">
+                        Pilgrims
+                    </span>
+
+                    <span class="summary-value">
+                        {{ booking.pilgrims_count }}
+                    </span>
+
+                </div>
+
+
+                <div class="summary-row">
+
+                    <span class="summary-label">
+                        Package Price / Pilgrim
+                    </span>
+
+                    <span class="summary-value">
+                        PKR {{ booking.package.price|floatformat:0 }}
+                    </span>
+
+                </div>
+
+
+                <div class="summary-row">
+
+                    <span class="summary-label">
+                        Total Amount
+                    </span>
+
+                    <span class="price">
+                        PKR {{ booking.total_price|floatformat:0 }}
+                    </span>
+
+                </div>
+
+
+                {% if booking.confirmed_at %}
+
+                    <div class="expiry-box">
+
+                        <div class="expiry-label">
+                            Approved At
+                        </div>
+
+                        <div class="expiry-value">
+                            {{ booking.confirmed_at|date:"d M Y, h:i A" }}
+                        </div>
+
+                    </div>
+
+                {% endif %}
+
+
+                {% if booking.expires_at %}
+
+                    <div class="expiry-box">
+
+                        <div class="expiry-label">
+                            Expires At
+                        </div>
+
+                        <div class="expiry-value">
+                            {{ booking.expires_at|date:"d M Y, h:i A" }}
+                        </div>
+
+                    </div>
+
+                {% endif %}
+
+
+                <!-- ACTIONS -->
+
+                {% if booking.status == "PENDING" %}
+
+                    <div class="actions">
+
+
+                        <!-- APPROVE -->
+
+                        <form
+                            method="POST"
+                            action="{% url 'admin_approve_umrah_booking' booking.id %}"
+                        >
+
+                            {% csrf_token %}
+
+                            <button
+                                type="submit"
+                                class="btn btn-approve"
+                            >
+
+                                <i class="bi bi-check-circle-fill"></i>
+
+                                Approve Booking
+
+                            </button>
+
+                        </form>
+
+
+                        <!-- REJECT BUTTON -->
+
+                        <button
+                            type="button"
+                            class="btn btn-reject"
+                            onclick="showRejectForm()"
+                        >
+
+                            <i class="bi bi-x-circle-fill"></i>
+
+                            Reject Booking
+
+                        </button>
+
+
+                    </div>
+
+
+                    <!-- REJECTION FORM -->
+
+                    <div
+                        class="reject-form"
+                        id="rejectForm"
+                    >
+
+                        <form
+                            method="POST"
+                            action="{% url 'admin_reject_umrah_booking' booking.id %}"
+                        >
+
+                            {% csrf_token %}
+
+
+                            <textarea
+                                name="rejection_reason"
+                                placeholder="Enter the reason for rejecting this Umrah booking..."
+                                required
+                            ></textarea>
+
+
+                            <div class="reject-form-actions">
+
+
+                                <button
+                                    type="submit"
+                                    class="small-btn small-submit"
+                                >
+
+                                    Confirm Rejection
+
+                                </button>
+
+
+                                <button
+                                    type="button"
+                                    class="small-btn small-cancel"
+                                    onclick="hideRejectForm()"
+                                >
+
+                                    Cancel
+
+                                </button>
+
+
+                            </div>
+
+                        </form>
+
+                    </div>
+
+                {% else %}
+
+                    <div class="actions">
+
+                        <a
+                            href="{% url 'admin_umrah_bookings' %}"
+                            class="btn btn-back"
+                        >
+
+                            <i class="bi bi-arrow-left"></i>
+
+                            Back to Umrah Bookings
+
+                        </a>
+
+                    </div>
+
+                {% endif %}
+
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <div class="footer">
+
+        © 2026 AL NAJAM Travel & Tours — Admin Portal
+
+    </div>
+
+</div>
+
+
+<script>
+
+    function showRejectForm() {
+
+        document
+            .getElementById("rejectForm")
+            .classList
+            .add("show");
+
+    }
+
+    function hideRejectForm() {
+
+        document
+            .getElementById("rejectForm")
+            .classList
+            .remove("show");
+
+    }
+
+</script>
+
+</body>
+
+</html>

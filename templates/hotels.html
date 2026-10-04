@@ -1,0 +1,458 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Hotels | AL NAJAM Travel & Tours</title>
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <style>
+        .hotels-page {
+            min-height: 100vh;
+            padding: 140px 6% 80px;
+            background: #f7f9fc;
+        }
+
+        .hotels-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 55px;
+        }
+
+        .hotels-header span {
+            color: #F59E0B;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 3px;
+        }
+
+        .hotels-header h1 {
+            margin: 12px 0 15px;
+            font-size: 48px;
+            color: #172033;
+        }
+
+        .hotels-header p {
+            color: #687386;
+            font-size: 17px;
+            line-height: 1.7;
+        }
+
+        .hotel-container {
+            max-width: 1200px;
+            margin: auto;
+
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .hotel-card {
+            background: white;
+            border-radius: 18px;
+            overflow: hidden;
+            border: 1px solid #e9edf3;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+            transition: all 0.3s ease;
+        }
+
+        .hotel-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.10);
+        }
+
+        .hotel-image {
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .hotel-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .hotel-card:hover .hotel-image img {
+            transform: scale(1.08);
+        }
+
+        .hotel-content {
+            padding: 25px;
+        }
+
+        .hotel-stars {
+            color: #F59E0B;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .hotel-content h2 {
+            color: #172033;
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .hotel-location {
+            color: #687386;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .hotel-location i {
+            color: #F59E0B;
+            margin-right: 5px;
+        }
+
+        .hotel-content p {
+            color: #687386;
+            line-height: 1.7;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .hotel-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            padding: 11px 18px;
+            background: #F59E0B;
+            color: white;
+
+            border-radius: 7px;
+            font-size: 13px;
+            font-weight: 700;
+
+            transition: 0.3s ease;
+        }
+
+        .hotel-btn:hover {
+            transform: translateY(-2px);
+            color: white;
+        }
+
+        @media (max-width: 950px) {
+            .hotel-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .hotels-page {
+                padding: 120px 20px 60px;
+            }
+
+            .hotels-header h1 {
+                font-size: 38px;
+            }
+
+            .hotel-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        .brand-logo {
+    width: 72px;
+    height: 72px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+    overflow: hidden;
+}
+
+.brand-logo img {
+    width: 72px;
+    height: 72px;
+    object-fit: contain;
+    display: block;
+}
+    </style>
+
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header class="main-header">
+
+        <nav class="navbar">
+
+            <!-- BRAND -->
+
+            <a href="/" class="brand">
+
+                <div class="brand-logo">
+                    <img
+                        src="{% static 'images/logo.png' %}"
+                        alt="AL NAJAM Travel & Tours"
+                    >
+                </div>
+
+                <div class="brand-text">
+
+                    <strong>AL NAJAM</strong>
+
+                    <small>TRAVEL & TOURS</small>
+
+                </div>
+
+            </a>
+
+
+            <!-- NAVIGATION -->
+
+            <div class="nav-links">
+
+                <a href="{% url 'home' %}">Home</a>
+            
+                <a href="{% url 'flights' %}">Flights</a>
+            
+                <a href="{% url 'hotels' %}" class="active">Hotels</a>
+            
+                <a href="{% url 'visa' %}">Visa</a>
+            
+                <a href="{% url 'umrah' %}">Umrah</a>
+            
+                <a href="{% url 'tours' %}">Tours</a>
+            
+                <a href="{% url 'about' %}">About</a>
+            
+                <a href="{% url 'contact' %}">Contact</a>
+            
+            </div>
+            <!-- RIGHT SIDE -->
+
+            <div class="nav-actions">
+
+                <a href="#" class="login-btn">
+
+                    <i class="bi bi-person"></i>
+
+                    Agent Login
+
+                </a>
+
+                <a href="#" class="agent-btn">
+
+                    Become an Agent
+
+                </a>
+
+            </div>
+
+
+            <!-- MOBILE -->
+
+            <button class="mobile-menu">
+
+                <i class="bi bi-list"></i>
+
+            </button>
+
+        </nav>
+
+    </header>
+
+
+    <!-- ================= HOTELS PAGE ================= -->
+
+    <main class="hotels-page">
+
+        <div class="hotels-header">
+
+            <span>COMFORTABLE STAYS</span>
+
+            <h1>Find Your Perfect Hotel</h1>
+
+            <p>
+                Discover comfortable and convenient accommodation
+                options for your next journey with AL NAJAM Travel & Tours.
+            </p>
+
+        </div>
+
+
+        <div class="hotel-container">
+
+
+            <!-- HOTEL 1 -->
+
+            <div class="hotel-card">
+
+                <div class="hotel-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=900&q=80"
+                        alt="Luxury Hotel">
+
+                </div>
+
+                <div class="hotel-content">
+
+                    <div class="hotel-stars">
+                        ★★★★★
+                    </div>
+
+                    <h2>Luxury Hotels</h2>
+
+                    <div class="hotel-location">
+
+                        <i class="bi bi-geo-alt"></i>
+
+                        Worldwide Destinations
+
+                    </div>
+
+                    <p>
+                        Enjoy premium accommodation, excellent
+                        service and comfortable rooms at top destinations.
+                    </p>
+
+                    <a href="/contact/" class="hotel-btn">
+
+                        Contact Us
+
+                        <i class="bi bi-arrow-right"></i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- HOTEL 2 -->
+
+            <div class="hotel-card">
+
+                <div class="hotel-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format&fit=crop&w=900&q=80"
+                        alt="Modern Hotel">
+
+                </div>
+
+                <div class="hotel-content">
+
+                    <div class="hotel-stars">
+                        ★★★★★
+                    </div>
+
+                    <h2>Modern Hotels</h2>
+
+                    <div class="hotel-location">
+
+                        <i class="bi bi-geo-alt"></i>
+
+                        International Destinations
+
+                    </div>
+
+                    <p>
+                        Find modern hotels with excellent facilities
+                        designed for business and leisure travelers.
+                    </p>
+
+                    <a href="/contact/" class="hotel-btn">
+
+                        Contact Us
+
+                        <i class="bi bi-arrow-right"></i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- HOTEL 3 -->
+
+            <div class="hotel-card">
+
+                <div class="hotel-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format&fit=crop&w=900&q=80"
+                        alt="Resort Hotel">
+
+                </div>
+
+                <div class="hotel-content">
+
+                    <div class="hotel-stars">
+                        ★★★★★
+                    </div>
+
+                    <h2>Resort & Holiday Stays</h2>
+
+                    <div class="hotel-location">
+
+                        <i class="bi bi-geo-alt"></i>
+
+                        Popular Holiday Destinations
+
+                    </div>
+
+                    <p>
+                        Relax and enjoy beautiful resorts and
+                        holiday accommodations for memorable trips.
+                    </p>
+
+                    <a href="/contact/" class="hotel-btn">
+
+                        Contact Us
+
+                        <i class="bi bi-arrow-right"></i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="footer">
+
+        <div class="footer-content">
+
+            <h3>AL NAJAM</h3>
+
+            <p>Travel & Tours</p>
+
+            <span>
+                © 2026 AL NAJAM Travel & Tours.
+                All rights reserved.
+            </span>
+
+        </div>
+
+    </footer>
+
+
+</body>
+
+</html>

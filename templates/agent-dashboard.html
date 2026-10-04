@@ -1,0 +1,2707 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Agent Dashboard | AL NAJAM Travel & Tours</title>
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f7fb;
+            color: #172033;
+        }
+
+
+        /* =========================================
+           LAYOUT
+        ========================================= */
+
+        .dashboard {
+            display: flex;
+            min-height: 100vh;
+        }
+
+
+        /* =========================================
+           SIDEBAR
+        ========================================= */
+
+        .sidebar {
+            width: 255px;
+            min-height: 100vh;
+            background: #ffffff;
+            border-right: 1px solid #e5eaf1;
+            padding: 25px 15px;
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            overflow-y: auto;
+        }
+
+
+        /* LOGO */
+
+        .sidebar-logo {
+            text-align: center;
+            padding: 8px 0 28px;
+            border-bottom: 1px solid #edf0f5;
+            margin-bottom: 25px;
+        }
+
+        .sidebar-logo-image {
+    width: 88px;
+    height: 88px;
+    margin: auto;
+    display: block;
+    object-fit: contain;
+}
+
+        .sidebar-logo h2 {
+            margin-top: 12px;
+            font-size: 17px;
+            color: #172033;
+        }
+
+        .sidebar-logo span {
+            display: block;
+            margin-top: 4px;
+            font-size: 10px;
+            color: #8a95a7;
+            letter-spacing: 1.2px;
+        }
+
+
+        /* SIDEBAR SECTION */
+
+        .sidebar-section {
+            margin-bottom: 25px;
+        }
+
+        .sidebar-title {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            color: #8792a5;
+            padding: 0 12px;
+            margin-bottom: 9px;
+        }
+
+
+        /* SIDEBAR LINKS */
+
+        .sidebar-link {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            width: 100%;
+            padding: 12px 13px;
+            margin-bottom: 4px;
+            border-radius: 12px;
+            color: #5e6b80;
+            text-decoration: none;
+            font-size: 13px;
+            transition: 0.25s;
+        }
+
+        .sidebar-link i {
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 9px;
+            background: #f4f7fb;
+            font-size: 15px;
+        }
+
+        .sidebar-link:hover {
+            background: #fff8eb;
+            color: #d48700;
+        }
+
+        .sidebar-link:hover i {
+            background: #fff0d0;
+        }
+
+        .sidebar-link.active {
+            background: #fff1d6;
+            color: #d88900;
+            font-weight: 600;
+        }
+
+        .sidebar-link.active i {
+            background: #f59e0b;
+            color: white;
+        }
+
+
+        /* =========================================
+           MAIN CONTENT
+        ========================================= */
+
+        .main-content {
+            margin-left: 255px;
+            width: calc(100% - 255px);
+            padding: 25px 30px 45px;
+        }
+
+
+        /* =========================================
+           BOOKINGS DROPDOWN
+        ========================================= */
+
+        .bookings-menu {
+            width: 100%;
+        }
+
+        .bookings-toggle {
+            border: none;
+            background: transparent;
+            font-family: inherit;
+            cursor: pointer;
+            text-align: left;
+            position: relative;
+        }
+
+        .bookings-toggle > span {
+            flex: 1;
+        }
+
+        .bookings-arrow {
+            width: auto !important;
+            height: auto !important;
+            background: transparent !important;
+            font-size: 11px !important;
+            margin-left: auto;
+            transition: transform 0.25s ease;
+        }
+
+        .bookings-toggle.open .bookings-arrow {
+            transform: rotate(180deg);
+        }
+
+
+        /* SUBMENU */
+
+        .bookings-submenu {
+            display: none;
+            margin: 2px 0 7px 43px;
+            padding-left: 10px;
+            border-left: 1px solid #e6ebf2;
+        }
+
+        .bookings-submenu.show {
+            display: block;
+        }
+
+        .booking-sub-link {
+            display: block;
+            padding: 9px 10px;
+            margin-bottom: 2px;
+            color: #7b8798;
+            text-decoration: none;
+            font-size: 12px;
+            border-radius: 8px;
+            transition: 0.2s ease;
+        }
+
+        .booking-sub-link:hover {
+            background: #fff8eb;
+            color: #d88900;
+        }
+
+        .booking-sub-link.active {
+            background: #fff1d6;
+            color: #d88900;
+            font-weight: 600;
+        }
+
+
+        /* =========================================
+           TOP HEADER
+        ========================================= */
+
+        .top-header {
+            background: white;
+            border: 1px solid #e7ebf1;
+            border-radius: 20px;
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 18px;
+            box-shadow: 0 5px 20px rgba(20, 35, 60, 0.03);
+        }
+
+        .header-label {
+            display: inline-block;
+            background: #f5f7fa;
+            color: #778398;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 0.8px;
+            margin-bottom: 5px;
+        }
+
+        .top-header h1 {
+            font-size: 22px;
+            margin-bottom: 5px;
+        }
+
+        .top-header p {
+            color: #8a95a7;
+            font-size: 12px;
+        }
+
+
+        /* PROFILE */
+
+        .agent-profile-wrapper {
+            position: relative;
+        }
+
+
+        .agent-profile {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            padding: 8px 13px;
+            border: 1px solid #e3e8ef;
+            border-radius: 13px;
+            background: #fff;
+            cursor: pointer;
+            transition: .25s ease;
+            font-family: inherit;
+            text-align: left;
+        }
+
+        .agent-profile:hover {
+            border-color: #f2c36d;
+            background: #fffaf5;
+        }
+
+        .agent-avatar {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f59e0b;
+            color: white;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .agent-details strong {
+            display: block;
+            font-size: 12px;
+            color: #172033;
+        }
+
+        .agent-details span {
+            font-size: 10px;
+            color: #8994a7;
+        }
+
+        .agent-profile-arrow {
+            font-size: 10px;
+            color: #8792a5;
+            transition: transform .25s ease;
+        }
+
+        .agent-profile-wrapper.open .agent-profile-arrow {
+            transform: rotate(180deg);
+        }
+
+
+        /* =========================================
+           AGENT PROFILE DROPDOWN
+        ========================================= */
+
+        .agent-profile-dropdown {
+            display: none;
+            position: absolute;
+            top: calc(100% + 8px);
+            right: 0;
+            width: 170px;
+            background: #ffffff;
+            border: 1px solid #e5e9ef;
+            border-radius: 12px;
+            padding: 7px;
+            box-shadow: 0 12px 28px rgba(20,35,60,.12);
+            z-index: 9999;
+        }
+
+        .agent-profile-wrapper.open .agent-profile-dropdown {
+            display: block;
+        }
+
+        .agent-dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            width: 100%;
+            padding: 10px 11px;
+            border-radius: 9px;
+            border: none;
+            background: transparent;
+            text-decoration: none;
+            font-family: inherit;
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: .2s ease;
+            text-align: left;
+        }
+
+        .agent-logout {
+            color: #dc3545;
+        }
+
+        .agent-logout i {
+            font-size: 14px;
+        }
+
+        .agent-logout:hover {
+            background: #fff0f1;
+            color: #dc3545;
+        }
+
+
+        /* =========================================
+           ACTION BUTTONS
+        ========================================= */
+
+        .action-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 18px;
+        }
+
+        .action-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 11px 17px;
+            border-radius: 9px;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 700;
+            transition: 0.25s;
+        }
+
+        .primary-action {
+            background: #1675d1;
+            color: white;
+        }
+
+        .primary-action:hover {
+            background: #0e63b7;
+            color: white;
+        }
+
+        .secondary-action {
+            background: #eaf3ff;
+            color: #1675d1;
+            border: 1px solid #cfe3fb;
+        }
+
+        .secondary-action:hover {
+            background: #dcecff;
+            color: #1675d1;
+        }
+
+
+        /* =========================================
+           ALERT
+        ========================================= */
+
+        .alert-box {
+            background: #fffdf4;
+            border: 1px solid #f6d778;
+            border-radius: 15px;
+            padding: 14px 17px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .alert-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: #fff0c2;
+            color: #d68a00;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .alert-box strong {
+            font-size: 10px;
+            color: #a56b00;
+            margin-right: 8px;
+        }
+
+        .alert-box span {
+            font-size: 11px;
+            color: #6f7785;
+        }
+
+
+        /* =========================================
+           STAT CARDS
+        ========================================= */
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            background: white;
+            border: 1px solid #e7ebf1;
+            border-radius: 19px;
+            padding: 21px;
+            min-height: 145px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 6px 22px rgba(20, 35, 60, 0.03);
+        }
+
+        .stat-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .stat-label {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            font-size: 10px;
+            font-weight: 700;
+            color: #758197;
+            letter-spacing: 0.3px;
+        }
+
+        .stat-label i {
+            color: #1675d1;
+        }
+
+        .stat-number {
+            font-size: 25px;
+            font-weight: 700;
+            color: #172033;
+        }
+
+        .stat-bottom {
+            position: absolute;
+            bottom: 17px;
+            left: 21px;
+            right: 21px;
+            display: flex;
+            justify-content: space-between;
+            color: #98a2b3;
+            font-size: 10px;
+        }
+
+        .green {
+            color: #08a76b !important;
+        }
+
+        .orange {
+            color: #df8a00 !important;
+        }
+
+        .purple {
+            color: #7c3aed !important;
+        }
+
+        .red {
+            color: #e11d48 !important;
+        }
+
+
+        /* =========================================
+           CONTENT GRID
+        ========================================= */
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1.25fr 1fr;
+            gap: 18px;
+            margin-bottom: 18px;
+        }
+
+        .panel {
+            background: white;
+            border: 1px solid #e7ebf1;
+            border-radius: 20px;
+            padding: 21px;
+            box-shadow: 0 6px 22px rgba(20, 35, 60, 0.03);
+            min-width: 0;
+        }
+
+        .panel-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 18px;
+        }
+
+        .panel-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #172033;
+        }
+
+        .panel-subtitle {
+            font-size: 10px;
+            color: #98a2b3;
+            margin-top: 5px;
+        }
+
+        .view-link {
+            color: #1675d1;
+            font-size: 10px;
+            text-decoration: none;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .view-link:hover {
+            color: #0e63b7;
+        }
+
+
+        /* =========================================
+           SNAPSHOT
+        ========================================= */
+
+        .snapshot-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 13px 0;
+            border-bottom: 1px solid #f0f2f6;
+        }
+
+        .snapshot-row:last-child {
+            border-bottom: none;
+        }
+
+        .snapshot-label {
+            font-size: 11px;
+            color: #8590a4;
+        }
+
+        .snapshot-value {
+            font-size: 11px;
+            font-weight: 700;
+            color: #172033;
+            text-align: right;
+        }
+
+
+        /* =========================================
+           ACTION REQUIRED
+        ========================================= */
+
+        .mini-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .mini-card {
+            border-radius: 13px;
+            padding: 15px;
+            border: 1px solid #edf0f4;
+            background: #fafbfc;
+        }
+
+        .mini-card small {
+            display: block;
+            font-size: 9px;
+            color: #8b96a9;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .mini-card strong {
+            font-size: 21px;
+        }
+
+        .mini-yellow {
+            background: #fffaf0;
+            border-color: #f6e3a9;
+        }
+
+        .mini-purple {
+            background: #faf7ff;
+            border-color: #e6d9ff;
+        }
+
+        .mini-red {
+            background: #fff5f5;
+            border-color: #ffd7d7;
+        }
+
+
+        /* =========================================
+           UPCOMING DEPARTURES
+        ========================================= */
+
+        .departure-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f2f6;
+        }
+
+        .departure-item:last-child {
+            border-bottom: none;
+        }
+
+        .departure-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            min-width: 0;
+        }
+
+        .departure-icon {
+            width: 35px;
+            height: 35px;
+            border-radius: 10px;
+            background: #eef6ff;
+            color: #1675d1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .departure-info {
+            min-width: 0;
+        }
+
+        .departure-info strong {
+            display: block;
+            font-size: 10px;
+            color: #172033;
+        }
+
+        .departure-info span {
+            display: block;
+            margin-top: 4px;
+            color: #98a2b3;
+            font-size: 9px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .departure-right {
+            text-align: right;
+            flex-shrink: 0;
+        }
+
+        .departure-date {
+            display: block;
+            color: #172033;
+            font-size: 9px;
+            font-weight: 700;
+        }
+
+        .departure-type {
+            display: inline-block;
+            margin-top: 4px;
+            padding: 4px 7px;
+            border-radius: 20px;
+            background: #f5f7fa;
+            color: #7b8798;
+            font-size: 7px;
+            font-weight: 800;
+        }
+
+
+        /* =========================================
+           RECENT BOOKINGS
+        ========================================= */
+
+        .booking-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 13px 0;
+            border-bottom: 1px solid #f0f2f6;
+        }
+
+        .booking-item:last-child {
+            border-bottom: none;
+        }
+
+        .booking-left {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            min-width: 0;
+        }
+
+        .booking-icon {
+            width: 34px;
+            height: 34px;
+            border-radius: 10px;
+            background: #eef6ff;
+            color: #1675d1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .booking-info {
+            min-width: 0;
+        }
+
+        .booking-info strong {
+            display: block;
+            font-size: 11px;
+            color: #172033;
+        }
+
+        .booking-info span {
+            display: block;
+            margin-top: 4px;
+            font-size: 9px;
+            color: #98a2b3;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .booking-right {
+            text-align: right;
+            flex-shrink: 0;
+        }
+
+        .booking-price {
+            font-size: 11px;
+            font-weight: 700;
+            color: #172033;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 20px;
+            font-size: 8px;
+            font-weight: 700;
+        }
+
+        .status-issued {
+            background: #e8faf3;
+            color: #00a56b;
+        }
+
+        .status-pending {
+            background: #fff5d9;
+            color: #c17a00;
+        }
+
+        .status-rejected {
+            background: #fff0f1;
+            color: #dc3545;
+        }
+
+        .empty-state {
+            border: 1px dashed #dce3ec;
+            border-radius: 14px;
+            padding: 32px 20px;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .empty-state i {
+            font-size: 25px;
+            color: #a9b4c5;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .empty-state strong {
+            display: block;
+            color: #69778d;
+            font-size: 12px;
+            margin-bottom: 5px;
+        }
+
+        .empty-state span {
+            color: #a1acbb;
+            font-size: 10px;
+        }
+
+
+        /* =========================================
+           WALLET
+        ========================================= */
+
+        .wallet-box {
+            background: linear-gradient(135deg, #172033, #263653);
+            color: white;
+            border-radius: 16px;
+            padding: 20px;
+            margin-top: 10px;
+        }
+
+        .wallet-label {
+            font-size: 9px;
+            opacity: 0.7;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .wallet-balance {
+            font-size: 27px;
+            font-weight: 700;
+            margin: 8px 0 20px;
+        }
+
+        .wallet-footer {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            font-size: 9px;
+            opacity: 0.75;
+        }
+
+
+        /* =========================================
+           TOP ROUTES
+        ========================================= */
+
+        .route-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f2f6;
+        }
+
+        .route-item:last-child {
+            border-bottom: none;
+        }
+
+        .route-name {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+        }
+
+        .route-icon {
+            width: 31px;
+            height: 31px;
+            border-radius: 9px;
+            background: #eef6ff;
+            color: #1675d1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .route-name strong {
+            font-size: 10px;
+            color: #172033;
+        }
+
+        .route-count {
+            padding: 5px 8px;
+            border-radius: 20px;
+            background: #f5f7fa;
+            color: #667386;
+            font-size: 8px;
+            font-weight: 800;
+        }
+
+
+        /* =========================================
+           QUICK SERVICES
+        ========================================= */
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+
+        .service-card {
+            background: white;
+            border: 1px solid #e7ebf1;
+            border-radius: 15px;
+            padding: 17px;
+            text-decoration: none;
+            color: #172033;
+            transition: 0.25s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-3px);
+            border-color: #f0c46a;
+            box-shadow: 0 10px 25px rgba(20, 35, 60, 0.06);
+        }
+
+        .service-icon {
+            width: 35px;
+            height: 35px;
+            border-radius: 10px;
+            background: #f4f7fb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1675d1;
+            margin-bottom: 10px;
+        }
+
+        .service-card strong {
+            display: block;
+            font-size: 11px;
+            margin-bottom: 4px;
+        }
+
+        .service-card span {
+            font-size: 9px;
+            color: #9aa4b5;
+        }
+
+
+        /* =========================================
+           FOOTER
+        ========================================= */
+
+        .dashboard-footer {
+            text-align: center;
+            padding: 20px;
+            color: #9aa4b5;
+            font-size: 9px;
+        }
+
+
+        /* =========================================
+           RESPONSIVE
+        ========================================= */
+
+        @media (max-width: 1100px) {
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .services-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+        }
+
+
+        @media (max-width: 850px) {
+
+            .sidebar {
+                width: 75px;
+                padding: 15px 8px;
+            }
+
+            .sidebar-logo h2,
+            .sidebar-logo span,
+            .sidebar-title,
+            .sidebar-link span {
+                display: none;
+            }
+
+            .sidebar-logo {
+                border: none;
+            }
+
+            .sidebar-link {
+                justify-content: center;
+                padding: 10px;
+            }
+
+            .sidebar-link i {
+                width: 40px;
+                height: 40px;
+            }
+
+            .bookings-toggle {
+                justify-content: center;
+            }
+
+            .bookings-arrow {
+                display: none !important;
+            }
+
+            .bookings-submenu {
+                margin-left: 0;
+                padding-left: 0;
+                border-left: none;
+            }
+
+            .booking-sub-link {
+                font-size: 10px;
+                padding: 8px 4px;
+                text-align: center;
+            }
+
+            .main-content {
+                margin-left: 75px;
+                width: calc(100% - 75px);
+                padding: 18px;
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .agent-details {
+                display: none;
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .top-header {
+                padding: 17px;
+                align-items: flex-start;
+            }
+
+            .agent-details {
+                display: none;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .action-row {
+                flex-wrap: wrap;
+            }
+
+            .alert-box {
+                align-items: flex-start;
+            }
+
+            .mini-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .panel {
+                padding: 17px;
+            }
+
+            .booking-item,
+            .departure-item {
+                align-items: flex-start;
+            }
+
+            .wallet-footer {
+                flex-direction: column;
+            }
+
+        }
+
+
+        /* =========================================
+           LOGOUT
+        ========================================= */
+
+        .logout-form {
+            margin: 0;
+            padding: 0;
+        }
+
+        .logout-link {
+            border: none;
+            background: transparent;
+            font-family: inherit;
+            cursor: pointer;
+            text-align: left;
+        }
+
+        .logout-link:hover {
+            background: #fff1f2;
+            color: #dc2626;
+        }
+
+        .logout-link:hover i {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="dashboard">
+
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+    <aside class="sidebar">
+
+
+        <!-- LOGO -->
+
+        <div class="sidebar-logo">
+
+            <img src="{% static 'images/logo.png' %}" 
+                 alt="AL NAJAM Travel & Tours"
+                 class="sidebar-logo-image">
+        
+            <h2>
+                AL NAJAM
+            </h2>
+        
+            <span>
+                TRAVEL & TOURS
+            </span>
+        
+        </div>
+
+        <!-- CORE -->
+
+        <div class="sidebar-section">
+
+            <div class="sidebar-title">
+                CORE
+            </div>
+
+
+            <a
+                href="{% url 'agent_dashboard' %}"
+                class="sidebar-link active"
+            >
+
+                <i class="bi bi-grid-1x2"></i>
+
+                <span>
+                    Overview
+                </span>
+
+            </a>
+
+
+            <a
+                href="{% url 'agent_group_tickets' %}"
+                class="sidebar-link"
+            >
+
+                <i class="bi bi-people"></i>
+
+                <span>
+                    Group Tickets
+                </span>
+
+            </a>
+
+
+            <a
+                href="{% url 'agent_umrah_bookings' %}"
+                class="sidebar-link"
+            >
+
+                <i class="bi bi-moon-stars"></i>
+
+                <span>
+                    Umrah
+                </span>
+
+            </a>
+
+        </div>
+
+
+        <!-- BOOKINGS -->
+
+        <div class="sidebar-section">
+
+            <div class="sidebar-title">
+                BOOKINGS
+            </div>
+
+
+            <div class="bookings-menu">
+
+                <button
+                    type="button"
+                    class="sidebar-link bookings-toggle"
+                    onclick="toggleBookings()"
+                >
+
+                    <i class="bi bi-ticket-perforated"></i>
+
+                    <span>
+                        Bookings
+                    </span>
+
+                    <i class="bi bi-chevron-down bookings-arrow"></i>
+
+                </button>
+
+
+                <div
+                    class="bookings-submenu"
+                    id="bookingsSubmenu"
+                >
+
+                    <a
+                        href="{% url 'agent_all_bookings' %}"
+                        class="booking-sub-link"
+                    >
+                        All Bookings
+                    </a>
+
+
+                    <a
+                        href="{% url 'agent_pending_bookings' %}"
+                        class="booking-sub-link"
+                    >
+                        Pending Approval
+                    </a>
+
+
+                    <a
+                        href="{% url 'agent_confirmed_bookings' %}"
+                        class="booking-sub-link"
+                    >
+                        Confirmed Bookings
+                    </a>
+
+
+                    <a
+                        href="{% url 'agent_rejected_bookings' %}"
+                        class="booking-sub-link"
+                    >
+                        Rejected Bookings
+                    </a>
+
+
+                    <a
+                        href="{% url 'agent_group_bookings' %}"
+                        class="booking-sub-link"
+                    >
+                        Group Bookings
+                    </a>
+
+
+                    <a
+                        href="{% url 'agent_umrah_bookings' %}"
+                        class="booking-sub-link"
+                    >
+                        Umrah Bookings
+                    </a>
+
+
+                    <a
+                        href="{% url 'agent_tour_bookings' %}"
+                        class="booking-sub-link"
+                    >
+                        Tour Bookings
+                    </a>
+
+
+                    <a
+                        href="{% url 'agent_visa_bookings' %}"
+                        class="booking-sub-link"
+                    >
+                        Visa Bookings
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- SERVICES -->
+
+        <div class="sidebar-section">
+
+            <div class="sidebar-title">
+                SERVICES
+            </div>
+
+
+            <a
+                href="{% url 'agent_wallet' %}"
+                class="sidebar-link"
+            >
+
+                <i class="bi bi-wallet2"></i>
+
+                <span>
+                    Wallet
+                </span>
+
+            </a>
+
+
+            <a
+                href="{% url 'agent_banking' %}"
+                class="sidebar-link"
+            >
+
+                <i class="bi bi-bank"></i>
+
+                <span>
+                    Banking
+                </span>
+
+            </a>
+
+
+            <a
+                href="{% url 'agent_visa_bookings' %}"
+                class="sidebar-link"
+            >
+
+                <i class="bi bi-passport"></i>
+
+                <span>
+                    Visa
+                </span>
+
+            </a>
+
+
+            <a
+                href="{% url 'agent_tour_bookings' %}"
+                class="sidebar-link"
+            >
+
+                <i class="bi bi-globe2"></i>
+
+                <span>
+                    Tours
+                </span>
+
+            </a>
+
+        </div>
+
+
+        <!-- ORGANIZATION -->
+
+        <div class="sidebar-section">
+
+            <div class="sidebar-title">
+                ORGANIZATION
+            </div>
+
+
+            <a
+                href="{% url 'agency_profile' %}"
+                class="sidebar-link"
+            >
+
+                <i class="bi bi-person-badge"></i>
+
+                <span>
+                    Profile
+                </span>
+
+            </a>
+
+
+            <a
+                href="{% url 'agent_settings' %}"
+                class="sidebar-link"
+            >
+
+                <i class="bi bi-gear"></i>
+
+                <span>
+                    Settings
+                </span>
+
+            </a>
+
+
+            <form
+                method="POST"
+                action="{% url 'logout' %}"
+                class="logout-form"
+            >
+
+                {% csrf_token %}
+
+                <button
+                    type="submit"
+                    class="sidebar-link logout-link"
+                >
+
+                    <i class="bi bi-box-arrow-right"></i>
+
+                    <span>
+                        Logout
+                    </span>
+
+                </button>
+
+            </form>
+
+        </div>
+
+
+    </aside>
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ===================================================== -->
+
+    <main class="main-content">
+
+
+        <!-- TOP HEADER -->
+
+        <header class="top-header">
+
+
+            <div>
+
+                <span class="header-label">
+                    AGENT PORTAL
+                </span>
+
+                <h1>
+                    Agency Control Center
+                </h1>
+
+                <p>
+                    Manage your travel bookings, services and agency operations.
+                </p>
+
+            </div>
+
+
+            <!-- AGENT PROFILE -->
+
+            <div class="agent-profile-wrapper">
+
+
+                <button
+                    type="button"
+                    class="agent-profile"
+                    onclick="toggleAgentProfile()"
+                >
+
+                    <div class="agent-avatar">
+
+                        {% if agent.name %}
+
+                            {{ agent.name|first|upper }}
+
+                        {% else %}
+
+                            A
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <div class="agent-details">
+
+                        <strong>
+                            {{ agent.name }}
+                        </strong>
+
+                        <span>
+                            {{ agent.agency }}
+                        </span>
+
+                    </div>
+
+
+                    <i class="bi bi-chevron-down agent-profile-arrow"></i>
+
+                </button>
+
+
+                <div class="agent-profile-dropdown">
+
+
+                    <form
+                        method="POST"
+                        action="{% url 'logout' %}"
+                    >
+
+                        {% csrf_token %}
+
+                        <button
+                            type="submit"
+                            class="agent-dropdown-item agent-logout"
+                        >
+
+                            <i class="bi bi-box-arrow-right"></i>
+
+                            <span>
+                                Logout
+                            </span>
+
+                        </button>
+
+                    </form>
+
+
+                </div>
+
+
+            </div>
+
+
+        </header>
+
+
+
+        <!-- =====================================================
+             ACTION BUTTONS
+        ====================================================== -->
+
+        <div class="action-row">
+
+
+            <a
+                href="{% url 'book_flight' %}"
+                class="action-button primary-action"
+            >
+
+                <i class="bi bi-airplane"></i>
+
+                Book Flight
+
+            </a>
+
+
+            <a
+                href="{% url 'agent_wallet' %}"
+                class="action-button secondary-action"
+            >
+
+                <i class="bi bi-wallet2"></i>
+
+                Open Wallet
+
+            </a>
+
+
+        </div>
+
+
+
+        <!-- =====================================================
+             LOW FUNDS ALERT
+        ====================================================== -->
+
+        {% if wallet_low %}
+
+        <div class="alert-box">
+
+            <div class="alert-icon">
+
+                <i class="bi bi-exclamation-triangle"></i>
+
+            </div>
+
+            <div>
+
+                <strong>
+                    WALLET NOTICE
+                </strong>
+
+                <span>
+                    Your current wallet balance is low.
+                    Add funds to continue smooth booking operations.
+                </span>
+
+            </div>
+
+        </div>
+
+        {% endif %}
+
+
+
+        <!-- =====================================================
+             STATISTICS
+        ======================================================= -->
+
+        <section class="stats-grid">
+
+
+            <!-- WALLET -->
+
+            <div class="stat-card">
+
+                <div class="stat-top">
+
+                    <div class="stat-label">
+
+                        <i class="bi bi-wallet2"></i>
+
+                        WALLET AVAILABLE
+
+                    </div>
+
+                    <i
+                        class="bi bi-arrow-up-right"
+                        style="color:#b5bfce;"
+                    >
+                    </i>
+
+                </div>
+
+                <div class="stat-number">
+
+                    PKR {{ wallet_balance|floatformat:0 }}
+
+                </div>
+
+                <div class="stat-bottom">
+
+                    <span>
+                        Current Balance
+                    </span>
+
+                    <a
+                        href="{% url 'agent_wallet' %}"
+                        class="orange"
+                        style="text-decoration:none;"
+                    >
+                        Open Wallet
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- SALES -->
+
+            <div class="stat-card">
+
+                <div class="stat-top">
+
+                    <div class="stat-label">
+
+                        <i class="bi bi-graph-up-arrow"></i>
+
+                        TOTAL SALES
+
+                    </div>
+
+                    <i
+                        class="bi bi-arrow-up-right"
+                        style="color:#b5bfce;"
+                    >
+                    </i>
+
+                </div>
+
+                <div class="stat-number">
+
+                    PKR {{ total_sales|floatformat:0 }}
+
+                </div>
+
+                <div class="stat-bottom">
+
+                    <span>
+                        Confirmed Sales
+                    </span>
+
+                    <span class="green">
+
+                        PKR {{ total_profit|floatformat:0 }} Profit
+
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- BOOKINGS -->
+
+            <div class="stat-card">
+
+                <div class="stat-top">
+
+                    <div class="stat-label">
+
+                        <i class="bi bi-briefcase"></i>
+
+                        ACTIVE BOOKINGS
+
+                    </div>
+
+                    <i
+                        class="bi bi-arrow-up-right"
+                        style="color:#b5bfce;"
+                    >
+                    </i>
+
+                </div>
+
+                <div class="stat-number">
+
+                    {{ active_bookings }}
+
+                </div>
+
+                <div class="stat-bottom">
+
+                    <span>
+                        Confirmed + Pending
+                    </span>
+
+                    <span>
+
+                        {{ confirmed_bookings }} Confirmed
+
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- STAFF -->
+
+            <div class="stat-card">
+
+                <div class="stat-top">
+
+                    <div class="stat-label">
+
+                        <i class="bi bi-people"></i>
+
+                        STAFF & OPERATIONS
+
+                    </div>
+
+                    <i
+                        class="bi bi-arrow-up-right"
+                        style="color:#b5bfce;"
+                    >
+                    </i>
+
+                </div>
+
+                <div class="stat-number">
+
+                    {{ team_members }}
+
+                </div>
+
+                <div class="stat-bottom">
+
+                    <span>
+                        Team Members
+                    </span>
+
+                    <span class="purple">
+
+                        {{ payment_pending }} Requests
+
+                    </span>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =====================================================
+             FIRST CONTENT ROW
+        ======================================================= -->
+
+        <div class="content-grid">
+
+
+            <!-- TODAY SNAPSHOT -->
+
+            <section class="panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <div class="panel-title">
+                            Today's Snapshot
+                        </div>
+
+                        <div class="panel-subtitle">
+                            Quick overview of today's agency activity.
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="snapshot-row">
+
+                    <span class="snapshot-label">
+                        Bookings Today
+                    </span>
+
+                    <span class="snapshot-value">
+                        {{ bookings_today }}
+                    </span>
+
+                </div>
+
+
+                <div class="snapshot-row">
+
+                    <span class="snapshot-label">
+                        Confirmed Today
+                    </span>
+
+                    <span class="snapshot-value">
+                        {{ confirmed_today }}
+                    </span>
+
+                </div>
+
+
+                <div class="snapshot-row">
+
+                    <span class="snapshot-label">
+                        Cancelled / Rejected
+                    </span>
+
+                    <span class="snapshot-value">
+                        {{ cancelled_today }}
+                    </span>
+
+                </div>
+
+
+                <div class="snapshot-row">
+
+                    <span class="snapshot-label">
+                        Revenue Today
+                    </span>
+
+                    <span class="snapshot-value green">
+                        PKR {{ revenue_today|floatformat:0 }}
+                    </span>
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- ACTION REQUIRED -->
+
+            <section class="panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <div class="panel-title">
+                            Action Required
+                        </div>
+
+                        <div class="panel-subtitle">
+                            Items that may need your attention.
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="mini-grid">
+
+
+                    <div class="mini-card mini-yellow">
+
+                        <small>
+                            PAYMENT PENDING
+                        </small>
+
+                        <strong class="orange">
+                            {{ payment_pending }}
+                        </strong>
+
+                    </div>
+
+
+                    <div class="mini-card mini-purple">
+
+                        <small>
+                            PENDING REQUESTS
+                        </small>
+
+                        <strong class="purple">
+                            {{ pending_requests }}
+                        </strong>
+
+                    </div>
+
+
+                    <div class="mini-card mini-red">
+
+                        <small>
+                            EXPIRING SOON
+                        </small>
+
+                        <strong class="red">
+                            {{ expiring_soon }}
+                        </strong>
+
+                    </div>
+
+
+                </div>
+
+            </section>
+
+
+        </div>
+
+
+
+        <!-- =====================================================
+             QUICK SERVICES
+        ======================================================= -->
+
+        <section class="services-grid">
+
+
+            <!-- FLIGHTS -->
+
+            <a
+                href="{% url 'book_flight' %}"
+                class="service-card"
+            >
+
+                <div class="service-icon">
+                    <i class="bi bi-airplane"></i>
+                </div>
+
+                <strong>
+                    Flights
+                </strong>
+
+                <span>
+                    Search & book flights
+                </span>
+
+            </a>
+
+
+            <!-- HOTELS -->
+
+            <a
+                href="{% url 'hotels' %}"
+                class="service-card"
+            >
+
+                <div class="service-icon">
+                    <i class="bi bi-building"></i>
+                </div>
+
+                <strong>
+                    Hotels
+                </strong>
+
+                <span>
+                    Find hotel options
+                </span>
+
+            </a>
+
+
+            <!-- VISA -->
+
+            <a
+                href="{% url 'agent_visa_bookings' %}"
+                class="service-card"
+            >
+
+                <div class="service-icon">
+                    <i class="bi bi-passport"></i>
+                </div>
+
+                <strong>
+                    Visa
+                </strong>
+
+                <span>
+                    Manage visa requests
+                </span>
+
+            </a>
+
+
+            <!-- UMRAH -->
+
+            <a
+                href="{% url 'agent_umrah_bookings' %}"
+                class="service-card"
+            >
+
+                <div class="service-icon">
+                    <i class="bi bi-moon-stars"></i>
+                </div>
+
+                <strong>
+                    Umrah
+                </strong>
+
+                <span>
+                    View Umrah packages
+                </span>
+
+            </a>
+
+
+            <!-- TOURS -->
+
+            <a
+                href="{% url 'agent_tour_bookings' %}"
+                class="service-card"
+            >
+
+                <div class="service-icon">
+                    <i class="bi bi-globe2"></i>
+                </div>
+
+                <strong>
+                    Tours
+                </strong>
+
+                <span>
+                    Explore tour packages
+                </span>
+
+            </a>
+
+
+        </section>
+
+
+
+        <!-- =====================================================
+             SECOND CONTENT ROW
+        ======================================================= -->
+
+        <div class="content-grid">
+
+
+            <!-- UPCOMING DEPARTURES -->
+
+            <section class="panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <div class="panel-title">
+                            Upcoming Departures
+                        </div>
+
+                        <div class="panel-subtitle">
+                            Your next confirmed travel bookings.
+                        </div>
+
+                    </div>
+
+                    <a
+                        href="{% url 'agent_confirmed_bookings' %}"
+                        class="view-link"
+                    >
+                        View Bookings →
+                    </a>
+
+                </div>
+
+
+                {% for booking in upcoming_departures %}
+
+                    <div class="departure-item">
+
+
+                        <div class="departure-left">
+
+                            <div class="departure-icon">
+
+                                {% if booking.departure_type_dynamic == "FLIGHT" %}
+
+                                    <i class="bi bi-airplane"></i>
+
+                                {% elif booking.departure_type_dynamic == "GROUP" %}
+
+                                    <i class="bi bi-people"></i>
+
+                                {% else %}
+
+                                    <i class="bi bi-moon-stars"></i>
+
+                                {% endif %}
+
+                            </div>
+
+
+                            <div class="departure-info">
+
+                                <strong>
+
+                                    {{ booking.departure_route_dynamic }}
+
+                                </strong>
+
+
+                                <span>
+
+                                    {{ booking.booking_reference }}
+
+                                    ·
+
+                                    {% if booking.departure_type_dynamic == "FLIGHT" %}
+
+                                        {{ booking.flight.airline.name }}
+
+                                    {% elif booking.departure_type_dynamic == "GROUP" %}
+
+                                        {{ booking.group_ticket.airline.name }}
+
+                                    {% else %}
+
+                                        {{ booking.package.airline.name }}
+
+                                    {% endif %}
+
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="departure-right">
+
+                            <span class="departure-date">
+
+                                {{ booking.departure_date_dynamic|date:"d M Y" }}
+
+                            </span>
+
+
+                            <span class="departure-type">
+
+                                {{ booking.departure_type_dynamic }}
+
+                            </span>
+
+                        </div>
+
+
+                    </div>
+
+                {% empty %}
+
+
+                    <div class="empty-state">
+
+                        <i class="bi bi-calendar3"></i>
+
+                        <strong>
+                            No upcoming departures
+                        </strong>
+
+                        <span>
+                            New confirmed bookings will appear here.
+                        </span>
+
+                    </div>
+
+
+                {% endfor %}
+
+
+            </section>
+
+
+
+            <!-- RECENT BOOKINGS -->
+
+            <section class="panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <div class="panel-title">
+                            Recent Bookings
+                        </div>
+
+                        <div class="panel-subtitle">
+                            Latest booking activity.
+                        </div>
+
+                    </div>
+
+                    <a
+                        href="{% url 'agent_all_bookings' %}"
+                        class="view-link"
+                    >
+                        All Bookings →
+                    </a>
+
+                </div>
+
+
+                {% for booking in recent_bookings %}
+
+
+                    <div class="booking-item">
+
+
+                        <div class="booking-left">
+
+
+                            <div class="booking-icon">
+
+                                {% if booking.booking_type == "FLIGHT" %}
+
+                                    <i class="bi bi-airplane"></i>
+
+                                {% elif booking.booking_type == "GROUP" %}
+
+                                    <i class="bi bi-people"></i>
+
+                                {% else %}
+
+                                    <i class="bi bi-moon-stars"></i>
+
+                                {% endif %}
+
+                            </div>
+
+
+                            <div class="booking-info">
+
+
+                                <strong>
+
+                                    {{ booking.booking_reference }}
+
+                                </strong>
+
+
+                                <span>
+
+                                    {% if booking.booking_type == "FLIGHT" %}
+
+                                        {{ booking.passenger.first_name }}
+                                        {{ booking.passenger.last_name }}
+
+                                        · Flight
+
+                                    {% elif booking.booking_type == "GROUP" %}
+
+                                        {{ booking.passenger.first_name }}
+                                        {{ booking.passenger.last_name }}
+
+                                        · Group
+
+                                    {% else %}
+
+                                        {{ booking.lead_passenger.first_name }}
+                                        {{ booking.lead_passenger.last_name }}
+
+                                        · Umrah
+
+                                    {% endif %}
+
+                                </span>
+
+
+                            </div>
+
+
+                        </div>
+
+
+                        <div class="booking-right">
+
+
+                            <span class="booking-price">
+
+                                PKR {{ booking.total_price|floatformat:0 }}
+
+                            </span>
+
+
+                            <span
+                                class="
+                                    status
+                                    {% if booking.status == 'CONFIRMED' %}
+
+                                        status-issued
+
+                                    {% elif booking.status == 'REJECTED' %}
+
+                                        status-rejected
+
+                                    {% else %}
+
+                                        status-pending
+
+                                    {% endif %}
+                                "
+                            >
+
+                                {{ booking.status|title }}
+
+                            </span>
+
+
+                        </div>
+
+
+                    </div>
+
+
+                {% empty %}
+
+
+                    <div class="empty-state">
+
+                        <i class="bi bi-ticket-perforated"></i>
+
+                        <strong>
+                            No bookings yet
+                        </strong>
+
+                        <span>
+                            Your recent bookings will appear here.
+                        </span>
+
+                    </div>
+
+
+                {% endfor %}
+
+
+            </section>
+
+
+        </div>
+
+
+
+        <!-- =====================================================
+             WALLET + TOP ROUTES
+        ======================================================= -->
+
+        <div class="content-grid">
+
+
+            <!-- WALLET -->
+
+            <section class="panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <div class="panel-title">
+                            Wallet Overview
+                        </div>
+
+                        <div class="panel-subtitle">
+                            Monitor your available agency balance.
+                        </div>
+
+                    </div>
+
+                    <a
+                        href="{% url 'agent_wallet' %}"
+                        class="view-link"
+                    >
+                        Open Wallet →
+                    </a>
+
+                </div>
+
+
+                <div class="wallet-box">
+
+                    <div class="wallet-label">
+                        AVAILABLE BALANCE
+                    </div>
+
+
+                    <div class="wallet-balance">
+
+                        PKR {{ wallet_balance|floatformat:0 }}
+
+                    </div>
+
+
+                    <div class="wallet-footer">
+
+                        <span>
+                            Current available balance
+                        </span>
+
+                        <span>
+                            AL NAJAM WALLET
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- TOP ROUTES -->
+
+            <section class="panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <div class="panel-title">
+                            Top Routes
+                        </div>
+
+                        <div class="panel-subtitle">
+                            Your most active booking sectors.
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                {% for route, count in top_routes %}
+
+
+                    <div class="route-item">
+
+
+                        <div class="route-name">
+
+                            <div class="route-icon">
+
+                                <i class="bi bi-signpost-2"></i>
+
+                            </div>
+
+
+                            <strong>
+                                {{ route }}
+                            </strong>
+
+                        </div>
+
+
+                        <span class="route-count">
+
+                            {{ count }}
+
+                            Booking{{ count|pluralize }}
+
+                        </span>
+
+
+                    </div>
+
+
+                {% empty %}
+
+
+                    <div class="empty-state">
+
+                        <i class="bi bi-bar-chart"></i>
+
+                        <strong>
+                            No route data yet
+                        </strong>
+
+                        <span>
+                            Popular routes will appear after bookings are made.
+                        </span>
+
+                    </div>
+
+
+                {% endfor %}
+
+
+            </section>
+
+
+        </div>
+
+
+
+        <!-- FOOTER -->
+
+        <footer class="dashboard-footer">
+
+            © 2026 AL NAJAM Travel & Tours.
+            Agent Portal.
+
+        </footer>
+
+
+    </main>
+
+
+</div>
+
+
+
+<script>
+
+
+    /* =========================================
+       BOOKINGS SUBMENU
+    ========================================= */
+
+    function toggleBookings() {
+
+        const submenu =
+            document.getElementById("bookingsSubmenu");
+
+        const button =
+            document.querySelector(".bookings-toggle");
+
+        if (!submenu || !button) {
+            return;
+        }
+
+        submenu.classList.toggle("show");
+
+        button.classList.toggle("open");
+
+    }
+
+
+    /* =========================================
+       AGENT PROFILE DROPDOWN
+    ========================================= */
+
+    function toggleAgentProfile() {
+
+        const wrapper =
+            document.querySelector(".agent-profile-wrapper");
+
+        if (!wrapper) {
+            return;
+        }
+
+        wrapper.classList.toggle("open");
+
+    }
+
+
+    /* =========================================
+       CLOSE PROFILE DROPDOWN
+    ========================================= */
+
+    document.addEventListener("click", function(event) {
+
+        const wrapper =
+            document.querySelector(".agent-profile-wrapper");
+
+        if (!wrapper) {
+            return;
+        }
+
+        if (!wrapper.contains(event.target)) {
+
+            wrapper.classList.remove("open");
+
+        }
+
+    });
+
+
+</script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,3220 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Umrah Packages | AL NAJAM Agent Portal
+    </title>
+
+    <!-- =====================================================
+         BOOTSTRAP
+    ====================================================== -->
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <!-- =====================================================
+         BOOTSTRAP ICONS
+    ====================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    >
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        /* =====================================================
+           BODY
+        ====================================================== */
+
+        body {
+
+            margin: 0;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f7f9fc,
+                    #eef4f9
+                );
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            color: #172033;
+
+        }
+
+
+        /* =====================================================
+           SCROLLBAR
+        ====================================================== */
+
+        ::-webkit-scrollbar {
+
+            width: 7px;
+            height: 7px;
+
+        }
+
+        ::-webkit-scrollbar-track {
+
+            background: #f4f6f8;
+
+        }
+
+        ::-webkit-scrollbar-thumb {
+
+            background: #cfd7e2;
+
+            border-radius: 20px;
+
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+
+            background: #b4bfcc;
+
+        }
+
+
+        /* =====================================================
+           SIDEBAR
+        ====================================================== */
+
+        .sidebar {
+
+            position: fixed;
+
+            left: 0;
+            top: 0;
+
+            width: 255px;
+            height: 100vh;
+
+            background: #ffffff;
+
+            border-right:
+                1px solid #e5e9ef;
+
+            z-index: 1000;
+
+            overflow-y: auto;
+
+            box-shadow:
+                8px 0 30px rgba(20,35,60,.035);
+
+        }
+
+
+        .brand {
+
+min-height: 78px;
+
+display: flex;
+
+align-items: center;
+
+padding:
+    0 10px;
+
+border-bottom:
+    1px solid #edf0f4;
+
+}
+        .sidebar-logo {
+
+width: 88px;
+height: 88px;
+
+object-fit: contain;
+
+display: block;
+
+flex-shrink: 0;
+
+margin-right: 0;
+
+}
+
+.brand-text-wrapper {
+
+display: flex;
+
+flex-direction: column;
+
+justify-content: center;
+
+margin-left: 0;
+
+line-height: 1;
+
+}
+
+        .brand-icon {
+
+            width: 43px;
+            height: 43px;
+
+            border-radius: 12px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f59e0b,
+                    #df8508
+                );
+
+            color: #ffffff;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            margin-right: 11px;
+
+            font-size: 18px;
+
+            box-shadow:
+                0 8px 18px rgba(245,158,11,.18);
+
+        }
+
+
+        .brand-text {
+
+            font-size: 18px;
+
+            font-weight: 800;
+
+            color: #202733;
+
+        }
+
+
+        .brand-text span {
+
+            color: #f59e0b;
+
+        }
+
+
+        .brand-subtitle {
+
+            display: block;
+
+            margin-top: 2px;
+
+            color: #8b95a5;
+
+            font-size: 8px;
+
+            letter-spacing: 1.3px;
+
+            font-weight: 700;
+
+        }
+
+
+        .sidebar-title {
+
+            font-size: 10px;
+
+            font-weight: 800;
+
+            color: #9aa3b0;
+
+            padding:
+                24px 22px 9px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1.4px;
+
+        }
+
+
+        .sidebar a {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            margin:
+                3px 11px;
+
+            padding:
+                11px 13px;
+
+            border-radius: 11px;
+
+            text-decoration: none;
+
+            color: #5d6879;
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            border:
+                1px solid transparent;
+
+            transition:
+                .22s ease;
+
+        }
+
+
+        .sidebar a i {
+
+            width: 31px;
+            height: 31px;
+
+            border-radius: 9px;
+
+            background: #f5f7fa;
+
+            display: inline-flex;
+
+            align-items: center;
+            justify-content: center;
+
+            font-size: 15px;
+
+        }
+
+
+        .sidebar a:hover {
+
+            background: #fff8eb;
+
+            color: #d88900;
+
+            border-color: #f3dfbb;
+
+            transform:
+                translateX(2px);
+
+        }
+
+
+        .sidebar a:hover i {
+
+            background: #fff1d6;
+
+            color: #d88900;
+
+        }
+
+
+        .sidebar a.active {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f59e0b,
+                    #df8508
+                );
+
+            color: #ffffff;
+
+            box-shadow:
+                0 8px 20px rgba(245,158,11,.18);
+
+        }
+
+
+        .sidebar a.active i {
+
+            background:
+                rgba(255,255,255,.18);
+
+            color: #ffffff;
+
+        }
+
+
+        .sidebar-bottom {
+
+            margin-top: 10px;
+
+            padding-bottom: 14px;
+
+        }
+
+
+        .logout-link {
+
+            color: #dc3545 !important;
+
+        }
+
+
+        .logout-link i {
+
+            background: #fff0f1 !important;
+
+            color: #dc3545 !important;
+
+        }
+
+
+        .logout-link:hover {
+
+            background: #fff0f1 !important;
+
+            border-color: #f5c6cb !important;
+
+        }
+
+
+        /* =====================================================
+           MAIN
+        ====================================================== */
+
+        .main {
+
+            margin-left: 255px;
+
+            min-height: 100vh;
+
+        }
+
+
+        /* =====================================================
+           TOPBAR
+        ====================================================== */
+
+        .topbar {
+
+            min-height: 78px;
+
+            background:
+                rgba(255,255,255,.96);
+
+            backdrop-filter:
+                blur(10px);
+
+            border-bottom:
+                1px solid #e7ebf1;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding:
+                0 30px;
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 100;
+
+        }
+
+
+        .page-label {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 6px;
+
+            background: #fff5e6;
+
+            color: #d88900;
+
+            padding:
+                5px 9px;
+
+            border-radius: 7px;
+
+            font-size: 8px;
+
+            font-weight: 800;
+
+            letter-spacing: .8px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 6px;
+
+        }
+
+
+        .page-title {
+
+            font-size: 22px;
+
+            font-weight: 800;
+
+            margin: 0;
+
+            color: #202733;
+
+        }
+
+
+        .page-subtitle {
+
+            font-size: 10px;
+
+            color: #8a95a7;
+
+            margin:
+                4px 0 0;
+
+        }
+
+
+        /* =====================================================
+           PROFILE
+        ====================================================== */
+
+        .agent-profile {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            padding:
+                7px 11px;
+
+            border:
+                1px solid #e5e9ef;
+
+            border-radius: 13px;
+
+            background: #ffffff;
+
+        }
+
+
+        .agent-avatar {
+
+            width: 39px;
+            height: 39px;
+
+            border-radius: 50%;
+
+            background: #fff1d6;
+
+            color: #d88900;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            font-size: 15px;
+
+        }
+
+
+        .agent-name {
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+            color: #202733;
+
+        }
+
+
+        .agent-agency {
+
+            margin-top: 2px;
+
+            font-size: 8px;
+
+            color: #8a95a7;
+
+        }
+
+
+        /* =====================================================
+           CONTENT
+        ====================================================== */
+
+        .content {
+
+            padding:
+                28px 30px 45px;
+
+        }
+
+
+        /* =====================================================
+           HERO
+        ====================================================== */
+
+        .hero {
+
+            position: relative;
+
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #172033,
+                    #263e61
+                );
+
+            color: #ffffff;
+
+            border-radius: 20px;
+
+            padding:
+                25px 27px;
+
+            margin-bottom: 20px;
+
+            box-shadow:
+                0 12px 32px rgba(20,35,60,.09);
+
+        }
+
+
+        .hero::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 240px;
+
+            height: 240px;
+
+            border-radius: 50%;
+
+            right: -100px;
+
+            top: -130px;
+
+            border:
+                1px solid rgba(255,255,255,.08);
+
+            box-shadow:
+                0 0 0 32px rgba(255,255,255,.025),
+                0 0 0 64px rgba(255,255,255,.018);
+
+        }
+
+
+        .hero-content {
+
+            position: relative;
+
+            z-index: 2;
+
+        }
+
+
+        .hero-badge {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 6px;
+
+            background:
+                rgba(255,255,255,.09);
+
+            border:
+                1px solid rgba(255,255,255,.12);
+
+            padding:
+                6px 9px;
+
+            border-radius: 8px;
+
+            font-size: 8px;
+
+            font-weight: 800;
+
+            letter-spacing: .8px;
+
+        }
+
+
+        .hero h1 {
+
+            margin:
+                13px 0 6px;
+
+            font-size: 24px;
+
+            font-weight: 800;
+
+        }
+
+
+        .hero p {
+
+            max-width: 700px;
+
+            margin: 0;
+
+            color: #cbd5e1;
+
+            font-size: 10px;
+
+            line-height: 1.6;
+
+        }
+
+
+        .hero-stats {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 9px;
+
+            margin-top: 17px;
+
+        }
+
+
+        .hero-stat {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 6px;
+
+            padding:
+                8px 11px;
+
+            border-radius: 9px;
+
+            background:
+                rgba(255,255,255,.08);
+
+            border:
+                1px solid rgba(255,255,255,.10);
+
+            color: #e5edf7;
+
+            font-size: 8px;
+
+            font-weight: 700;
+
+        }
+
+
+        /* =====================================================
+           FILTER CARD
+        ====================================================== */
+
+        .filter-card {
+
+            background: #ffffff;
+
+            border:
+                1px solid #e5e9ef;
+
+            border-radius: 18px;
+
+            padding: 19px;
+
+            margin-bottom: 20px;
+
+            box-shadow:
+                0 7px 24px rgba(20,35,60,.035);
+
+        }
+
+
+        .filter-heading {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 12px;
+
+            margin-bottom: 15px;
+
+        }
+
+
+        .filter-title {
+
+            margin: 0;
+
+            font-size: 14px;
+
+            font-weight: 800;
+
+        }
+
+
+        .filter-subtitle {
+
+            margin:
+                3px 0 0;
+
+            font-size: 8px;
+
+            color: #96a0b0;
+
+        }
+
+
+        .filter-count {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 5px;
+
+            padding:
+                6px 10px;
+
+            border-radius: 20px;
+
+            background: #fff5e6;
+
+            color: #d88900;
+
+            font-size: 8px;
+
+            font-weight: 800;
+
+            white-space: nowrap;
+
+        }
+
+
+        .search-box {
+
+            position: relative;
+
+        }
+
+
+        .search-box i {
+
+            position: absolute;
+
+            left: 13px;
+
+            top: 50%;
+
+            transform:
+                translateY(-50%);
+
+            color: #8b95a5;
+
+            font-size: 13px;
+
+            z-index: 2;
+
+        }
+
+
+        .search-input {
+
+            min-height: 42px;
+
+            width: 100%;
+
+            padding:
+                0 14px 0 38px;
+
+            border:
+                1px solid #dfe5ed;
+
+            border-radius: 10px;
+
+            outline: none;
+
+            color: #202733;
+
+            font-size: 10px;
+
+            background: #ffffff;
+
+        }
+
+
+        .search-input:focus {
+
+            border-color: #f0c46d;
+
+            box-shadow:
+                0 0 0 3px rgba(245,158,11,.08);
+
+        }
+
+
+        .filter-select {
+
+            width: 100%;
+
+            min-height: 42px;
+
+            border:
+                1px solid #dfe5ed;
+
+            border-radius: 10px;
+
+            padding:
+                0 12px;
+
+            font-size: 9px;
+
+            color: #202733;
+
+            background: #ffffff;
+
+            outline: none;
+
+        }
+
+
+        .filter-select:focus {
+
+            border-color: #f0c46d;
+
+            box-shadow:
+                0 0 0 3px rgba(245,158,11,.08);
+
+        }
+
+
+        .filter-actions {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+        }
+
+
+        .search-btn {
+
+            min-height: 42px;
+
+            border: none;
+
+            border-radius: 10px;
+
+            padding:
+                0 14px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f59e0b,
+                    #df8508
+                );
+
+            color: #ffffff;
+
+            font-size: 9px;
+
+            font-weight: 800;
+
+            box-shadow:
+                0 6px 15px rgba(245,158,11,.16);
+
+        }
+
+
+        .clear-btn {
+
+            min-height: 42px;
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 6px;
+
+            padding:
+                0 13px;
+
+            border:
+                1px solid #dfe5ed;
+
+            border-radius: 10px;
+
+            color: #667386;
+
+            background: #ffffff;
+
+            text-decoration: none;
+
+            font-size: 9px;
+
+            font-weight: 800;
+
+        }
+
+
+        .clear-btn:hover {
+
+            background: #f8fafc;
+
+            color: #334155;
+
+        }
+
+
+        /* =====================================================
+           QUICK CATEGORIES
+        ====================================================== */
+
+        .quick-section {
+
+            margin-top: 17px;
+
+        }
+
+
+        .quick-heading {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            margin-bottom: 9px;
+
+            font-size: 9px;
+
+            color: #7d8796;
+
+            font-weight: 800;
+
+            text-transform: uppercase;
+
+            letter-spacing: .7px;
+
+        }
+
+
+        .quick-list {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 7px;
+
+        }
+
+
+        .quick-chip {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 5px;
+
+            padding:
+                7px 10px;
+
+            border:
+                1px solid #e1e7ee;
+
+            border-radius: 20px;
+
+            text-decoration: none;
+
+            color: #5c687a;
+
+            background: #ffffff;
+
+            font-size: 8px;
+
+            font-weight: 800;
+
+            transition: .2s ease;
+
+        }
+
+
+        .quick-chip:hover {
+
+            background: #fff8eb;
+
+            border-color: #f0d7a8;
+
+            color: #d88900;
+
+        }
+
+
+        /* =====================================================
+           PACKAGE BOARD
+        ====================================================== */
+
+        .board-card {
+
+            background: #ffffff;
+
+            border:
+                1px solid #e5e9ef;
+
+            border-radius: 18px;
+
+            padding: 20px;
+
+            box-shadow:
+                0 7px 24px rgba(20,35,60,.035);
+
+        }
+
+
+        .board-header {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 15px;
+
+            margin-bottom: 17px;
+
+        }
+
+
+        .board-title {
+
+            margin:
+                0 0 4px;
+
+            font-size: 15px;
+
+            font-weight: 800;
+
+        }
+
+
+        .board-subtitle {
+
+            margin: 0;
+
+            color: #8b95a5;
+
+            font-size: 9px;
+
+        }
+
+
+        .board-badge {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 6px;
+
+            background: #fff8eb;
+
+            color: #c57a00;
+
+            border:
+                1px solid #f4dfb7;
+
+            padding:
+                7px 10px;
+
+            border-radius: 20px;
+
+            font-size: 8px;
+
+            font-weight: 800;
+
+            white-space: nowrap;
+
+        }
+
+
+        /* =====================================================
+           PACKAGE CARD
+        ====================================================== */
+
+        .package-card {
+
+            border:
+                1px solid #e5e9ef;
+
+            border-radius: 16px;
+
+            background: #ffffff;
+
+            margin-bottom: 14px;
+
+            overflow: hidden;
+
+            transition:
+                .22s ease;
+
+        }
+
+
+        .package-card:hover {
+
+            transform:
+                translateY(-2px);
+
+            border-color: #f0d7a8;
+
+            box-shadow:
+                0 12px 26px rgba(20,35,60,.07);
+
+        }
+
+
+        .package-top {
+
+            padding:
+                16px 17px;
+
+            border-bottom:
+                1px solid #edf0f4;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 15px;
+
+        }
+
+
+        .package-brand {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 11px;
+
+        }
+
+
+        .airline-logo {
+
+            width: 43px;
+            height: 43px;
+
+            border-radius: 12px;
+
+            object-fit: contain;
+
+            padding: 6px;
+
+            background: #f7f9fc;
+
+            border:
+                1px solid #edf0f4;
+
+        }
+
+
+        .airline-placeholder {
+
+            width: 43px;
+            height: 43px;
+
+            border-radius: 12px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            background: #fff1d6;
+
+            color: #d88900;
+
+            font-size: 17px;
+
+        }
+
+
+        .airline-name {
+
+            color: #172033;
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+        }
+
+
+        .airline-code {
+
+            margin-top: 3px;
+
+            color: #98a2b3;
+
+            font-size: 8px;
+
+        }
+
+
+        .package-meta {
+
+            display: flex;
+
+            align-items: center;
+
+            flex-wrap: wrap;
+
+            justify-content: flex-end;
+
+            gap: 7px;
+
+        }
+
+
+        .meta-chip {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 5px;
+
+            padding:
+                6px 9px;
+
+            border-radius: 20px;
+
+            background: #f8fafc;
+
+            border:
+                1px solid #e9edf2;
+
+            color: #64748b;
+
+            font-size: 8px;
+
+            font-weight: 800;
+
+        }
+
+
+        .meta-chip-blue {
+
+            background: #eef6ff;
+
+            color: #1675d1;
+
+            border-color: #d6e8fa;
+
+        }
+
+
+        .meta-chip-green {
+
+            background: #eaf8ef;
+
+            color: #198754;
+
+            border-color: #d5eddd;
+
+        }
+
+
+        .meta-chip-orange {
+
+            background: #fff5e6;
+
+            color: #d88900;
+
+            border-color: #f3dfbb;
+
+        }
+
+
+        /* =====================================================
+           PACKAGE BODY
+        ====================================================== */
+
+        .package-body {
+
+            padding:
+                17px;
+
+        }
+
+
+        .route-label {
+
+            font-size: 7px;
+
+            font-weight: 800;
+
+            color: #9aa3b0;
+
+            text-transform: uppercase;
+
+            letter-spacing: .7px;
+
+            margin-bottom: 5px;
+
+        }
+
+
+        .route-main {
+
+            color: #172033;
+
+            font-size: 13px;
+
+            font-weight: 800;
+
+        }
+
+
+        .route-arrow {
+
+            color: #f59e0b;
+
+            margin:
+                0 6px;
+
+        }
+
+
+        .route-cities {
+
+            margin-top: 3px;
+
+            color: #98a2b3;
+
+            font-size: 8px;
+
+        }
+
+
+        .flight-number {
+
+            color: #172033;
+
+            font-size: 10px;
+
+            font-weight: 800;
+
+        }
+
+
+        .flight-date {
+
+            color: #8b95a5;
+
+            font-size: 8px;
+
+            margin-top: 3px;
+
+        }
+
+
+        .flight-times {
+
+            margin-top: 4px;
+
+            color: #526075;
+
+            font-size: 9px;
+
+            font-weight: 700;
+
+        }
+
+
+        .flight-extra {
+
+            margin-top: 6px;
+
+            color: #8b95a5;
+
+            font-size: 8px;
+
+        }
+
+
+        .hotel-box {
+
+            height: 100%;
+
+            padding:
+                12px;
+
+            border:
+                1px solid #edf0f4;
+
+            border-radius: 12px;
+
+            background: #fafbfc;
+
+        }
+
+
+        .hotel-label {
+
+            color: #9aa3b0;
+
+            font-size: 7px;
+
+            font-weight: 800;
+
+            letter-spacing: .6px;
+
+            text-transform: uppercase;
+
+        }
+
+
+        .hotel-name {
+
+            margin-top: 5px;
+
+            color: #263238;
+
+            font-size: 10px;
+
+            font-weight: 800;
+
+        }
+
+
+        .hotel-distance {
+
+            margin-top: 4px;
+
+            color: #98a2b3;
+
+            font-size: 8px;
+
+            line-height: 1.45;
+
+        }
+
+
+        .night-summary {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 6px;
+
+            margin-top: 7px;
+
+            padding:
+                5px 7px;
+
+            border-radius: 7px;
+
+            background: #fff8eb;
+
+            color: #b66f00;
+
+            font-size: 7px;
+
+            font-weight: 800;
+
+        }
+
+
+        /* =====================================================
+           PACKAGE FOOTER
+        ====================================================== */
+
+        .package-footer {
+
+            padding:
+                14px 17px;
+
+            border-top:
+                1px solid #edf0f4;
+
+            background: #fbfcfe;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 14px;
+
+        }
+
+
+        .price-label {
+
+            color: #98a2b3;
+
+            font-size: 7px;
+
+            text-transform: uppercase;
+
+            font-weight: 800;
+
+            letter-spacing: .5px;
+
+        }
+
+
+        .price {
+
+            margin-top: 2px;
+
+            color: #172033;
+
+            font-size: 18px;
+
+            font-weight: 800;
+
+        }
+
+
+        .room-type {
+
+            margin-top: 3px;
+
+            color: #8b95a5;
+
+            font-size: 8px;
+
+        }
+
+
+        .seats-info {
+
+            text-align: right;
+
+        }
+
+
+        .seats-number {
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+            color: #198754;
+
+        }
+
+
+        .seats-number.low {
+
+            color: #d97706;
+
+        }
+
+
+        .seats-label {
+
+            margin-top: 2px;
+
+            color: #98a2b3;
+
+            font-size: 7px;
+
+            text-transform: uppercase;
+
+            font-weight: 800;
+
+        }
+
+
+        /* =====================================================
+           VIEW DETAILS BUTTON
+        ====================================================== */
+
+        .details-btn {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 6px;
+
+            min-height: 38px;
+
+            padding:
+                0 13px;
+
+            border:
+                1px solid #dfe5ed;
+
+            border-radius: 9px;
+
+            background: #ffffff;
+
+            color: #667386;
+
+            text-decoration: none;
+
+            font-size: 8px;
+
+            font-weight: 800;
+
+            transition: .2s ease;
+
+        }
+
+
+        .details-btn:hover {
+
+            color: #1675d1;
+
+            border-color: #cfe3fa;
+
+            background: #eef6ff;
+
+        }
+
+
+        /* =====================================================
+           BOOK NOW BUTTON
+        ====================================================== */
+
+        .book-btn {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 6px;
+
+            min-height: 38px;
+
+            padding:
+                0 15px;
+
+            border: none;
+
+            border-radius: 9px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f59e0b,
+                    #df8508
+                );
+
+            color: #ffffff;
+
+            text-decoration: none;
+
+            font-size: 8px;
+
+            font-weight: 800;
+
+            box-shadow:
+                0 7px 16px rgba(245,158,11,.18);
+
+            transition:
+                .2s ease;
+
+        }
+
+
+        .book-btn:hover {
+
+            color: #ffffff;
+
+            transform:
+                translateY(-1px);
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #e79205,
+                    #cc7604
+                );
+
+            box-shadow:
+                0 10px 20px rgba(245,158,11,.25);
+
+        }
+
+
+        /* =====================================================
+           SOLD OUT
+        ====================================================== */
+
+        .sold-out-btn {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 6px;
+
+            min-height: 38px;
+
+            padding:
+                0 14px;
+
+            border-radius: 9px;
+
+            background: #f1f3f5;
+
+            color: #7b8491;
+
+            font-size: 8px;
+
+            font-weight: 800;
+
+        }
+
+
+        /* =====================================================
+           EMPTY
+        ====================================================== */
+
+        .empty-state {
+
+            text-align: center;
+
+            padding:
+                65px 20px;
+
+        }
+
+
+        .empty-icon {
+
+            width: 65px;
+            height: 65px;
+
+            margin:
+                0 auto 14px;
+
+            border-radius: 17px;
+
+            background: #fff5e6;
+
+            color: #d88900;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            font-size: 26px;
+
+        }
+
+
+        .empty-state h4 {
+
+            margin:
+                0 0 6px;
+
+            font-size: 15px;
+
+            font-weight: 800;
+
+        }
+
+
+        .empty-state p {
+
+            margin: 0;
+
+            color: #98a2b3;
+
+            font-size: 9px;
+
+        }
+
+
+        /* =====================================================
+           FOOTER
+        ====================================================== */
+
+        .footer {
+
+            text-align: center;
+
+            padding:
+                20px 10px 5px;
+
+            color: #98a2b0;
+
+            font-size: 8px;
+
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ====================================================== */
+
+        @media (max-width: 991px) {
+
+            .sidebar {
+
+                width: 215px;
+
+            }
+
+            .main {
+
+                margin-left: 215px;
+
+            }
+
+            .content {
+
+                padding:
+                    22px;
+
+            }
+
+            .topbar {
+
+                padding:
+                    0 22px;
+
+            }
+
+        }
+
+
+        @media (max-width: 767px) {
+
+            .sidebar {
+
+                position: relative;
+
+                width: 100%;
+
+                height: auto;
+
+                border-right: none;
+
+            }
+
+            .main {
+
+                margin-left: 0;
+
+            }
+
+            .topbar {
+
+                padding:
+                    15px;
+
+            }
+
+            .agent-profile {
+
+                display: none;
+
+            }
+
+            .content {
+
+                padding:
+                    15px;
+
+            }
+
+            .package-top {
+
+                align-items: flex-start;
+
+                flex-direction: column;
+
+            }
+
+            .package-meta {
+
+                justify-content: flex-start;
+
+            }
+
+            .package-footer {
+
+                align-items: flex-start;
+
+                flex-direction: column;
+
+            }
+
+            .seats-info {
+
+                text-align: left;
+
+            }
+
+            .action-buttons {
+
+                width: 100%;
+
+                flex-direction: column;
+
+            }
+
+            .details-btn,
+            .book-btn,
+            .sold-out-btn {
+
+                width: 100%;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     SIDEBAR
+====================================================== -->
+
+<div class="sidebar">
+
+
+    <div class="brand">
+
+        <img
+            src="{% static 'images/logo.png' %}"
+            alt="AL NAJAM Travel & Tours"
+            class="sidebar-logo"
+        >
+    
+        <div class="brand-text-wrapper">
+    
+            <div class="brand-text">
+                AL NAJAM
+            </div>
+    
+            <span class="brand-subtitle">
+                TRAVEL & TOURS
+            </span>
+    
+        </div>
+    
+    </div>
+
+    <div class="sidebar-title">
+
+        Main Menu
+
+    </div>
+
+
+    <a href="{% url 'agent_dashboard' %}">
+
+        <i class="bi bi-grid-1x2-fill"></i>
+
+        <span>
+            Dashboard
+        </span>
+
+    </a>
+
+
+    <div class="sidebar-title">
+
+        Bookings
+
+    </div>
+
+
+    <a href="{% url 'agent_group_bookings' %}">
+
+        <i class="bi bi-people-fill"></i>
+
+        <span>
+            Group Tickets
+        </span>
+
+    </a>
+
+
+    <a
+        href="{% url 'agent_umrah_bookings' %}"
+        class="active"
+    >
+
+        <i class="bi bi-moon-stars-fill"></i>
+
+        <span>
+            Umrah
+        </span>
+
+    </a>
+
+
+    <a href="{% url 'agent_tour_bookings' %}">
+
+        <i class="bi bi-globe2"></i>
+
+        <span>
+            Tours
+        </span>
+
+    </a>
+
+
+    <a href="{% url 'agent_visa_bookings' %}">
+
+        <i class="bi bi-passport"></i>
+
+        <span>
+            Visa Services
+        </span>
+
+    </a>
+
+
+    <div class="sidebar-title">
+
+        Account
+
+    </div>
+
+
+    <a href="{% url 'agent_wallet' %}">
+
+        <i class="bi bi-wallet2"></i>
+
+        <span>
+            Wallet
+        </span>
+
+    </a>
+
+
+    <div class="sidebar-bottom">
+
+        <a
+            href="{% url 'logout' %}"
+            class="logout-link"
+        >
+
+            <i class="bi bi-box-arrow-right"></i>
+
+            <span>
+                Logout
+            </span>
+
+        </a>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     MAIN
+====================================================== -->
+
+<div class="main">
+
+
+    <!-- =================================================
+         TOPBAR
+    ================================================== -->
+
+    <div class="topbar">
+
+        <div>
+
+            <span class="page-label">
+
+                <i class="bi bi-moon-stars-fill"></i>
+
+                UMRAH WORKSPACE
+
+            </span>
+
+
+            <h1 class="page-title">
+
+                Umrah Packages
+
+            </h1>
+
+
+            <p class="page-subtitle">
+
+                Browse available Umrah inventory and create bookings for your pilgrims.
+
+            </p>
+
+        </div>
+
+
+        <div class="agent-profile">
+
+            <div class="agent-avatar">
+
+                <i class="bi bi-person-fill"></i>
+
+            </div>
+
+
+            <div>
+
+                <div class="agent-name">
+
+                    {{ agent.name }}
+
+                </div>
+
+
+                <div class="agent-agency">
+
+                    {{ agent.agency }}
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         CONTENT
+    ================================================== -->
+
+    <div class="content">
+
+
+        <!-- =================================================
+             HERO
+        ================================================== -->
+
+        <div class="hero">
+
+            <div class="hero-content">
+
+                <span class="hero-badge">
+
+                    <i class="bi bi-stars"></i>
+
+                    PILGRIM PACKAGE OPERATIONS
+
+                </span>
+
+
+                <h1>
+
+                    Find the right Umrah package for your pilgrims
+
+                </h1>
+
+
+                <p>
+
+                    Browse live AL NAJAM Umrah inventory, compare airlines,
+                    routes, hotel options, nights, prices and remaining seats
+                    before opening the package details.
+
+                </p>
+
+
+                <div class="hero-stats">
+
+                    <span class="hero-stat">
+
+                        <i class="bi bi-box-seam"></i>
+
+                        {{ total_packages }}
+                        Available Packages
+
+                    </span>
+
+
+                    <span class="hero-stat">
+
+                        <i class="bi bi-search"></i>
+
+                        Smart Package Search
+
+                    </span>
+
+
+                    <span class="hero-stat">
+
+                        <i class="bi bi-building"></i>
+
+                        Makkah + Madinah Hotels
+
+                    </span>
+
+
+                    <span class="hero-stat">
+
+                        <i class="bi bi-airplane"></i>
+
+                        Flight Details Included
+
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             FILTERS
+        ================================================== -->
+
+        <div class="filter-card">
+
+
+            <div class="filter-heading">
+
+                <div>
+
+                    <h2 class="filter-title">
+
+                        Search & Filters
+
+                    </h2>
+
+
+                    <p class="filter-subtitle">
+
+                        Search by package, airline, route or hotel.
+
+                    </p>
+
+                </div>
+
+
+                <span class="filter-count">
+
+                    <i class="bi bi-collection"></i>
+
+                    {{ total_packages }}
+                    package{{ total_packages|pluralize }}
+
+                </span>
+
+            </div>
+
+
+            <form method="GET">
+
+
+                <div class="row g-2">
+
+
+                    <div class="col-lg-4 col-md-6">
+
+                        <div class="search-box">
+
+                            <i class="bi bi-search"></i>
+
+                            <input
+                                type="text"
+                                name="search"
+                                class="search-input"
+                                value="{{ search }}"
+                                placeholder="Search package, airline, flight, airport or hotel..."
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-lg-2 col-md-6">
+
+                        <select
+                            name="sector"
+                            class="filter-select"
+                        >
+
+                            <option value="">
+
+                                All Sectors
+
+                            </option>
+
+
+                            {% for sector in sectors %}
+
+                                <option
+                                    value="{{ sector }}"
+                                    {% if selected_sector == sector %}selected{% endif %}
+                                >
+
+                                    {{ sector }}
+
+                                </option>
+
+                            {% endfor %}
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="col-lg-2 col-md-6">
+
+                        <select
+                            name="airline"
+                            class="filter-select"
+                        >
+
+                            <option value="">
+
+                                All Airlines
+
+                            </option>
+
+
+                            {% for airline in airlines %}
+
+                                <option
+                                    value="{{ airline.id }}"
+                                    {% if selected_airline == airline.id|stringformat:"s" %}selected{% endif %}
+                                >
+
+                                    {{ airline.name }}
+
+                                </option>
+
+                            {% endfor %}
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="col-lg-2 col-md-6">
+
+                        <select
+                            name="makkah_hotel"
+                            class="filter-select"
+                        >
+
+                            <option value="">
+
+                                Makkah Hotel
+
+                            </option>
+
+
+                            {% for hotel in makkah_hotels %}
+
+                                <option
+                                    value="{{ hotel.id }}"
+                                    {% if selected_makkah_hotel == hotel.id|stringformat:"s" %}selected{% endif %}
+                                >
+
+                                    {{ hotel.name }}
+
+                                </option>
+
+                            {% endfor %}
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="col-lg-2 col-md-6">
+
+                        <select
+                            name="madinah_hotel"
+                            class="filter-select"
+                        >
+
+                            <option value="">
+
+                                Madinah Hotel
+
+                            </option>
+
+
+                            {% for hotel in madinah_hotels %}
+
+                                <option
+                                    value="{{ hotel.id }}"
+                                    {% if selected_madinah_hotel == hotel.id|stringformat:"s" %}selected{% endif %}
+                                >
+
+                                    {{ hotel.name }}
+
+                                </option>
+
+                            {% endfor %}
+
+                        </select>
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="filter-actions mt-2">
+
+                    <button
+                        type="submit"
+                        class="search-btn"
+                    >
+
+                        <i class="bi bi-search me-1"></i>
+
+                        Search Packages
+
+                    </button>
+
+
+                    <a
+                        href="{% url 'agent_umrah_bookings' %}"
+                        class="clear-btn"
+                    >
+
+                        <i class="bi bi-x-circle"></i>
+
+                        Clear Filters
+
+                    </a>
+
+                </div>
+
+            </form>
+
+
+            <div class="quick-section">
+
+                <div class="quick-heading">
+
+                    <i class="bi bi-lightning-fill"></i>
+
+                    Quick Categories
+
+                </div>
+
+
+                <div class="quick-list">
+
+                    {% for sector in sectors %}
+
+                        <a
+                            href="?sector={{ sector|urlencode }}"
+                            class="quick-chip"
+                        >
+
+                            <i class="bi bi-signpost-2"></i>
+
+                            {{ sector }}
+
+                        </a>
+
+                    {% empty %}
+
+                        <span class="quick-chip">
+
+                            No package sectors available
+
+                        </span>
+
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             PACKAGE BOARD
+        ================================================== -->
+
+        <div class="board-card">
+
+
+            <div class="board-header">
+
+                <div>
+
+                    <h2 class="board-title">
+
+                        Package Board
+
+                    </h2>
+
+
+                    <p class="board-subtitle">
+
+                        Live Umrah inventory created by the AL NAJAM administrator.
+
+                    </p>
+
+                </div>
+
+
+                <span class="board-badge">
+
+                    <i class="bi bi-broadcast-pin"></i>
+
+                    {{ total_packages }}
+                    Live Package{{ total_packages|pluralize }}
+
+                </span>
+
+            </div>
+
+
+            {% for package in packages %}
+
+
+                <div class="package-card">
+
+
+                    <!-- PACKAGE TOP -->
+
+                    <div class="package-top">
+
+
+                        <div class="package-brand">
+
+
+                            {% if package.airline.logo %}
+
+                                <img
+                                    src="{{ package.airline.logo.url }}"
+                                    alt="{{ package.airline.name }}"
+                                    class="airline-logo"
+                                >
+
+                            {% else %}
+
+                                <div class="airline-placeholder">
+
+                                    <i class="bi bi-airplane-fill"></i>
+
+                                </div>
+
+                            {% endif %}
+
+
+                            <div>
+
+                                <div class="airline-name">
+
+                                    {{ package.airline.name }}
+
+                                </div>
+
+
+                                <div class="airline-code">
+
+                                    {{ package.airline.code }}
+
+                                    ·
+
+                                    {{ package.name }}
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+
+                        <div class="package-meta">
+
+
+                            <span class="meta-chip meta-chip-blue">
+
+                                <i class="bi bi-signpost-2"></i>
+
+                                {{ package.sector }}
+
+                            </span>
+
+
+                            <span class="meta-chip">
+
+                                <i class="bi bi-door-open"></i>
+
+                                {{ package.room_type|title }}
+
+                            </span>
+
+
+                            {% if package.available_seats <= 5 %}
+
+                                <span class="meta-chip meta-chip-orange">
+
+                                    <i class="bi bi-exclamation-circle"></i>
+
+                                    {{ package.available_seats }}
+                                    Seats Left
+
+                                </span>
+
+                            {% else %}
+
+                                <span class="meta-chip meta-chip-green">
+
+                                    <i class="bi bi-check-circle"></i>
+
+                                    {{ package.available_seats }}
+                                    Seats Available
+
+                                </span>
+
+                            {% endif %}
+
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- PACKAGE BODY -->
+
+                    <div class="package-body">
+
+
+                        <div class="row g-3">
+
+
+                            <!-- OUTBOUND -->
+
+                            <div class="col-xl-3 col-md-6">
+
+
+                                <div class="route-label">
+
+                                    Outbound Flight
+
+                                </div>
+
+
+                                <div class="flight-number">
+
+                                    {{ package.outbound_flight_number }}
+
+                                </div>
+
+
+                                <div class="route-main mt-1">
+
+                                    {{ package.outbound_departure_airport.code }}
+
+                                    <span class="route-arrow">
+
+                                        →
+
+                                    </span>
+
+                                    {{ package.outbound_arrival_airport.code }}
+
+                                </div>
+
+
+                                <div class="route-cities">
+
+                                    {{ package.outbound_departure_airport.city }}
+
+                                    →
+
+                                    {{ package.outbound_arrival_airport.city }}
+
+                                </div>
+
+
+                                <div class="flight-date">
+
+                                    {{ package.outbound_departure_date|date:"d M Y" }}
+
+                                </div>
+
+
+                                <div class="flight-times">
+
+                                    {{ package.outbound_departure_time|time:"H:i" }}
+
+                                    →
+
+                                    {{ package.outbound_arrival_time|time:"H:i" }}
+
+                                </div>
+
+
+                                <div class="flight-extra">
+
+                                    <i class="bi bi-luggage"></i>
+
+                                    {{ package.outbound_baggage }}
+
+                                    &nbsp;·&nbsp;
+
+                                    {% if package.outbound_meal == "No" %}
+
+                                        No Meal
+
+                                    {% else %}
+
+                                        Meal Included
+
+                                    {% endif %}
+
+                                </div>
+
+
+                            </div>
+
+
+                            <!-- RETURN -->
+
+                            <div class="col-xl-3 col-md-6">
+
+
+                                <div class="route-label">
+
+                                    Return Flight
+
+                                </div>
+
+
+                                <div class="flight-number">
+
+                                    {{ package.return_flight_number }}
+
+                                </div>
+
+
+                                <div class="route-main mt-1">
+
+                                    {{ package.return_departure_airport.code }}
+
+                                    <span class="route-arrow">
+
+                                        →
+
+                                    </span>
+
+                                    {{ package.return_arrival_airport.code }}
+
+                                </div>
+
+
+                                <div class="route-cities">
+
+                                    {{ package.return_departure_airport.city }}
+
+                                    →
+
+                                    {{ package.return_arrival_airport.city }}
+
+                                </div>
+
+
+                                <div class="flight-date">
+
+                                    {{ package.return_departure_date|date:"d M Y" }}
+
+                                </div>
+
+
+                                <div class="flight-times">
+
+                                    {{ package.return_departure_time|time:"H:i" }}
+
+                                    →
+
+                                    {{ package.return_arrival_time|time:"H:i" }}
+
+                                </div>
+
+
+                                <div class="flight-extra">
+
+                                    <i class="bi bi-luggage"></i>
+
+                                    {{ package.return_baggage }}
+
+                                    &nbsp;·&nbsp;
+
+                                    {% if package.return_meal == "No" %}
+
+                                        No Meal
+
+                                    {% else %}
+
+                                        Meal Included
+
+                                    {% endif %}
+
+                                </div>
+
+
+                            </div>
+
+
+                            <!-- MAKKAH HOTEL -->
+
+                            <div class="col-xl-3 col-md-6">
+
+
+                                <div class="hotel-box">
+
+
+                                    <div class="hotel-label">
+
+                                        Makkah Hotel
+
+                                    </div>
+
+
+                                    <div class="hotel-name">
+
+                                        {{ package.makkah_hotel.name }}
+
+                                    </div>
+
+
+                                    {% if package.makkah_hotel.distance_from_reference %}
+
+                                        <div class="hotel-distance">
+
+                                            {{ package.makkah_hotel.distance_from_reference }}
+
+                                        </div>
+
+                                    {% endif %}
+
+
+                                    <div class="night-summary">
+
+                                        <i class="bi bi-moon-stars"></i>
+
+                                        {{ package.nights_in_makkah }}
+
+                                        Nights
+
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- MADINAH HOTEL -->
+
+                            <div class="col-xl-3 col-md-6">
+
+
+                                <div class="hotel-box">
+
+
+                                    <div class="hotel-label">
+
+                                        Madinah Hotel
+
+                                    </div>
+
+
+                                    <div class="hotel-name">
+
+                                        {{ package.madinah_hotel.name }}
+
+                                    </div>
+
+
+                                    {% if package.madinah_hotel.distance_from_reference %}
+
+                                        <div class="hotel-distance">
+
+                                            {{ package.madinah_hotel.distance_from_reference }}
+
+                                        </div>
+
+                                    {% endif %}
+
+
+                                    <div class="night-summary">
+
+                                        <i class="bi bi-moon-stars"></i>
+
+                                        {{ package.nights_in_madinah }}
+
+                                        Nights
+
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- PACKAGE FOOTER -->
+
+                    <div class="package-footer">
+
+
+                        <div>
+
+                            <div class="price-label">
+
+                                Package Price
+
+                            </div>
+
+
+                            <div class="price">
+
+                                PKR
+                                {{ package.price|floatformat:0 }}
+
+                            </div>
+
+
+                            <div class="room-type">
+
+                                {{ package.room_type|title }}
+
+                                ·
+
+                                {{ package.nights_in_makkah|add:package.nights_in_madinah }}
+
+                                Total Nights
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="seats-info">
+
+
+                            {% if package.available_seats <= 5 %}
+
+                                <div class="seats-number low">
+
+                                    {{ package.available_seats }}
+
+                                </div>
+
+                            {% else %}
+
+                                <div class="seats-number">
+
+                                    {{ package.available_seats }}
+
+                                </div>
+
+                            {% endif %}
+
+
+                            <div class="seats-label">
+
+                                Seats Left
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- ACTION BUTTONS -->
+
+                        <div
+                            class="action-buttons"
+                            style="
+                                display:flex;
+                                align-items:center;
+                                gap:8px;
+                            "
+                        >
+
+
+                            <!-- VIEW DETAILS -->
+
+                            <a
+                                href="{% url 'agent_umrah_package_detail' package.id %}"
+                                class="details-btn"
+                            >
+
+                                <i class="bi bi-eye"></i>
+
+                                View Details
+
+                            </a>
+
+
+                            <!-- BOOK NOW -->
+
+                            {% if package.available_seats > 0 %}
+
+                                <a
+                                    href="{% url 'agent_umrah_booking_create' package.id %}"
+                                    class="book-btn"
+                                >
+
+                                    <i class="bi bi-calendar-check"></i>
+
+                                    Book Now
+
+                                </a>
+
+                            {% else %}
+
+                                <span class="sold-out-btn">
+
+                                    <i class="bi bi-x-circle"></i>
+
+                                    Sold Out
+
+                                </span>
+
+                            {% endif %}
+
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+            {% empty %}
+
+
+                <div class="empty-state">
+
+
+                    <div class="empty-icon">
+
+                        <i class="bi bi-moon-stars-fill"></i>
+
+                    </div>
+
+
+                    <h4>
+
+                        No Umrah Packages Found
+
+                    </h4>
+
+
+                    <p>
+
+                        There are currently no active Umrah packages matching your search or filters.
+
+                    </p>
+
+
+                </div>
+
+
+            {% endfor %}
+
+
+        </div>
+
+
+        <!-- FOOTER -->
+
+        <div class="footer">
+
+            © 2026 AL NAJAM Travel & Tours — Agent Portal
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js">
+</script>
+
+
+</body>
+
+</html>
